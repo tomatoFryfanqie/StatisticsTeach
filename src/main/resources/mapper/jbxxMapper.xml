@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.jbxxMapper">
+    <resultMap id="jbxxInfo" type="org.jplus.pojo.basisInfo.Jbxx">
+        <id column="jbxxid" property="jbxxid" jdbcType="INTEGER"></id>
+        <result property="sfxrz" column="sfxrz" jdbcType="INTEGER"/>
+        <result property="edgzl" column="edgzl" jdbcType="FLOAT"/>
+        <result property="bkszdsk" column="bkszdsk" jdbcType="FLOAT"/>
+        <association property="users" javaType="org.jplus.pojo.basisInfo.Users">
+            <result property="gh" column="gh" jdbcType="CHAR"></result>
+            <result property="uname" column="uname" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="yxbm" javaType="org.jplus.pojo.basisInfo.Yxbm">
+            <result property="yxbm" column="yxbm" jdbcType="INTEGER"></result>
+            <result property="yxmc" column="yxmc" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="zwbm" javaType="org.jplus.pojo.basisInfo.Zwbm">
+            <result property="zwbm" column="zwbm" jdbcType="INTEGER"></result>
+            <result property="zwmc" column="zwmc" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="zcbm" javaType="org.jplus.pojo.basisInfo.Zcbm">
+            <result property="zcbm" column="zcbm" jdbcType="INTEGER"></result>
+            <result property="zcmc" column="zcmc" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="gwlxbm" javaType="org.jplus.pojo.basisInfo.Gwlxbm">
+            <result property="gwlxbm" column="gwlxbm" jdbcType="INTEGER"></result>
+            <result property="gwlxmc" column="gwlxmc" jdbcType="VARCHAR"></result>
+        </association>
+    </resultMap>
+    <select id="getJbxxInfo" resultMap="jbxxInfo">
+        SELECT
+            j.jbxxid,
+            u.gh,
+            u.uname,
+            y.yxbm,
+            y.yxmc,
+            zw.zwbm,
+            zw.zwmc,
+            zc.zcbm,
+            zc.zcmc,
+            g.gwlxbm,
+            g.gwlxmc,
+            sfxrz,
+            edgzl,
+            bkszdsk
+            from jbxx as j
+            left join users as u
+            on j.gh = u.gh
+            left join yxbm as y
+            on j.yxbm = y.yxbm
+            left join zwbm as zw
+            on j.zwbm = zw.zwbm
+            left join zcbm as zc
+            on j.zcbm = zc.zcbm
+            left join gwlxbm as g
+            on j.gwlxbm = g.gwlxbm
+    </select>
+
+    <select id="getYxbmInfo" resultType="org.jplus.pojo.basisInfo.Yxbm">
+        select yxbm,yxmc from `yxbm`
+    </select>
+    <select id="getZwbmInfo" resultType="org.jplus.pojo.basisInfo.Zwbm">
+        select zwbm,zwmc from `zwbm`
+    </select>
+    <select id="getZcbmInfo" resultType="org.jplus.pojo.basisInfo.Zcbm">
+        select zcbm,zcmc from `zcbm`
+    </select>
+    <select id="getGwlxbmInfo" resultType="org.jplus.pojo.basisInfo.Gwlxbm">
+        select gwlxbm,gwlxmc from `gwlxbm`;
+    </select>
+
+</mapper>

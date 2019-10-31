@@ -1,0 +1,105 @@
+/* 基本信息基础布局 */
+.other-teaching {
+  font-size: 14px;
+  width: 80%;
+  text-align: left;
+  position: absolute;
+  top: 11%;
+  right: 0;
+}
+
+/* 标题 */
+.teaching-title {
+  height: 30px;
+  line-height: 30px;
+  /* text-align: center; */
+  margin-top: 1%;
+  margin-left: 37%;
+}
+
+.msg-warp {
+  width: 100%;
+  padding: 3% 6%;
+}
+
+/* 年份栏 */
+.msg {
+  height: 25px;
+}
+
+.year {
+  width: 25%;
+  padding-left: 5%;
+}
+
+.msg div,
+.msg button {
+  float: left;
+}
+
+/* 保存按钮 */
+#save {
+  /* height: 20px;
+    line-height: 20px; */
+  font-size: 14px;
+  border: 2px solid #006abb;
+  padding: 0.5px 8px;
+  border-radius: 5px;
+  position: absolute;
+  left: 70%;
+}
+
+.total-workload {
+  margin-left: 0%;
+}
+/*  内容填写栏*/
+.job-category ul {
+  width: 100%;
+  padding-left: 0;
+}
+.job-category ul li {
+  width: 100%;
+  margin-top: 2%;
+  /* padding-left: 5%; */
+}
+.right-shift {
+  padding-left: 5%;
+}
+.job-category ul li .enter {
+  width: 105px;
+  height: 20px;
+}
+/* 表单与文字部分距离 */
+.prompt,
+.explain,
+.entry-chose,
+.msg .year span,
+.msg .total-workload span {
+  margin-left: 10px;
+}
+/* .job-category ul li .enter{
+    margin-left: 15%;
+  } */
+.job-category ul li .entry-chose {
+  margin-left: 4%;
+}
+.job-category ul li div {
+  width: 100%;
+  line-height: 28px;
+  display: block;
+}
+.job-category ul li .work-theme {
+  width: 25%;
+  float: left;
+}
+.job-category ul li .undertake {
+  width: 35%;
+  float: left;
+}
+.job-category ul li .workload {
+  width: 70%;
+}
+.job-category ul li .complete .right-shift {
+  display: inline-block;
+  width: 25%;
+}

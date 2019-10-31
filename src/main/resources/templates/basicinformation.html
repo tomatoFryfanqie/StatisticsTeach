@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 引用bootstrap及基础样式 -->
+    <script src="js/link.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/basicinformation.css" />
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <!-- 头部 -->
+    <div class="toptitle">
+        <span id="title">湖北师范大学教学工作量统计系统</span>
+        <a href="" id="change-password">修改密码</a>
+    </div>
+    <!-- 左边导航栏 -->
+    <div class="main">
+        <div class="navbar">
+            <div class="navwarp">
+                <div class="basic-information active">
+                    <a href="#">教师本年度基本信息</a>
+                </div>
+                <!-- 本科生 -->
+                <div id="bachelor">本科生</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="classroomteaching.html">课堂教学</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="practicalteaching.html">实践教学</a>
+                    </li>
+                    <li class="list-group-item"><a href="qualityengineering.html">质量工程建设</a></li>
+                    <li class="list-group-item"><a href="teachingresearch.html">教学研究</a></li>
+                    <li class="list-group-item"><a href="knowledgecontest.html">教学知识竞赛</a></li>
+                    <li class="list-group-item"><a href="otheractivities.html">其它教育教学活动</a></li>
+                </ul>
+                <!-- 研究生 -->
+                <div id="postgraduate">研究生</div>
+                <ul class="list-group">
+                    <li class="list-group-item">课堂教学</li>
+                    <li class="list-group-item">实践教学</li>
+                    <li class="list-group-item">教学基本建设与学科建设</li>
+                    <li class="list-group-item">教学研究项目</li>
+                    <li class="list-group-item">指导研究生竞赛获奖</li>
+                    <li class="list-group-item">其它工作</li>
+                </ul>
+                <div>
+                    <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="tips">
+                            <div>提示：</div>
+                            <div style=" text-indent: 2em;">本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。</div>
+                        </div>
+                        <div class="btn-submitted">
+                            <button type="button" id="submitted">继续提交</button>
+                            <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 教师本年度基本信息 -->
+    <!-- 教师本年度基本信息编辑栏 -->
+    <div class="basicinformation">
+        <div class="information-title">教师本年度基本信息</div>
+        <!-- 保存按钮 -->
+        <button type="button" id="save">保存</button>
+        <div class="informaction">
+            <!-- 表单信息 -->
+            <ul>
+                <li>
+                    <span class="passwordtip" style="letter-spacing: 30px;">姓</span>名:
+                    <input type="text" id="name" class="name" placeholder="请输入姓名" th:value="${basisInfo.users!=null}?${basisInfo.users.uname}"/>
+                </li>
+                <form>
+                <li class="ul-right">
+
+                        院系:<select name="cars">
+                        <option th:text="${basisInfo.yxbm!=null}?${basisInfo.yxbm.yxmc}:${'院系'}"></option>
+                        <option th:each="yxmcType : ${yxType}" name="yxbm" th:value="${yxmcType.yxbm}" th:text="${yxmcType.yxmc}"></option>
+                        </select>
+                </li>
+                <li>
+
+                        <span class="passwordtip" style="letter-spacing: 30px;">职</span>务:<select name="position">
+                        <option th:text="${basisInfo.zwbm!=null}?${basisInfo.zwbm.zwmc}:${'职务'}"></option>
+                        <option th:each="zwmcType : ${zwType}" th:value="${zwmcType.zwbm}" th:text="${zwmcType.zwmc}"></option>
+                        </select>
+
+                </li>
+                <li class="ul-right">
+                        职称:<select name="professionaltitle">
+                        <option th:text="${basisInfo.zcbm!=null}?${basisInfo.zcbm.zcmc}:${'职称'}"></option>
+                        <option th:each="zcmcType : ${zcType}" th:value="${zcmcType.zcbm}" th:text="${zcmcType.zcmc}"></option>
+                        </select>
+                </li>
+                <li class="post">
+
+                        岗位类型:<select name="station">
+                        <option th:text="${basisInfo.gwlxbm!=null}?${basisInfo.gwlxbm.gwlxmc}:${'岗位类型'}"></option>
+                        <option th:each="gwlxmcType : ${gwlxType}" th:value="${gwlxmcType.gwlxbm}" th:text="${gwlxmcType.gwlxmc}"></option>
+                        </select>
+
+                </li>
+                <li class="entry">
+
+                        是否新入职:<input type="radio" name="newentry" value="new" class="entry-chose" />是
+                        <input type="radio" name="newentry" value="old" checked="checked" />否
+                    </form>
+                </li>
+            </ul>
+            <!-- 工作量信息显示 -->
+            <div class="workload-warp">
+                <div id="ratedworkload">教学额定工作量:<span>qqqq</span></div>
+                <div id="actualworkload">实际总工作量:<span>qqqq</span></div>
+                <div id="minimumworkload">本科生授课最低工作量:<span>qqqq</span></div>
+                <div id="undergraduateworkload">
+                    其中：本科生教学工作量:<span>qqqq</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="" async defer></script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引用bootstrap及基础样式 -->
+    <script src="js/link.js"></script>
+    <link rel="stylesheet" href="css/otheractivities.css">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- 头部 -->
+    <script src="js/titleandnav.js"></script>
+    <!-- 左边导航栏 -->
+    <div class="main">
+        <div class="navbar">
+            <div class="navwarp">
+                <div class="basic-information">
+                    <a href="basicinformation.html">教师本年度基本信息</a>
+                </div>
+                <!-- 本科生 -->
+                <div id="bachelor">本科生</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="classroomteaching.html">课堂教学</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="practicalteaching.html">实践教学</a>
+                    </li>
+                    <li class="list-group-item"><a href="qualityengineering.html">质量工程建设</a></li>
+                    <li class="list-group-item"><a href="teachingresearch.html">教学研究</a></li>
+                    <li class="list-group-item"><a href="knowledgecontest.html">教学知识竞赛</a></li>
+                    <li class="list-group-item active"><a href="otheractivities.html">其它教育教学活动</a></li>
+                </ul>
+                <!-- 研究生 -->
+                <div id="postgraduate">研究生</div>
+                <ul class="list-group">
+                    <li class="list-group-item">课堂教学</li>
+                    <li class="list-group-item">实践教学</li>
+                    <li class="list-group-item">教学基本建设与学科建设</li>
+                    <li class="list-group-item">教学研究项目</li>
+                    <li class="list-group-item">指导研究生竞赛获奖</li>
+                    <li class="list-group-item">其它工作</li>
+                </ul>
+                <div>
+                    <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
+                </div>
+            </div>
+        </div>
+        <!-- 模态框 -->
+        <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="tips">
+                            <div>提示：</div>
+                            <div style=" text-indent: 2em;">本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。</div>
+                        </div>
+                        <div class="btn-submitted">
+                            <button type="button" id="submitted">继续提交</button>
+                            <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 其它教学活动部分 -->
+    <div class="other-teaching">
+        <!-- 标题 -->
+        <div class="teaching-title">其它教学工作量</div>
+        <div class="msg-warp">
+            <!-- 提示信息栏 -->
+            <div class="msg">
+                <div class="year">年度<span>2019</span></div>
+                <div class="total-workload">其它教学工作量小计<span>sss</span></div>
+                <button type="button" id="save">保存</button>
+            </div>
+            <!-- 具体工作类别及数目 -->
+            <div class="job-category">
+                <ul>
+                    <li>
+                        <div class="right-shift">教学督导员</div>
+                        <div class="complete">
+                            <span class="right-shift">教学督导工作量</span><input type="text" placeholder=""
+                                class="enter" /><span class="explain">校级:80 分/年，院级：30 分/年</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="work-theme right-shift">学生学业指导帮扶</div>
+                        <div class="workload">工作量<span class="prompt">xxx</span></div>
+                        <div class="complete">
+                            <span class="right-shift">帮扶学生人数</span><input type="text" class="enter" placeholder="" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="work-theme right-shift">指导青年教师</div>
+                        <div class="workload">工作量<span class="prompt">xxx</span></div>
+                        <div class="complete">
+                            <span class="right-shift">指导青年教师人数</span><input type="text" placeholder="" class="enter" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="work-theme undertake right-shift">
+                            承担或参与教学文件制定、修订工作
+                        </div>
+                        <div class="workload">工作量<span class="prompt">xxx</span></div>
+                        <div class="complete right-shift">
+                            参加修订人才培养方案:<input type="radio" name="newentry" value="new" class="entry-chose" />是
+                            <input type="radio" name="newentry" value="old" checked="checked" />否
+                        </div>
+                        <div class="complete">
+                            <span class="right-shift">编写课程教学大纲课程数</span><input type="text" placeholder=""
+                                class="enter" />
+                        </div>
+                        <div class="complete">
+                            <span class="right-shift">编写实验教学大纲课程数</span><input type="text" placeholder=""
+                                class="enter" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="" async defer></script>
+</body>
+
+</html>
