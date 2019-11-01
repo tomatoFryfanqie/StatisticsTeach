@@ -11,7 +11,7 @@ import java.util.List;
  * @CreateTime: 2019/10/31
  * @Description: Description
  */
-public interface jbxxService {
+public interface JbxxService {
     Jbxx getJbxxInfo();
 
     List<Yxbm> getYxbmInfo();
@@ -21,4 +21,6 @@ public interface jbxxService {
     List<Zcbm> getZcbmInfo();
 
     List<Gwlxbm> getGwlxbmInfo();
+
+    void updateBasisInfo(JbxxAccpet jbxxAccpet);
 }

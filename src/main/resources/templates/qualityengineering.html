@@ -15,6 +15,7 @@
   <!-- 引用bootstrap及基础样式 -->
   <script src="js/link.js"></script>
   <link rel="stylesheet" href="css/qualityengineering.css" />
+  <link rel="stylesheet" href="css/tablestyle.css" />
 </head>
 
 <body>
@@ -132,7 +133,8 @@
                   项目名称：<input type="text" class="form-control-1 class-name" placeholder="" />
                 </div>
                 <div>
-                  级别：<select name="competitionform" class="form-control-1">
+                  <span class="passwordtip" style="letter-spacing: 30px;">级</span>别：<select name="competitionform"
+                    class="form-control-1">
                     <option value="lecture">讲课</option>
                     <option value="Courseware">课件</option>
                     <option value="microlesson">微课</option>
@@ -146,10 +148,10 @@
                   </select>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1" placeholder="请输入用户名" />
+                  项目排名：<input type="text" class="form-control-1" placeholder="" />
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1" placeholder="请输入密码" />
+                  项目总人数：<input type="text" class="form-control-1" placeholder="" />
                 </div>
                 <div class="btn-add">
                   <button type="button" id="add">添加</button>
@@ -163,7 +165,7 @@
       <div class="table-wrap">
         <!-- 表格数据 -->
         <!--文章列表-->
-        <table class="table table-bordered">
+        <table class="table table-bordered edtitable">
           <thead>
             <tr>
               <th>项目类型</th>
@@ -184,12 +186,74 @@
               <td>aaa</td>
               <td>Tanmay</td>
               <td>Bangalore</td>
-              <td>560001</td>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
+              <td class="notedit">560001</td>
+              <td class="notedit"><a class="modify" data-toggle="modal" data-target="#modifyModal">修 改</a></td>
+              <!-- 删除按钮 -->
+              <td class="del-col notedit">
+                <a href="javascript:void(0);" class="delBtn">删除</a>
+              </td>
+            </tr>
+            <!-- 新生成表格位置 -->
+            <tr class="append-row">
+            </tr>
             </tr>
           </tbody>
         </table>
+        <!-- 模态框（Modal）界面 -->
+        <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  &times;
+                </button>
+                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                  课堂教学新增页面
+                </h5>
+              </div>
+              <div class="modal-body">
+                <form action="">
+                  <div>
+                    项目类型：<select name="competitionform" class="form-control-1">
+                      <option value="lecture">讲课</option>
+                      <option value="Courseware">课件</option>
+                      <option value="microlesson">微课</option>
+                    </select>
+                  </div>
+                  <div>
+                    项目名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                  </div>
+                  <div>
+                    <span class="passwordtip" style="letter-spacing: 30px;">级</span>别：<select name="competitionform"
+                      class="form-control-1">
+                      <option value="lecture">讲课</option>
+                      <option value="Courseware">课件</option>
+                      <option value="microlesson">微课</option>
+                    </select>
+                  </div>
+                  <div>
+                    获批(奖)年份：<select name="competitionform" class="form-control-1">
+                      <option value="lecture">讲课</option>
+                      <option value="Courseware">课件</option>
+                      <option value="microlesson">微课</option>
+                    </select>
+                  </div>
+                  <div>
+                    项目排名：<input type="text" class="form-control-1" placeholder="" />
+                  </div>
+                  <div>
+                    项目总人数：<input type="text" class="form-control-1" placeholder="" />
+                  </div>
+                  <div class="btn-add">
+                    <button type="button" id="add">确定</button>
+                    <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

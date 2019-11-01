@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.jplus.mapper.jbxxMapper">
+<mapper namespace="org.jplus.mapper.JbxxMapper">
     <resultMap id="jbxxInfo" type="org.jplus.pojo.basisInfo.Jbxx">
         <id column="jbxxid" property="jbxxid" jdbcType="INTEGER"></id>
         <result property="sfxrz" column="sfxrz" jdbcType="INTEGER"/>
         <result property="edgzl" column="edgzl" jdbcType="FLOAT"/>
         <result property="bkszdsk" column="bkszdsk" jdbcType="FLOAT"/>
-        <association property="users" javaType="org.jplus.pojo.basisInfo.Users">
+        <association property="users" javaType="org.jplus.pojo.Users">
             <result property="gh" column="gh" jdbcType="CHAR"></result>
             <result property="uname" column="uname" jdbcType="VARCHAR"></result>
         </association>
@@ -68,5 +68,16 @@
     <select id="getGwlxbmInfo" resultType="org.jplus.pojo.basisInfo.Gwlxbm">
         select gwlxbm,gwlxmc from `gwlxbm`;
     </select>
+    <update id="updateBasisInfo">
+        update `jbxx` set
+        yxbm = #{yxbm,jdbcType=INTEGER} ,
+        zwbm = #{zwbm,jdbcType=INTEGER} ,
+        zcbm = #{zcbm,jdbcType=INTEGER} ,
+        gwlxbm = #{gwlxbm,jdbcType=INTEGER} ,
+        sfxrz = #{sfxrz,jdbcType=INTEGER},
+        edgzl = #{edgzl,jdbcType=FLOAT},
+        bkszdsk = #{bkszdsk,jdbcType=FLOAT}
+        where jbxxid = #{jbxxid,jdbcType=INTEGER}
+    </update>
 
 </mapper>

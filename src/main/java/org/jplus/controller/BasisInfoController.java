@@ -1,10 +1,15 @@
 package org.jplus.controller;
 
-import org.jplus.service.jbxxService;
+import org.jplus.interceptor.NeedLogin;
+import org.jplus.pojo.basisInfo.Jbxx;
+import org.jplus.pojo.basisInfo.JbxxAccpet;
+import org.jplus.service.JbxxService;
+import org.jplus.utils.GetRatedWorkload;
+import org.jplus.utils.GetRatedTeachTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,11 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Description: Description
  */
 @Controller
-public class basisInforController {
+public class BasisInfoController {
 
     @Autowired
-    private jbxxService jbxxService;
+    private JbxxService jbxxService;
 
+    @NeedLogin
     @RequestMapping("/basicinformation")
     public String getInfo(Model model){
         /*获取院系信息*/
@@ -32,9 +38,17 @@ public class basisInforController {
         /*获取岗位信息*/
         model.addAttribute("gwlxType", jbxxService.getGwlxbmInfo());
         /*获取基本信息存到model中*/
-        model.addAttribute("basisInfo", jbxxService.getJbxxInfo());
+        Jbxx jbxxInfo = jbxxService.getJbxxInfo();
+        model.addAttribute("basisInfo", jbxxInfo);
         return "basicinformation";
     }
 
+    @PostMapping("/updateBasisInfo")
+    public String updateJbxxInfo(@ModelAttribute(value = "jbxxAccpet") JbxxAccpet jbxxAccpet){
 
+        jbxxAccpet.setEdgzl(GetRatedWorkload.getRatedWorkload(jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
+        jbxxAccpet.setBkszdsk(GetRatedTeachTime.getTeachTime(jbxxAccpet.getZcbm(), jbxxAccpet.getGwlxbm()));
+        jbxxService.updateBasisInfo(jbxxAccpet);
+        return "redirect:basicinformation";
+    }
 }

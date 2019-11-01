@@ -35,19 +35,20 @@
         <div class="navbar">
             <div class="navwarp">
                 <div class="basic-information active">
-                    <a href="#">教师本年度基本信息</a>
+                    <a th:href="@{basicinformation}">教师本年度基本信息</a>
                 </div>
                 <!-- 本科生 -->
                 <div id="bachelor">本科生</div>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="classroomteaching.html">课堂教学</a>
+                        <a th:href="@{/classroomteaching}" >课堂教学</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="practicalteaching.html">实践教学</a>
+                        <a th:href="@{/practiceteh}">实践教学</a>
                     </li>
                     <li class="list-group-item"><a href="qualityengineering.html">质量工程建设</a></li>
-                    <li class="list-group-item"><a href="teachingresearch.html">教学研究</a></li>
+                    <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
+
                     <li class="list-group-item"><a href="knowledgecontest.html">教学知识竞赛</a></li>
                     <li class="list-group-item"><a href="otheractivities.html">其它教育教学活动</a></li>
                 </ul>
@@ -88,62 +89,68 @@
     <!-- 教师本年度基本信息编辑栏 -->
     <div class="basicinformation">
         <div class="information-title">教师本年度基本信息</div>
+        <form th:action="@{/updateBasisInfo}" method="post" th:object="${jbxxAccpet}">
+
         <!-- 保存按钮 -->
-        <button type="button" id="save">保存</button>
+        <button type="submit"  id="save">保存</button>
+            <div>
+                <input hidden th:name="jbxxid" th:value="${basisInfo.jbxxid}">
+            </div>
+
         <div class="informaction">
             <!-- 表单信息 -->
             <ul>
                 <li>
                     <span class="passwordtip" style="letter-spacing: 30px;">姓</span>名:
-                    <input type="text" id="name" class="name" placeholder="请输入姓名" th:value="${basisInfo.users!=null}?${basisInfo.users.uname}"/>
+                    <input type="text" id="name" class="name" th:value="${basisInfo.users!=null}?${basisInfo.users.uname}"/>
                 </li>
-                <form>
-                <li class="ul-right">
 
-                        院系:<select name="cars">
-                        <option th:text="${basisInfo.yxbm!=null}?${basisInfo.yxbm.yxmc}:${'院系'}"></option>
-                        <option th:each="yxmcType : ${yxType}" name="yxbm" th:value="${yxmcType.yxbm}" th:text="${yxmcType.yxmc}"></option>
+
+                <li class="ul-right">
+                        院系:<select th:name="yxbm">
+                        <option th:each="yxmcType:${yxType}" th:selected="${yxmcType.yxbm}==${basisInfo.yxbm.yxbm}"
+                                th:value="${yxmcType.yxbm}" th:text="${yxmcType.yxmc}" th:name="yxbm"></option>
                         </select>
                 </li>
                 <li>
-
-                        <span class="passwordtip" style="letter-spacing: 30px;">职</span>务:<select name="position">
-                        <option th:text="${basisInfo.zwbm!=null}?${basisInfo.zwbm.zwmc}:${'职务'}"></option>
-                        <option th:each="zwmcType : ${zwType}" th:value="${zwmcType.zwbm}" th:text="${zwmcType.zwmc}"></option>
+                    <span class="passwordtip" style="letter-spacing: 30px;">
+                        职</span>务:
+                        <select th:name="zwbm">
+                        <option th:each="zwbmType:${zwType}" th:selected="${zwbmType.zwbm}==${basisInfo.zwbm.zwbm}"
+                                th:value="${zwbmType.zwbm}" th:text="${zwbmType.zwmc}" th:name="zwbm"></option>
                         </select>
-
                 </li>
                 <li class="ul-right">
-                        职称:<select name="professionaltitle">
-                        <option th:text="${basisInfo.zcbm!=null}?${basisInfo.zcbm.zcmc}:${'职称'}"></option>
-                        <option th:each="zcmcType : ${zcType}" th:value="${zcmcType.zcbm}" th:text="${zcmcType.zcmc}"></option>
-                        </select>
+                        职称:<select name="zcbm">
+                        <option th:each="zcbmType:${zcType}" th:selected="${zcbmType.zcbm}==${basisInfo.zcbm.zcbm}"
+                                th:value="${zcbmType.zcbm}" th:text="${zcbmType.zcmc}" th:name="zcbm"></option>
+                </select>
                 </li>
                 <li class="post">
-
-                        岗位类型:<select name="station">
-                        <option th:text="${basisInfo.gwlxbm!=null}?${basisInfo.gwlxbm.gwlxmc}:${'岗位类型'}"></option>
-                        <option th:each="gwlxmcType : ${gwlxType}" th:value="${gwlxmcType.gwlxbm}" th:text="${gwlxmcType.gwlxmc}"></option>
-                        </select>
+                        岗位类型:<select name="gwlxbm">
+                        <option th:each="gwlxbmType:${gwlxType}" th:selected="${gwlxbmType.gwlxbm}==${basisInfo.gwlxbm.gwlxbm}"
+                                th:value="${gwlxbmType.gwlxbm}" th:text="${gwlxbmType.gwlxmc}" th:name="gwlxbm"></option>
+                </select>
 
                 </li>
                 <li class="entry">
-
-                        是否新入职:<input type="radio" name="newentry" value="new" class="entry-chose" />是
-                        <input type="radio" name="newentry" value="old" checked="checked" />否
-                    </form>
+                    <div th:name="sfxrz">
+                        是否新入职:<input type="radio" th:name="sfxrz" th:value="${0}" class="entry-chose"th:checked="${basisInfo.sfxrz}==0" />是
+                        <input type="radio" th:name="sfxrz" th:value="${1}" th:checked="${basisInfo.sfxrz}==1"/>否
+                    </div>
                 </li>
+
             </ul>
             <!-- 工作量信息显示 -->
             <div class="workload-warp">
-                <div id="ratedworkload">教学额定工作量:<span>qqqq</span></div>
+                <div id="ratedworkload">教学额定工作量:<span th:text="${basisInfo.edgzl}"></span></div>
                 <div id="actualworkload">实际总工作量:<span>qqqq</span></div>
-                <div id="minimumworkload">本科生授课最低工作量:<span>qqqq</span></div>
-                <div id="undergraduateworkload">
-                    其中：本科生教学工作量:<span>qqqq</span>
+                <div id="minimumworkload">本科生授课最低工作量:<span th:text="${basisInfo.bkszdsk}"></span></div>
+                <div id="undergraduateworkload">其中：本科生教学工作量:<span>qqqq</span>
                 </div>
             </div>
         </div>
+        </form>
     </div>
     <script src="" async defer></script>
 </body>
