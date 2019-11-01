@@ -1,6 +1,7 @@
 package org.jplus.mapper;
 
 import org.jplus.pojo.basisInfo.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,7 +12,8 @@ import java.util.List;
  * @CreateTime: 2019/10/31
  * @Description: Description
  */
-public interface jbxxMapper {
+@Component
+public interface JbxxMapper {
     Jbxx getJbxxInfo();
 
     List<Yxbm> getYxbmInfo();

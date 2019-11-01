@@ -1,11 +1,10 @@
 package org.jplus.controller;
 
-import org.jplus.service.jbxxService;
+import org.jplus.interceptor.NeedLogin;
+import org.jplus.service.JbxxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -16,23 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Description: Description
  */
 @Controller
-public class basisInforController {
+public class BasisInfoController {
 
     @Autowired
-    private jbxxService jbxxService;
+    private JbxxService JbxxService;
 
+    @NeedLogin
     @RequestMapping("/basicinformation")
     public String getInfo(Model model){
         /*获取院系信息*/
-        model.addAttribute("yxType", jbxxService.getYxbmInfo());
+        model.addAttribute("yxType", JbxxService.getYxbmInfo());
         /*获取职务信息*/
-        model.addAttribute("zwType",jbxxService.getZwbmInfo());
+        model.addAttribute("zwType",JbxxService.getZwbmInfo());
         /*获取职称信息*/
-        model.addAttribute("zcType",jbxxService.getZcbmInfo());
+        model.addAttribute("zcType",JbxxService.getZcbmInfo());
         /*获取岗位信息*/
-        model.addAttribute("gwlxType", jbxxService.getGwlxbmInfo());
+        model.addAttribute("gwlxType", JbxxService.getGwlxbmInfo());
         /*获取基本信息存到model中*/
-        model.addAttribute("basisInfo", jbxxService.getJbxxInfo());
+        model.addAttribute("basisInfo", JbxxService.getJbxxInfo());
         return "basicinformation";
     }
 

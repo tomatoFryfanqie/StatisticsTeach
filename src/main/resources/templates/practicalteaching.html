@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html class="no-js" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 
 <head>
@@ -81,6 +81,7 @@
     <div class="practical-teaching">
         <!-- 标题 -->
         <div class="teaching-title">本科生实践教学工作量</div>
+        <form th:action="@{/saveBkssjjx}" th:object="${bkssjjxVo}" method="post">
         <div class="msg-warp">
             <!-- 提示信息栏 -->
             <div class="msg">
@@ -95,76 +96,100 @@
                     <li class="tips">1.指导实习</li>
                     <li class="tips workload-display">工作量小计<span class="prompt">xxx</span></li>
                     <li class="description indent">
-                        实习类型<select name="internshiptype">
-                            <option value="stationaryguidance">驻点指导</option>
-                            <option value="Nostationaryguidance">非驻点指导</option>
-                            <option value="educationaltrainee" selected>教育见习</option>
-                            <option value="productiontrainee">生产见习</option>
-                            <option value="businesstrainee">企业见习</option>
-                            <option value="fieldwork">田野作业</option>
-                            <option value="Sketching">写生采风</option>
+                        实习类型
+                        <select name="internshiptype" >
+                            <div th:unless="${bkssjjx}" >
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"></option>
+                            </div>
+                            <div th:if="${bkssjjx}" >
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"
+                                        th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm1}">
+                                </option>
+                            </div>
                         </select>
                     </li>
                     <li class="description filling">
-                        实习天数<input type="text" id="day" class="day" placeholder="" />
+                        实习天数
+                        <input th:if="${bkssjjx}" th:text="${bkssjjx.sxts1}" type="number" id="day" class="day"/>
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
                     </li>
                     <li class="description indent">
-                        实习类型<select name="internshiptype">
-                            <option value="stationaryguidance">驻点指导</option>
-                            <option value="Nostationaryguidance">非驻点指导</option>
-                            <option value="educationaltrainee" selected>教育见习</option>
-                            <option value="productiontrainee">生产见习</option>
-                            <option value="businesstrainee">企业见习</option>
-                            <option value="fieldwork">田野作业</option>
-                            <option value="Sketching">写生采风</option>
+                        实习类型
+                        <select name="internshiptype" >
+                            <div th:unless="${bkssjjx}" >
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"></option>
+                            </div>
+                            <div th:if="${bkssjjx}" >
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"
+                                        th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm2}">
+                                </option>
+                            </div>
                         </select>
                     </li>
                     <li class="description filling">
-                        实习天数<input type="text" id="day" class="day" placeholder="" />
+                        实习天数
+                        <input th:if="${bkssjjx}" th:text="${bkssjjx.sxts2}" type="number" id="day" class="day"/>
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
                     </li>
                     <li class="description indent">
-                        实习类型<select name="internshiptype">
-                            <option value="stationaryguidance">驻点指导</option>
-                            <option value="Nostationaryguidance">非驻点指导</option>
-                            <option value="educationaltrainee" selected>教育见习</option>
-                            <option value="productiontrainee">生产见习</option>
-                            <option value="businesstrainee">企业见习</option>
-                            <option value="fieldwork">田野作业</option>
-                            <option value="Sketching">写生采风</option>
+                        实习类型
+                        <select name="internshiptype" >
+                            <div th:unless="${bkssjjx}" >
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"></option>
+                            </div>
+                            <div th:if="${bkssjjx}" >
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"
+                                        th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm3}">
+                                </option>
+                            </div>
                         </select>
                     </li>
                     <li class="description filling">
-                        实习天数<input type="text" id="day" class="day" placeholder="" />
+                        实习天数
+                        <input th:if="${bkssjjx}" th:text="${bkssjjx.sxts3}" type="number" id="day" class="day"/>
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
                     </li>
                     <li class="tips">2.微格试讲</li>
                     <li class="tips workload-display">工作量小计<span class="prompt">xxx</span></li>
                     <li class="description new-line indent">
-                        指导学生人数<input type="text" id="student-num" class="student-num" placeholder="" />
+                        指导学生人数
+                        <input type="number" th:if="${bkssjjx}" th:text="${bkssjjx.wgsjrs}" class="student-num" placeholder=""/>
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
                     </li>
                     <li class="tips">3.指导毕业论文</li>
                     <li class="tips workload-display">工作量小计<span class="prompt">xxx</span></li>
                     <li class="description indent">
-                        专业类型<select name="majortype">
-                            <option value="liberalarts">文科(艺体)</option>
-                            <option value="science">理科</option>
-                            <option value="Engineering" selected>工科</option>
-                            <option value="foreignstudent">留学生</option>
+                        专业类型
+                        <select name="majortype"  th:if="${bkssjjx}">
+                            <option th:each="zylx:${zylxlist}" th:text="${zylx.zylxmc}"
+                                    th:selected="${zylx.zylxbm}==${bkssjjx.zylxbm}"> </option>
+                        </select>
+                        <select name="majortype"  th:unless="${bkssjjx}">
+                            <option th:each="zylx:${zylxlist}" th:text="${zylx.zylxmc}"> </option>
                         </select>
                     </li>
                     <li class="description filling">
-                        指导学生人数<input type="text" id="student-num" class="student-num" placeholder="" />
+                        指导学生人数
+                        <input type="number" id="student-num" class="student-num" th:if="${bkssjjx}"
+                               th:text="${bkssjjx.zdlwrs}" />
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
                     </li>
                     <li class="tips new-line">4.实验室建设与管理</li>
                     <li class="description indent managements">
-                        管理内容<input type="text" id="management" class="management" placeholder="" />
+                        管理内容<input type="text" id="management" class="management"
+                                   th:if="${bkssjjx}" th:text="${bkssjjx.glnr}" />
+                        <input th:unless="${bkssjjx}"  type="text" id="day" class="day"/>
                     </li>
                     <li class="description laboratoryworkloads">
-                        实验室管理工作量<input type="text" id="laboratory-workload" class="laboratory-workload"
-                            placeholder="" />
+                        实验室管理工作量
+                        <input type="number" id="laboratory-workload" class="laboratory-workload"
+                                       th:if="${bkssjjx}" th:text="${bkssjjx.glgzl}" />
+                        <input th:unless="${bkssjjx}"  type="text" id="day" class="day"/>
                     </li>
                 </ul>
             </div>
         </div>
+        </form>
     </div>
     <script src="" async defer></script>
 </body>
