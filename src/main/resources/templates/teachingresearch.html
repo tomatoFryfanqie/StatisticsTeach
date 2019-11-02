@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html class="no-js" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 
 <head>
@@ -109,9 +109,9 @@
               </h5>
             </div>
             <div class="modal-body">
-              <form action="">
+              <form action="/addJxcg">
                 <div>
-                  教学成果：<input type="text" class="form-control-1 class-name" placeholder="" />
+                  教学成果：<input type="text" class="form-control-1 class-name" placeholder="" th:value="${}" name="cgmc"/>
                 </div>
                 <div>
                   成果等级：<select name="competitionform" class="form-control-1">
@@ -127,7 +127,10 @@
                   项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" />
                 </div>
                 <div class="btn-add">
-                  <button type="button" id="add">添加</button>
+                  <!--<button type="button" id="add">添加</button>-->
+                  <a th:href="@{/addJxcg}">
+                        <input type="submit" value="添加"/>
+                  </a>
                   <button type="button" id="cancel" data-dismiss="modal">取消</button>
                 </div>
               </form>
@@ -148,62 +151,25 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="achievementlevel">
-                  <option value="nationalspecial">国家级特等奖</option>
-                  <option value="nationalA">国家级一等奖</option>
-                  <option value="nationalB">国家级二等奖</option>
-                  <option value="provincialspecial">省部级特等奖</option>
-                  <option value="provincialA">省部级一等奖</option>
-                  <option value="provincialA">省部级二等奖</option>
-                  <option value="provincialA">省部级三等奖</option>
-                </select>
+            <tr th:each="Jxcg:${Jxcgs}">
+              <th th:text="${Jxcg.getCgmc()}"></th>
+              <th th:text="${Jxcgdjmcs}">
+                <!--<select name="achievementlevel">-->
+                  <!--<option value="nationalspecial">国家级特等奖</option>-->
+                  <!--<option value="nationalA">国家级一等奖</option>-->
+                  <!--<option value="nationalB">国家级二等奖</option>-->
+                  <!--<option value="provincialspecial">省部级特等奖</option>-->
+                  <!--<option value="provincialA">省部级一等奖</option>-->
+                  <!--<option value="provincialA">省部级二等奖</option>-->
+                  <!--<option value="provincialA">省部级三等奖</option>-->
+                <!--</select>-->
+
               </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="achievementlevel">
-                  <option value="nationalspecial">国家级特等奖</option>
-                  <option value="nationalA">国家级一等奖</option>
-                  <option value="nationalB">国家级二等奖</option>
-                  <option value="provincialspecial">省部级特等奖</option>
-                  <option value="provincialA">省部级一等奖</option>
-                  <option value="provincialA">省部级二等奖</option>
-                  <option value="provincialA">省部级三等奖</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="achievementlevel">
-                  <option value="nationalspecial">国家级特等奖</option>
-                  <option value="nationalA">国家级一等奖</option>
-                  <option value="nationalB">国家级二等奖</option>
-                  <option value="provincialspecial">省部级特等奖</option>
-                  <option value="provincialA">省部级一等奖</option>
-                  <option value="provincialA">省部级二等奖</option>
-                  <option value="provincialA">省部级三等奖</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
+              <th th:text="${Jxcg.getXmpm()}"></th>
+              <th th:text="${Jxcg.getJxcgzrs()}"></th>
+              <th th:text="${Jxcg.getJxcggzl()}"></th>
+              <td><a class="modify" >修 改</a></td>
+              <td><a class="delete" th:href="@{/delJxcg(id=${Jxcg.getJxcgid()})}">删 除</a></td>
             </tr>
           </tbody>
         </table>
