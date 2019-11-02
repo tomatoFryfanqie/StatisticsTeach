@@ -21,8 +21,8 @@ public class JbxxServiceImpl implements JbxxService {
     private JbxxMapper jbxxMapper;
 
     @Override
-    public Jbxx getJbxxInfo() {
-        return jbxxMapper.getJbxxInfo();
+    public Jbxx getJbxxInfo(String gh) {
+        return jbxxMapper.getJbxxInfo(gh);
     }
 
     @Override

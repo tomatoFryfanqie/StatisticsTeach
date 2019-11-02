@@ -28,7 +28,6 @@
     <!-- 头部 -->
     <div class="toptitle">
         <span id="title">湖北师范大学教学工作量统计系统</span>
-        <a href="" id="change-password">修改密码</a>
     </div>
     <!-- 左边导航栏 -->
     <div class="main">
@@ -90,7 +89,6 @@
     <div class="basicinformation">
         <div class="information-title">教师本年度基本信息</div>
         <form th:action="@{/updateBasisInfo}" method="post" th:object="${jbxxAccpet}">
-
         <!-- 保存按钮 -->
         <button type="submit"  id="save">保存</button>
             <div>
@@ -102,9 +100,8 @@
             <ul>
                 <li>
                     <span class="passwordtip" style="letter-spacing: 30px;">姓</span>名:
-                    <input type="text" id="name" class="name" th:value="${basisInfo.users!=null}?${basisInfo.users.uname}"/>
+                    <span type="text" id="name" class="name" th:text="${basisInfo.users!=null}?${basisInfo.users.uname}"/>
                 </li>
-
 
                 <li class="ul-right">
                         院系:<select th:name="yxbm">

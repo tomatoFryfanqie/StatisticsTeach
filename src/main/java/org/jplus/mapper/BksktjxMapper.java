@@ -14,7 +14,7 @@ import java.util.List;
  * @Description: Description
  */
 public interface BksktjxMapper {
-    /*获取本科生课堂教学信息*/
+
     List<Bksktjx> getBksktjxInfo();
 
     List<Kclx> getKtlxbm();

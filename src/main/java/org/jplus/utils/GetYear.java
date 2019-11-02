@@ -10,7 +10,7 @@ import java.util.Date;
  * @CreateTime: 2019/11/1
  * @Description: Description
  */
-public class YearAndClass {
+public class GetYear {
 
     /*获取学年*/
     public static int getYears(){

@@ -11,10 +11,16 @@ package org.jplus.utils;
 * 获取额定教学工作量
 * */
 public class GetRatedWorkload {
+    /**
+     *
+     * @param zcbm  职称编码
+     * @param gwlxbm    岗位类型编码
+     * @param sfxrz     是否新入职 0为是，1为否
+     * @return
+     */
     public static Float getRatedWorkload(Integer zcbm,Integer gwlxbm,Integer sfxrz){
 
         Float getWorkLoad = 0.0f;
-        /*如果新入职 且为职称为初级或者中级*/
         if(zcbm==3||zcbm==4){
             if (zcbm==3){
                 if (sfxrz==0){

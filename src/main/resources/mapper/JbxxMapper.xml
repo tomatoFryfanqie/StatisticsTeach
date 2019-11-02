@@ -54,6 +54,7 @@
             on j.zcbm = zc.zcbm
             left join gwlxbm as g
             on j.gwlxbm = g.gwlxbm
+            where u.gh = #{gh}
     </select>
 
     <select id="getYxbmInfo" resultType="org.jplus.pojo.basisInfo.Yxbm">

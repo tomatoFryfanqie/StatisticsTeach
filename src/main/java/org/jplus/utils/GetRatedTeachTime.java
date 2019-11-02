@@ -9,6 +9,12 @@ package org.jplus.utils;
  */
 public class GetRatedTeachTime {
 
+    /**
+     *
+     * @param zcbm  职称编码
+     * @param gwlxbm    岗位类型编码
+     * @return
+     */
     public static Float getTeachTime(Integer zcbm,Integer gwlxbm){
 
         Float getTime = 0.0f;

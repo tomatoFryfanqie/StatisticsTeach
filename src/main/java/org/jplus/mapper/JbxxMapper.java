@@ -12,7 +12,7 @@ import java.util.List;
  * @Description: Description
  */
 public interface JbxxMapper {
-    Jbxx getJbxxInfo();
+    Jbxx getJbxxInfo(String gh);
 
     List<Yxbm> getYxbmInfo();
 
