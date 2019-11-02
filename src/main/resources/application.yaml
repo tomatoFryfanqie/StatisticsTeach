@@ -1,0 +1,18 @@
+server:
+  port: 80
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 1
+  datasource:
+    url: jdbc:mysql://120.79.182.28:3306/jplus?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
+    username: root
+    password: jplus_imlgw.top123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    encoding: UTF-8
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: org.jplus.web.mapper

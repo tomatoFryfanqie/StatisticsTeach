@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 引用bootstrap及基础样式 -->
+    <script src="../../js/link.js"></script>
+    <link rel="stylesheet" href="../../css/knowledgecontest.css" />
+    <script src="../../js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+
+    <script>
+        function addContest() {
+            var contestName = $("#contestName").val();
+            var competition = $("#competition").val();
+            var contestLevel = $("#contestLevel").val();
+            var studentNum = $("#studentNum").val();
+            $.ajax({
+                type: 'POST',
+                url: "/addCompetition",
+                data:{
+                    contestName: contestName,
+                    competition: competition,
+                    contestLevel: contestLevel,
+                    studentNum: studentNum
+                },
+                success: function(data){
+
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        function addTeacherCompetition() {
+            var teacherCompetitionName = $("#teacherCompetitionName").val();
+            var teacherCompetitioncategory = $("#teacherCompetitioncategory").val();
+            var teacherCompetitionform = $("#teacherCompetitionform").val();
+            $.ajax({
+                type: 'POST',
+                url: "/addTeacherCompetition",
+                data:{
+                    teacherCompetitionName: teacherCompetitionName,
+                    teacherCompetitioncategory: teacherCompetitioncategory,
+                    teacherCompetitionform: teacherCompetitionform
+                },
+                success: function(data){
+
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        function saveCount() {
+            var slwNum = $("#slwNum").val();
+            var xlwNum = $("#xlwNum").val();
+            $.ajax({
+                type:'POST',
+                url:"/saveCount",
+                data:{
+                    slwNum: slwNum,
+                    xlwNum: xlwNum
+                },
+                success: function(data){
+
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            initData();
+            // getStudentCompetition();
+            // getTeacherCompetition();
+            getStudentCompetitionGzl();
+            getTeacherCompetitionGzl();
+            getLwGzl();
+            getAllGzl();
+        });
+
+        function getLwGzl(){
+            $.ajax({
+                type:'GET',
+                url:"/getLwGzl",
+                success: function(data){
+                    $("#count").html(data);
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+
+        function getTeacherCompetitionGzl(){
+            $.ajax({
+                type:'GET',
+                url:"/getTeacherCompetitionGzl",
+                success: function(data){
+                    $("#teacherCount").html(data);
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+
+        function getStudentCompetitionGzl(){
+            $.ajax({
+                type:'GET',
+                url:"/getStudentCompetitionGzl",
+                success: function(data){
+                    $("#studentGzl").html(data);
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+
+        function getAllGzl(){
+            $.ajax({
+                type:'GET',
+                url:"/getAllGzl",
+                success: function(data){
+                    $("#all").html(data);
+                },
+                error : function(data) {
+                    alert("error");
+                }
+            });
+        }
+
+        /*function getTeacherCompetition(){
+            $.ajax({
+                type:'GET',
+                url:"/getTeacherCompetitionList",
+                success: function(data){
+                    /!*alert("success");*!/
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }*/
+
+        /*function getStudentCompetition(){
+            $.ajax({
+                type:'GET',
+                url:"/getStudentCompetitionList",
+                success: function(data){
+                    /!*alert("success");*!/
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }*/
+
+        function initData(){
+            $.ajax({
+                type:'GET',
+                url:"/getYearNum",
+                success: function(data){
+                    $("#year").html(data);
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+    </script>
+
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <!-- 头部 -->
+    <script src="js/titleandnav.js"></script>
+    <!-- 左边导航栏 -->
+    <div class="main">
+        <div class="navbar">
+            <div class="navwarp">
+                <div class="basic-information">
+                    <a th:href="@{/basicinformation}">教师本年度基本信息</a>
+                </div>
+                <!-- 本科生 -->
+                <div id="bachelor">本科生</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a th:href="@{/classroomteaching}">课堂教学</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="practicalteaching.html">实践教学</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="qualityengineering.html">质量工程建设</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="teachingresearch.html">教学研究</a>
+                    </li>
+                    <li class="list-group-item active">
+                        <a th:href="@{/know}">教学知识竞赛</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a th:href="@{/other}">其它教育教学活动</a>
+                    </li>
+                </ul>
+                <!-- 研究生 -->
+                <div id="postgraduate">研究生</div>
+                <ul class="list-group">
+                    <li class="list-group-item">课堂教学</li>
+                    <li class="list-group-item">实践教学</li>
+                    <li class="list-group-item">教学基本建设与学科建设</li>
+                    <li class="list-group-item">教学研究项目</li>
+                    <li class="list-group-item">指导研究生竞赛获奖</li>
+                    <li class="list-group-item">其它工作</li>
+                </ul>
+                <div>
+                    <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">
+                        提交
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="tips">
+                            <div>提示：</div>
+                            <div style=" text-indent: 2em;">
+                                本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。
+                            </div>
+                        </div>
+                        <div class="btn-submitted">
+                            <button type="button" id="submitted">继续提交</button>
+                            <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 知识竞赛部分 -->
+    <div class="knowledge-contest">
+        <!-- 标题 -->
+        <div class="teaching-title">本科生课堂教学工作量</div>
+        <div class="msg-warp">
+            <!-- 提示信息栏 -->
+            <div class="msg">
+                <div class="year" id="year" name="year">年度<span></span></div>
+                <div class="total-workload">工作总量<span id="all" name="all">sss</span></div>
+            </div>
+            <div>
+                <!-- 指导学生竞赛-提示信息栏 -->
+                <div class="msgs">
+                    <div class="subtitle">指导学生竞赛</div>
+                    <div class="workload">工作量小计<span id="studentGzl" name="studentGzl">sss</span></div>
+                    <button type="button"  data-toggle="modal" data-target="#guidingStudents">
+                        添加
+                    </button>
+                </div>
+                <!-- 模态框（Modal）登陆界面 -->
+                <div class="modal fade" id="guidingStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h5 class="modal-title" id="" style="text-align: center;">
+                                    指导学生竞赛
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                    <div>
+                                        竞赛名称：<input type="text" id="contestName" name="contestName" class="form-control-1 class-name" placeholder="" />
+                                    </div>
+                                    <div>
+                                        竞赛类别：<select id="competition" name="competition" class="form-control-1">
+                                            <option value="1">A类师范生教学技能竞赛</option>
+                                            <option value="2">B类师范生教学技能竞赛</option>
+                                            <option value="3">A类其他竞赛</option>
+                                            <option value="4">B类其他竞赛</option>
+
+                                        </select>
+                                    </div>
+                                    <div>
+                                        竞赛级别：<input type="text" id="contestLevel" name="contestLevel" class="form-control-1 class-number" placeholder="" />
+                                    </div>
+                                    <div>
+                                        指导学生人数：<input type="text" id="studentNum" name="studentNum" class="form-control-1" placeholder="" />
+                                    </div>
+                                    <div class="btn-add">
+                                        <button type="button" id="addStudentContest" name="addStudentContest" onclick="addContest()">添加</button>
+                                        <button type="button"  data-dismiss="modal">取消</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 表格数据 -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>竞赛名称</td>
+                            <td>竞赛类别</td>
+                            <td>竞赛级别</td>
+                            <td>指导学生人数</td>
+                            <td>工作量</td>
+                            <td colspan="2">操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="allStudentCompetition:${allStudentCompetitionList}">
+                            <td th:text="${allStudentCompetition.jsmc}">Month</td>
+                            <td th:text="${allStudentCompetition.jslbbm}">
+                                <select name="competitioncategory">
+                                    <option value="1">A类师范生教学技能竞赛</option>
+                                    <option value="2">B类师范生教学技能竞赛</option>
+                                    <option value="3">A类其他竞赛</option>
+                                    <option value="4">B类其他竞赛</option>
+                                </select>
+                            </td>
+                            <td th:text="${allStudentCompetition.jsjbbm}">
+                                <select name="competitionlevel">
+                                    <option value="1">国家级</option>
+                                    <option value="2">省级</option>
+                                </select>
+                            </td>
+                            <td th:text="${allStudentCompetition.zdxsrs}">Savings</td>
+                            <td th:text="${allStudentCompetition.gzl}">Month</td>
+                            <td><a class="modify">修 改</a></td>
+                            <td><a class="delete">删 除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 教师教学能力竞赛获奖-提示信息栏 -->
+                <div class="msgs">
+                    <div class="subtitle">教师教学能力竞赛获奖</div>
+                    <div class="workload">工作量小计<span id="teacherCount" name="teacherCount">sss</span></div>
+                    <button type="button" id="save" data-toggle="modal" data-target="#teachingAbility">
+                        添加
+                    </button>
+                </div>
+                <!-- 模态框（Modal）登陆界面 -->
+                <div class="modal fade" id="teachingAbility" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                                    教师教学能力竞赛获奖
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                    <div>
+                                        竞赛名称：<input type="text" id="teacherCompetitionName" name="teacherCompetitionName" class="form-control-1 class-name" placeholder="" />
+                                    </div>
+                                    <div>
+                                        竞赛等级：<select id="teacherCompetitioncategory" name="teacherCompetitioncategory">
+                                            <option value="1">国家级一等奖</option>
+                                            <option value="2">国家级二等奖</option>
+                                            <option value="3">国家级三等奖</option>
+                                            <option value="4">省级一等奖</option>
+                                            <option value="5">省级二等奖</option>
+                                            <option value="6">省级三等奖</option>
+                                            <option value="7">校级一等奖</option>
+                                            <option value="8">校级二等奖</option>
+                                            <option value="9">校级三等奖</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        竞赛形式：<select id="teacherCompetitionform" name="teacherCompetitionform" class="form-control-1">
+                                            <option value="1">讲课</option>
+                                            <option value="2">课件</option>
+                                            <option value="3">微课</option>
+                                        </select>
+                                    </div>
+                                    <div class="btn-add">
+                                        <button type="button" id="addTeacherCompetition" name="addTeacherCompetition" onclick="addTeacherCompetition()">添加</button>
+                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 表格数据 -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>竞赛名称</td>
+                            <td>竞赛等级</td>
+                            <td>竞赛形式</td>
+                            <td>工作量</td>
+                            <td colspan="2">操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="allTeacherCompetition:${allTeacherCompetitionList}">
+                            <td th:text="${allTeacherCompetition.jsmc}">Month</td>
+                            <td th:text="${allTeacherCompetition.jsdjbm}">
+                                <select name="competitiongrade">
+                                    <option value="nationallevelA">国家级一等奖</option>
+                                    <option value="nationallevelB">国家级二等奖</option>
+                                    <option value="nationallevelC">国家级三等奖</option>
+                                    <option value="provincialA">省级一等奖</option>
+                                    <option value="provincialB">省级二等奖</option>
+                                    <option value="provincialC">省级三等奖</option>
+                                    <option value="schoollevelA">校级一等奖</option>
+                                    <option value="schoollevelB">校级二等奖</option>
+                                    <option value="schoollevelC">校级三等奖</option>
+                                </select>
+                            </td>
+                            <td th:text="${allTeacherCompetition.jsxsbm}">
+                                <select name="competitionform">
+                                    <option value="lecture">讲课</option>
+                                    <option value="Courseware">课件</option>
+                                    <option value="microlesson">微课</option>
+                                </select>
+                            </td>
+                            <td th:text="${allTeacherCompetition.jsjsgzl}">Month</td>
+                            <td><a class="modify">修 改</a></td>
+                            <td><a class="delete">删 除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 教师指导学生学士学位论文获奖-提示信息栏 -->
+                <div class="msgs">
+                    <div class="subtitle">教师指导学生学士学位论文获奖</div>
+                    <div class="workload" id="lwCount" name="lwCount">工作量小计<span id="count" name="count">sss</span></div>
+                    <button type="button" onclick="saveCount()">保存</button>
+                </div>
+                <div class="excellentpaper">
+                    省级优秀论文人数<input type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
+                </div>
+                <div class="excellentpaper">
+                    校级优秀论文人数<input type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="" async defer></script>
+
+</body>
+
+</html>

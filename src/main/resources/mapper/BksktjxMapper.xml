@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.BksktjxMapper">
+
+    <resultMap id="bksjxktInfo" type="org.jplus.pojo.classTeach.Bksktjx">
+        <id property="bksktjx" column="bksktjx" jdbcType="INTEGER"></id>
+        <result property="gh" column="gh" jdbcType="CHAR"></result>
+        <result property="nd" column="nd" jdbcType="INTEGER"></result>
+        <result property="xq" column="xq" jdbcType="INTEGER"></result>
+        <result property="kcmc" column="kcmc" jdbcType="VARCHAR"></result>
+        <result property="skbj" column="skbj" jdbcType="VARCHAR"></result>
+        <result property="sfsy" column="sfsy" jdbcType="INTEGER"></result>
+        <result property="jhxs" column="jhxs" jdbcType="INTEGER"></result>
+        <result property="skrs" column="skrs" jdbcType="INTEGER"></result>
+        <result property="jxgzl" column="jxgzl" jdbcType="FLOAT"></result>
+        <association property="kclx" javaType="org.jplus.pojo.classTeach.Kclx">
+                <result property="ktlxbm" column="ktlxbm" jdbcType="INTEGER"></result>
+                <result property="ktlxmc" column="ktlxmc" jdbcType="VARCHAR"></result>
+                <result property="bzktrs" column="bzktrs" jdbcType="INTEGER"></result>
+        </association>
+    </resultMap>
+
+    <select id="getBksktjxInfo" resultMap="bksjxktInfo">
+        SELECT
+        bksktjx,
+        gh,
+        nd,
+        xq,
+        kcmc,
+        k.ktlxbm,
+        k.ktlxmc,
+        skbj,
+        sfsy,
+        jhxs,
+        skrs,
+        jxgzl
+        from `bksktjx` as b
+        left join `kclx` as k
+        on b.ktlxbm = k.ktlxbm
+    </select>
+    <select id="getKtlxbm" resultType="org.jplus.pojo.classTeach.Kclx">
+        select
+        ktlxbm,
+        ktlxmc,
+        bzktrs
+        from kclx
+    </select>
+    <select id="getKtlxbmBybm" resultType="java.lang.Integer">
+        select
+        bzktrs
+        from `kclx`
+        where ktlxbm = #{ktlxbm}
+    </select>
+    <insert id="addClassInfo" parameterType="org.jplus.pojo.classTeach.BksktjxAccpet">
+        insert into bksktjx(
+        gh,
+        nd,
+        xq,
+        kcmc,
+        ktlxbm,
+        skbj,
+        sfsy,
+        jhxs,
+        skrs,
+        jxgzl)
+        values (#{gh,jdbcType=CHAR} ,#{nd,jdbcType=INTEGER} ,#{xq,jdbcType=INTEGER} ,#{kcmc,jdbcType=VARCHAR},
+        #{ktlxbm,jdbcType=INTEGER} ,#{skbj,jdbcType=VARCHAR} ,#{sfsy,jdbcType=INTEGER} ,#{jhxs,jdbcType=INTEGER},
+        #{skrs,jdbcType=INTEGER} ,#{jxgzl,jdbcType=FLOAT} )
+    </insert>
+    <delete id="deleteClassInfoBybksktjxId">
+        delete from `bksktjx`where bksktjx = #{bksktjx,jdbcType=INTEGER}
+    </delete>
+</mapper>

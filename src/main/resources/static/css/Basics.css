@@ -1,0 +1,109 @@
+body {
+  font-family: "宋体", "微软雅黑", "times new roman", times, sans-serif;
+  font: 12px normal;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+a,
+a:link,
+a:visited {
+  color: #006abb;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  cursor: pointer;
+  color: rgb(240, 20, 20);
+  text-decoration: none;
+}
+button:active {
+  margin: 0;
+  padding: 0;
+}
+button:focus {
+  outline: none;
+}
+ul li {
+  list-style: none;
+}
+/* 链接颜色 */
+.active a {
+  color: rgb(240, 20, 20);
+}
+/* 导航栏列表颜色 */
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover {
+  background-color: #e7e6e6;
+  border-color: #e7e6e6;
+}
+/* 模态框 */
+/* 保存按钮 */
+#Submitbtn {
+  font-size: 14px;
+  border: none;
+  background-color: #e7e6e6;
+  padding: 0;
+}
+/* 模态框 */
+#Submission .modal-dialog {
+  width: 400px;
+  /* border-radius: 2px; */
+  margin-top: 80px;
+  background-color: #d9e1f2;
+  margin-top: 15%;
+}
+
+.modal-content {
+  border-radius: 0;
+  background-color: #d9e1f2;
+}
+#Submission .tips {
+  text-align: left;
+  margin-bottom: 10%;
+}
+
+#Submission .tips div {
+  height: 25px;
+  line-height: 25px;
+}
+
+.modal-body button {
+  width: 50px;
+  height: 25px;
+  line-height: 20px;
+  background-color: #d9e1f2;
+  border: none;
+  border-radius: 5px;
+  /* margin-top: 5%; */
+  color: black;
+  padding: 0;
+  border: 2px solid #006abb;
+}
+
+.modal-body #submitted {
+  width: 60px;
+  margin-bottom: 5%;
+  margin-right: 5%;
+}
+
+.modal-body #notsubmitted {
+  width: 60px;
+  margin-left: 5%;
+}
+
+/*此处设置清除浮动代码*/
+.content:after {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+.content {
+  zoom: 1;
+}
