@@ -90,60 +90,104 @@
         <div class="information-title">教师本年度基本信息</div>
         <form th:action="@{/updateBasisInfo}" method="post" th:object="${jbxxAccpet}">
         <!-- 保存按钮 -->
-        <button type="submit"  id="save">保存</button>
+            <div class="year-warp">
+                <div class="year"><span class="passwordtip" style="letter-spacing: 30px;">年</span>度<span class="teather-name" th:text="${Nd}"></span></div>
+                <button type="submit" id="save">保存</button>
+            </div>
             <div>
-                <input hidden th:name="jbxxid" th:value="${basisInfo.jbxxid}">
+                <input hidden th:name="gh" th:value="${user.gh}">
             </div>
 
         <div class="informaction">
             <!-- 表单信息 -->
             <ul>
                 <li>
-                    <span class="passwordtip" style="letter-spacing: 30px;">姓</span>名:
-                    <span type="text" id="name" class="name" th:text="${basisInfo.users!=null}?${basisInfo.users.uname}"/>
+                    <span class="passwordtip" style="letter-spacing: 30px;">姓</span>名:<span
+                        class="teather-name" th:text="${user.uname}"></span>
                 </li>
 
                 <li class="ul-right">
                         院系:<select th:name="yxbm">
-                        <option th:each="yxmcType:${yxType}" th:selected="${yxmcType.yxbm}==${basisInfo.yxbm.yxbm}"
-                                th:value="${yxmcType.yxbm}" th:text="${yxmcType.yxmc}" th:name="yxbm"></option>
+                            <div th:if="${basisInfo!=null && basisInfo.yxbm!=null}">
+                                <option th:each="yxmcType:${yxType}" th:selected="${yxmcType.yxbm}==${basisInfo.yxbm.yxbm}"
+                                        th:value="${yxmcType.yxbm}" th:text="${yxmcType.yxmc}" th:name="yxbm">
+                                </option>
+                            </div>
+                            <div th:unless="${basisInfo!=null && basisInfo.yxbm!=null}">
+                                <option th:each="yxmcType:${yxType}" th:value="${yxmcType.yxbm}" th:text="${yxmcType.yxmc}" th:name="yxbm">
+                                </option>
+                            </div>
                         </select>
                 </li>
                 <li>
                     <span class="passwordtip" style="letter-spacing: 30px;">
                         职</span>务:
                         <select th:name="zwbm">
-                        <option th:each="zwbmType:${zwType}" th:selected="${zwbmType.zwbm}==${basisInfo.zwbm.zwbm}"
-                                th:value="${zwbmType.zwbm}" th:text="${zwbmType.zwmc}" th:name="zwbm"></option>
+                            <div th:if="${basisInfo!=null && basisInfo.zwbm!=null}">
+                                <option th:each="zwbmType:${zwType}" th:selected="${zwbmType.zwbm}==${basisInfo.zwbm.zwbm}"
+                                        th:value="${zwbmType.zwbm}" th:text="${zwbmType.zwmc}" th:name="zwbm">
+                                </option>
+                            </div>
+                            <div th:unless="${basisInfo!=null && basisInfo.zwbm!=null}">
+                                <option th:each="zwbmType:${zwType}" th:value="${zwbmType.zwbm}" th:text="${zwbmType.zwmc}" th:name="zwbm">
+                                </option>
+                            </div>
+
                         </select>
                 </li>
                 <li class="ul-right">
                         职称:<select name="zcbm">
-                        <option th:each="zcbmType:${zcType}" th:selected="${zcbmType.zcbm}==${basisInfo.zcbm.zcbm}"
-                                th:value="${zcbmType.zcbm}" th:text="${zcbmType.zcmc}" th:name="zcbm"></option>
+                        <div th:if="${basisInfo!=null && basisInfo.zcbm!=null}">
+                            <option th:each="zcbmType:${zcType}" th:selected="${zcbmType.zcbm}==${basisInfo.zcbm.zcbm}"
+                                    th:value="${zcbmType.zcbm}" th:text="${zcbmType.zcmc}" th:name="zcbm">
+                            </option>
+                        </div>
+                        <div th:unless="${basisInfo!=null && basisInfo.zcbm!=null}">
+                        <option th:each="zcbmType:${zcType}" th:value="${zcbmType.zcbm}" th:text="${zcbmType.zcmc}" th:name="zcbm">
+                        </option>
+                        </div>
                 </select>
                 </li>
                 <li class="post">
                         岗位类型:<select name="gwlxbm">
+                    <div th:if="${basisInfo!=null && basisInfo.gwlxbm!=null}">
                         <option th:each="gwlxbmType:${gwlxType}" th:selected="${gwlxbmType.gwlxbm}==${basisInfo.gwlxbm.gwlxbm}"
                                 th:value="${gwlxbmType.gwlxbm}" th:text="${gwlxbmType.gwlxmc}" th:name="gwlxbm"></option>
+                    </div>
+                    <div th:unless="${basisInfo!=null && basisInfo.gwlxbm!=null}">
+                        <option th:each="gwlxbmType:${gwlxType}" th:value="${gwlxbmType.gwlxbm}" th:text="${gwlxbmType.gwlxmc}" th:name="gwlxbm"></option>
+                    </div>
                 </select>
 
                 </li>
                 <li class="entry">
                     <div th:name="sfxrz">
-                        是否新入职:<input type="radio" th:name="sfxrz" th:value="${0}" class="entry-chose"th:checked="${basisInfo.sfxrz}==0" />是
-                        <input type="radio" th:name="sfxrz" th:value="${1}" th:checked="${basisInfo.sfxrz}==1"/>否
+                        是否新入职:
+                        <span th:if="${basisInfo!=null && basisInfo.sfxrz!=null}">
+                            <input type="radio" th:name="sfxrz" th:value="${0}" class="entry-chose"th:checked="${basisInfo.sfxrz}==0" />是
+                            <input type="radio" th:name="sfxrz" th:value="${1}" th:checked="${basisInfo.sfxrz}==1"/>否
+                        </span>
+                        <span th:unless="${basisInfo!=null && basisInfo.sfxrz!=null}">
+                            <input type="radio" th:name="sfxrz" th:value="${0}" class="entry-chose" />是
+                            <input type="radio" th:name="sfxrz" th:value="${1}" checked="checked"/>否
+                        </span>
                     </div>
                 </li>
-
             </ul>
             <!-- 工作量信息显示 -->
             <div class="workload-warp">
-                <div id="ratedworkload">教学额定工作量:<span th:text="${basisInfo.edgzl}"></span></div>
-                <div id="actualworkload">实际总工作量:<span>qqqq</span></div>
-                <div id="minimumworkload">本科生授课最低工作量:<span th:text="${basisInfo.bkszdsk}"></span></div>
-                <div id="undergraduateworkload">其中：本科生教学工作量:<span>qqqq</span>
+                <div id="ratedworkload">教学额定工作量:
+                    <span th:if="${basisInfo!=null && basisInfo.edgzl!=null}">
+                        <span th:text="${basisInfo.edgzl}"></span>
+                    </span>
+                </div>
+                <div id="actualworkload">实际总工作量:<span></span></div>
+                <div id="minimumworkload">本科生授课最低工作量:
+                    <span th:if="${basisInfo!=null && basisInfo.bkszdsk!=null}">
+                        <span th:text="${basisInfo.bkszdsk}"></span>
+                    </span>
+                </div>
+                <div id="undergraduateworkload">其中：本科生教学工作量:<span></span>
                 </div>
             </div>
         </div>

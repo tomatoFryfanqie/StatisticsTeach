@@ -1,5 +1,7 @@
 package org.jplus.controller;
 
+import org.jplus.interceptor.NeedLogin;
+import org.jplus.pojo.Users;
 import org.jplus.pojo.classTeach.BksktjxAccpet;
 import org.jplus.service.BksktjxService;
 import org.jplus.utils.GetYear;
@@ -24,21 +26,25 @@ public class ClassroomTeachController {
     @Autowired
     private BksktjxService bksktjxService;
 
+    @NeedLogin
     @RequestMapping("/classroomteaching")
-    public String getClassTechInfo(Model model){
+    public String getClassTechInfo(Model model,Users users){
         /*获取年份。存入model*/
         model.addAttribute("year", GetYear.getYears());
         /*获取课堂类型，存入model*/
         model.addAttribute("ktlx",bksktjxService.getKtlxbm());
         /*获取本科生课堂教学信息，存入model*/
         model.addAttribute("bksktjx",bksktjxService.getBksktjxInfo());
+        /*获取课堂教学的总工作量*/
+        model.addAttribute("ktjxgzlSum", bksktjxService.getBkjxgzlSum(users.getGh()));
         return "classroomteaching";
     }
 
+    @NeedLogin
     @PostMapping("/addClassInfo")
-    public String addClassInfo(@ModelAttribute(value = "bksktjxAccpet")BksktjxAccpet bksktjxAccpet){
+    public String addClassInfo(@ModelAttribute(value = "bksktjxAccpet")BksktjxAccpet bksktjxAccpet, Users users){
         /*获取工号*/
-        bksktjxAccpet.setGh(UserContext.getUser().getGh());
+        bksktjxAccpet.setGh(users.getGh());
         /*获取教学工作量*/
         bksktjxAccpet.setJxgzl(GetClassWork.getClassWork(bksktjxAccpet.getJhxs(), bksktjxAccpet.getSfsy(), bksktjxService.getKtlxbmBybm(bksktjxAccpet.getKtlxbm()),bksktjxAccpet.getSkrs()));
         /*存入年份*/
@@ -50,7 +56,6 @@ public class ClassroomTeachController {
 
     @PostMapping("/deleteClassInfo")
     public String delete(@ModelAttribute(value = "bksktjxAccpet")BksktjxAccpet bksktjxAccpet){
-
         /*删除课堂信息*/
         bksktjxService.deleteClassInfoBybksktjxId(bksktjxAccpet.getBksktjx());
         return "redirect:classroomteaching";

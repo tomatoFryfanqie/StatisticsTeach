@@ -1,6 +1,7 @@
 package org.jplus.service;
 
 import org.jplus.mapper.JbxxMapper;
+import org.jplus.pojo.Users;
 import org.jplus.pojo.basisInfo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,4 +50,10 @@ public class JbxxServiceImpl implements JbxxService {
     public void updateBasisInfo(JbxxAccpet jbxxAccpet) {
         jbxxMapper.updateBasisInfo(jbxxAccpet);
     }
+
+    @Override
+    public void addJbxx(String gh) {
+        jbxxMapper.addJbxx(gh);
+    }
+
 }

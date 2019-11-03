@@ -70,4 +70,7 @@
     <delete id="deleteClassInfoBybksktjxId">
         delete from `bksktjx`where bksktjx = #{bksktjx,jdbcType=INTEGER}
     </delete>
+    <select id="getBksktjxSum" resultType="java.lang.Integer">
+        select
+    </select>
 </mapper>
