@@ -26,4 +26,6 @@ public interface BksktjxMapper {
     void deleteClassInfoBybksktjxId(Integer bksktjx);
 
     Float getBksktjxSum(String gh);
+
+    void updateClassInfo(BksktjxAccpet bksktjxAccpet);
 }

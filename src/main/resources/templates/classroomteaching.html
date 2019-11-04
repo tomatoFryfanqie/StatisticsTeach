@@ -170,10 +170,10 @@
                         </tr>
                     </thead>
                     <tbody class="tbody" id="tbody">
-                        <tr th:each="bks : ${bksktjx}">
-                            <form th:action="@{/deleteClassInfo}" method="post">
+                        <tr th:each="bks : ${bksktjx}" >
+
                                 <div>
-                                    <input hidden th:name="bksktjx" th:value="${bks.bksktjx}">
+                                <input hidden th:name="bksktjx" th:value="${bks.bksktjx}">
                                 </div>
                                 <td th:text="${bks.xq}"></td>
                                 <td th:text="${bks.kcmc}"></td>
@@ -183,8 +183,69 @@
                                 <td th:text="${bks.jhxs}"></td>
                                 <td th:text="${bks.skrs}"></td>
                                 <td th:text="${bks.jxgzl}"></td>
-                                <td>&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit"  class="delete">删 除</button></td>
-                            </form>
+
+                                <!-- 模态框（Modal）修改界面 -->
+                                <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <!-- 模态框头部 -->
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    &times;
+                                                </button>
+                                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                                                    课堂教学修改
+                                                </h5>
+                                            </div>
+                                            <!-- 添加课程内容 -->
+                                            <div class="modal-body">
+                                                <form th:action="@{/updateClassInfo}" method="post">
+                                                    <div>
+                                                        <input hidden th:name="bksktjx" th:value="${bks.bksktjx}">
+                                                    </div>
+                                                    <div>
+                                                        学期：<select th:name="xq" class="form-control-1">
+                                                        <option th:name="xq" th:value="${1}">1</option>
+                                                        <option th:name="xq" th:value="${2}">2</option>
+                                                    </select>
+                                                    </div>
+                                                    <div>
+                                                        课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name" th:value="${bks.kcmc}"/>
+                                                    </div>
+                                                    <div>
+                                                        课程类型：<select th:name="ktlxbm" name="competitionform" class="form-control-1">
+                                                                        <option th:name="ktlxbm" th:each="ktlxType:${ktlx}"
+                                                                                th:selected="${ktlxType.ktlxbm}==${bks.kclx.ktlxbm}"
+                                                                                th:value="${ktlxType.ktlxbm}" th:text="${ktlxType.ktlxmc}">
+                                                                        </option>
+                                                                  </select>
+                                                    </div>
+                                                    <div>
+                                                        授课班级：<input type="text" th:name="skbj" class="form-control-1 class-number" th:value="${bks.skbj}" />
+                                                    </div>
+                                                    <div>
+                                                        是否双语教学：<input type="radio" th:name="sfsy" th:value="${1}" class="entry-chose" />是
+                                                        <input type="radio" th:name="sfsy" th:value="${0}" checked="checked" />否
+                                                    </div>
+                                                    <div>
+                                                        计划学时：<input type="text" th:name="jhxs" class="form-control-1" th:value="${bks.jhxs}"/>
+                                                    </div>
+                                                    <div>
+                                                        上课人数：<input type="text" th:name="skrs" class="form-control-1" th:value="${bks.skrs}" />
+                                                    </div>
+                                                    <div class="btn-add">
+                                                        <button type="submit" id="add">确定</button>
+                                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <td class="notedit"><a class="modify" data-toggle="modal" data-target="#modifyModal">修 改</a></td>
+                                <td><a th:href="@{/deleteClassInfo(id=${bks.bksktjx})}" type="submit"  class="delete">删 除</a></td>
                         </tr>
                     </tbody>
                 </table>

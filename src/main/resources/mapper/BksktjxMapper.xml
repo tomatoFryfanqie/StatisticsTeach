@@ -73,4 +73,17 @@
     <select id="getBksktjxSum" resultType="java.lang.Float">
         select coalesce(sum(jxgzl),0) gzlsum from bksktjx where gh = (#{gh} )
     </select>
+    <update id="updateClassInfo">
+        update `bksktjx`
+        set
+        xq = #{xq,jdbcType=INTEGER},
+        kcmc=#{kcmc,jdbcType=VARCHAR},
+        ktlxbm=#{ktlxbm,jdbcType=INTEGER},
+        skbj=#{skbj,jdbcType=VARCHAR},
+        sfsy=#{sfsy,jdbcType=INTEGER},
+        jhxs=#{jhxs,jdbcType=INTEGER},
+        skrs=#{skrs,jdbcType=INTEGER}
+        where bksktjx=#{bksktjx,jdbcType=INTEGER}
+
+    </update>
 </mapper>

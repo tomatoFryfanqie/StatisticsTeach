@@ -25,4 +25,6 @@ public interface BksktjxService {
     void deleteClassInfoBybksktjxId(Integer bksktjx);
 
     Float getBkjxgzlSum(String gh);
+
+    void updateClassInfo(BksktjxAccpet bksktjxAccpet);
 }
