@@ -35,18 +35,14 @@
   float: left;
 }
 /* 保存按钮 */
-#save,
-#add {
+#save {
   /* height: 20px;
     line-height: 20px; */
   font-size: 14px;
   border: 2px solid #006abb;
   padding: 0.5px 8px;
   border-radius: 5px;
-}
-#add {
-  margin-left: 18%;
-  margin-right: 1%;
+  margin-left: 19%;
 }
 .total-workload {
   margin-left: 5%;

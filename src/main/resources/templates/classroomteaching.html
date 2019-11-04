@@ -89,7 +89,7 @@
             <div class="msg">
                 <div class="year">年度<span th:text="${year}"></span></div>
 
-                <div class="total-workload">课堂教学工作量总计<span>sss</span></div>
+                <div class="total-workload">课堂教学工作量总计<span th:text="${ktjxgzlSum}"></span></div>
                 <!-- 模态框-添加按钮 -->
                 <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                     添加
@@ -183,7 +183,7 @@
                                 <td th:text="${bks.jhxs}"></td>
                                 <td th:text="${bks.skrs}"></td>
                                 <td th:text="${bks.jxgzl}"></td>
-                                <td><button type="submit"  class="delete">删 除</button></td>
+                                <td>&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit"  class="delete">删 除</button></td>
                             </form>
                         </tr>
                     </tbody>
@@ -192,7 +192,6 @@
         </div>
     </div>
     <script src="" async defer></script>
-
 </body>
 
 </html>

@@ -70,7 +70,7 @@
     <delete id="deleteClassInfoBybksktjxId">
         delete from `bksktjx`where bksktjx = #{bksktjx,jdbcType=INTEGER}
     </delete>
-    <select id="getBksktjxSum" resultType="java.lang.Integer">
-        select
+    <select id="getBksktjxSum" resultType="java.lang.Float">
+        select coalesce(sum(jxgzl),0) gzlsum from bksktjx where gh = (#{gh} )
     </select>
 </mapper>

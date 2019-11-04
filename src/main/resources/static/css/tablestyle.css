@@ -1,0 +1,42 @@
+/* 表格 */
+/* .table td,
+.table th {
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  padding: 0;
+  font-weight: 500;
+} */
+.table thead tr th,
+.table tbody tr td,
+.table > thead > tr > td,
+.table > tbody > tr > th {
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  padding: 0;
+  font-weight: 500;
+  padding: 0;
+  /* line-height: 25px; */
+  vertical-align: middle;
+  white-space: nowrap; /* 自适应宽度*/
+  word-break: keep-all; /* 避免长单词截断，保持全部 */
+}
+/* 输入框 */
+.table {
+  margin-top: 0.5%;
+  margin-bottom: 4%;
+  overflow: hidden;
+}
+
+.table tr:nth-child(even) {
+  background: #fff2cc;
+}
+.table tr th,
+.table tr td {
+  white-space: nowrap; /* 自适应宽度*/
+  word-break: keep-all; /* 避免长单词截断，保持全部 */
+}
+table select {
+  vertical-align: middle;
+}

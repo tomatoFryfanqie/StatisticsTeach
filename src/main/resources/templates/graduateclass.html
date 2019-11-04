@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 引用bootstrap及基础样式 -->
+    <script src="js/link.js"></script>
+    <!-- 表格样式 -->
+    <link rel="stylesheet" href="css/classroomteaching.css" />
+    <link rel="stylesheet" href="css/tablestyle.css" />
+    <!-- 表格编辑 -->
+    <!-- <link href="css/editTable.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/editTable.js"></script> -->
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <!-- 头部 -->
+    <script src="js/titleandnav.js"></script>
+    <!-- 左边导航栏 -->
+    <div class="main">
+        <div class="navbar">
+            <div class="navwarp">
+                <div class="basic-information">
+                    <a href="basicinformation.html">教师本年度基本信息</a>
+                </div>
+                <!-- 本科生 -->
+                <div id="bachelor">本科生</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="classroomteaching.html">课堂教学</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="practicalteaching.html">实践教学</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="qualityengineering.html">质量工程建设</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="teachingresearch.html">教学研究</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="knowledgecontest.html">教学知识竞赛</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="otheractivities.html">其它教育教学活动</a>
+                    </li>
+                </ul>
+                <!-- 研究生 -->
+                <div id="postgraduate">研究生</div>
+                <ul class="list-group">
+                    <li class="list-group-item active"><a href="#">课堂教学</a></li>
+                    <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
+                    <li class="list-group-item"><a href="graduateconstruction.html">教学基本建设与学科建设</a></li>
+                    <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
+                    <li class="list-group-item"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
+                    <li class="list-group-item"><a href="graduateother.html">其它工作</a></li>
+                </ul>
+                <!-- 提交按钮 -->
+                <div>
+                    <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">
+                        提交
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 模态框-是否提交 -->
+        <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="tips">
+                            <div>提示：</div>
+                            <div style=" text-indent: 2em;">
+                                本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。
+                            </div>
+                        </div>
+                        <div class="btn-submitted">
+                            <button type="button" id="submitted">继续提交</button>
+                            <button type="button" id="notsubmitted" data-dismiss="modal">
+                                不提交
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 课堂教学部分 -->
+    <div class="classroom-teaching">
+        <!-- 标题 -->
+        <div class="teaching-title">研究生课堂教学工作量</div>
+        <div class="msg-warp">
+            <!-- 提示信息栏 -->
+            <div class="msg">
+                <div class="year">年度<span>2019</span></div>
+                <div class="total-workload">课堂教学工作量总计<span>sss</span></div>
+                <!-- 模态框-添加按钮 -->
+                <!-- <input type="button" id="addBtn" value="添 加" /> -->
+                <button type="button" id="save" data-toggle="modal" data-target="#myModal">
+                    添加
+                </button>
+            </div>
+            <!-- 模态框（Modal）登陆界面 -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- 模态框头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                                课堂教学新增
+                            </h5>
+                        </div>
+                        <!-- 添加课程内容 -->
+                        <div class="modal-body">
+                            <form action="">
+                                <div>
+                                    <span class="passwordtip" style="letter-spacing: 30px;">学</span>期：<input type="text"
+                                        class="form-control-1" placeholder="" />
+                                </div>
+                                <div>
+                                    课程名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                                </div>
+                                <div>
+                                    课程类型：<select name="competitionform" class="form-control-1">
+                                        <option value="lecture">讲课</option>
+                                        <option value="Courseware">课件</option>
+                                        <option value="microlesson">微课</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    授课对象：<input type="text" class="form-control-1 class-number" placeholder="" />
+                                </div>
+                                <div>
+                                    是否双语教学：<input type="radio" name="newentry" value="new" class="entry-chose" />是
+                                    <input type="radio" name="newentry" value="old" checked="checked" />否
+                                </div>
+                                <div>
+                                    计划学时：<input type="text" class="form-control-1" placeholder="" />
+                                </div>
+                                <div>
+                                    上课人数：<input type="text" class="form-control-1" placeholder="" />
+                                </div>
+                                <div class="btn-add">
+                                    <button type="button" id="add">添加</button>
+                                    <button type="button" id="cancel" data-dismiss="modal">
+                                        取消
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <!-- 表格数据 -->
+                <!--文章列表-->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>学期</th>
+                            <th>课程名称</th>
+                            <th>课程类型</th>
+                            <th>授课对象</th>
+                            <th>双语教学</th>
+                            <th>计划学时</th>
+                            <th>上课人数</th>
+                            <th>教学工作量</th>
+                            <th colspan="2">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody" id="tbody">
+                        <tr>
+                            <td>1</td>
+                            <td>Tanmay</td>
+                            <td>Bangalore</td>
+                            <td>560001</td>
+                            <td>aaa</td>
+                            <td>Tanmay</td>
+                            <td>Bangalore</td>
+                            <td class="notedit">560001</td>
+                            <td class="notedit"><a class="modify" data-toggle="modal" data-target="#modifyModal">修 改</a>
+                            </td>
+                            <!-- 删除按钮 -->
+                            <td class="del-col notedit">
+                                <a href="javascript:void(0);" class="delBtn">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 模态框（Modal）修改界面 -->
+                <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- 模态框头部 -->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                                    课堂教学修改
+                                </h5>
+                            </div>
+                            <!-- 添加课程内容 -->
+                            <div class="modal-body">
+                                <form action="">
+                                    <div>
+                                        <span class="passwordtip" style="letter-spacing: 30px;">学</span>期：<input
+                                            type="text" class="form-control-1" placeholder="" />
+                                    </div>
+                                    <div>
+                                        课程名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                                    </div>
+                                    <div>
+                                        课程类型：<select name="competitionform" class="form-control-1">
+                                            <option value="lecture">讲课</option>
+                                            <option value="Courseware">课件</option>
+                                            <option value="microlesson">微课</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        授课对象：<input type="text" class="form-control-1 class-number" placeholder="" />
+                                    </div>
+                                    <div>
+                                        是否双语教学：<input type="radio" name="newentry" value="new" class="entry-chose" />是
+                                        <input type="radio" name="newentry" value="old" checked="checked" />否
+                                    </div>
+                                    <div>
+                                        计划学时：<input type="text" class="form-control-1" placeholder="" />
+                                    </div>
+                                    <div>
+                                        上课人数：<input type="text" class="form-control-1" placeholder="" />
+                                    </div>
+                                    <div class="btn-add">
+                                        <button type="button" id="add">确定</button>
+                                        <button type="button" id="cancel" data-dismiss="modal">
+                                            取消
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="" async defer></script>
+</body>
+
+</html>

@@ -17,37 +17,19 @@
   margin-left: 37%;
 }
 
-/* 年度，保存 */
-.year-warp{
-  width: 100%;
-  height: 25px;
-  padding: 0 6%;
-  /* background-color: red; */
-  margin-top: 1%;
-}
-.year{
-  /* background-color: tan; */
-  width: 40%;
-  height: 25px;
-  padding-left: 5%;
-}
-.year,#save{
-  float: left;
-}
 /* 保存按钮 */
 #save {
   font-size: 14px;
   border: 2px solid #006abb;
   padding: 0.5px 8px;
-  margin-left: 30%;
-  /* margin-top: 1%;  */
+  margin-left: 60%;
+  margin-top: 1%;
   border-radius: 5px;
 }
 
 /* 信息栏布局 */
 .informaction {
   padding: 3% 6%;
-  padding-top: 1%;
   /* background-color: palegoldenrod; */
 }
 
@@ -71,8 +53,7 @@
 .informaction ul li input,
 .informaction ul li .teather-name,
 .informaction ul li select,
-.workload-warp div span,
-.year-warp div .teather-name {
+.workload-warp div span {
   margin-left: 8%;
 }
 
