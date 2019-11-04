@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html class="no-js" xmlns:th="http://www.thymeleaf.org">
   <!--<![endif]-->
 
   <head>
@@ -30,14 +30,15 @@
       <!-- 登录框 -->
       <div class="title">湖北师范大学教学工作量统计系统</div>
       <div id="loginwrap">
-        <form action="" id="loginbar" class="loginbar">
-          教师工号:<input type="text" v-model="name" /><br />
+        <form  th:action="@{/do_login}"  id="loginbar" class="loginbar" method="post"  th:object="${loginVo}">
+          教师工号:<input type="text" name="gh" /><br />
           <span class="passwordtip" style="letter-spacing: 30px;">密</span
-          >码:<input type="password" v-model="password" /><br />
-          <button type="button" id="login">登录</button>
+          >码:<input type="password" name="password" /><br />
+          <button type="submit" id="login">登录</button>
           <button type="button" id="out">退出</button>
         </form>
       </div>
+        <div><span style="color: red" th:text="${error}"></span></div>
     </div>
     <script src="" async defer></script>
   </body>

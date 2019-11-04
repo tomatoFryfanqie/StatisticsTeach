@@ -2,6 +2,7 @@ package org.jplus.service;
 
 
 import org.jplus.pojo.teachingresearchInfo.Jxcg;
+import org.jplus.pojo.teachingresearchInfo.Jxcgdj;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface JxcgService {
 
     int deleteJxcg(Integer id);
 
-    String getCgdjmcById();
+    List<Jxcgdj> getJxcgdjInfo();
 }

@@ -1,6 +1,6 @@
 package org.jplus.service;
 
-import org.jplus.mapper.jbxxMapper;
+import org.jplus.mapper.JbxxMapper;
 import org.jplus.pojo.basisInfo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,14 +15,14 @@ import java.util.List;
  * @Description: Description
  */
 @Service
-public class jbxxServiceImpl implements jbxxService {
+public class JbxxServiceImpl implements JbxxService {
 
     @Autowired
-    private jbxxMapper jbxxMapper;
+    private JbxxMapper jbxxMapper;
 
     @Override
-    public Jbxx getJbxxInfo() {
-        return jbxxMapper.getJbxxInfo();
+    public Jbxx getJbxxInfo(String gh) {
+        return jbxxMapper.getJbxxInfo(gh);
     }
 
     @Override
@@ -43,5 +43,10 @@ public class jbxxServiceImpl implements jbxxService {
     @Override
     public List<Gwlxbm> getGwlxbmInfo() {
         return jbxxMapper.getGwlxbmInfo();
+    }
+
+    @Override
+    public void updateBasisInfo(JbxxAccpet jbxxAccpet) {
+        jbxxMapper.updateBasisInfo(jbxxAccpet);
     }
 }

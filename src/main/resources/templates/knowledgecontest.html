@@ -15,6 +15,7 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" href="css/knowledgecontest.css" />
+    <link rel="stylesheet" href="css/tablestyle.css" />
 </head>
 
 <body>
@@ -130,14 +131,18 @@
                                         竞赛名称：<input type="text" class="form-control-1 class-name" placeholder="" />
                                     </div>
                                     <div>
-                                        竞赛类别：<select name="competitionform" class="form-control-1">
+                                        竞赛类别：<select name="competitionform">
                                             <option value="lecture">讲课</option>
                                             <option value="Courseware">课件</option>
                                             <option value="microlesson">微课</option>
                                         </select>
                                     </div>
                                     <div>
-                                        竞赛级别：<input type="text" class="form-control-1 class-number" placeholder="" />
+                                        竞赛级别：<select name="competitionform">
+                                            <option value="lecture">讲课</option>
+                                            <option value="Courseware">课件</option>
+                                            <option value="microlesson">微课</option>
+                                        </select>
                                     </div>
                                     <div>
                                         指导学生人数：<input type="text" class="form-control-1" placeholder="" />
@@ -152,7 +157,7 @@
                     </div>
                 </div>
                 <!-- 表格数据 -->
-                <table class="table table-bordered">
+                <table class="table table-bordered edtitable">
                     <thead>
                         <tr>
                             <td>竞赛名称</td>
@@ -165,70 +170,77 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Month</th>
-                            <th>
+                            <td>Month</td>
+                            <td class="notedit">
                                 <select name="competitioncategory">
                                     <option value="Ateach">A类师范生教学技能竞赛</option>
                                     <option value="Bteach">B类师范生教学技能竞赛</option>
                                     <option value="Aother">A类其他竞赛</option>
                                     <option value="Bother">B类其他竞赛</option>
                                 </select>
-                            </th>
-                            <th>
+                            </td>
+                            <td class="notedit">
                                 <select name="competitionlevel">
                                     <option value="National">国家级</option>
                                     <option value="provincial">省级</option>
                                 </select>
-                            </th>
-                            <th>Savings</th>
-                            <th>Month</th>
-                            <td><a class="modify">修 改</a></td>
-                            <td><a class="delete">删 除</a></td>
+                            </td>
+                            <td>Savings</td>
+                            <td class="notedit">560001</td>
+                            <td class="notedit"><a class="modify" data-toggle="modal" data-target="#guideModal">修 改</a>
+                            </td>
+                            <!-- 删除按钮 -->
+                            <td class="del-col notedit">
+                                <a href="javascript:void(0);" class="delBtn">删除</a>
+                            </td>
                         </tr>
-                        <tr>
-                            <th>Month</th>
-                            <th>
-                                <select name="competitioncategory">
-                                    <option value="Ateach">A类师范生教学技能竞赛</option>
-                                    <option value="Bteach">B类师范生教学技能竞赛</option>
-                                    <option value="Aother">A类其他竞赛</option>
-                                    <option value="Bother">B类其他竞赛</option>
-                                </select>
-                            </th>
-                            <th>
-                                <select name="competitionlevel">
-                                    <option value="National">国家级</option>
-                                    <option value="provincial">省级</option>
-                                </select>
-                            </th>
-                            <th>Savings</th>
-                            <th>Month</th>
-                            <td><a class="modify">修 改</a></td>
-                            <td><a class="delete">删 除</a></td>
-                        </tr>
-                        <tr>
-                            <th>Month</th>
-                            <th>
-                                <select name="competitioncategory">
-                                    <option value="Ateach">A类师范生教学技能竞赛</option>
-                                    <option value="Bteach">B类师范生教学技能竞赛</option>
-                                    <option value="Aother">A类其他竞赛</option>
-                                    <option value="Bother">B类其他竞赛</option>
-                                </select>
-                            </th>
-                            <th>
-                                <select name="competitionlevel">
-                                    <option value="National">国家级</option>
-                                    <option value="provincial">省级</option>
-                                </select>
-                            </th>
-                            <th>Savings</th>
-                            <th>Month</th>
-                            <td><a class="modify">修 改</a></td>
-                            <td><a class="delete">删 除</a></td>
-                        </tr>
+
                     </tbody>
                 </table>
+                <!-- 模态框（Modal）指导学生竞赛界面 -->
+                <div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                                    指导学生竞赛
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <div>
+                                        竞赛名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                                    </div>
+                                    <div>
+                                        竞赛类别：<select name="competitionform">
+                                            <option value="lecture">讲课</option>
+                                            <option value="Courseware">课件</option>
+                                            <option value="microlesson">微课</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        竞赛级别：<select name="competitionform">
+                                            <option value="lecture">讲课</option>
+                                            <option value="Courseware">课件</option>
+                                            <option value="microlesson">微课</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        指导学生人数：<input type="text" class="form-control-1" placeholder="" />
+                                    </div>
+                                    <div class="btn-add">
+                                        <button type="button" id="add">确定</button>
+                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- 教师教学能力竞赛获奖-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">教师教学能力竞赛获奖</div>
@@ -280,7 +292,7 @@
                     </div>
                 </div>
                 <!-- 表格数据 -->
-                <table class="table table-bordered">
+                <table class="table table-bordered edtitable">
                     <thead>
                         <tr>
                             <td>竞赛名称</td>
@@ -292,8 +304,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Month</th>
-                            <th>
+                            <td>Month</td>
+                            <td class="notedit">
                                 <select name="competitiongrade">
                                     <option value="nationallevelA">国家级一等奖</option>
                                     <option value="nationallevelB">国家级二等奖</option>
@@ -305,72 +317,66 @@
                                     <option value="schoollevelB">校级二等奖</option>
                                     <option value="schoollevelC">校级三等奖</option>
                                 </select>
-                            </th>
-                            <th>
+                            </td>
+                            <td class="notedit">
                                 <select name="competitionform">
                                     <option value="lecture">讲课</option>
                                     <option value="Courseware">课件</option>
                                     <option value="microlesson">微课</option>
                                 </select>
-                            </th>
-                            <th>Month</th>
-                            <td><a class="modify">修 改</a></td>
-                            <td><a class="delete">删 除</a></td>
-                        </tr>
-                        <tr>
-                            <th>Month</th>
-                            <th>
-                                <select name="competitiongrade">
-                                    <option value="nationallevelA">国家级一等奖</option>
-                                    <option value="nationallevelB">国家级二等奖</option>
-                                    <option value="nationallevelC">国家级三等奖</option>
-                                    <option value="provincialA">省级一等奖</option>
-                                    <option value="provincialB">省级二等奖</option>
-                                    <option value="provincialC">省级三等奖</option>
-                                    <option value="schoollevelA">校级一等奖</option>
-                                    <option value="schoollevelB">校级二等奖</option>
-                                    <option value="schoollevelC">校级三等奖</option>
-                                </select>
-                            </th>
-                            <th>
-                                <select name="competitionform">
-                                    <option value="lecture">讲课</option>
-                                    <option value="Courseware">课件</option>
-                                    <option value="microlesson">微课</option>
-                                </select>
-                            </th>
-                            <th>Month</th>
-                            <td><a class="modify">修 改</a></td>
-                            <td><a class="delete">删 除</a></td>
-                        </tr>
-                        <tr>
-                            <th>Month</th>
-                            <th>
-                                <select name="competitiongrade">
-                                    <option value="nationallevelA">国家级一等奖</option>
-                                    <option value="nationallevelB">国家级二等奖</option>
-                                    <option value="nationallevelC">国家级三等奖</option>
-                                    <option value="provincialA">省级一等奖</option>
-                                    <option value="provincialB">省级二等奖</option>
-                                    <option value="provincialC">省级三等奖</option>
-                                    <option value="schoollevelA">校级一等奖</option>
-                                    <option value="schoollevelB">校级二等奖</option>
-                                    <option value="schoollevelC">校级三等奖</option>
-                                </select>
-                            </th>
-                            <th>
-                                <select name="competitionform">
-                                    <option value="lecture">讲课</option>
-                                    <option value="Courseware">课件</option>
-                                    <option value="microlesson">微课</option>
-                                </select>
-                            </th>
-                            <th>Month</th>
-                            <td><a class="modify">修 改</a></td>
-                            <td><a class="delete">删 除</a></td>
+                            </td>
+                            <td class="notedit">560001</td>
+                            <td class="notedit"><a class="modify" data-toggle="modal" data-target="#teachingModal">修
+                                    改</a></td>
+                            <!-- 删除按钮 -->
+                            <td class="del-col notedit">
+                                <a href="javascript:void(0);" class="delBtn">删除</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+                <!-- 模态框（Modal）教师教学能力竞赛获奖界面 -->
+                <div class="modal fade" id="teachingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                                    教师教学能力竞赛获奖
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <div>
+                                        竞赛名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                                    </div>
+                                    <div>
+                                        竞赛等级：<select name="competitioncategory">
+                                            <option value="Ateach">A类师范生教学技能竞赛</option>
+                                            <option value="Bteach">B类师范生教学技能竞赛</option>
+                                            <option value="Aother">A类其他竞赛</option>
+                                            <option value="Bother">B类其他竞赛</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        竞赛形式：<select name="competitionform" class="form-control-1">
+                                            <option value="lecture">讲课</option>
+                                            <option value="Courseware">课件</option>
+                                            <option value="microlesson">微课</option>
+                                        </select>
+                                    </div>
+                                    <div class="btn-add">
+                                        <button type="button" id="add">确定</button>
+                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- 教师指导学生学士学位论文获奖-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">教师指导学生学士学位论文获奖</div>

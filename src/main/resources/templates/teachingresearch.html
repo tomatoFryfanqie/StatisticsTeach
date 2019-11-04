@@ -109,28 +109,24 @@
               </h5>
             </div>
             <div class="modal-body">
-              <form action="/addJxcg">
+              <form th:action="@{/addJxcg}" method="post">
                 <div>
-                  教学成果：<input type="text" class="form-control-1 class-name" placeholder="" th:value="${}" name="cgmc"/>
+                  教学成果：<input type="text" class="form-control-1 class-name" th:name="cgmc" placeholder=""/>
                 </div>
                 <div>
-                  成果等级：<select name="competitionform" class="form-control-1">
-                    <option value="lecture">讲课</option>
-                    <option value="Courseware">课件</option>
-                    <option value="microlesson">微课</option>
+                  成果等级：<select th:name="cgdjbm" class="form-control-1">
+                    <option th:each="jxcgdj:${Jxcgdjs}" th:value="${jxcgdj.getCgdjbm()}" th:text="${jxcgdj.getCgdjmc()}"></option>
                   </select>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" />
+                  项目排名：<input type="text" class="form-control-1 class-number" th:name="xmpm" placeholder=""/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" />
+                  项目总人数：<input type="text" class="form-control-1 class-number" th:name="jxcgzrs" placeholder="" />
                 </div>
                 <div class="btn-add">
                   <!--<button type="button" id="add">添加</button>-->
-                  <a th:href="@{/addJxcg}">
-                        <input type="submit" value="添加"/>
-                  </a>
+                  <button type="submit" id="add" >添加</button>
                   <button type="button" id="cancel" data-dismiss="modal">取消</button>
                 </div>
               </form>
@@ -153,18 +149,10 @@
           <tbody>
             <tr th:each="Jxcg:${Jxcgs}">
               <th th:text="${Jxcg.getCgmc()}"></th>
-              <th th:text="${Jxcgdjmcs}">
-                <!--<select name="achievementlevel">-->
-                  <!--<option value="nationalspecial">国家级特等奖</option>-->
-                  <!--<option value="nationalA">国家级一等奖</option>-->
-                  <!--<option value="nationalB">国家级二等奖</option>-->
-                  <!--<option value="provincialspecial">省部级特等奖</option>-->
-                  <!--<option value="provincialA">省部级一等奖</option>-->
-                  <!--<option value="provincialA">省部级二等奖</option>-->
-                  <!--<option value="provincialA">省部级三等奖</option>-->
-                <!--</select>-->
-
-              </th>
+              <div th:switch="${Jxcg.getCgdjbm()}" >
+                <th th:each="Jxcgdj:${Jxcgdjs}" th:case="${Jxcgdj.getCgdjbm()}"
+                    th:text="${Jxcgdj.getCgdjmc()}"></th>
+              <div/>
               <th th:text="${Jxcg.getXmpm()}"></th>
               <th th:text="${Jxcg.getJxcgzrs()}"></th>
               <th th:text="${Jxcg.getJxcggzl()}"></th>
