@@ -48,12 +48,12 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item">课堂教学</li>
-                    <li class="list-group-item">实践教学</li>
-                    <li class="list-group-item">教学基本建设与学科建设</li>
-                    <li class="list-group-item">教学研究项目</li>
-                    <li class="list-group-item">指导研究生竞赛获奖</li>
-                    <li class="list-group-item">其它工作</li>
+                    <li class="list-group-item"><a href="graduateclass.html">课堂教学</a></li>
+                    <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
+                    <li class="list-group-item"><a href="graduateconstruction.html">教学基本建设与学科建设</a></li>
+                    <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
+                    <li class="list-group-item active"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
+                    <li class="list-group-item"><a href="graduateother.html">其它工作</a></li>
                 </ul>
                 <!-- 提交按钮 -->
                 <div>
@@ -89,7 +89,7 @@
             <div class="msg">
                 <div class="year">年度<span th:text="${year}"></span></div>
 
-                <div class="total-workload">课堂教学工作量总计<span>sss</span></div>
+                <div class="total-workload">课堂教学工作量总计<span th:text="${ktjxgzlSum}"></span></div>
                 <!-- 模态框-添加按钮 -->
                 <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                     添加
@@ -169,12 +169,8 @@
                             <th colspan="2">操作</th>
                         </tr>
                     </thead>
-                    <tbody class="tbody" id="tbody">
-                        <tr th:each="bks : ${bksktjx}">
-                            <form th:action="@{/deleteClassInfo}" method="post">
-                                <div>
-                                    <input hidden th:name="bksktjx" th:value="${bks.bksktjx}">
-                                </div>
+                    <tbody class="tbody" id="tbody"th:each="bks : ${bksktjx}">
+                                <tr>
                                 <td th:text="${bks.xq}"></td>
                                 <td th:text="${bks.kcmc}"></td>
                                 <td th:text="${bks.kclx.ktlxmc}"></td>
@@ -183,16 +179,14 @@
                                 <td th:text="${bks.jhxs}"></td>
                                 <td th:text="${bks.skrs}"></td>
                                 <td th:text="${bks.jxgzl}"></td>
-                                <td><button type="submit"  class="delete">删 除</button></td>
-                            </form>
-                        </tr>
+                                <td><a th:href="@{/deleteClassInfo(id=${bks.bksktjx})}" type="submit"  class="delete">删 除</a></td>
+                                </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <script src="" async defer></script>
-
 </body>
 
 </html>

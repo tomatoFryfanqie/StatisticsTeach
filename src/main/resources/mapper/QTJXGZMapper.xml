@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jplus.mapper.QTJXGZMapper">
+
+    <insert id="addQTJXGZ" parameterType="org.jplus.pojo.QTJXGZ">
+        INSERT into qtjxgz VALUES (0, null, #{nd}, #{ddgzl}, #{bfxsrs}, #{xdrcpyfa}, #{kcdgms}, #{sydgms}, #{qtgzl}, #{zdqnjs});
+    </insert>
+
+
+    <select id="getAllQtGzl" resultType="java.lang.Float">
+        select qtgzl from qtjxgz;
+    </select>
+
+</mapper>

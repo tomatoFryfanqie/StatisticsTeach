@@ -39,6 +39,7 @@
   padding: 0;
   color: #006abb;
   border-radius: 0;
+  z-index: 999;
 }
 
 .navwarp {

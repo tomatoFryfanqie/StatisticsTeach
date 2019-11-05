@@ -78,31 +78,6 @@
 .workload {
   margin-left: 0%;
 }
-/* 表格 */
-.table td,
-.table th {
-  height: 25px;
-  text-align: center;
-  line-height: 25px;
-  padding: 0;
-  font-weight: 500;
-}
-.table thead tr th,.table tbody tr td,.table > thead > tr > td,.table > tbody > tr > th{
- padding: 0;
- line-height: 25px;
- vertical-align: middle;
-}
-/* 输入框 */
-.table {
-  margin-top: 0.5%;
-  margin-bottom: 4%;
-}
-.table tr:nth-child(even) {
-  background: #fff2cc;
-}
-table select {
-  vertical-align: middle;
-}
 /* 优秀论文数 */
 .excellentpaper {
   width: 40%;
@@ -113,6 +88,10 @@ table select {
 .workload span {
   margin-left: 10px;
 }
+/* 表格宽度 */
+/* .table tbody tr th:nth-child(2){
+  width: 20%;
+} */
 /* 模态框 */
 .modal-dialog {
   width: 400px;
