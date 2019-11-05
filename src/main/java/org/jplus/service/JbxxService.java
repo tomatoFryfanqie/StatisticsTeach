@@ -21,4 +21,6 @@ public interface JbxxService {
     List<Zcbm> getZcbmInfo();
 
     List<Gwlxbm> getGwlxbmInfo();
+
+    void updateBasisInfo(JbxxAccpet jbxxAccpet);
 }

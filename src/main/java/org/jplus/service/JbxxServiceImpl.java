@@ -44,4 +44,9 @@ public class JbxxServiceImpl implements JbxxService {
     public List<Gwlxbm> getGwlxbmInfo() {
         return jbxxMapper.getGwlxbmInfo();
     }
+
+    @Override
+    public void updateBasisInfo(JbxxAccpet jbxxAccpet) {
+        jbxxMapper.updateBasisInfo(jbxxAccpet);
+    }
 }

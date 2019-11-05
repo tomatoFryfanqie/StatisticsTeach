@@ -68,5 +68,16 @@
     <select id="getGwlxbmInfo" resultType="org.jplus.pojo.basisInfo.Gwlxbm">
         select gwlxbm,gwlxmc from `gwlxbm`;
     </select>
+    <update id="updateBasisInfo">
+        update `jbxx` set
+        yxbm = #{yxbm,jdbcType=INTEGER} ,
+        zwbm = #{zwbm,jdbcType=INTEGER} ,
+        zcbm = #{zcbm,jdbcType=INTEGER} ,
+        gwlxbm = #{gwlxbm,jdbcType=INTEGER} ,
+        sfxrz = #{sfxrz,jdbcType=INTEGER},
+        edgzl = #{edgzl,jdbcType=FLOAT},
+        bkszdsk = #{bkszdsk,jdbcType=FLOAT}
+        where jbxxid = #{jbxxid,jdbcType=INTEGER}
+    </update>
 
 </mapper>

@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 
 <head>
@@ -15,6 +15,7 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" href="css/classroomteaching.css">
+
 </head>
 
 <body>
@@ -28,16 +29,16 @@
         <div class="navbar">
             <div class="navwarp">
                 <div class="basic-information">
-                    <a href="basicinformation.html">教师本年度基本信息</a>
+                    <a th:href="@{/basicinformation}">教师本年度基本信息</a>
                 </div>
                 <!-- 本科生 -->
                 <div id="bachelor">本科生</div>
                 <ul class="list-group">
                     <li class="list-group-item active">
-                        <a href="classroomteaching.html">课堂教学</a>
+                        <a th:href="@{/classroomteaching}">课堂教学</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="practicalteaching.html">实践教学</a>
+                        <a href="/practiceteh">实践教学</a>
                     </li>
                     <li class="list-group-item"><a href="qualityengineering.html">质量工程建设</a></li>
                     <li class="list-group-item"><a href="teachingresearch.html">教学研究</a></li>
@@ -86,13 +87,8 @@
         <div class="msg-warp">
             <!-- 提示信息栏 -->
             <div class="msg">
-                <div class="year">年度<span>2019</span></div>
-                <div class="semester">
-                    学期<select name="term">
-                        <option value="one">1</option>
-                        <option value="two">2</option>
-                    </select>
-                </div>
+                <div class="year">年度<span th:text="${year}"></span></div>
+
                 <div class="total-workload">课堂教学工作量总计<span>sss</span></div>
                 <!-- 模态框-添加按钮 -->
                 <button type="button" id="save" data-toggle="modal" data-target="#myModal">
@@ -115,32 +111,40 @@
                         </div>
                         <!-- 添加课程内容 -->
                         <div class="modal-body">
-                            <form action="">
+                            <form th:action="@{/addClassInfo}" method="post">
+
                                 <div>
-                                    课程名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                                    学期：<select th:name="xq" class="form-control-1">
+                                    <option th:name="xq" th:value="${1}">1</option>
+                                    <option th:name="xq" th:value="${2}">2</option>
+                                </select>
                                 </div>
                                 <div>
-                                    课程类型：<select name="competitionform" class="form-control-1">
-                                        <option value="lecture">讲课</option>
-                                        <option value="Courseware">课件</option>
-                                        <option value="microlesson">微课</option>
+                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name"/>
+                                </div>
+                                <div>
+                                    课程类型：<select th:name="ktlxbm" class="form-control-1">
+                                        <option th:name="ktlxbm" th:each="ktlxType:${ktlx}" th:value="${ktlxType.ktlxbm}"
+                                                th:text="${ktlxType.ktlxmc}"
+                                        ></option>
                                     </select>
                                 </div>
                                 <div>
-                                    授课班级：<input type="text" class="form-control-1 class-number" placeholder="请输入用户名" />
+                                    授课班级：<input type="text" th:name="skbj" class="form-control-1 class-number" placeholder="请输入用户名" />
                                 </div>
-                                <div>
-                                    是否双语教学：<input type="radio" name="newentry" value="new" class="entry-chose" />是
-                                    <input type="radio" name="newentry" value="old" checked="checked" />否
+                                <div th:name="sfsy">
+                                    是否双语教学：<input type="radio" th:name="sfsy" th:value="${1}" class="entry-chose" />是
+                                    <input type="radio" th:name="sfsy" th:value="${0}" checked="checked" />否
+
                                 </div>
-                                <div>
-                                    计划学时：<input type="text" class="form-control-1" placeholder="请输入用户名" />
+                                <div th:name="jhxs">
+                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1" />
                                 </div>
-                                <div>
-                                    上课人数：<input type="text" class="form-control-1" placeholder="请输入密码" />
+                                <div th:name="skrs">
+                                    上课人数：<input type="text" th:name="skrs" class="form-control-1" />
                                 </div>
                                 <div class="btn-add">
-                                    <button type="button" id="add">添加</button>
+                                    <button type="submit" id="add">添加</button>
                                     <button type="button" id="cancel" data-dismiss="modal">取消</button>
                                 </div>
                             </form>
@@ -154,6 +158,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>学期</th>
                             <th>课程名称</th>
                             <th>课程类型</th>
                             <th>授课班级</th>
@@ -165,16 +170,21 @@
                         </tr>
                     </thead>
                     <tbody class="tbody" id="tbody">
-                        <tr>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>aaa</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td><a class="modify">修 改</a></td>
-                            <td><a class="delete">删 除</a></td>
+                        <tr th:each="bks : ${bksktjx}">
+                            <form th:action="@{/deleteClassInfo}" method="post">
+                                <div>
+                                    <input hidden th:name="bksktjx" th:value="${bks.bksktjx}">
+                                </div>
+                                <td th:text="${bks.xq}"></td>
+                                <td th:text="${bks.kcmc}"></td>
+                                <td th:text="${bks.kclx.ktlxmc}"></td>
+                                <td th:text="${bks.skbj}"></td>
+                                <td th:text="${bks.sfsy==1?'是':'否'}"></td>
+                                <td th:text="${bks.jhxs}"></td>
+                                <td th:text="${bks.skrs}"></td>
+                                <td th:text="${bks.jxgzl}"></td>
+                                <td><button type="submit"  class="delete">删 除</button></td>
+                            </form>
                         </tr>
                     </tbody>
                 </table>
@@ -182,6 +192,7 @@
         </div>
     </div>
     <script src="" async defer></script>
+
 </body>
 
 </html>

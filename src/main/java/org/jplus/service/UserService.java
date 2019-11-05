@@ -9,5 +9,5 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2019/10/31 17:32
  */
 public interface UserService {
-    boolean login(LoginVo loginVo, HttpServletRequest request,HttpServletResponse response);
+    boolean login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response);
 }

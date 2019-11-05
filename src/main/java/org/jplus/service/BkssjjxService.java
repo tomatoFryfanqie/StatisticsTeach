@@ -21,4 +21,6 @@ public interface BkssjjxService {
     List<Sxlx> selectSxlx();
 
     List<Zylxbm> selectZylxbm();
+
+    void updateBkssjjx(Bkssjjx bkssjjxVo);
 }

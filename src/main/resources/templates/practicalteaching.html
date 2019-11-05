@@ -28,16 +28,16 @@
         <div class="navbar">
             <div class="navwarp">
                 <div class="basic-information">
-                    <a href="basicinformation.html">教师本年度基本信息</a>
+                    <a th:href="@{/basicinformation}">教师本年度基本信息</a>
                 </div>
                 <!-- 本科生 -->
                 <div id="bachelor">本科生</div>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="classroomteaching.html">课堂教学</a>
+                        <a th:href="@{/classroomteaching}">课堂教学</a>
                     </li>
                     <li class="list-group-item active">
-                        <a href="practicalteaching.html">实践教学</a>
+                        <a href="/practiceteh">实践教学</a>
                     </li>
                     <li class="list-group-item"><a href="qualityengineering.html">质量工程建设</a></li>
                     <li class="list-group-item"><a href="teachingresearch.html">教学研究</a></li>
@@ -86,59 +86,71 @@
             <!-- 提示信息栏 -->
             <div class="msg">
                 <div class="year">年度<span class="prompt">2019</span></div>
-                <div class="total-workload">实践教学工作量总计<span class="prompt">sss</span></div>
-                <button type="button" id="add">编辑</button>
-                <button type="button" id="save">保存</button>
+                <div class="total-workload">实践教学工作量总计
+                    <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.sjjxgzl}"
+                          th:value="${bkssjjx.sjjxgzl}"></span>
+                    <input th:type="hidden" th:name="sjjxgzl" th:if="${bkssjjx}"
+                         th:value="${bkssjjx.sjjxgzl}">
+                    </input>
+                    <span class="prompt" th:unless="${bkssjjx}" th:text="0.0"></span>
+                </div>
+                <button type="submit" id="save">保存</button>
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">
                 <ul>
                     <li class="tips">1.指导实习</li>
-                    <li class="tips workload-display">工作量小计<span class="prompt">xxx</span></li>
+                    <li class="tips workload-display">工作量小计
+                        <span class="prompt"  th:if="${bkssjjx}"
+                              th:text="${bkssjjx.zdsxgzl}"></span>
+                        <span class="prompt"  th:unless="${bkssjjx}"
+                              th:text="0.0"></span>
+                    </li>
                     <li class="description indent">
                         实习类型
-                        <select name="internshiptype" >
+                        <select name="internshiptype" th:name="sxlxbm1">
                             <div th:unless="${bkssjjx}" >
-                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"></option>
+                                <option th:each="sxlx:${sxlxlist}" th:value="${sxlx.sxlxbm}"
+                                        th:text="${sxlx.sxlxmc}"></option>
                             </div>
+
                             <div th:if="${bkssjjx}" >
-                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"
-                                        th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm1}">
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}" th:value="${sxlx.sxlxbm}"
+                                        th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm1}" >
                                 </option>
                             </div>
                         </select>
                     </li>
                     <li class="description filling">
                         实习天数
-                        <input th:if="${bkssjjx}" th:text="${bkssjjx.sxts1}" type="number" id="day" class="day"/>
-                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
+                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts1}" type="number" id="day" class="day" name="sxts1"/>
+                        <input th:unless="${bkssjjx}" type="number" id="day" class="day" name="sxts1"/>
                     </li>
                     <li class="description indent">
                         实习类型
-                        <select name="internshiptype" >
+                        <select name="internshiptype" th:name="sxlxbm2">
                             <div th:unless="${bkssjjx}" >
-                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"></option>
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}" th:value="${sxlx.sxlxbm}" ></option>
                             </div>
                             <div th:if="${bkssjjx}" >
-                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"
-                                        th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm2}">
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}" th:value="${sxlx.sxlxbm}" th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm2}" >
                                 </option>
                             </div>
                         </select>
                     </li>
                     <li class="description filling">
                         实习天数
-                        <input th:if="${bkssjjx}" th:text="${bkssjjx.sxts2}" type="number" id="day" class="day"/>
-                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
+                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts2}" type="number" id="day" class="day" name="sxts2"/>
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day" name="sxts2"/>
                     </li>
                     <li class="description indent">
                         实习类型
-                        <select name="internshiptype" >
+                        <select name="internshiptype" th:name="sxlxbm3">
                             <div th:unless="${bkssjjx}" >
-                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"></option>
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}" th:value="${sxlx.sxlxbm}"></option>
                             </div>
                             <div th:if="${bkssjjx}" >
-                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}"
+                                <option th:each="sxlx:${sxlxlist}" th:text="${sxlx.sxlxmc}" th:value="${sxlx.sxlxbm}"
                                         th:selected="${sxlx.sxlxbm}==${bkssjjx.sxlxbm3}">
                                 </option>
                             </div>
@@ -146,45 +158,52 @@
                     </li>
                     <li class="description filling">
                         实习天数
-                        <input th:if="${bkssjjx}" th:text="${bkssjjx.sxts3}" type="number" id="day" class="day"/>
-                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
+                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts3}" type="number" id="day" class="day"
+                               name="sxts3"/>
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day" name="sxts3"/>
                     </li>
                     <li class="tips">2.微格试讲</li>
-                    <li class="tips workload-display">工作量小计<span class="prompt">xxx</span></li>
+                    <li class="tips workload-display">工作量小计
+                        <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.wgsjgzl}"></span>
+                        <span class="prompt"  th:unless="${bkssjjx}"
+                              th:text="0.0"></span>
+                    </li>
                     <li class="description new-line indent">
                         指导学生人数
-                        <input type="number" th:if="${bkssjjx}" th:text="${bkssjjx.wgsjrs}" class="student-num" placeholder=""/>
-                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
+                        <input type="number" th:if="${bkssjjx}" th:value="${bkssjjx.wgsjrs}" class="student-num" th:name="wgsjrs"/>
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day" th:name="wgsjrs"/>
                     </li>
                     <li class="tips">3.指导毕业论文</li>
-                    <li class="tips workload-display">工作量小计<span class="prompt">xxx</span></li>
+                    <li class="tips workload-display">工作量小计
+                        <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.zdlwgzl}">xxx</span>
+                        <span class="prompt" th:unless="${bkssjjx}" th:text="0.0"></span>
+                    </li>
                     <li class="description indent">
                         专业类型
-                        <select name="majortype"  th:if="${bkssjjx}">
-                            <option th:each="zylx:${zylxlist}" th:text="${zylx.zylxmc}"
-                                    th:selected="${zylx.zylxbm}==${bkssjjx.zylxbm}"> </option>
+                        <select name="majortype"  th:if="${bkssjjx}" th:name="zylxbm">
+                            <option th:each="zylx:${zylxlist}" th:text="${zylx.zylxmc}" th:value="${zylx.zylxbm}" th:selected="${zylx.zylxbm}==${bkssjjx.zylxbm}" > </option>
                         </select>
-                        <select name="majortype"  th:unless="${bkssjjx}">
-                            <option th:each="zylx:${zylxlist}" th:text="${zylx.zylxmc}"> </option>
+                        <select name="majortype"  th:unless="${bkssjjx}" th:name="zylxbm">
+                            <option th:each="zylx:${zylxlist}" th:text="${zylx.zylxmc}" th:value="${zylx.zylxbm}"> </option>
                         </select>
                     </li>
                     <li class="description filling">
                         指导学生人数
                         <input type="number" id="student-num" class="student-num" th:if="${bkssjjx}"
-                               th:text="${bkssjjx.zdlwrs}" />
-                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day"/>
+                               th:value="${bkssjjx.zdlwrs}" name="zdlwrs" />
+                        <input th:unless="${bkssjjx}"  type="number" id="day" class="day" name="zdlwrs"/>
                     </li>
                     <li class="tips new-line">4.实验室建设与管理</li>
                     <li class="description indent managements">
                         管理内容<input type="text" id="management" class="management"
-                                   th:if="${bkssjjx}" th:text="${bkssjjx.glnr}" />
-                        <input th:unless="${bkssjjx}"  type="text" id="day" class="day"/>
+                                   th:if="${bkssjjx}" th:value="${bkssjjx.glnr}" name="glnr"/>
+                        <input th:unless="${bkssjjx}"  type="text" id="day" class="day" name="glnr"/>
                     </li>
                     <li class="description laboratoryworkloads">
                         实验室管理工作量
                         <input type="number" id="laboratory-workload" class="laboratory-workload"
-                                       th:if="${bkssjjx}" th:text="${bkssjjx.glgzl}" />
-                        <input th:unless="${bkssjjx}"  type="text" id="day" class="day"/>
+                                       th:if="${bkssjjx}" th:value="${bkssjjx.glgzl}" name="glgzl" />
+                        <input th:unless="${bkssjjx}"  type="text" id="day" class="day" name="glgzl"/>
                     </li>
                 </ul>
             </div>
