@@ -1,0 +1,93 @@
+/* 基本信息基础布局 */
+.basicinformation {
+  font-size: 14px;
+  width: 80%;
+  text-align: left;
+  position: absolute;
+  top: 11%;
+  right: 0;
+}
+
+/* 标题 */
+.information-title {
+  height: 30px;
+  line-height: 30px;
+  /* text-align: center; */
+  margin-top: 1%;
+  margin-left: 37%;
+}
+
+/* 保存按钮 */
+#save {
+  font-size: 14px;
+  border: 2px solid #006abb;
+  padding: 0.5px 8px;
+  margin-left: 60%;
+  margin-top: 1%;
+  border-radius: 5px;
+}
+
+/* 信息栏布局 */
+.informaction {
+  padding: 3% 6%;
+  /* background-color: palegoldenrod; */
+}
+
+.informaction ul {
+  width: 100%;
+  height: 160px;
+  padding: 0;
+  /* background-color: red; */
+  margin-bottom: 5%;
+}
+
+.informaction ul li {
+  width: 40%;
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  padding-left: 5%;
+}
+
+/* 输入框缩进 */
+.informaction ul li input,
+.informaction ul li select,
+.workload-warp div span {
+  margin-left: 8%;
+}
+
+.informaction ul .entry input {
+  margin-left: 0;
+}
+
+.informaction ul .entry .entry-chose,
+.informaction ul .post select {
+  margin-left: 4%;
+}
+
+/* 姓名输入框 */
+.informaction .name {
+  width: 50%;
+  height: 25px;
+}
+
+.informaction ul .entry,
+.informaction ul .post {
+  width: 100%;
+  /* margin-left: 4%; */
+}
+
+/* 工作量显示布局 */
+.workload-warp {
+  width: 100%;
+  height: 80px;
+  /* background-color: salmon; */
+}
+
+.workload-warp div {
+  width: 50%;
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  padding-left: 5%;
+}

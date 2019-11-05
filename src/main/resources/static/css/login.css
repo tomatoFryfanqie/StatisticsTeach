@@ -1,0 +1,42 @@
+.home {
+  font-size: 16px;
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background-color: #9bc2e6;
+}
+.title {
+  height: 25%;
+  line-height: 90px;
+}
+#loginwrap {
+  height: 70%;
+  padding: 4% 0;
+}
+#loginwrap input {
+  width: 170px;
+  height: 25px;
+  line-height: 25px;
+  border: 1px solid #a8a8b7;
+  margin-top: 6%;
+  margin-left: 2%;
+}
+#loginwrap button {
+  width: 55px;
+  height: 24px;
+  border: none;
+  background-color: #9bc2e6;
+  margin-top: 10%;
+  letter-spacing: 3px;
+}
+#login {
+  margin-right: 10%;
+}
+#out {
+  margin-left: 10%;
+}
