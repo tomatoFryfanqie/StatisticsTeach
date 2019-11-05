@@ -39,4 +39,9 @@ public class BkssjjxServiceImpl implements BkssjjxService {
     public List<Zylxbm> selectZylxbm() {
         return bkssjjxMapper.selectZylxbm();
     }
+
+    @Override
+    public void updateBkssjjx(Bkssjjx bkssjjxVo) {
+        bkssjjxMapper.updateBksjjx(bkssjjxVo);
+    }
 }

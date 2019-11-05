@@ -53,4 +53,5 @@ public class BksktjxServiceImpl implements BksktjxService {
 
         return bksktjxMapper.getBksktjxSum(gh);
     }
+
 }
