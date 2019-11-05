@@ -29,7 +29,7 @@ public class LoginController {
             "loginVo")
             LoginVo loginVo, BindingResult bindingResult, Model model) throws IOException {
         if (bindingResult.hasErrors()){
-            model.addAttribute("error","请检查账号或密码不能为空！！！");
+            model.addAttribute("error","账号或密码不能为空！！！");
             return "login";
         }
         boolean islogin=userService.login(loginVo,request,response);

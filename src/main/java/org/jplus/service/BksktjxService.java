@@ -25,4 +25,8 @@ public interface BksktjxService {
     void deleteClassInfoBybksktjxId(Integer bksktjx);
 
     Float getBkjxgzlSum(String gh);
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 }

@@ -169,12 +169,8 @@
                             <th colspan="2">操作</th>
                         </tr>
                     </thead>
-                    <tbody class="tbody" id="tbody">
-                        <tr th:each="bks : ${bksktjx}">
-                            <form th:action="@{/deleteClassInfo}" method="post">
-                                <div>
-                                    <input hidden th:name="bksktjx" th:value="${bks.bksktjx}">
-                                </div>
+                    <tbody class="tbody" id="tbody"th:each="bks : ${bksktjx}">
+                                <tr>
                                 <td th:text="${bks.xq}"></td>
                                 <td th:text="${bks.kcmc}"></td>
                                 <td th:text="${bks.kclx.ktlxmc}"></td>
@@ -183,9 +179,14 @@
                                 <td th:text="${bks.jhxs}"></td>
                                 <td th:text="${bks.skrs}"></td>
                                 <td th:text="${bks.jxgzl}"></td>
+<<<<<<< HEAD
                                 <td>&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit"  class="delete">删 除</button></td>
                             </form>
                         </tr>
+=======
+                                <td><a th:href="@{/deleteClassInfo(id=${bks.bksktjx})}" type="submit"  class="delete">删 除</a></td>
+                                </tr>
+>>>>>>> origin/master
                     </tbody>
                 </table>
             </div>

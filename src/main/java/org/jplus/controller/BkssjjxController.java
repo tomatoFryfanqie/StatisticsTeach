@@ -1,15 +1,19 @@
 package org.jplus.controller;
 
+import org.jplus.dto.BkssjjxEx;
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.bks.Bkssjjx;
 import org.jplus.service.BkssjjxService;
+import org.jplus.utils.YearAndClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
+import static org.jplus.utils.GetSjjxWork.getSjjxWork;
 
 /**
  * @author imlgw.top
@@ -24,8 +28,19 @@ public class BkssjjxController {
 
     @RequestMapping("/saveBkssjjx")
     @NeedLogin
-    public void insertTest(@RequestBody Bkssjjx bkssjjxVo){
-        bkssjjxService.insertBkssjjx(bkssjjxVo);
+    public String insertTest(@Validated @ModelAttribute(value = "bkssjjxVo") Bkssjjx bkssjjxVo, Users users,Model model){
+        bkssjjxVo.setGh(users.getGh());
+        if (bkssjjxVo.getSjjxgzl()==null){
+            BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
+            bkssjjxVo.setNd(YearAndClass.getYears());
+            bkssjjxVo.setSjjxgzl(sjjxWork.getSjjxgzl());
+            bkssjjxService.insertBkssjjx(bkssjjxVo);
+        }else {
+            BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
+            bkssjjxVo.setSjjxgzl(sjjxWork.getSjjxgzl());
+            bkssjjxService.updateBkssjjx(bkssjjxVo);
+        }
+        return "redirect:/practiceteh";
     }
 
     @RequestMapping("/practiceteh") //本科生实践教学入口
@@ -33,9 +48,12 @@ public class BkssjjxController {
     public String bkssjjx(Model model, Users user){ //User由参数解析器自动注入
         Optional.ofNullable(bkssjjxService.selectSxlx()).ifPresent( sxlx-> model.addAttribute("sxlxlist",sxlx));
         Optional.ofNullable(bkssjjxService.selectZylxbm()).ifPresent(zybm-> model.addAttribute("zylxlist",zybm));
-        Optional.ofNullable(bkssjjxService.selectBkssjjx(user.getGh())).ifPresent(bkssjjx -> model.addAttribute("bkssjjx",bkssjjx));
-        //System.err.println(user);
-        //System.err.println(bkssjjxService.selectBkssjjx(user.getGh()));
+        Optional.ofNullable(bkssjjxService.selectBkssjjx(user.getGh())).ifPresent(sjjx->model.addAttribute
+                ("bkssjjx",getSjjxWork(sjjx)));
+        /*BkssjjxEx sjjxWork = getSjjxWork(bkssjjxService.selectBkssjjx(user.getGh()));
+        Optional.ofNullable(sjjxWork).ifPresent(bkssjjx -> model
+                .addAttribute
+                ("bkssjjx",bkssjjx));*/
         return "practicalteaching";
     }
 }
