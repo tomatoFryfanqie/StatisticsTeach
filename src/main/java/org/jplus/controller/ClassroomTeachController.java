@@ -57,14 +57,7 @@ public class ClassroomTeachController {
     @RequestMapping(value = "/deleteClassInfo",method = RequestMethod.GET)
     public String delete(@ModelAttribute(value = "id")Integer id){
         /*删除课堂信息*/
-        System.out.println(id);
         bksktjxService.deleteClassInfoBybksktjxId(id);
-        return "redirect:classroomteaching";
-    }
-
-    @RequestMapping("/updateClassInfo")
-    public String updateClassInfo(@ModelAttribute(value = "bksktjx")BksktjxAccpet bksktjxAccpet){
-        bksktjxService.updateClassInfo(bksktjxAccpet);
         return "redirect:classroomteaching";
     }
 

@@ -26,5 +26,4 @@ public interface BksktjxService {
 
     Float getBkjxgzlSum(String gh);
 
-    void updateClassInfo(BksktjxAccpet bksktjxAccpet);
 }

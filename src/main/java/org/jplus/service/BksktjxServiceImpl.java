@@ -54,8 +54,4 @@ public class BksktjxServiceImpl implements BksktjxService {
         return bksktjxMapper.getBksktjxSum(gh);
     }
 
-    @Override
-    public void updateClassInfo(BksktjxAccpet bksktjxAccpet) {
-        bksktjxMapper.updateClassInfo(bksktjxAccpet);
-    }
 }

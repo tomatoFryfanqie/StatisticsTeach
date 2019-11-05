@@ -27,5 +27,4 @@ public interface BksktjxMapper {
 
     Float getBksktjxSum(String gh);
 
-    void updateClassInfo(BksktjxAccpet bksktjxAccpet);
 }
