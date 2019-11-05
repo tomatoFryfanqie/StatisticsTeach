@@ -23,4 +23,6 @@ public interface JbxxMapper {
     List<Gwlxbm> getGwlxbmInfo();
 
     void updateBasisInfo(JbxxAccpet jbxxAccpet);
+
+    void addJbxx(String gh);
 }

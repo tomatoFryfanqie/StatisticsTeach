@@ -17,8 +17,6 @@ public interface JxcgService {
 
     int addJxcg(Jxcg jxcg);
 
-    int updateJxcg(Integer id);
-
     int deleteJxcg(Integer id);
 
     List<Jxcgdj> getJxcgdjInfo();

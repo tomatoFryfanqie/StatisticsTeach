@@ -33,5 +33,5 @@ public class Zxxm {
     private Integer xmzrs;
 
 //纵向项目工作量
-    private BigDecimal zxxmgzl;
+    private Float zxxmgzl;
 }

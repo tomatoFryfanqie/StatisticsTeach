@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jplus.mapper.JSJSMapper">
+
+    <select id="getGzl" resultType="java.lang.Integer">
+        select gdgzl from jsdj WHERE jsdjbm=#{teacherCompetitioncategory};
+    </select>
+
+    <select id="getTeacherCompetitionList" resultType="org.jplus.pojo.JSJS">
+        select jsmc, jsdjbm, jsxsbm, jsjsgzl from jsjs;
+    </select>
+
+    <insert id="addJSJS" parameterType="org.jplus.pojo.JSJS">
+        INSERT into jsjs VALUES (0, null, #{nd}, #{jsmc}, #{jsdjbm}, #{jsxsbm}, #{gzl});
+    </insert>
+
+    <insert id="addZDXSLW" parameterType="org.jplus.pojo.ZDXSLW">
+        INSERT into zdxslw VALUES (0, #{gh}, #{nd}, #{sylwrs}, #{xylwrs}, #{gzl});
+    </insert>
+
+    <select id="getAllGzl" resultType="java.lang.Float">
+        select sum(jsjsgzl) from jsjs;
+    </select>
+
+    <select id="getAllLwGzl" resultType="java.lang.Float">
+        select sum(zdlwgzl) from zdxslw;
+    </select>
+</mapper>

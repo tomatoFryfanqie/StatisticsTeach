@@ -33,5 +33,5 @@ public class Jxgg {
     private Integer jxggzrs;
 
 //教学改革工作量
-    private BigDecimal jxgggzl;
+    private Float jxgggzl;
 }

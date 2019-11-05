@@ -19,7 +19,6 @@ public class GetRatedWorkload {
      * @return
      */
     public static Float getRatedWorkload(Integer zcbm,Integer gwlxbm,Integer sfxrz){
-
         Float getWorkLoad = 0.0f;
         if(zcbm==3||zcbm==4){
             if (zcbm==3){

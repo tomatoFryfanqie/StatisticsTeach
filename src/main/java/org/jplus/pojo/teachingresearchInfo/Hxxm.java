@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 public class Hxxm {
 //横向项目id
-    private Integer hxxmdj;
+    private Integer hxxmid;
 
 //工号
     private String gh;
@@ -24,7 +24,7 @@ public class Hxxm {
     private String xmmc;
 
 //到账经费
-    private BigDecimal dzjf;
+    private Integer dzjf;
 
 //项目排名
     private Integer xmpm;
@@ -33,5 +33,5 @@ public class Hxxm {
     private Integer xmzrs;
 
 //横向工作量
-    private BigDecimal hxgzl;
+    private Float hxgzl;
 }

@@ -36,5 +36,5 @@ public class Jxcg {
     private Integer jxcgzrs;
 
 //教学成果工作量
-    private BigDecimal jxcggzl;
+    private Float jxcggzl;
 }

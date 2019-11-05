@@ -1,5 +1,6 @@
 package org.jplus.service;
 
+import org.jplus.pojo.Users;
 import org.jplus.pojo.basisInfo.*;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface JbxxService {
     List<Gwlxbm> getGwlxbmInfo();
 
     void updateBasisInfo(JbxxAccpet jbxxAccpet);
+
+    void addJbxx(String gh);
 }

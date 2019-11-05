@@ -3,18 +3,21 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 引用bootstrap及基础样式 -->
-    <script src="js/link.js"></script>
-    <link rel="stylesheet" href="css/teachingresearch.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 引用bootstrap及基础样式 -->
+  <script src="js/link.js"></script>
+  <link rel="stylesheet" href="css/teachingresearch.css">
+  <!-- 编辑表格脚本 -->
+  <script src="js/edittable.js"></script>
+  <link rel="stylesheet" href="css/tablestyle.css" />
 </head>
 
 <body>
@@ -40,7 +43,7 @@
                         <a href="practicalteaching.html">实践教学</a>
                     </li>
                     <li class="list-group-item"><a href="qualityengineering.html">质量工程建设</a></li>
-                    <li class="list-group-item active"><a href="teachingresearch.html">教学研究</a></li>
+                    <li class="list-group-item active"><a th:href="@{/teachingresearch}">教学研究</a></li>
                     <li class="list-group-item"><a href="knowledgecontest.html">教学知识竞赛</a></li>
                     <li class="list-group-item"><a href="otheractivities.html">其它教育教学活动</a></li>
                 </ul>
@@ -85,19 +88,19 @@
       <!-- 提示信息栏 -->
       <div class="msg">
         <div class="year">年度<span th:text="${year}"></span></div>
-        <div class="total-workload">工作总量<span>sss</span></div>
+        <div class="total-workload">工作总量<span th:text="${jxcgGzl}+${zxxmGzl}+${hxxmGzl}+${jcGzl}+${jxggGzl}"></span></div>
       </div>
       <div>
         <!-- 表格数据 -->
-        <!-- 指导学生竞赛-提示信息栏 -->
+        <!-- 教学成果-提示信息栏 -->
         <div class="msgs">
-          <div class="subtitle">指导学生竞赛</div>
-          <div class="workload">工作量小计<span>sss</span></div>
+          <div class="subtitle">教学成果</div>
+          <div class="workload">工作量小计<span th:text="${jxcgGzl}"></span></div>
           <button type="button" id="save" data-toggle="modal" data-target="#guideStudents">添加</button>
         </div>
               <!-- 模态框（Modal）登陆界面 -->
       <div class="modal fade" id="guideStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+           aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -115,8 +118,8 @@
                 </div>
                 <div>
                   成果等级：<select th:name="cgdjbm" class="form-control-1">
-                    <option th:each="jxcgdj:${Jxcgdjs}" th:value="${jxcgdj.getCgdjbm()}" th:text="${jxcgdj.getCgdjmc()}"></option>
-                  </select>
+                  <option th:each="jxcgdj:${Jxcgdjs}" th:value="${jxcgdj.getCgdjbm()}" th:text="${jxcgdj.getCgdjmc()}"></option>
+                </select>
                 </div>
                 <div>
                   项目排名：<input type="text" class="form-control-1 class-number" th:name="xmpm" placeholder=""/>
@@ -134,42 +137,84 @@
           </div>
         </div>
       </div>
-        <!-- 表格数据 -->
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <td>教学成果</td>
-              <td>成果等级</td>
-              <td>项目排名</td>
-              <td>项目总人数</td>
-              <td>工作量</td>
-              <td colspan="2">操作</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="Jxcg:${Jxcgs}">
-              <th th:text="${Jxcg.getCgmc()}"></th>
-              <div th:switch="${Jxcg.getCgdjbm()}" >
-                <th th:each="Jxcgdj:${Jxcgdjs}" th:case="${Jxcgdj.getCgdjbm()}"
-                    th:text="${Jxcgdj.getCgdjmc()}"></th>
-              <div/>
-              <th th:text="${Jxcg.getXmpm()}"></th>
-              <th th:text="${Jxcg.getJxcgzrs()}"></th>
-              <th th:text="${Jxcg.getJxcggzl()}"></th>
-              <td><a class="modify" >修 改</a></td>
-              <td><a class="delete" th:href="@{/delJxcg(id=${Jxcg.getJxcgid()})}">删 除</a></td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- 纵向教研项目-提示信息栏 -->
-        <div class="msgs">
-          <div class="subtitle">纵向教研项目</div>
-          <div class="workload">工作量小计<span>sss</span></div>
-          <button type="button" id="save" data-toggle="modal" data-target="#verticalTeaching">添加</button>
+      <!-- 表格数据 -->
+      <table class="table table-bordered edtitable">
+        <thead>
+        <tr>
+          <td>成果名称</td>
+          <td>成果等级</td>
+          <td>项目排名</td>
+          <td>项目总人数</td>
+          <td>工作量</td>
+          <td colspan="2">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Jxcg:${Jxcgs}">
+          <th th:text="${Jxcg.getCgmc()}"></th>
+          <div th:switch="${Jxcg.getCgdjbm()}" >
+            <th th:each="Jxcgdj:${Jxcgdjs}" th:case="${Jxcgdj.getCgdjbm()}"
+                th:text="${Jxcgdj.getCgdjmc()}"></th>
+            <div/>
+            <th th:text="${Jxcg.getXmpm()}"></th>
+            <th th:text="${Jxcg.getJxcgzrs()}"></th>
+            <th th:text="${Jxcg.getJxcggzl()}"></th>
+            <td class="notedit"><a class="modify" data-toggle="modal" th:href="@{/updatePage(id=${Jxcg.getJxcgid()})}"
+                                   data-target="#achievementsModal">修 改</a></td>
+            <!-- 删除按钮 -->
+            <td class="del-col notedit">
+              <a th:href="@{/delJxcg(id=${Jxcg.getJxcgid()})}" class="delBtn">删除</a>
+            </td>
+        </tr>
+        </tbody>
+      </table>
+      <!-- 模态框（Modal）教学成果修改界面 -->
+      <div class="modal fade" id="achievementsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+              </button>
+              <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                教学成果修改
+              </h5>
+            </div>
+            <div class="modal-body">
+              <form th:action="@{/updateJxcg}" method="post">
+                <div >
+                  教学成果：<input type="text" class="form-control-1 class-name" placeholder=""  th:name="cgmc"/>
+                </div>
+                <div>
+                  成果等级<select th:name="cgdjbm" class="form-control-1">
+                  <option th:each="jxcgdj:${Jxcgdjs}" th:value="${jxcgdj.getCgdjbm()}" th:text="${jxcgdj.getCgdjmc()}"></option>
+                </select>
+                </div>
+                <div>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                </div>
+                <div>
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="jxcgzrs" />
+                </div>
+                <div class="btn-add">
+                  <button type="button" id="add">确定</button>
+                  <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-              <!-- 模态框（Modal）登陆界面 -->
+      </div>
+      <!-- 纵向教研项目-提示信息栏 -->
+      <div class="msgs">
+        <div class="subtitle">纵向教研项目</div>
+        <div class="workload">工作量小计<span th:text="${zxxmGzl}"></span></div>
+        <button type="button" id="save" data-toggle="modal" data-target="#verticalTeaching">添加</button>
+      </div>
+      <!-- 模态框（Modal）登陆界面 -->
       <div class="modal fade" id="verticalTeaching" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+           aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -181,16 +226,85 @@
               </h5>
             </div>
             <div class="modal-body">
+              <form th:action="@{/addZxxm}" method="post">
+                <div>
+                  教研项目名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="xmmc"/>
+                </div>
+                <div>
+                  项目等级：<select name="competitionform" th:name="xmdjbm" class="form-control-1">
+                  <option th:each="zxxmdj:${Zxxmdjs}" th:value="${zxxmdj.xmdjbm}" th:text="${zxxmdj.xmdjmc}"></option>
+                </select>
+                </div>
+                <div>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                </div>
+                <div>
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmzrs"/>
+                </div>
+                <div class="btn-add">
+                  <button type="submit" id="add">添加</button>
+                  <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 表格数据 -->
+      <table class="table table-bordered edtitable">
+        <thead>
+        <tr>
+          <td>教研项目名称</td>
+          <td>项目等级</td>
+          <td>项目排名</td>
+          <td>项目总人数</td>
+          <td>工作量</td>
+          <td colspan="2">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="zxxm:${Zxxms}">
+          <td th:text="${zxxm.getXmmc()}"></td>
+          <div th:switch="${zxxm.getXmdjbm()}">
+            <th th:each="Zxxmdj:${Zxxmdjs}" th:case="${Zxxmdj.xmdjbm}"
+                th:text="${Zxxmdj.xmdjmc}"></th>
+            </div>
+          <td th:text="${zxxm.getXmpm()}"></td>
+          <td th:text="${zxxm.getXmzrs()}"></td>
+          <td th:text="${zxxm.getZxxmgzl()}"></td>
+          <td class="notedit"><a class="modify" data-toggle="modal" data-target="#portraitModal">修 改</a></td>
+          <!-- 删除按钮 -->
+          <td class="del-col noedit">
+            <a th:href="@{/delZxxm(id=${zxxm.getZxxmid()})}" class="delBtn">删除</a>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+      <!-- 模态框（Modal）纵向教研项目修改界面 -->
+      <div class="modal fade" id="portraitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+              </button>
+              <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                纵向教研项目修改
+              </h5>
+            </div>
+            <div class="modal-body">
               <form action="">
                 <div>
                   教研项目名称：<input type="text" class="form-control-1 class-name" placeholder="" />
                 </div>
                 <div>
                   项目等级：<select name="competitionform" class="form-control-1">
-                    <option value="lecture">讲课</option>
-                    <option value="Courseware">课件</option>
-                    <option value="microlesson">微课</option>
-                  </select>
+                  <option value="lecture">讲课</option>
+                  <option value="Courseware">课件</option>
+                  <option value="microlesson">微课</option>
+                </select>
                 </div>
                 <div>
                   项目排名：<input type="text" class="form-control-1 class-number" placeholder="" />
@@ -199,7 +313,7 @@
                   项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" />
                 </div>
                 <div class="btn-add">
-                  <button type="button" id="add">添加</button>
+                  <button type="button" id="add">确定</button>
                   <button type="button" id="cancel" data-dismiss="modal">取消</button>
                 </div>
               </form>
@@ -207,72 +321,15 @@
           </div>
         </div>
       </div>
-        <!-- 表格数据 -->
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <td>教研项目名称</td>
-              <td>项目等级</td>
-              <td>项目排名</td>
-              <td>项目总人数</td>
-              <td>工作量</td>
-              <td colspan="2">操作</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="projectlevel">
-                  <option value="National">国家级</option>
-                  <option value="provincial">省级</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="projectlevel">
-                  <option value="National">国家级</option>
-                  <option value="provincial">省级</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="projectlevel">
-                  <option value="National">国家级</option>
-                  <option value="provincial">省级</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- 横向教研项目-提示信息栏 -->
-        <div class="msgs">
-          <div class="subtitle">横向教研项目</div>
-          <div class="workload">工作量小计<span>sss</span></div>
-          <button type="button" id="save" data-toggle="modal" data-target="#horizontalTeaching">添加</button>
-        </div>
-              <!-- 模态框（Modal）登陆界面 -->
+      <!-- 横向教研项目-提示信息栏 -->
+      <div class="msgs">
+        <div class="subtitle">横向教研项目</div>
+        <div class="workload">工作量小计<span th:text="${hxxmGzl}"></span></div>
+        <button type="button" id="save" data-toggle="modal" data-target="#horizontalTeaching">添加</button>
+      </div>
+      <!-- 模态框（Modal）登陆界面 -->
       <div class="modal fade" id="horizontalTeaching" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+           aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -284,16 +341,78 @@
               </h5>
             </div>
             <div class="modal-body">
+              <form th:action="@{/addHxxm}" method="post">
+                <div>
+                  横向项目名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="xmmc"/>
+                </div>
+                <div>
+                  到账经费：<input type="text" class="form-control-1 class-name" placeholder="" th:name="dzjf"/>
+                </div>
+                <div>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                </div>
+                <div>
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmzrs"/>
+                </div>
+                <div class="btn-add">
+                  <button type="submit" id="add">添加</button>
+                  <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 表格数据 -->
+      <table class="table table-bordered edtitable">
+        <thead>
+        <tr>
+          <td>横向项目名称</td>
+          <td>到账经费</td>
+          <td>项目排名</td>
+          <td>项目总人数</td>
+          <td>工作量</td>
+          <td colspan="2">操作</td>
+        </tr>
+        </thead>
+        <tr th:each="Hxxm:${Hxxms}">
+          <td th:text="${Hxxm.getXmmc()}"></td>
+          <td th:text="${Hxxm.getDzjf()}"></td>
+          <td th:text="${Hxxm.getXmpm()}"></td>
+          <td th:text="${Hxxm.getXmzrs()}"></td>
+          <td th:text="${Hxxm.getHxgzl()}"></td>
+          <td class="notedit"><a class="modify" data-toggle="modal" data-target="#landscapeModal">修 改</a></td>
+          <!-- 删除按钮 -->
+          <td class="del-col noedit">
+            <a th:href="@{/delHxxm(id=${Hxxm.hxxmid})}" class="delBtn">删除</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <!-- 模态框（Modal）横向教研项目修改界面 -->
+      <div class="modal fade" id="landscapeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+              </button>
+              <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                横向教研项目修改
+              </h5>
+            </div>
+            <div class="modal-body">
               <form action="">
                 <div>
                   横向项目名称：<input type="text" class="form-control-1 class-name" placeholder="" />
                 </div>
                 <div>
                   到账经费：<select name="competitionform" class="form-control-1">
-                    <option value="lecture">讲课</option>
-                    <option value="Courseware">课件</option>
-                    <option value="microlesson">微课</option>
-                  </select>
+                  <option value="lecture">讲课</option>
+                  <option value="Courseware">课件</option>
+                  <option value="microlesson">微课</option>
+                </select>
                 </div>
                 <div>
                   项目排名：<input type="text" class="form-control-1 class-number" placeholder="" />
@@ -302,7 +421,7 @@
                   项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" />
                 </div>
                 <div class="btn-add">
-                  <button type="button" id="add">添加</button>
+                  <button type="button" id="add">确定</button>
                   <button type="button" id="cancel" data-dismiss="modal">取消</button>
                 </div>
               </form>
@@ -310,72 +429,15 @@
           </div>
         </div>
       </div>
-        <!-- 表格数据 -->
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <td>横向项目名称</td>
-              <td>到账经费</td>
-              <td>项目排名</td>
-              <td>项目总人数</td>
-              <td>工作量</td>
-              <td colspan="2">操作</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="projectlevel">
-                  <option value="National">国家级</option>
-                  <option value="provincial">省级</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="projectlevel">
-                  <option value="National">国家级</option>
-                  <option value="provincial">省级</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="projectlevel">
-                  <option value="National">国家级</option>
-                  <option value="provincial">省级</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- 编写规划教材、教材获奖-提示信息栏 -->
-        <div class="msgs">
-          <div class="subtitle">编写规划教材、教材获奖</div>
-          <div class="workload">工作量小计<span>sss</span></div>
-          <button type="button" id="save" data-toggle="modal" data-target="#award">添加</button>
-        </div>
-              <!-- 模态框（Modal）登陆界面 -->
+      <!-- 编写规划教材、教材获奖-提示信息栏 -->
+      <div class="msgs">
+        <div class="subtitle">编写规划教材、教材获奖</div>
+        <div class="workload">工作量小计<span th:text="${jcGzl}"></span></div>
+        <button type="button" id="save" data-toggle="modal" data-target="#award">添加</button>
+      </div>
+      <!-- 模态框（Modal）编写规划教材、教材获奖界面 -->
       <div class="modal fade" id="award" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+           aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -387,25 +449,24 @@
               </h5>
             </div>
             <div class="modal-body">
-              <form action="">
+              <form th:action="@{/addJc}" method="post">
                 <div>
-                  教材名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                  教材名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="jcmc"/>
                 </div>
                 <div>
-                  教材级别：<select name="competitionform" class="form-control-1">
-                    <option value="lecture">讲课</option>
-                    <option value="Courseware">课件</option>
-                    <option value="microlesson">微课</option>
-                  </select>
+                  教材级别：<select name="competitionform" class="form-control-1" th:name="jcjbbm">
+                  <option th:each="jcjb:${Jcjbs}" th:value="${jcjb.jcjbbm}"
+                          th:text="${jcjb.jcjbmc}"></option>
+                </select>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" />
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" />
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmzrs"/>
                 </div>
                 <div class="btn-add">
-                  <button type="button" id="add">添加</button>
+                  <button type="submit" id="add">添加</button>
                   <button type="button" id="cancel" data-dismiss="modal">取消</button>
                 </div>
               </form>
@@ -426,57 +487,29 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="textbooklevel">
-                  <option value="Nationalplanning">国家级规划教材</option>
-                  <option value="provincialplanning">省级规划教材</option>
-                  <option value="NationalA">国家级教材一等奖</option>
-                  <option value="NationalB">国家级教材二等奖</option>
-                  <option value="NationalC">国家级教材三等奖</option>
-                  <option value="provincialA">省级教材一等奖</option>
-                  <option value="provincialB">省级教材二等奖</option>
-                  <option value="provincialC">省级教材三等奖</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
+            <tr th:each="Jc:${Jcs}">
+              <th th:text="${Jc.jcmc}"></th>
+              <div th:switch="${Jc.jcjbbm}">
+              <th th:each="Jcjb:${Jcjbs}" th:case="${Jcjb.jcjbbm}"
+                  th:text="${Jcjb.jcjbmc}"></th>
+              </div>
+              <th th:text="${Jc.xmpm}"></th>
+              <th th:text="${Jc.xmzrs}"></th>
+              <th th:text="${Jc.jcgzl}"></th>
               <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="textbooklevel">
-                  <option value="Nationalplanning">国家级规划教材</option>
-                  <option value="provincialplanning">省级规划教材</option>
-                  <option value="NationalA">国家级教材一等奖</option>
-                  <option value="NationalB">国家级教材二等奖</option>
-                  <option value="NationalC">国家级教材三等奖</option>
-                  <option value="provincialA">省级教材一等奖</option>
-                  <option value="provincialB">省级教材二等奖</option>
-                  <option value="provincialC">省级教材三等奖</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
+              <td><a class="delete" th:href="@{/delJc(id=${Jc.jcid})}">删 除</a></td>
             </tr>
           </tbody>
         </table>
         <!-- 教学改革工作量-提示信息栏 -->
         <div class="msgs">
           <div class="subtitle">教学改革工作量</div>
-          <div class="workload">工作量小计<span>sss</span></div>
+          <div class="workload">工作量小计<span th:text="${jxggGzl}"></span></div>
           <button type="button" id="save" data-toggle="modal" data-target="#teachingReform">添加</button>
         </div>
               <!-- 模态框（Modal）登陆界面 -->
       <div class="modal fade" id="teachingReform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+           aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -488,16 +521,82 @@
               </h5>
             </div>
             <div class="modal-body">
+              <form th:action="@{/addJxgg}" method="post">
+                <div>
+                  项目名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="xmmc"/>
+                </div>
+                <div>
+                  立项级别：<select name="competitionform" class="form-control-1" th:name="lxjbbm">
+                  <option th:each="Lxjb:${Lxjbs}" th:value="${Lxjb.lxjbbm}"
+                          th:text="${Lxjb.lxjbmc}"></option>
+                </select>
+                </div>
+                <div>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                </div>
+                <div>
+                  项目总人数：<input type="text" class="form-control-1" placeholder="" th:name="jxggzrs"/>
+                </div>
+                <div class="btn-add">
+                  <button type="submit" id="add">添加</button>
+                  <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 表格数据 -->
+      <table class="table table-bordered edtitable">
+        <thead>
+        <tr>
+          <td>项目名称</td>
+          <td>立项级别</td>
+          <td>项目排名</td>
+          <td>项目总人数</td>
+          <td>工作量</td>
+          <td colspan="2">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Jxgg:${Jxggs}">
+          <th th:text="${Jxgg.xmmc}"></th>
+          <div th:switch="${Jxgg.lxjbbm}">
+            <th th:each="Lxjb:${Lxjbs}" th:case="${Lxjb.lxjbbm}"
+                th:text="${Lxjb.lxjbmc}"></th>
+          </div>
+          <th th:text="${Jxgg.xmmc}"></th>
+          <th th:text="${Jxgg.jxggzrs}"></th>
+          <th th:text="${Jxgg.jxgggzl}"></th>
+          <td><a class="modify">修 改</a></td>
+          <td><a class="delete" th:href="@{/delJxgg(id=${Jxgg.jxggid})}">删 除</a></td>
+        </tr>
+        </tbody>
+      </table>
+      <!-- 模态框（Modal）教学改革工作量编辑界面 -->
+      <div class="modal fade" id="reformModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+              </button>
+              <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                教学改革工作量修改
+              </h5>
+            </div>
+            <div class="modal-body">
               <form action="">
                 <div>
                   项目名称：<input type="text" class="form-control-1 class-name" placeholder="" />
                 </div>
                 <div>
                   立项级别：<select name="competitionform" class="form-control-1">
-                    <option value="lecture">讲课</option>
-                    <option value="Courseware">课件</option>
-                    <option value="microlesson">微课</option>
-                  </select>
+                  <option value="lecture">讲课</option>
+                  <option value="Courseware">课件</option>
+                  <option value="microlesson">微课</option>
+                </select>
                 </div>
                 <div>
                   项目排名：<input type="text" class="form-control-1 class-number" placeholder="" />
@@ -506,7 +605,7 @@
                   项目总人数：<input type="text" class="form-control-1" placeholder="" />
                 </div>
                 <div class="btn-add">
-                  <button type="button" id="add">添加</button>
+                  <button type="button" id="add">确定</button>
                   <button type="button" id="cancel" data-dismiss="modal">取消</button>
                 </div>
               </form>
@@ -514,55 +613,16 @@
           </div>
         </div>
       </div>
-        <!-- 表格数据 -->
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <td>项目名称</td>
-              <td>立项级别</td>
-              <td>项目排名</td>
-              <td>项目总人数</td>
-              <td>工作量</td>
-              <td colspan="2">操作</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="approvallevel">
-                  <option value="provincial">省级</option>
-                  <option value="schoolfocus">校级重点</option>
-                  <option value="generalproject">一般项目</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-            <tr>
-              <th>Month</th>
-              <th>
-                <select name="approvallevel">
-                  <option value="provincial">省级</option>
-                  <option value="schoolfocus">校级重点</option>
-                  <option value="generalproject">一般项目</option>
-                </select>
-              </th>
-              <th>Month</th>
-              <th>Savings</th>
-              <th>Month</th>
-              <td><a class="modify">修 改</a></td>
-              <td><a class="delete">删 除</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
-    <script src="" async defer></script>
+</div>
+<script language="javascript">
+    var tabProduct = document.getElementById("tabProduct");
+    // 设置表格可编辑
+    // 可一次设置多个，例如：EditTables(tb1,tb2,tb2,......)
+    EditTables(tabProduct);
+</script>
+<script src="" async defer></script>
 </body>
 
 </html>

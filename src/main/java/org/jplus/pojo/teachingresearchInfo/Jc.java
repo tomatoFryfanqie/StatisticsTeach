@@ -34,6 +34,6 @@ public class Jc {
     private Integer xmzrs;
 
 //教材工作量
-    private BigDecimal jcgzl;
+    private Float jcgzl;
 
 }

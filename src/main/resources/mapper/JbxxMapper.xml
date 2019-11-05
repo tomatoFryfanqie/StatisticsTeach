@@ -78,7 +78,12 @@
         sfxrz = #{sfxrz,jdbcType=INTEGER},
         edgzl = #{edgzl,jdbcType=FLOAT},
         bkszdsk = #{bkszdsk,jdbcType=FLOAT}
-        where jbxxid = #{jbxxid,jdbcType=INTEGER}
+        where gh = #{gh}
     </update>
+    <insert id="addJbxx">
+        insert into `jbxx`
+        (gh)
+        values (#{gh})
+    </insert>
 
 </mapper>

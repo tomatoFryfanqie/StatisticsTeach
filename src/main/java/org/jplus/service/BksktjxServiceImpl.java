@@ -47,4 +47,10 @@ public class BksktjxServiceImpl implements BksktjxService {
     public void deleteClassInfoBybksktjxId(Integer bksktjx) {
         bksktjxMapper.deleteClassInfoBybksktjxId(bksktjx);
     }
+
+    @Override
+    public Float getBkjxgzlSum(String gh) {
+
+        return bksktjxMapper.getBksktjxSum(gh);
+    }
 }
