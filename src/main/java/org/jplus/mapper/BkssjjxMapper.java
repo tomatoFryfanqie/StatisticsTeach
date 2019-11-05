@@ -3,6 +3,7 @@ package org.jplus.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.jplus.pojo.bks.Bkssjjx;
 import org.jplus.pojo.bks.Sxlx;
 import org.jplus.pojo.bks.Zylxbm;
@@ -32,4 +33,9 @@ public interface BkssjjxMapper {
 
     @Select("select zylxbm , zylxmc from zylxbm")
     List<Zylxbm> selectZylxbm();
+
+    @Update("update bkssjjx set nd=#{nd},sxlxbm1=#{sxlxbm1},sxts1=#{sxts1},sxlxbm2=#{sxlxbm2},sxts2=#{sxts2}," +
+            "sxlxbm3=#{sxlxbm3},sxts3=#{sxts3}, wgsjrs=#{wgsjrs},zylxbm=#{zylxbm},zdlwrs=#{zylxbm}, " +
+            "glnr=#{glnr},glgzl=#{glgzl},sjjxgzl=#{sjjxgzl} where gh=#{gh}")
+    void updateBksjjx(Bkssjjx bkssjjx);
 }

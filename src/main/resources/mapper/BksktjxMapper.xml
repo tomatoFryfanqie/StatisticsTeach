@@ -14,9 +14,9 @@
         <result property="skrs" column="skrs" jdbcType="INTEGER"></result>
         <result property="jxgzl" column="jxgzl" jdbcType="FLOAT"></result>
         <association property="kclx" javaType="org.jplus.pojo.classTeach.Kclx">
-            <result property="ktlxbm" column="ktlxbm" jdbcType="INTEGER"></result>
-            <result property="ktlxmc" column="ktlxmc" jdbcType="VARCHAR"></result>
-            <result property="bzktrs" column="bzktrs" jdbcType="INTEGER"></result>
+                <result property="ktlxbm" column="ktlxbm" jdbcType="INTEGER"></result>
+                <result property="ktlxmc" column="ktlxmc" jdbcType="VARCHAR"></result>
+                <result property="bzktrs" column="bzktrs" jdbcType="INTEGER"></result>
         </association>
     </resultMap>
 
@@ -38,8 +38,6 @@
         left join `kclx` as k
         on b.ktlxbm = k.ktlxbm
     </select>
-
-
     <select id="getKtlxbm" resultType="org.jplus.pojo.classTeach.Kclx">
         select
         ktlxbm,
@@ -72,4 +70,7 @@
     <delete id="deleteClassInfoBybksktjxId">
         delete from `bksktjx`where bksktjx = #{bksktjx,jdbcType=INTEGER}
     </delete>
+    <select id="getBksktjxSum" resultType="java.lang.Float">
+        select coalesce(sum(jxgzl),0) gzlsum from bksktjx where gh = (#{gh} )
+    </select>
 </mapper>

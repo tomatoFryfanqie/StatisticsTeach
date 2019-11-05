@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jplus.mapper.ZDXSJSMapper">
+
+    <insert id="addZDXSJS" parameterType="org.jplus.pojo.ZDXSJS">
+        INSERT into zdxsjs VALUES (0, null, #{nd}, #{jsmc}, #{jslbbm}, #{jsjbbm}, #{zdxsrs}, #{gzl});
+    </insert>
+
+    <select id="getStudentCompetitionList" resultType="org.jplus.pojo.ZDXSJS">
+        select jsmc, jslbbm, jsjbbm, zdxsrs, zdjsgzl from zdxsjs;
+    </select>
+
+    <select id="getGzl" resultType="java.lang.Float">
+        select gzl from zdxsjsgzl WHERE lbbm=#{competition} AND jsjb=#{contestLevel};
+    </select>
+
+    <select id="getAllGzl" resultType="java.lang.Float">
+        select sum(zdjsgzl) from zdxsjs;
+    </select>
+
+</mapper>

@@ -51,6 +51,7 @@
 
 /* 输入框缩进 */
 .informaction ul li input,
+.informaction ul li .teather-name,
 .informaction ul li select,
 .workload-warp div span {
   margin-left: 8%;

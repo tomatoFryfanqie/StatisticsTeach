@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
             //前面有了参数校验,这里还是校验下吧
             return  false;
         }
-        System.out.println(loginVo);
+        //System.out.println(loginVo);
         Users user= userMapper.getById(loginVo.getGh());
         if (user==null){
             return false;
