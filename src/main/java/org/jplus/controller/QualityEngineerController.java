@@ -1,5 +1,6 @@
 package org.jplus.controller;
 
+import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.zlgc.ZlgcAccept;
 import org.jplus.service.ZlgcService;
 import org.jplus.utils.CalculateQualityEngineerWorkLoad;
@@ -25,12 +26,14 @@ public class QualityEngineerController {
     @Autowired
     ZlgcService zlgcService;
 
+    @NeedLogin
     @RequestMapping("/qualityengineering")
     public String getQualityEngineeringInfo(Model model) {
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
         return "qualityengineering";
     }
 
+    @NeedLogin
     @PostMapping("/addZlgc")
     public String addZlgcInfo(@ModelAttribute(value = "zlgcAccept") ZlgcAccept zlgcAccept) {
         zlgcAccept.setNd(YearAndClass.getYears());
@@ -40,12 +43,14 @@ public class QualityEngineerController {
         return "redirect:/qualityengineering";
     }
 
+    @NeedLogin
     @RequestMapping("/deleteZlgcInfo")
     public String deleteZlgcInfo(@ModelAttribute(value = "id") Integer id) {
         zlgcService.deleteZlgcInfo(id);
         return "redirect:/qualityengineering";
     }
 
+    @NeedLogin
     @RequestMapping("updateZlgcInfo")
     public String updateZlgcInfo(@ModelAttribute("zlgcAccept") ZlgcAccept zlgcAccept) {
         zlgcAccept.setZlgcgzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getXmzrs()));

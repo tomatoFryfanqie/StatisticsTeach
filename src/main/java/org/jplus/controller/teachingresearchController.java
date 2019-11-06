@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.constraints.NotEmpty;
+
 
 /**
  * @description: 教学研究控制层
@@ -55,6 +57,7 @@ public class teachingresearchController {
     }
 
     //删除教学成果某一列
+    @NeedLogin
     @RequestMapping("/delJxcg")
     public String delJxcg(Integer id) {
         jxcgService.deleteJxcg(id);
@@ -62,6 +65,7 @@ public class teachingresearchController {
     }
 
     //添加教学成果某一列
+    @NeedLogin
     @PostMapping("/addJxcg")
     public String addJxcg(@ModelAttribute(value = "jxcg") Jxcg jxcg) {
         //获取工号
@@ -77,6 +81,7 @@ public class teachingresearchController {
     }
 
     //删除纵向教研项目的某一列
+    @NeedLogin
     @RequestMapping("/delZxxm")
     public String delZxxm(Integer id) {
         jxcgService.deleteZxxm(id);
@@ -84,6 +89,7 @@ public class teachingresearchController {
     }
 
     //添加纵向教研项目的某一列
+    @NeedLogin
     @PostMapping("/addZxxm")
     public String addZxxm(@ModelAttribute(value = "zxxm") Zxxm zxxm, Users user) {
         //获取工号
@@ -100,6 +106,7 @@ public class teachingresearchController {
 
 
     //删除纵向教研项目的某一列
+    @NeedLogin
     @RequestMapping("/delHxxm")
     public String delHxxm(Integer id) {
         jxcgService.deleteHxxm(id);
@@ -107,6 +114,7 @@ public class teachingresearchController {
     }
 
     //添加纵向教研项目的某一列
+    @NeedLogin
     @PostMapping("/addHxxm")
     public String addHxxm(@ModelAttribute(value = "hxxm") Hxxm hxxm, Users user) {
         //获取工号
@@ -122,6 +130,7 @@ public class teachingresearchController {
     }
 
     //删除教材某一列
+    @NeedLogin
     @RequestMapping("/delJc")
     public String delJc(Integer id) {
         jxcgService.deleteJc(id);
@@ -129,6 +138,7 @@ public class teachingresearchController {
     }
 
     //添加教材的某一列
+    @NeedLogin
     @PostMapping("/addJc")
     public String addJc(@ModelAttribute(value = "jc")Jc jc, Users user) {
         //获取工号
@@ -144,6 +154,7 @@ public class teachingresearchController {
     }
 
     //删除教学改革某一列
+    @NeedLogin
     @RequestMapping("/delJxgg")
     public String delJxgg(Integer id) {
         jxcgService.deleteJxgg(id);
@@ -151,6 +162,7 @@ public class teachingresearchController {
     }
 
     //添加教学改革的某一列
+    @NeedLogin
     @PostMapping("/addJxgg")
     public String addJc(@ModelAttribute(value = "jxgg")Jxgg jxgg, Users user) {
         //获取工号

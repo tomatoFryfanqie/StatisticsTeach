@@ -186,7 +186,9 @@
                         <span th:text="${basisInfo.bkszdsk}"></span>
                     </span>
                 </div>
-                <div id="undergraduateworkload">其中：本科生教学工作量:<span></span>
+                <div id="undergraduateworkload">其中：本科生授课工作量:<span th:if="${bkszdgzl!=null}">
+                    <span th:text="${bkszdgzl}"></span>
+                </span>
                 </div>
             </div>
         </div>

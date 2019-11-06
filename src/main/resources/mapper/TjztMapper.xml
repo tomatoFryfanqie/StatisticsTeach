@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.TjztMapper">
+
+    <select id="getTjzt" resultType="org.jplus.pojo.Tjzt.Tjzt">
+        select
+        tijzid,
+        gh,
+        tjzt,
+        tjsj,
+        shzt,
+        jysshrxm,
+        jysshsj,
+        yxshrxm,
+        yxshsj,
+        jwcshrxm,
+        jwcshsj
+        from `tjzt`
+        where gh = #{gh}
+    </select>
+    <insert id="addTjzt">
+        insert into
+        `tjzt`(gh,tjzt)
+        values
+        (#{gh},#{tjzt})
+    </insert>
+</mapper>
