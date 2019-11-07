@@ -30,8 +30,8 @@ public class Jxgg {
     private Integer xmpm;
 
 //教学改革总人数
-    private Integer jxggzrs;
+    private Integer zrs;
 
 //教学改革工作量
-    private Float jxgggzl;
+    private Float gzl;
 }

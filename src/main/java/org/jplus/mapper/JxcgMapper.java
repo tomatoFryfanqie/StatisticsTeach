@@ -18,7 +18,7 @@ public interface JxcgMapper {
      List<Jxcg> getJxcg();
 
 //添加教学成果信息
-    @Insert("insert into jxcg values(null,#{gh},#{nd},#{cgmc},#{cgdjbm},#{xmpm},#{jxcgzrs},#{jxcggzl})")
+    @Insert("insert into jxcg values(null,#{gh},#{nd},#{cgmc},#{cgdjbm},#{xmpm},#{zrs},#{gzl})")
       int addJxcg(Jxcg jxcg);
 
 //删除教学成果信息
@@ -34,7 +34,7 @@ public interface JxcgMapper {
     int getGdgzl(Integer id);
 
 //获取工作量总和
-    @Select("select coalesce(sum(jxcggzl),0) jxcggzlsum from jxcg where gh = (#{gh})")
+    @Select("select coalesce(sum(gzl),0) jxcggzlsum from jxcg where gh = (#{gh})")
     float getJxcgGzlSun(String gh);
 
 //------------------------------纵向项目------------------------------------
@@ -43,7 +43,7 @@ public interface JxcgMapper {
     List<Zxxm> getZxxm();
 
     //添加纵向项目信息
-    @Insert("insert into zxxm values(null,#{gh},#{nd},#{xmmc},#{xmdjbm},#{xmpm},#{xmzrs},#{zxxmgzl})")
+    @Insert("insert into zxxm values(null,#{gh},#{nd},#{xmmc},#{xmdjbm},#{xmpm},#{zrs},#{gzl})")
     int addZxxm(Zxxm zxxm);
 
     //删除纵向项目信息
@@ -59,7 +59,7 @@ public interface JxcgMapper {
     int getZxxmgzl(Integer id);
 
     //获取工作量总和
-    @Select("select coalesce(sum(zxxmgzl),0) zxxmgzlsum from zxxm where gh = (#{gh})")
+    @Select("select coalesce(sum(gzl),0) zxxmgzlsum from zxxm where gh = (#{gh})")
     float getZxxmGzlSun(String gh);
 
 //---------------------------------横向项目------------------------------------------
@@ -68,7 +68,7 @@ public interface JxcgMapper {
     List<Hxxm> getHxxm();
 
     //添加横向项目信息
-    @Insert("insert into hxxm values(null,#{gh},#{nd},#{xmmc},#{dzjf},#{xmpm},#{xmzrs},#{hxgzl})")
+    @Insert("insert into hxxm values(null,#{gh},#{nd},#{xmmc},#{dzjf},#{xmpm},#{zrs},#{gzl})")
     int addHxxm(Hxxm hxxm);
 
 
@@ -77,7 +77,7 @@ public interface JxcgMapper {
     int deleteHxxm(Integer id);
 
     //获取工作量总和
-    @Select("select coalesce(sum(hxgzl),0) hxgzlsum from hxxm where gh = (#{gh})")
+    @Select("select coalesce(sum(gzl),0) hxgzlsum from hxxm where gh = (#{gh})")
     float getHxxmGzlSun(String gh);
 
 //-------------------------------------教材-------------------------------------------
@@ -86,7 +86,7 @@ public interface JxcgMapper {
     List<Jc> getJc();
 
     //添加教材信息
-    @Insert("insert into jc values(null,#{gh},#{nd},#{jcmc},#{jcjbbm},#{xmpm},#{xmzrs},#{jcgzl})")
+    @Insert("insert into jc values(null,#{gh},#{nd},#{jcmc},#{jcjbbm},#{xmpm},#{zrs},#{gzl})")
     int addJc(Jc jc);
 
     //删除教材信息
@@ -102,7 +102,7 @@ public interface JxcgMapper {
     int getJcGdgzl(Integer id);
 
     //获取工作量总和
-    @Select("select coalesce(sum(jcgzl),0) jcgzlsum from jc where gh = (#{gh})")
+    @Select("select coalesce(sum(gzl),0) jcgzlsum from jc where gh = (#{gh})")
     float getJcGzlSun(String gh);
 
 // ---------------------------------------教学改革--------------------------------------------
@@ -111,7 +111,7 @@ public interface JxcgMapper {
     List<Jxgg> getJxgg();
 
     //添加教学改革信息
-    @Insert("insert into jxgg values(null,#{gh},#{nd},#{xmmc},#{lxjbbm},#{xmpm},#{jxggzrs},#{jxgggzl})")
+    @Insert("insert into jxgg values(null,#{gh},#{nd},#{xmmc},#{lxjbbm},#{xmpm},#{zrs},#{gzl})")
     int addJxgg(Jxgg jxgg);
 
     //删除教学改革信息
@@ -127,6 +127,6 @@ public interface JxcgMapper {
     int getLxjbGdgzl(Integer id);
 
     //获取工作量总和
-    @Select("select coalesce(sum(jxgggzl),0) jxgggzlsum from jxgg where gh = (#{gh})")
+    @Select("select coalesce(sum(gzl),0) jxgggzlsum from jxgg where gh = (#{gh})")
     float getJxggGzlSun(String gh);
 }

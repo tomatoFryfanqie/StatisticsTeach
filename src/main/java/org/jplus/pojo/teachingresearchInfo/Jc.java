@@ -31,9 +31,9 @@ public class Jc {
     private Integer xmpm;
 
 //项目总人数
-    private Integer xmzrs;
+    private Integer zrs;
 
 //教材工作量
-    private Float jcgzl;
+    private Float gzl;
 
 }

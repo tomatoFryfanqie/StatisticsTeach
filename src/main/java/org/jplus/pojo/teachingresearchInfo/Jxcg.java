@@ -33,8 +33,8 @@ public class Jxcg {
 
 
 //项目总人数
-    private Integer jxcgzrs;
+    private Integer zrs;
 
 //教学成果工作量
-    private Float jxcggzl;
+    private Float gzl;
 }

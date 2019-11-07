@@ -30,8 +30,8 @@ public class Zxxm {
     private Integer xmpm;
 
 //项目总人数
-    private Integer xmzrs;
+    private Integer zrs;
 
 //纵向项目工作量
-    private Float zxxmgzl;
+    private Float gzl;
 }

@@ -30,8 +30,8 @@ public class Hxxm {
     private Integer xmpm;
 
 //项目总人数
-    private Integer xmzrs;
+    private Integer zrs;
 
 //横向工作量
-    private Float hxgzl;
+    private Float gzl;
 }

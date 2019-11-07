@@ -114,7 +114,7 @@
             <div class="modal-body">
               <form th:action="@{/addJxcg}" method="post">
                 <div>
-                  教学成果：<input type="text" class="form-control-1 class-name" th:name="cgmc" placeholder=""/>
+                  教学成果：<input type="text" class="form-control-1 class-name" th:name="cgmc" placeholder="请输入教学成果名称"/>
                 </div>
                 <div>
                   成果等级：<select th:name="cgdjbm" class="form-control-1">
@@ -122,10 +122,10 @@
                 </select>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" th:name="xmpm" placeholder=""/>
+                  项目排名：<input type="text" class="form-control-1 class-number" th:name="xmpm" placeholder="请输入教学成果项目排名"/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" th:name="jxcgzrs" placeholder="" />
+                  项目总人数：<input type="text" class="form-control-1 class-number" th:name="zrs" placeholder="请输入教学成果总人数" />
                 </div>
                 <div class="btn-add">
                   <!--<button type="button" id="add">添加</button>-->
@@ -157,8 +157,8 @@
                 th:text="${Jxcgdj.getCgdjmc()}"></th>
             <div/>
             <th th:text="${Jxcg.getXmpm()}"></th>
-            <th th:text="${Jxcg.getJxcgzrs()}"></th>
-            <th th:text="${Jxcg.getJxcggzl()}"></th>
+            <th th:text="${Jxcg.getZrs()}"></th>
+            <th th:text="${Jxcg.getGzl()}"></th>
             <!-- 删除按钮 -->
             <td class="del-col notedit">
               <a th:href="@{/delJxcg(id=${Jxcg.getJxcgid()})}" class="delBtn">删除</a>
@@ -166,44 +166,7 @@
         </tr>
         </tbody>
       </table>
-      <!-- 模态框（Modal）教学成果修改界面 -->
-      <div class="modal fade" id="achievementsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-           aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                &times;
-              </button>
-              <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                教学成果修改
-              </h5>
-            </div>
-            <div class="modal-body">
-              <form th:action="@{/updateJxcg}" method="post">
-                <div >
-                  教学成果：<input type="text" class="form-control-1 class-name" placeholder=""  th:name="cgmc"/>
-                </div>
-                <div>
-                  成果等级<select th:name="cgdjbm" class="form-control-1">
-                  <option th:each="jxcgdj:${Jxcgdjs}" th:value="${jxcgdj.getCgdjbm()}" th:text="${jxcgdj.getCgdjmc()}"></option>
-                </select>
-                </div>
-                <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
-                </div>
-                <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="jxcgzrs" />
-                </div>
-                <div class="btn-add">
-                  <button type="button" id="add">确定</button>
-                  <button type="button" id="cancel" data-dismiss="modal">取消</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!-- 纵向教研项目-提示信息栏 -->
       <div class="msgs">
         <div class="subtitle">纵向教研项目</div>
@@ -226,7 +189,7 @@
             <div class="modal-body">
               <form th:action="@{/addZxxm}" method="post">
                 <div>
-                  教研项目名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="xmmc"/>
+                  教研项目名称：<input type="text" class="form-control-1 class-name" placeholder="请输入教研项目名称" th:name="xmmc"/>
                 </div>
                 <div>
                   项目等级：<select name="competitionform" th:name="xmdjbm" class="form-control-1">
@@ -234,10 +197,10 @@
                 </select>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="请输入项目排名" th:name="xmpm"/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmzrs"/>
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="请输入项目总人数" th:name="zrs"/>
                 </div>
                 <div class="btn-add">
                   <button type="submit" id="add">添加</button>
@@ -268,8 +231,8 @@
                 th:text="${Zxxmdj.xmdjmc}"></th>
             </div>
           <td th:text="${zxxm.getXmpm()}"></td>
-          <td th:text="${zxxm.getXmzrs()}"></td>
-          <td th:text="${zxxm.getZxxmgzl()}"></td>
+          <td th:text="${zxxm.getZrs()}"></td>
+          <td th:text="${zxxm.getGzl()}"></td>
           <td class="notedit"><a class="modify" data-toggle="modal" data-target="#portraitModal">修 改</a></td>
           <!-- 删除按钮 -->
           <td class="del-col noedit">
@@ -341,16 +304,16 @@
             <div class="modal-body">
               <form th:action="@{/addHxxm}" method="post">
                 <div>
-                  横向项目名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="xmmc"/>
+                  横向项目名称：<input type="text" class="form-control-1 class-name" placeholder="请输入教研项目名称" th:name="xmmc"/>
                 </div>
                 <div>
-                  到账经费：<input type="text" class="form-control-1 class-name" placeholder="" th:name="dzjf"/>
+                  到账经费：<input type="text" class="form-control-1 class-name" placeholder="请输入到账经费数额" th:name="dzjf"/>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="请输入项目排名" th:name="xmpm"/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmzrs"/>
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="请输入项目总人数" th:name="zrs"/>
                 </div>
                 <div class="btn-add">
                   <button type="submit" id="add">添加</button>
@@ -377,8 +340,8 @@
           <td th:text="${Hxxm.getXmmc()}"></td>
           <td th:text="${Hxxm.getDzjf()}"></td>
           <td th:text="${Hxxm.getXmpm()}"></td>
-          <td th:text="${Hxxm.getXmzrs()}"></td>
-          <td th:text="${Hxxm.getHxgzl()}"></td>
+          <td th:text="${Hxxm.getZrs()}"></td>
+          <td th:text="${Hxxm.getGzl()}"></td>
 
           <!-- 删除按钮 -->
           <td class="del-col noedit">
@@ -449,7 +412,7 @@
             <div class="modal-body">
               <form th:action="@{/addJc}" method="post">
                 <div>
-                  教材名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="jcmc"/>
+                  教材名称：<input type="text" class="form-control-1 class-name" placeholder="请输入教材、教材获奖名称" th:name="jcmc"/>
                 </div>
                 <div>
                   教材级别：<select name="competitionform" class="form-control-1" th:name="jcjbbm">
@@ -458,10 +421,10 @@
                 </select>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="请输入项目排名" th:name="xmpm"/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmzrs"/>
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="zrs"/>
                 </div>
                 <div class="btn-add">
                   <button type="submit" id="add">添加</button>
