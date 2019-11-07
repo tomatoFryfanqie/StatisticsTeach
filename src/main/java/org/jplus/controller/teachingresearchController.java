@@ -107,15 +107,18 @@ public class teachingresearchController {
     @NeedLogin
     @PostMapping("/addZxxm")
     public String addZxxm(@ModelAttribute(value = "zxxm") Zxxm zxxm, Users user) {
-        //获取工号
-        zxxm.setGh(user.getGh());
-        //获取工作量
-        zxxm.setGzl(GetWorkCount.GetWorkCount(zxxm.getZrs(), zxxm.getXmpm(),
-                jxcgService.getZxxmgzl(zxxm.getXmdjbm())));
-        //存入年份
-        zxxm.setNd(GetYear.getYears());
-        //添加信息
-        jxcgService.addZxxm(zxxm);
+        //提交状态处于0，表示未提交可以操作数据
+        if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
+            //获取工号
+            zxxm.setGh(user.getGh());
+            //获取工作量
+            zxxm.setGzl(GetWorkCount.GetWorkCount(zxxm.getZrs(), zxxm.getXmpm(),
+                    jxcgService.getZxxmgzl(zxxm.getXmdjbm())));
+            //存入年份
+            zxxm.setNd(GetYear.getYears());
+            //添加信息
+            jxcgService.addZxxm(zxxm);
+        }
         return "redirect:/teachingresearch";
     }
 
@@ -124,31 +127,40 @@ public class teachingresearchController {
     @NeedLogin
     @RequestMapping("/delHxxm")
     public String delHxxm(Integer id,Users user) {
-        jxcgService.deleteHxxm(id);
-        return "redirect:/teachingresearch";
+        //提交状态处于0，表示未提交可以操作数据
+        if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
+            jxcgService.deleteHxxm(id);
+        }
+            return "redirect:/teachingresearch";
     }
 
     //添加纵向教研项目的某一列
     @NeedLogin
     @PostMapping("/addHxxm")
     public String addHxxm(@ModelAttribute(value = "hxxm") Hxxm hxxm, Users user) {
-        //获取工号
-        hxxm.setGh(user.getGh());
-        //获取工作量
-        hxxm.setGzl((GetWorkCount.GetHxWorkCount(hxxm.getDzjf())>200) ? 200:
-                GetWorkCount.GetHxWorkCount(hxxm.getDzjf()));
-        //存入年份
-        hxxm.setNd(GetYear.getYears());
-        //添加信息
-        jxcgService.addHxxm(hxxm);
+        //提交状态处于0，表示未提交可以操作数据
+        if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
+            //获取工号
+            hxxm.setGh(user.getGh());
+            //获取工作量
+            hxxm.setGzl((GetWorkCount.GetHxWorkCount(hxxm.getDzjf()) > 200) ? 200 :
+                    GetWorkCount.GetHxWorkCount(hxxm.getDzjf()));
+            //存入年份
+            hxxm.setNd(GetYear.getYears());
+            //添加信息
+            jxcgService.addHxxm(hxxm);
+        }
         return "redirect:/teachingresearch";
     }
 
     //删除教材某一列
     @NeedLogin
     @RequestMapping("/delJc")
-    public String delJc(Integer id) {
-        jxcgService.deleteJc(id);
+    public String delJc(Integer id,Users user) {
+        //提交状态处于0，表示未提交可以操作数据
+        if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
+            jxcgService.deleteJc(id);
+        }
         return "redirect:/teachingresearch";
     }
 
@@ -156,15 +168,18 @@ public class teachingresearchController {
     @NeedLogin
     @PostMapping("/addJc")
     public String addJc(@ModelAttribute(value = "jc")Jc jc, Users user) {
-        //获取工号
-        jc.setGh(user.getGh());
-        //获取工作量
-        jc.setGzl(GetWorkCount.GetWorkCount(jc.getZrs(), jc.getXmpm(),
-                jxcgService.getZxxmgzl(jc.getJcjbbm())));
-        //存入年份
-        jc.setNd(GetYear.getYears());
-        //添加信息
-        jxcgService.addJc(jc);
+        //提交状态处于0，表示未提交可以操作数据
+        if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
+            //获取工号
+            jc.setGh(user.getGh());
+            //获取工作量
+            jc.setGzl(GetWorkCount.GetWorkCount(jc.getZrs(), jc.getXmpm(),
+                    jxcgService.getZxxmgzl(jc.getJcjbbm())));
+            //存入年份
+            jc.setNd(GetYear.getYears());
+            //添加信息
+            jxcgService.addJc(jc);
+        }
         return "redirect:/teachingresearch";
     }
 
@@ -172,7 +187,10 @@ public class teachingresearchController {
     @NeedLogin
     @RequestMapping("/delJxgg")
     public String delJxgg(Integer id,Users user) {
-        jxcgService.deleteJxgg(id);
+        //提交状态处于0，表示未提交可以操作数据
+        if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
+            jxcgService.deleteJxgg(id);
+        }
         return "redirect:/teachingresearch";
     }
 
@@ -180,17 +198,19 @@ public class teachingresearchController {
     @NeedLogin
     @PostMapping("/addJxgg")
     public String addJc(@ModelAttribute(value = "jxgg")Jxgg jxgg, Users user) {
-        //获取工号
-        jxgg.setGh(user.getGh());
-        //获取工作量
-        jxgg.setGzl(GetWorkCount.GetWorkCount(jxgg.getZrs(), jxgg.getXmpm(),
-                jxcgService.getZxxmgzl(jxgg.getLxjbbm())));
-        //存入年份
-        jxgg.setNd(GetYear.getYears());
-        //添加信息
-        jxcgService.addJxgg(jxgg);
+        //提交状态处于0，表示未提交可以操作数据
+        if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
+            //获取工号
+            jxgg.setGh(user.getGh());
+            //获取工作量
+            jxgg.setGzl(GetWorkCount.GetWorkCount(jxgg.getZrs(), jxgg.getXmpm(),
+                    jxcgService.getZxxmgzl(jxgg.getLxjbbm())));
+            //存入年份
+            jxgg.setNd(GetYear.getYears());
+            //添加信息
+            jxcgService.addJxgg(jxgg);
+        }
         return "redirect:/teachingresearch";
     }
-
 }
 
