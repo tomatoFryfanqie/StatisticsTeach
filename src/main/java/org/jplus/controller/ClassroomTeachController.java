@@ -36,7 +36,8 @@ public class ClassroomTeachController {
         /*获取课堂类型，存入model*/
         model.addAttribute("ktlx", bksktjxService.getKtlxbm());
         /*获取本科生课堂教学信息，存入model*/
-        model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo());
+        System.out.println(bksktjxService.getBksktjxInfo(users.getGh()));
+        model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo(users.getGh()));
         /*获取课堂教学的总工作量*/
         model.addAttribute("ktjxgzlSum", bksktjxService.getBkjxgzlSum(users.getGh()));
         return "classroomteaching";

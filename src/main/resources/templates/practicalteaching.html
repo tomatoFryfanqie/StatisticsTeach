@@ -85,12 +85,12 @@
         <div class="msg-warp">
             <!-- 提示信息栏 -->
             <div class="msg">
-                <div class="year">年度<span class="prompt">2019</span></div>
+                <div class="year">年度<span class="prompt"th:if="${bkssjjx}" th:text="${bkssjjx.nd}"></span></div>
                 <div class="total-workload">实践教学工作量总计
-                    <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.sjjxgzl}"
-                          th:value="${bkssjjx.sjjxgzl}"></span>
-                    <input th:type="hidden" th:name="sjjxgzl" th:if="${bkssjjx}"
-                         th:value="${bkssjjx.sjjxgzl}">
+                    <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.gzl}"
+                          th:value="${bkssjjx.gzl}"></span>
+                    <input th:type="hidden" th:name="gzl" th:if="${bkssjjx}"
+                         th:value="${bkssjjx.gzl}">
                     </input>
                     <span class="prompt" th:unless="${bkssjjx}" th:text="0.0"></span>
                 </div>

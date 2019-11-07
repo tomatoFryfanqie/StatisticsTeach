@@ -15,6 +15,7 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" href="css/classroomteaching.css">
+    <link rel="stylesheet" href="css/tablestyle.css" />
 
 </head>
 
@@ -34,7 +35,7 @@
                 <!-- 本科生 -->
                 <div id="bachelor">本科生</div>
                 <ul class="list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item active">
                         <a th:href="@{/classroomteaching}" >课堂教学</a>
                     </li>
                     <li class="list-group-item">
@@ -48,11 +49,11 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="graduateclass.html">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                     <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
                     <li class="list-group-item"><a href="graduateconstruction.html">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
-                    <li class="list-group-item active"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
+                    <li class="list-group-item"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a href="graduateother.html">其它工作</a></li>
                 </ul>
                 <!-- 提交按钮 -->
@@ -114,7 +115,7 @@
                             <form th:action="@{/addClassInfo}" method="post">
 
                                 <div>
-                                    学期：<select th:name="xq" class="form-control-1">
+                                    <span class="passwordtip" style="letter-spacing: 30px;">学</span>期：<select th:name="xq" class="form-control-1">
                                     <option th:name="xq" th:value="${1}">1</option>
                                     <option th:name="xq" th:value="${2}">2</option>
                                 </select>
@@ -130,7 +131,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    授课班级：<input type="text" th:name="skbj" class="form-control-1 class-number" placeholder="请输入用户名" />
+                                    授课班级：<input type="text" th:name="skbj" class="form-control-1 class-number" />
                                 </div>
                                 <div th:name="sfsy">
                                     是否双语教学：<input type="radio" th:name="sfsy" th:value="${1}" class="entry-chose" />是

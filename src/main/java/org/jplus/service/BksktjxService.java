@@ -14,7 +14,7 @@ import java.util.List;
  * @Description: Description
  */
 public interface BksktjxService {
-    List<Bksktjx> getBksktjxInfo();
+    List<Bksktjx> getBksktjxInfo(String gh);
 
     List<Kclx> getKtlxbm();
 

@@ -20,12 +20,12 @@ import java.util.List;
 public interface BkssjjxMapper {
 
     @Insert("insert into bkssjjx (gh,nd,sxlxbm1,sxts1,sxlxbm2,sxts2,sxlxbm3,sxts3,wgsjrs,zylxbm,zdlwrs,glnr,glgzl," +
-            "sjjxgzl) values (#{gh},#{nd},#{sxlxbm1},#{sxts1},#{sxlxbm2},#{sxts2},#{sxlxbm3},#{sxts3},#{wgsjrs}," +
+            "gzl) values (#{gh},#{nd},#{sxlxbm1},#{sxts1},#{sxlxbm2},#{sxts2},#{sxlxbm3},#{sxts3},#{wgsjrs}," +
             "#{zylxbm}," +
-            "#{zdlwrs},#{glnr},#{glgzl},#{sjjxgzl})")
+            "#{zdlwrs},#{glnr},#{glgzl},#{gzl})")
     int insertBkssjjx(Bkssjjx bkssjjx);
 
-    @Select("select gh,nd,sxlxbm1,sxts1,sxlxbm2,sxts2,sxlxbm3,sxts3,wgsjrs,zylxbm,zdlwrs,glnr,glgzl,sjjxgzl from bkssjjx where gh=#{gh}")
+    @Select("select gh,nd,sxlxbm1,sxts1,sxlxbm2,sxts2,sxlxbm3,sxts3,wgsjrs,zylxbm,zdlwrs,glnr,glgzl,gzl from bkssjjx where gh=#{gh}")
     Bkssjjx selectBkssjjx(String gh);
 
     @Select("select sxlxbm , sxlxmc from sxlx")
@@ -36,6 +36,6 @@ public interface BkssjjxMapper {
 
     @Update("update bkssjjx set nd=#{nd},sxlxbm1=#{sxlxbm1},sxts1=#{sxts1},sxlxbm2=#{sxlxbm2},sxts2=#{sxts2}," +
             "sxlxbm3=#{sxlxbm3},sxts3=#{sxts3}, wgsjrs=#{wgsjrs},zylxbm=#{zylxbm},zdlwrs=#{zylxbm}, " +
-            "glnr=#{glnr},glgzl=#{glgzl},sjjxgzl=#{sjjxgzl} where gh=#{gh}")
+            "glnr=#{glnr},glgzl=#{glgzl},gzl=#{gzl} where gh=#{gh}")
     void updateBksjjx(Bkssjjx bkssjjx);
 }
