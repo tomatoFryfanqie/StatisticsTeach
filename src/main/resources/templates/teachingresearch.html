@@ -166,6 +166,46 @@
         </tr>
         </tbody>
       </table>
+        <!-- 模态框（Modal）纵向教研项目修改界面 -->
+        <div class="modal fade" id="portraitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  &times;
+                </button>
+                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                  教学成果项目修改
+                </h5>
+              </div>
+              <div class="modal-body">
+                <form action="">
+                  <div>
+                    教研项目名称：<input type="text" class="form-control-1 class-name" placeholder="" />
+                  </div>
+                  <div>
+                    项目等级：<select name="competitionform" class="form-control-1">
+                    <option value="lecture">讲课</option>
+                    <option value="Courseware">课件</option>
+                    <option value="microlesson">微课</option>
+                  </select>
+                  </div>
+                  <div>
+                    项目排名：<input type="text" class="form-control-1 class-number" placeholder="" />
+                  </div>
+                  <div>
+                    项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" />
+                  </div>
+                  <div class="btn-add">
+                    <button type="button" id="add">确定</button>
+                    <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
       <!-- 纵向教研项目-提示信息栏 -->
       <div class="msgs">
@@ -233,11 +273,11 @@
           <td th:text="${zxxm.getXmpm()}"></td>
           <td th:text="${zxxm.getZrs()}"></td>
           <td th:text="${zxxm.getGzl()}"></td>
-          <td class="notedit"><a class="modify" data-toggle="modal" data-target="#portraitModal">修 改</a></td>
+          <!--<td class="notedit"><a class="modify" data-toggle="modal" data-target="#portraitModal">修 改</a></td>-->
           <!-- 删除按钮 -->
           <td class="del-col noedit">
-            <a th:href="@{/delZxxm(id=${zxxm.getZxxmid()})}" class="delBtn">删除</a>
-          </td>
+          <a th:href="@{/delZxxm(id=${zxxm.getZxxmid()})}" class="delBtn">删除</a>
+        </td>
 
         </tr>
         </tbody>
@@ -424,7 +464,7 @@
                   项目排名：<input type="text" class="form-control-1 class-number" placeholder="请输入项目排名" th:name="xmpm"/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" th:name="zrs"/>
+                  项目总人数：<input type="text" class="form-control-1 class-number" placeholder="请输入项目总人数" th:name="zrs"/>
                 </div>
                 <div class="btn-add">
                   <button type="submit" id="add">添加</button>
@@ -455,9 +495,9 @@
                   th:text="${Jcjb.jcjbmc}"></th>
               </div>
               <th th:text="${Jc.xmpm}"></th>
-              <th th:text="${Jc.xmzrs}"></th>
-              <th th:text="${Jc.jcgzl}"></th>
-              <td><a class="modify">修 改</a></td>
+              <th th:text="${Jc.zrs}"></th>
+              <th th:text="${Jc.gzl}"></th>
+              <!--<td><a class="modify">修 改</a></td>-->
               <td><a class="delete" th:href="@{/delJc(id=${Jc.jcid})}">删 除</a></td>
             </tr>
           </tbody>
@@ -484,7 +524,7 @@
             <div class="modal-body">
               <form th:action="@{/addJxgg}" method="post">
                 <div>
-                  项目名称：<input type="text" class="form-control-1 class-name" placeholder="" th:name="xmmc"/>
+                  项目名称：<input type="text" class="form-control-1 class-name" placeholder="请输入教学改革名称" th:name="xmmc"/>
                 </div>
                 <div>
                   立项级别：<select name="competitionform" class="form-control-1" th:name="lxjbbm">
@@ -493,10 +533,10 @@
                 </select>
                 </div>
                 <div>
-                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="" th:name="xmpm"/>
+                  项目排名：<input type="text" class="form-control-1 class-number" placeholder="请输入项目排名" th:name="xmpm"/>
                 </div>
                 <div>
-                  项目总人数：<input type="text" class="form-control-1" placeholder="" th:name="jxggzrs"/>
+                  项目总人数：<input type="text" class="form-control-1" placeholder="请输入项目总人数" th:name="zrs"/>
                 </div>
                 <div class="btn-add">
                   <button type="submit" id="add">添加</button>
@@ -527,9 +567,9 @@
                 th:text="${Lxjb.lxjbmc}"></th>
           </div>
           <th th:text="${Jxgg.xmmc}"></th>
-          <th th:text="${Jxgg.jxggzrs}"></th>
-          <th th:text="${Jxgg.jxgggzl}"></th>
-          <td><a class="modify">修 改</a></td>
+          <th th:text="${Jxgg.zrs}"></th>
+          <th th:text="${Jxgg.gzl}"></th>
+          <!--<td><a class="modify">修 改</a></td>-->
           <td><a class="delete" th:href="@{/delJxgg(id=${Jxgg.jxggid})}">删 除</a></td>
         </tr>
         </tbody>
