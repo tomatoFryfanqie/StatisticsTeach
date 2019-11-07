@@ -150,8 +150,8 @@
                                 项目排名：<input type="text" th:name="xmpm" class="form-control-1" placeholder=""/>
                             </div>
 
-                            <div th:name="xmzrs">
-                                项目总人数：<input type="text" th:name="xmzrs" class="form-control-1" placeholder=""/>
+                            <div th:name="zrs">
+                                项目总人数：<input type="text" th:name="zrs" class="form-control-1" placeholder=""/>
                             </div>
                             <div class="btn-add">
                                 <button type="submit" id="add">添加</button>
@@ -191,8 +191,8 @@
                     <td th:text="${zlgcInfo.jb}"></td>
                     <td th:text="${zlgcInfo.nd}"></td>
                     <td th:text="${zlgcInfo.xmpm}"></td>
-                    <td th:text="${zlgcInfo.xmzrs}"></td>
-                    <td th:text="${zlgcInfo.zlgcgzl}"></td>
+                    <td th:text="${zlgcInfo.zrs}"></td>
+                    <td th:text="${zlgcInfo.gzl}"></td>
                     <!-- TODO : 点击修改，首先将表格中的数据读到一个地方，然后再将数据取出放到静态模框中 -->
                     <!--<td class="notedit"><a class="modify" data-toggle="modal" data-target="#modifyModal">修 改</a></td>-->
                     <td><a th:href="@{/deleteZlgcInfo(id=${zlgcInfo.zlgcid})}" type="submit" class="delete">删 除</a></td>
@@ -258,8 +258,8 @@
                                                         placeholder=""/>
                                         </div>
 
-                                        <div th:name="xmzrs">
-                                            项目总人数：<input type="text" th:name="xmzrs" th:value="${zlgcInfo.xmzrs}"
+                                        <div th:name="zrs">
+                                            项目总人数：<input type="text" th:name="xmzrs" th:value="${zlgcInfo.zrs}"
                                                          class="form-control-1"
                                                          placeholder=""/>
                                         </div>

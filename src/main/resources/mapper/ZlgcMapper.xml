@@ -9,8 +9,8 @@
         <result property="xmmc" column="xmmc" jdbcType="VARCHAR"></result>
         <result property="jb" column="jb" jdbcType="INTEGER"></result>
         <result property="xmpm" column="xmpm" jdbcType="INTEGER"></result>
-        <result property="xmzrs" column="xmzrs" jdbcType="INTEGER"></result>
-        <result property="zlgcgzl" column="zlgcgzl" jdbcType="FLOAT"></result>
+        <result property="zrs" column="zrs" jdbcType="INTEGER"></result>
+        <result property="gzl" column="gzl" jdbcType="FLOAT"></result>
         <association property="zlgcxmlx" javaType="org.jplus.pojo.zlgc.Zlgcxmlx">
             <result property="xmlxbm" column="xmlxbm" jdbcType="INTEGER"></result>
             <result property="xmlxmc" column="xmlxmc" jdbcType="VARCHAR"></result>
@@ -22,12 +22,12 @@
         insert into zlgc(
         gh,
         nd,
-        xmlxbm,
+        lxbm,
         xmmc,
         jb,
         xmpm,
-        xmzrs,
-        zlgcgzl
+        zrs,
+        gzl
         )
         values (
         #{gh,jdbcType=CHAR} ,
@@ -36,8 +36,8 @@
         #{xmmc,jdbcType=VARCHAR},
         #{jb,jdbcType=INTEGER} ,
         #{xmpm,jdbcType=INTEGER} ,
-        #{xmzrs,jdbcType=INTEGER},
-        #{zlgcgzl,jdbcType=FLOAT}
+        #{zrs,jdbcType=INTEGER},
+        #{gzl,jdbcType=FLOAT}
         )
     </insert>
 
@@ -55,11 +55,11 @@
         jb,
         nd,
         xmpm,
-        xmzrs,
-        zlgcgzl
+        zrs,
+        gzl
         from `zlgc` as b
         left join `zlgcxmlx` as k
-        on b.xmlxbm = k.xmlxbm
+        on b.lxbm = k.xmlxbm
     </select>
     <!--根据ID取一条数据-->
     <select id="getOneZlgcInfo" resultMap="zlgcInfo">
@@ -71,22 +71,22 @@
         jb,
         nd,
         xmpm,
-        xmzrs,
-        zlgcgzl
+        zrs,
+        gzl
         from `zlgc` as b
         left join `zlgcxmlx` as k
-        on b.xmlxbm = k.xmlxbm
+        on b.lxbm = k.xmlxbm
         where zlgcid = #{zlgcid,jdbcType=INTEGER}
     </select>
 
     <update id="updateZlgcInfoById">
         update `zlgc` set
-        xmlxbm = #{xmlxbm,jdbcType=INTEGER} ,
+        lxbm = #{xmlxbm,jdbcType=INTEGER} ,
         xmmc = #{xmmc,jdbcType=VARCHAR} ,
         jb = #{jb,jdbcType=INTEGER} ,
         nd = #{nd,jdbcType=INTEGER} ,
         xmpm = #{xmpm,jdbcType=INTEGER},
-        xmzrs = #{xmzrs,jdbcType=INTEGER}
+        zrs = #{zrs,jdbcType=INTEGER}
         where zlgcid = #{zlgcid,jdbcType=INTEGER}
     </update>
 </mapper>
