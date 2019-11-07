@@ -5,6 +5,8 @@ import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.bks.Bkssjjx;
 import org.jplus.service.BkssjjxService;
+import org.jplus.service.TjztService;
+import org.jplus.utils.GetYear;
 import org.jplus.utils.YearAndClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,19 +28,24 @@ public class BkssjjxController {
     @Autowired
     private BkssjjxService bkssjjxService;
 
+    @Autowired
+    private TjztService tjztService;
+
     @RequestMapping("/saveBkssjjx")
     @NeedLogin
     public String insertTest(@Validated @ModelAttribute(value = "bkssjjxVo") Bkssjjx bkssjjxVo, Users users,Model model){
-        bkssjjxVo.setGh(users.getGh());
-        if (bkssjjxVo.getSjjxgzl()==null){
-            BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
-            bkssjjxVo.setNd(YearAndClass.getYears());
-            bkssjjxVo.setSjjxgzl(sjjxWork.getSjjxgzl());
-            bkssjjxService.insertBkssjjx(bkssjjxVo);
-        }else {
-            BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
-            bkssjjxVo.setSjjxgzl(sjjxWork.getSjjxgzl());
-            bkssjjxService.updateBkssjjx(bkssjjxVo);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            bkssjjxVo.setGh(users.getGh());
+            if (bkssjjxVo.getGzl() == null) {
+                BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
+                bkssjjxVo.setNd(GetYear.getYears());
+                bkssjjxVo.setGzl(sjjxWork.getGzl());
+                bkssjjxService.insertBkssjjx(bkssjjxVo);
+            } else {
+                BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
+                bkssjjxVo.setGzl(sjjxWork.getGzl());
+                bkssjjxService.updateBkssjjx(bkssjjxVo);
+            }
         }
         return "redirect:/practiceteh";
     }

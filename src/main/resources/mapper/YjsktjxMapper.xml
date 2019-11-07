@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.YjsktjxMapper">
+
+    <resultMap id="yjsjxktInfo" type="org.jplus.pojo.yjsktjx.Yjsktjx">
+        <id property="yjsktjx" column="yjsktjx" jdbcType="INTEGER"></id>
+        <result property="gh" column="gh" jdbcType="CHAR"></result>
+        <result property="nd" column="nd" jdbcType="INTEGER"></result>
+        <result property="xq" column="xq" jdbcType="INTEGER"></result>
+        <result property="kcmc" column="kcmc" jdbcType="VARCHAR"></result>
+        <result property="skdx" column="skdx" jdbcType="VARCHAR"></result>
+        <result property="jhxs" column="jhxs" jdbcType="INTEGER"></result>
+        <result property="skrs" column="skrs" jdbcType="INTEGER"></result>
+        <result property="gzl" column="gzl" jdbcType="FLOAT"></result>
+        <association property="kclx" javaType="org.jplus.pojo.yjsktjx.Yjskclx">
+            <result property="kclxbm" column="kclxbm"></result>
+            <result property="kclxmc" column="kclxmc"></result>
+            <result property="bzktrs" column="bzktrs"></result>
+        </association>
+    </resultMap>
+
+    <select id="getYjskclx" resultType="org.jplus.pojo.yjsktjx.Yjskclx">
+        select
+         kclxbm,
+         kclxmc,
+         bzktrs
+         from yjskclx;
+    </select>
+    <select id="getYjsjxgzlSum" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from yjsktjx where gh = (#{gh})
+    </select>
+    <select id="getKclxrsBybm" resultType="java.lang.Integer">
+        select
+        bzktrs
+        from `yjskclx`
+        where kclxbm = #{kclx}
+    </select>
+    <insert id="addYjsClassInfo">
+        insert into yjsktjx(
+        gh,
+        nd,
+        xq,
+        kcmc,
+        kclx,
+        skdx,
+        jhxs,
+        skrs,
+        gzl
+        )values (#{gh},#{nd},#{xq},#{kcmc},#{kclx},#{skdx},#{jhxs},#{skrs},#{gzl})
+    </insert>
+    <delete id="deleteClassInfoBybksktjxId">
+        delete from `yjsktjx`
+        where yjsktjx = #{id}
+    </delete>
+    <select id="getYjsktjxInfo" resultMap="yjsjxktInfo">
+        select
+        yjsktjx,
+        gh,
+        nd,
+        xq,
+        kcmc,
+        j.kclxbm,
+        j.kclxmc,
+        skdx,
+        jhxs,
+        skrs,
+        gzl
+        from `yjsktjx` as y
+        left join `yjskclx` as j
+        on y.kclx = j.kclxbm
+        where gh =#{gh}
+    </select>
+</mapper>

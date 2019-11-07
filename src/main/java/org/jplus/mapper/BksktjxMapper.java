@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface BksktjxMapper {
 
-    List<Bksktjx> getBksktjxInfo();
+    List<Bksktjx> getBksktjxInfo(String gh);
 
     List<Kclx> getKtlxbm();
 

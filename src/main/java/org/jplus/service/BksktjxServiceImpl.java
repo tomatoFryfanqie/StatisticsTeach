@@ -23,8 +23,8 @@ public class BksktjxServiceImpl implements BksktjxService {
     private BksktjxMapper bksktjxMapper;
 
     @Override
-    public List<Bksktjx> getBksktjxInfo() {
-        return bksktjxMapper.getBksktjxInfo();
+    public List<Bksktjx> getBksktjxInfo(String gh) {
+        return bksktjxMapper.getBksktjxInfo(gh);
     }
 
     @Override

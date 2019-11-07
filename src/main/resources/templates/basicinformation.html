@@ -13,12 +13,75 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/input.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" type="text/css" href="css/basicinformation.css" />
 </head>
 
 <body>
+<<<<<<< HEAD
+<!--[if lt IE 7]>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser. Please
+    <a href="#">upgrade your browser</a> to improve your experience.
+</p>
+<![endif]-->
+<!-- 头部 -->
+<div class="toptitle">
+    <span id="title">湖北师范大学教学工作量统计系统</span>
+</div>
+<!-- 左边导航栏 -->
+<div class="main">
+    <div class="navbar">
+        <div class="navwarp">
+            <div class="basic-information active">
+                <a th:href="@{basicinformation}">教师本年度基本信息</a>
+            </div>
+            <!-- 本科生 -->
+            <div id="bachelor">本科生</div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a th:href="@{/classroomteaching}" >课堂教学</a>
+                </li>
+                <li class="list-group-item">
+                    <a th:href="@{/practiceteh}">实践教学</a>
+                </li>
+                <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
+                <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
+
+                <li class="list-group-item"><a href="knowledgecontest.html">教学知识竞赛</a></li>
+                <li class="list-group-item"><a href="otheractivities.html">其它教育教学活动</a></li>
+            </ul>
+            <!-- 研究生 -->
+            <div id="postgraduate">研究生</div>
+            <ul class="list-group">
+                <li class="list-group-item">课堂教学</li>
+                <li class="list-group-item">实践教学</li>
+                <li class="list-group-item">教学基本建设与学科建设</li>
+                <li class="list-group-item">教学研究项目</li>
+                <li class="list-group-item">指导研究生竞赛获奖</li>
+                <li class="list-group-item">其它工作</li>
+            </ul>
+            <div>
+                <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="tips">
+                        <div>提示：</div>
+                        <div style=" text-indent: 2em;">本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。</div>
+                    </div>
+                    <div class="btn-submitted">
+                        <button type="button" id="submitted">继续提交</button>
+                        <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
+=======
     <!--[if lt IE 7]>
       <p class="browsehappy">
         You are using an <strong>outdated</strong> browser. Please
@@ -28,6 +91,44 @@
     <!-- 头部 -->
     <div class="toptitle">
         <span id="title">湖北师范大学教学工作量统计系统</span>
+        <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
+    </div>
+    <div class="toptitle">
+        <span id="title">湖北师范大学教学工作量统计系统</span>
+        <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
+    </div>
+    <!-- 修改密码 -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                        修改密码
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div>
+                            原密码：<input type="text" class="form-control-1 class-name" placeholder="" id="b"/>
+                        </div>
+                        <div>
+                            新密码：<input type="text" class="form-control-1 class-name" placeholder="" />
+                        </div>
+                        <div>
+                            请确认密码：<input type="text" class="form-control-1 class-number" placeholder="" />
+                        </div>
+                        <div class="btn-add">
+                            <button type="button" id="add">修改</button>
+                            <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- 左边导航栏 -->
     <div class="main">
@@ -53,11 +154,11 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="graduateclass.html">课堂教学</a></li>
-                    <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a href="graduateconstruction.html">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
-                    <li class="list-group-item active"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
+                    <li class="list-group-item"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a href="graduateother.html">其它工作</a></li>
                 </ul>
                 <div>
@@ -78,11 +179,81 @@
                             <button type="button" id="submitted">继续提交</button>
                             <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
                         </div>
+>>>>>>> e3e1425eed345fe1f9ee8227fa5fd97a98fc4b96
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+</div>
+<!-- 教师本年度基本信息 -->
+<!-- 教师本年度基本信息编辑栏 -->
+<!--<div class="basicinformation">-->
+    <!--<div class="information-title">教师本年度基本信息</div>-->
+    <!--<form th:action="@{/updateBasisInfo}" method="post" th:object="${jbxxAccpet}">-->
+        <!--&lt;!&ndash; 保存按钮 &ndash;&gt;-->
+        <!--<button type="submit"  id="save">保存</button>-->
+        <!--<div>-->
+            <!--<input hidden th:name="jbxxid" th:value="${basisInfo.jbxxid}">-->
+        <!--</div>-->
+
+        <!--<div class="informaction">-->
+            <!--&lt;!&ndash; 表单信息 &ndash;&gt;-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<span class="passwordtip" style="letter-spacing: 30px;">姓</span>名:-->
+                    <!--<span type="text" id="name" class="name" th:text="${basisInfo.users!=null}?${basisInfo.users.uname}"/>-->
+                <!--</li>-->
+
+                <!--<li class="ul-right">-->
+                    <!--院系:<select th:name="yxbm">-->
+                    <!--<option th:each="yxmcType:${yxType}" th:selected="${yxmcType.yxbm}==${basisInfo.yxbm.yxbm}"-->
+                            <!--th:value="${yxmcType.yxbm}" th:text="${yxmcType.yxmc}" th:name="yxbm"></option>-->
+                <!--</select>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<span class="passwordtip" style="letter-spacing: 30px;">-->
+                        <!--职</span>务:-->
+                    <!--<select th:name="zwbm">-->
+                        <!--<option th:each="zwbmType:${zwType}" th:selected="${zwbmType.zwbm}==${basisInfo.zwbm.zwbm}"-->
+                                <!--th:value="${zwbmType.zwbm}" th:text="${zwbmType.zwmc}" th:name="zwbm"></option>-->
+                    <!--</select>-->
+                <!--</li>-->
+                <!--<li class="ul-right">-->
+                    <!--职称:<select name="zcbm">-->
+                    <!--<option th:each="zcbmType:${zcType}" th:selected="${zcbmType.zcbm}==${basisInfo.zcbm.zcbm}"-->
+                            <!--th:value="${zcbmType.zcbm}" th:text="${zcbmType.zcmc}" th:name="zcbm"></option>-->
+                <!--</select>-->
+                <!--</li>-->
+                <!--<li class="post">-->
+                    <!--岗位类型:<select name="gwlxbm">-->
+                    <!--<option th:each="gwlxbmType:${gwlxType}" th:selected="${gwlxbmType.gwlxbm}==${basisInfo.gwlxbm.gwlxbm}"-->
+                            <!--th:value="${gwlxbmType.gwlxbm}" th:text="${gwlxbmType.gwlxmc}" th:name="gwlxbm"></option>-->
+                <!--</select>-->
+
+                <!--</li>-->
+                <!--<li class="entry">-->
+                    <!--<div th:name="sfxrz">-->
+                        <!--是否新入职:<input type="radio" th:name="sfxrz" th:value="${0}" class="entry-chose"th:checked="${basisInfo.sfxrz}==0" />是-->
+                        <!--<input type="radio" th:name="sfxrz" th:value="${1}" th:checked="${basisInfo.sfxrz}==1"/>否-->
+                    <!--</div>-->
+                <!--</li>-->
+
+            <!--</ul>-->
+            <!--&lt;!&ndash; 工作量信息显示 &ndash;&gt;-->
+            <!--<div class="workload-warp">-->
+                <!--<div id="ratedworkload">教学额定工作量:<span th:text="${basisInfo.edgzl}"></span></div>-->
+                <!--<div id="actualworkload">实际总工作量:<span>qqqq</span></div>-->
+                <!--<div id="minimumworkload">本科生授课最低工作量:<span th:text="${basisInfo.bkszdsk}"></span></div>-->
+                <!--<div id="undergraduateworkload">其中：本科生教学工作量:<span>qqqq</span>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</form>-->
+<!--</div>-->
+<script src="" async defer></script>
+=======
     <!-- 教师本年度基本信息 -->
     <!-- 教师本年度基本信息编辑栏 -->
     <div class="basicinformation">
@@ -195,6 +366,7 @@
         </form>
     </div>
     <script src="" async defer></script>
+>>>>>>> e3e1425eed345fe1f9ee8227fa5fd97a98fc4b96
 </body>
 
 </html>

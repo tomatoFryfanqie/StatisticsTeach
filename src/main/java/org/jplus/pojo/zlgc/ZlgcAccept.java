@@ -25,7 +25,7 @@ public class ZlgcAccept {
     //项目排名	xmpm int
     private int xmpm;
     //项目总人数	zsr int
-    private int xmzrs;
+    private int zrs;
     //质量工程工作量	gzl float
-    private float zlgcgzl;
+    private float gzl;
 }

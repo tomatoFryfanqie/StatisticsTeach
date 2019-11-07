@@ -37,6 +37,7 @@
         from `bksktjx` as b
         left join `kclx` as k
         on b.ktlxbm = k.ktlxbm
+        where gh =#{gh}
     </select>
     <select id="getKtlxbm" resultType="org.jplus.pojo.classTeach.Kclx">
         select

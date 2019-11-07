@@ -5,7 +5,7 @@ spring:
     servlet:
       load-on-startup: 1
   datasource:
-    url:  jdbc:mysql://120.79.182.28:3306/jxgldb?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://120.79.182.28:3306/jxgldb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
     username: root
     password: jplus_imlgw.top123456
     driver-class-name: com.mysql.cj.jdbc.Driver

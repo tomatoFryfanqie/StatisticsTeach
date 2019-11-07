@@ -47,7 +47,7 @@ public class GetSjjxWork {
         bkssjjxEx.setGlgzl(glgzl);
         //总工作量
         res+=glgzl;
-        bkssjjxEx.setSjjxgzl(res);
+        bkssjjxEx.setGzl(res);
         return bkssjjxEx;
     }
 
@@ -57,7 +57,7 @@ public class GetSjjxWork {
         bkssjjxEx.setBkssjjxid(bkssjjx.getBkssjjxid());
         bkssjjxEx.setNd(bkssjjx.getNd());
         bkssjjxEx.setGlnr(bkssjjx.getGlnr());
-        bkssjjxEx.setSjjxgzl(bkssjjx.getSjjxgzl());
+        bkssjjxEx.setGzl(bkssjjx.getGzl());
         bkssjjxEx.setSxlxbm1(bkssjjx.getSxlxbm1());
         bkssjjxEx.setSxlxbm2(bkssjjx.getSxlxbm2());
         bkssjjxEx.setSxlxbm3(bkssjjx.getSxlxbm3());

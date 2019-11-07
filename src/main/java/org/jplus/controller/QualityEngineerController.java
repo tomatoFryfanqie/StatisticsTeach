@@ -29,6 +29,7 @@ public class QualityEngineerController {
     @NeedLogin
     @RequestMapping("/qualityengineering")
     public String getQualityEngineeringInfo(Model model) {
+//        model.addAttribute("WorkLoad")
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
         return "qualityengineering";
     }
@@ -36,9 +37,9 @@ public class QualityEngineerController {
     @NeedLogin
     @PostMapping("/addZlgc")
     public String addZlgcInfo(@ModelAttribute(value = "zlgcAccept") ZlgcAccept zlgcAccept) {
-        zlgcAccept.setNd(YearAndClass.getYears());
+        zlgcAccept.setNd(zlgcAccept.getNd());
         zlgcAccept.setGh(UserContext.getUser().getGh());
-        zlgcAccept.setZlgcgzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getXmzrs()));
+        zlgcAccept.setGzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
         zlgcService.addZlgcInfo(zlgcAccept);
         return "redirect:/qualityengineering";
     }
@@ -53,8 +54,9 @@ public class QualityEngineerController {
     @NeedLogin
     @RequestMapping("updateZlgcInfo")
     public String updateZlgcInfo(@ModelAttribute("zlgcAccept") ZlgcAccept zlgcAccept) {
-        zlgcAccept.setZlgcgzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getXmzrs()));
+        zlgcAccept.setGzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
         zlgcService.updateZlgcInfo(zlgcAccept);
         return "redirect:/qualityengineering";
     }
+
 }

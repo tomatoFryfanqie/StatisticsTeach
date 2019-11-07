@@ -16,8 +16,8 @@ import lombok.Data;
   `xmmc` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `jb` int(10) NULL DEFAULT NULL,
   `xmpm` int(10) NULL DEFAULT NULL,
-  `xmzrs` int(10) NULL DEFAULT NULL,
-  `zlgcgzl` float(10, 0) NULL DEFAULT NULL,
+  `zrs` int(10) NULL DEFAULT NULL,
+  `gzl` float(10, 0) NULL DEFAULT NULL,
 */
 @Data
 public class Zlgc {
@@ -36,7 +36,7 @@ public class Zlgc {
     //项目排名	xmpm int
     private int xmpm;
     //项目总人数	zsr int
-    private int xmzrs;
+    private int zrs;
     //质量工程工作量	gzl float
-    private float zlgcgzl;
+    private float gzl;
 }

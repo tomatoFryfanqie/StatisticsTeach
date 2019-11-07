@@ -51,5 +51,5 @@ public class Bkssjjx {
     //管理工作量
     private Float glgzl;
     //实践教学工作量
-    private Float sjjxgzl;
+    private Float gzl;
 }
