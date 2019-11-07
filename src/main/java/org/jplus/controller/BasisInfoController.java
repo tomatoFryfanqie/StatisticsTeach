@@ -1,14 +1,16 @@
 package org.jplus.controller;
 
+import net.bytebuddy.asm.Advice;
 import org.jplus.interceptor.NeedLogin;
+import org.jplus.pojo.Tjzt.Tjzt;
 import org.jplus.pojo.Users;
-import org.jplus.pojo.basisInfo.Jbxx;
 import org.jplus.pojo.basisInfo.JbxxAccpet;
+import org.jplus.service.BksktjxService;
 import org.jplus.service.JbxxService;
+import org.jplus.service.TjztService;
 import org.jplus.utils.GetRatedWorkload;
 import org.jplus.utils.GetRatedTeachTime;
 import org.jplus.utils.GetYear;
-import org.jplus.utils.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,10 @@ public class BasisInfoController {
 
     @Autowired
     private JbxxService jbxxService;
+    @Autowired
+    private TjztService tjztService;
+    @Autowired
+    private BksktjxService bksktjxService;
 
     @NeedLogin
     @RequestMapping("/basicinformation")
@@ -42,25 +48,39 @@ public class BasisInfoController {
         model.addAttribute("gwlxType", jbxxService.getGwlxbmInfo());
         /*获取年度*/
         model.addAttribute("Nd", GetYear.getYears());
+        /*获取本科生最低授课工作量*/
+        model.addAttribute("bkszdgzl",bksktjxService.getBkjxgzlSum(users.getGh()));
         /*获取用户信息*/
         model.addAttribute("user", users);
         /*获取基本信息存到model中*/
         model.addAttribute("basisInfo", jbxxService.getJbxxInfo(users.getGh()));
+        /*在首次登录到首页面时候，初始化该工号下的提交状态*/
+        if(tjztService.getTjzt(users.getGh())==null){
+            Tjzt tjzt = new Tjzt();
+            tjzt.setGh(users.getGh());
+            tjzt.setTjzt(0);
+            tjztService.addTjzt(tjzt.getGh(),tjzt.getTjzt());
+        }
         return "basicinformation";
     }
 
     @NeedLogin
     @PostMapping("/updateBasisInfo")
     public String updateJbxxInfo(@ModelAttribute(value = "jbxxAccpet") JbxxAccpet jbxxAccpet,Users users){
-        if(jbxxService.getJbxxInfo(users.getGh())==null){
-            jbxxService.addJbxx(users.getGh());
+
+        /*如果提交状态表中的提交状态处于0:未提交状态,则可以进行更新操作*/
+        if(tjztService.getTjzt(users.getGh()).getTjzt()==0){
+            /*判断该用户的的jbxxInfo是否为空*/
+            if(jbxxService.getJbxxInfo(users.getGh())==null){
+                jbxxService.addJbxx(users.getGh());
+            }
+            /*获取额定工作量*/
+            jbxxAccpet.setEdgzl(GetRatedWorkload.getRatedWorkload(jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
+            /*获取本科生最低授课工作量*/
+            jbxxAccpet.setBkszdsk(GetRatedTeachTime.getTeachTime(jbxxAccpet.getZcbm(), jbxxAccpet.getGwlxbm()));
+            /*更新部分基本信息*/
+            jbxxService.updateBasisInfo(jbxxAccpet);
         }
-        /*获取额定工作量*/
-        jbxxAccpet.setEdgzl(GetRatedWorkload.getRatedWorkload(jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
-        /*获取本科生最低授课工作量*/
-        jbxxAccpet.setBkszdsk(GetRatedTeachTime.getTeachTime(jbxxAccpet.getZcbm(), jbxxAccpet.getGwlxbm()));
-        /*更新部分基本信息*/
-        jbxxService.updateBasisInfo(jbxxAccpet);
         return "redirect:basicinformation";
     }
 }

@@ -1,5 +1,6 @@
 package org.jplus.controller;
 
+import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.zlgc.ZlgcAccept;
 import org.jplus.service.ZlgcService;
 import org.jplus.utils.CalculateQualityEngineerWorkLoad;
@@ -25,36 +26,37 @@ public class QualityEngineerController {
     @Autowired
     ZlgcService zlgcService;
 
+    @NeedLogin
     @RequestMapping("/qualityengineering")
     public String getQualityEngineeringInfo(Model model) {
+//        model.addAttribute("WorkLoad")
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
         return "qualityengineering";
     }
 
+    @NeedLogin
     @PostMapping("/addZlgc")
     public String addZlgcInfo(@ModelAttribute(value = "zlgcAccept") ZlgcAccept zlgcAccept) {
-        System.out.println("从表单获取的数据" + zlgcAccept);
-        zlgcAccept.setNd(YearAndClass.getYears());
+        zlgcAccept.setNd(zlgcAccept.getNd());
         zlgcAccept.setGh(UserContext.getUser().getGh());
-        zlgcAccept.setZlgcgzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getXmzrs()));
-        System.out.println("计算完善后的数据：" + zlgcAccept);
+        zlgcAccept.setGzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
         zlgcService.addZlgcInfo(zlgcAccept);
         return "redirect:/qualityengineering";
     }
 
+    @NeedLogin
     @RequestMapping("/deleteZlgcInfo")
     public String deleteZlgcInfo(@ModelAttribute(value = "id") Integer id) {
-        System.out.println("将要删除的ID" + id);
         zlgcService.deleteZlgcInfo(id);
         return "redirect:/qualityengineering";
     }
 
+    @NeedLogin
     @RequestMapping("updateZlgcInfo")
     public String updateZlgcInfo(@ModelAttribute("zlgcAccept") ZlgcAccept zlgcAccept) {
-        System.out.println("从修改表单获取的数据" + zlgcAccept);
-        zlgcAccept.setZlgcgzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getXmzrs()));
-        System.out.println("计算之后的数据" + zlgcAccept);
+        zlgcAccept.setGzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
         zlgcService.updateZlgcInfo(zlgcAccept);
         return "redirect:/qualityengineering";
     }
+
 }

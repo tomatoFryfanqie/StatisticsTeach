@@ -106,11 +106,10 @@
                     <li class="list-group-item">
                         <a th:href="@{/practiceteh}">实践教学</a>
                     </li>
-                    <li class="list-group-item"><a href="qualityengineering.html">质量工程建设</a></li>
+                    <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                     <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-
-                    <li class="list-group-item"><a href="knowledgecontest.html">教学知识竞赛</a></li>
-                    <li class="list-group-item"><a href="otheractivities.html">其它教育教学活动</a></li>
+                    <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                    <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
                 </ul>
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
@@ -318,7 +317,9 @@
                         <span th:text="${basisInfo.bkszdsk}"></span>
                     </span>
                 </div>
-                <div id="undergraduateworkload">其中：本科生教学工作量:<span></span>
+                <div id="undergraduateworkload">其中：本科生授课工作量:<span th:if="${bkszdgzl!=null}">
+                    <span th:text="${bkszdgzl}"></span>
+                </span>
                 </div>
             </div>
         </div>

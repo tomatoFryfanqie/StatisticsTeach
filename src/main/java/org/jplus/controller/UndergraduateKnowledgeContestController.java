@@ -1,5 +1,6 @@
 package org.jplus.controller;
 
+import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.JSJS;
 import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
@@ -33,6 +34,7 @@ public class UndergraduateKnowledgeContestController {
     private JSJSService jSJSService;
 
     @RequestMapping("/know")
+    @NeedLogin
     public String hello(Model model) {
         List<JSJS> result = jSJSService.getTeacherCompetitionList();
         List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList();
@@ -41,12 +43,14 @@ public class UndergraduateKnowledgeContestController {
         return "knowledgecontest";
     }
 
+    @NeedLogin
     @RequestMapping("/getYearNum")
     @ResponseBody
     public int getYear() {
         return DateUtils.getCurrentYear();
     }
 
+    @NeedLogin
     @RequestMapping("/addCompetition")
     @ResponseBody
     public void addStudentContest(String contestName, int competition,  int contestLevel, int studentNum) {
@@ -89,6 +93,7 @@ public class UndergraduateKnowledgeContestController {
      * 一下是教师教学能力竞赛获奖情况的工作量统计
      * 测试成功
      * */
+    @NeedLogin
     @RequestMapping("/addTeacherCompetition")
     @ResponseBody
     public void addTeacherCompetition(String teacherCompetitionName, int teacherCompetitioncategory, int teacherCompetitionform) {
@@ -115,6 +120,7 @@ public class UndergraduateKnowledgeContestController {
      * 初始化的时候查询数据库并返回教师教学能力竞赛的信息
      * 测试成功
      * */
+    @NeedLogin
     @RequestMapping("/getTeacherCompetitionList")
     @ResponseBody
     public List<JSJS> getTeacherCompetitionList() {
@@ -124,6 +130,7 @@ public class UndergraduateKnowledgeContestController {
     /**
      * 教师指导学生学士学位论文获奖的信息
      * */
+    @NeedLogin
     @RequestMapping("/saveCount")
     @ResponseBody
     public void save(int slwNum, int xlwNum) {
@@ -142,6 +149,7 @@ public class UndergraduateKnowledgeContestController {
     /**
      * 获取指导学生竞赛的工作两个小计
      * */
+    @NeedLogin
     @RequestMapping("/getStudentCompetitionGzl")
     @ResponseBody
     public float getStudentCompetitionGzl() {
@@ -151,6 +159,7 @@ public class UndergraduateKnowledgeContestController {
     /**
      * 获取教师技能竞赛的工作量小计
      * */
+    @NeedLogin
     @RequestMapping("/getTeacherCompetitionGzl")
     @ResponseBody
     public float getTeacherCompetitionGzl() {
@@ -160,6 +169,7 @@ public class UndergraduateKnowledgeContestController {
     /**
      * 获取优秀论文的工作量小计
      * */
+    @NeedLogin
     @RequestMapping("/getLwGzl")
     @ResponseBody
     public float getLwGzl() {
@@ -169,6 +179,7 @@ public class UndergraduateKnowledgeContestController {
     /**
      * 工作量总计
      * */
+    @NeedLogin
     @RequestMapping("/getAllGzl")
     @ResponseBody
     public float getAllGzl() {

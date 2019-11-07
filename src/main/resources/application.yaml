@@ -5,9 +5,9 @@ spring:
     servlet:
       load-on-startup: 1
   datasource:
-    url: jdbc:mysql://120.79.182.28:3306/jplus?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
+    url:
     username: root
-    password: jplus_imlgw.top123456
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
   thymeleaf:
     cache: false
