@@ -10,16 +10,6 @@ public class QTJXGZ {
     private Integer nd;
     private float ddgzl;
     private Integer bfxsrs;
-    private Integer zdqnjs;
-
-    public Integer getZdqnjs() {
-        return zdqnjs;
-    }
-
-    public void setZdqnjs(Integer zdqnjs) {
-        this.zdqnjs = zdqnjs;
-    }
-
     private Integer xdrcpyfa;
     private Integer kcdgms;
     private Integer sydgms;

@@ -7,7 +7,7 @@
 <mapper namespace="org.jplus.mapper.QTJXGZMapper">
 
     <insert id="addQTJXGZ" parameterType="org.jplus.pojo.QTJXGZ">
-        INSERT into qtjxgz VALUES (0, null, #{nd}, #{ddgzl}, #{bfxsrs}, #{xdrcpyfa}, #{kcdgms}, #{sydgms}, #{qtgzl}, #{zdqnjs});
+        INSERT into qtjxgz VALUES (0, #{gh}, #{nd}, #{ddgzl}, #{bfxsrs}, #{xdrcpyfa}, #{kcdgms}, #{sydgms}, #{qtgzl});
     </insert>
 
 

@@ -7,11 +7,11 @@
 <mapper namespace="org.jplus.mapper.ZDXSJSMapper">
 
     <insert id="addZDXSJS" parameterType="org.jplus.pojo.ZDXSJS">
-        INSERT into zdxsjs VALUES (0, null, #{nd}, #{jsmc}, #{jslbbm}, #{jsjbbm}, #{zdxsrs}, #{gzl});
+        INSERT into zdxsjs VALUES (0, #{gh}, #{nd}, #{jsmc}, #{jslbbm}, #{jsjbbm}, #{zdxsrs}, #{gzl});
     </insert>
 
     <select id="getStudentCompetitionList" resultType="org.jplus.pojo.ZDXSJS">
-        select jsmc, jslbbm, jsjbbm, zdxsrs, zdjsgzl from zdxsjs;
+        select jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs;
     </select>
 
     <select id="getGzl" resultType="java.lang.Float">
@@ -19,7 +19,7 @@
     </select>
 
     <select id="getAllGzl" resultType="java.lang.Float">
-        select sum(zdjsgzl) from zdxsjs;
+        select sum(gzl) from zdxsjs;
     </select>
 
 </mapper>

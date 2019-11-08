@@ -11,11 +11,11 @@
     </select>
 
     <select id="getTeacherCompetitionList" resultType="org.jplus.pojo.JSJS">
-        select jsmc, jsdjbm, jsxsbm, jsjsgzl from jsjs;
+        select jsmc, jsdjbm, jsxsbm, gzl from jsjs;
     </select>
 
     <insert id="addJSJS" parameterType="org.jplus.pojo.JSJS">
-        INSERT into jsjs VALUES (0, null, #{nd}, #{jsmc}, #{jsdjbm}, #{jsxsbm}, #{gzl});
+        INSERT into jsjs VALUES (0, #{gh}, #{nd}, #{jsmc}, #{jsdjbm}, #{jsxsbm}, #{gzl});
     </insert>
 
     <insert id="addZDXSLW" parameterType="org.jplus.pojo.ZDXSLW">
@@ -23,10 +23,10 @@
     </insert>
 
     <select id="getAllGzl" resultType="java.lang.Float">
-        select sum(jsjsgzl) from jsjs;
+        select sum(gzl) from jsjs;
     </select>
 
     <select id="getAllLwGzl" resultType="java.lang.Float">
-        select sum(zdlwgzl) from zdxslw;
+        select sum(gzl) from zdxslw;
     </select>
 </mapper>
