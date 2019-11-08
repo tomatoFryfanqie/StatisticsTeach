@@ -2,6 +2,7 @@ package org.jplus.controller;
 
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.QTJXGZ;
+import org.jplus.pojo.Users;
 import org.jplus.service.QTJXGZService;
 import org.jplus.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,14 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/addOtherTeachWork")
     @ResponseBody
     @NeedLogin
-    public void addOtherTeachWorkload(float workloadOfTeachingSupervision, int numberOfStudentsAssisted, int guideYoungTeachers,
+    public void addOtherTeachWorkload(Users users, float workloadOfTeachingSupervision, int numberOfStudentsAssisted, int guideYoungTeachers,
                                       int reviseTalentTrainingPlan, int prepareCourseSyllabusCount, int compilingExperimentalSyllabusCount) {
         QTJXGZ qTJXGZ = new QTJXGZ();
+        String gh = users.getGh();
+        qTJXGZ.setGh(gh);
         qTJXGZ.setNd(DateUtils.getCurrentYear());
         qTJXGZ.setDdgzl(workloadOfTeachingSupervision);
         qTJXGZ.setBfxsrs(numberOfStudentsAssisted);
-        qTJXGZ.setZdqnjs(guideYoungTeachers);
         qTJXGZ.setXdrcpyfa(reviseTalentTrainingPlan);
         qTJXGZ.setKcdgms(prepareCourseSyllabusCount);
         qTJXGZ.setSydgms(compilingExperimentalSyllabusCount);
