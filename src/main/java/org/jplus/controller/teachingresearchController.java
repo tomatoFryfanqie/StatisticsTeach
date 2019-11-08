@@ -7,7 +7,6 @@ import org.jplus.service.JxcgServiceImpl;
 import org.jplus.service.TjztService;
 import org.jplus.utils.GetWorkCount;
 import org.jplus.utils.GetYear;
-import org.jplus.utils.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.constraints.NotEmpty;
 
 
 /**
@@ -123,7 +121,7 @@ public class teachingresearchController {
     }
 
 
-    //删除纵向教研项目的某一列
+    //删除横向教研项目的某一列
     @NeedLogin
     @RequestMapping("/delHxxm")
     public String delHxxm(Integer id,Users user) {
@@ -134,7 +132,7 @@ public class teachingresearchController {
             return "redirect:/teachingresearch";
     }
 
-    //添加纵向教研项目的某一列
+    //添加横向教研项目的某一列
     @NeedLogin
     @PostMapping("/addHxxm")
     public String addHxxm(@ModelAttribute(value = "hxxm") Hxxm hxxm, Users user) {
@@ -143,8 +141,9 @@ public class teachingresearchController {
             //获取工号
             hxxm.setGh(user.getGh());
             //获取工作量
-            hxxm.setGzl((GetWorkCount.GetHxWorkCount(hxxm.getDzjf()) > 200) ? 200 :
-                    GetWorkCount.GetHxWorkCount(hxxm.getDzjf()));
+            hxxm.setGzl(GetWorkCount.GetHxWorkCount(hxxm.getZrs(),hxxm.getXmpm(),
+                    hxxm.getDzjf()) > 200? 200 : GetWorkCount.GetHxWorkCount(hxxm.getZrs(),hxxm.getXmpm(),
+                    hxxm.getDzjf()) );
             //存入年份
             hxxm.setNd(GetYear.getYears());
             //添加信息
