@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.jplus.mapper.YjssjjxMapper">
-    <resultMap id="getsjjxJbxx" type="org.jplus.pojo.yjssjjx.Yjssjjx">
-        <id property="yjssjjx" column="yjssjjx"></id>
-        <result property="gh" column="gh"></result>
-        <result property="nd" column="nd"></result>
-        <result property="sjts1" column="sjts1"></result>
-        <result property="sjts2" column="sjts2"></result>
-        <result property="sjts3" column="sjts3"></result>
-        <result property="zdxshdcs" column="zdxshdcs"></result>
-        <result property="rcgzsm" column="rcgzsm"></result>
-        <result property="rcgzl" column="rcgzl"></result>
-        <result property="gzl" column="gzl"></result>
-        <association property="yjssxlxbm1" javaType="org.jplus.pojo.yjssjjx.Yjssxlxbm">
-            <result property="yjssxlxbm" column="yjssxlxbm"></result>
-            <result property="yjssxlxmc" column="yjssxlxmc"></result>
-        </association>
-        <association property="yjssxlxbm2" javaType="org.jplus.pojo.yjssjjx.Yjssxlxbm">
-            <result property="yjssxlxbm" column="yjssxlxbm"></result>
-            <result property="yjssxlxmc" column="yjssxlxmc"></result>
-        </association>
-        <association property="yjssxlxbm3" javaType="org.jplus.pojo.yjssjjx.Yjssxlxbm">
-            <result property="yjssxlxbm" column="yjssxlxbm"></result>
-            <result property="yjssxlxmc" column="yjssxlxmc"></result>
-        </association>
-    </resultMap>
 
     <select id="getSjlx" resultType="org.jplus.pojo.yjssjjx.Yjssxlxbm">
         select
@@ -32,31 +8,44 @@
         yjssxlxmc
         from `yjssxlxbm`
     </select>
-    <select id="getYjssjjxJbxx" resultMap="getsjjxJbxx">
+
+    <insert id="addYjssjjxInfo">
+        insert into
+        `yjssjjx`
+        (gh,zdxshdcs,rcgzl,gzl)
+        values (#{gh},0.0,0.0,0.0)
+    </insert>
+    <update id="updateYjsSxJbxx">
+        update `yjssjjx` set
+        nd = #{nd},
+        sjlxbm1 = #{sjlxbm1},
+        sjts1 = #{sjts1},
+        sjlxbm2 = #{sjlxbm2},
+        sjts2 = #{sjts2},
+        sjlxbm3 = #{sjlxbm3},
+        sjts3 = #{sjts3},
+        zdxshdcs = #{zdxshdcs},
+        rcgzsm = #{rcgzsm},
+        rcgzl = #{rcgzl},
+        gzl = #{gzl}
+        where gh = #{gh}
+    </update>
+    <select id="getYjssjjxJbxx" resultType="org.jplus.pojo.yjssjjx.Yjssjjx">
         select
         yjssjjxid,
         gh,
         nd,
-        x.yjssxlxbm,
-        x.yjssxlxmc,
+        sjlxbm1,
         sjts1,
-        y.yjssxlxbm,
-        y.yjssxlxmc,
+        sjlxbm2,
         sjts2,
-        z.yjssxlxbm,
-        z.yjssxlxmc,
+        sjlxbm3,
         sjts3,
         zdxshdcs,
         rcgzsm,
         rcgzl,
         gzl
-        from `yjssjjx` as j
-        left join `yjssxlxbm` as x
-        on j.sjlxbm1=x.yjssxlxbm
-        left join `yjssxlxbm` as y
-        on j.sjlxbm2=y.yjssxlxbm
-        left join `yjssxlxbm` as z
-        on j.sjlxbm3=z.yjssxlxbm
+        from `yjssjjx`
         where gh = #{gh}
     </select>
 </mapper>

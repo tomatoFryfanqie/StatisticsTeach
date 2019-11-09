@@ -17,6 +17,69 @@
     <link rel="stylesheet" href="css/otheractivities.css">
     <!-- 工作量显示 -->
     <!-- <script src="js/input.js"></script> -->
+
+    <script>
+        function saveOther() {
+            var workloadOfTeachingSupervision = $("#workloadOfTeachingSupervision").val();
+            var proposition = $("#proposition").val();
+            var examining = $("#examining").val();
+            var check = $("#check").val();
+            var examiner = $("#examiner").val();
+            var invigilator  = $("#invigilator ").val();
+            var checking  = $("#checking ").val();
+            $.ajax({
+                type: 'POST',
+                url: "/addMasterOtherTeachWork",
+                data:{
+                    workloadOfTeachingSupervision: workloadOfTeachingSupervision,
+                    proposition: proposition,
+                    examining: examining,
+                    check: check,
+                    examiner: examiner,
+                    invigilator: invigilator,
+                    checking : checking
+                },
+                success: function(data){
+
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            initData();
+            getAllQtGzl();
+        });
+        function getAllQtGzl(){
+            $.ajax({
+                type:'GET',
+                url:"/getMasterAllQtGzl",
+                success: function(data){
+                    $("#all").html(data);
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+        function initData(){
+            $.ajax({
+                type:'GET',
+                url:"/getNumber",
+                success: function(data){
+                    $("#year").html(data);
+                },
+                error : function(data) {
+                    alert("error!");
+                }
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -53,8 +116,8 @@
                     <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
                     <li class="list-group-item"><a href="graduateconstruction.html">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
-                    <li class="list-group-item"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
-                    <li class="list-group-item active"><a href="graduateother.html">其它工作</a></li>
+                    <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
+                    <li class="list-group-item active"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
                 <div>
                     <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
@@ -87,9 +150,9 @@
         <div class="msg-warp">
             <!-- 提示信息栏 -->
             <div class="msg">
-                <div class="year">年度<span>2019</span></div>
-                <div class="total-workload">其它教学工作量小计<span>sss</span></div>
-                <button type="button" id="save">保存</button>
+                <div class="year">年度<span id="year" name="year">2019</span></div>
+                <div class="total-workload">其它教学工作量小计<span id="all" name="all">sss</span></div>
+                <button type="button" id="save" onclick="saveOther()">保存</button>
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">
@@ -97,29 +160,29 @@
                     <li style="margin-bottom: 5%;">
                         <div class="right-shift">教学督导员</div>
                         <div class="complete">
-                            <span class="right-shift">教学督导工作量</span><input type="text" placeholder="" class="enter"
-                                id="test" /><span class="explain">每学期50分</span>
+                            <span class="right-shift">教学督导工作量</span><input type="text" id="workloadOfTeachingSupervision" name="workloadOfTeachingSupervision" placeholder="" class="enter"
+                                 /><span class="explain">每学期50分</span>
                         </div>
                     </li>
                     <li>
                         <div class="complete">
-                            <span class="right-shift">初复试自命题</span><input type="text" class="enter" placeholder="" />份
+                            <span class="right-shift">初复试自命题</span><input type="text" id="proposition" name="proposition" class="enter" placeholder="" />份
                         </div>             
                         <div class="complete">
-                            <span class="right-shift">初复试自命题审题</span><input type="text" placeholder="" class="enter" />份
+                            <span class="right-shift">初复试自命题审题</span><input type="text" id="examining" name="examining" placeholder="" class="enter" />份
                         </div>                  
                         <div class="complete">
-                            <span class="right-shift">初复试自命题校对</span><input type="text" placeholder=""
+                            <span class="right-shift">初复试自命题校对</span><input type="text" id="check" name="check" placeholder=""
                                 class="enter" />套（含AB卷）
                         </div>
                         <div class="complete">
-                            <span class="right-shift">复试面试考官</span><input type="text" placeholder="" class="enter" />次
+                            <span class="right-shift">复试面试考官</span><input type="text" id="examiner" name="examiner" placeholder="" class="enter" />次
                         </div>
                         <div class="complete">
-                            <span class="right-shift">复试监考</span><input type="text" placeholder="" class="enter" />次
+                            <span class="right-shift">复试监考</span><input type="text" id="invigilator" name="invigilator" placeholder="" class="enter" />次
                         </div>
                         <div class="complete">
-                            <span class="right-shift">考试阅卷（初试、复试）</span><input type="text" placeholder=""
+                            <span class="right-shift">考试阅卷（初试、复试）</span><input type="text" id="checking" name="checking"  placeholder=""
                                 class="enter" />份
                         </div>
                     </li>
@@ -128,6 +191,8 @@
         </div>
     </div>
     <script src="" async defer></script>
+
+
 </body>
 
 </html>

@@ -18,15 +18,15 @@ public class Yjssjjx {
     /*年度*/
     private Integer nd;
     /*实践类型编码1*/
-    private Yjssxlxbm yjssxlxbm1;
+    private Integer sjlxbm1;
     /*实践天数*/
     private Integer sjts1;
     /*实践类型编码2*/
-    private Yjssxlxbm yjssxlxbm2;
+    private Integer sjlxbm2;
     /*实践天数*/
     private Integer sjts2;
     /*实践类型编码3*/
-    private Yjssxlxbm yjssxlxbm3;
+    private Integer sjlxbm3;
     /*实践天数*/
     private Integer sjts3;
     /*指导学术活动次数*/

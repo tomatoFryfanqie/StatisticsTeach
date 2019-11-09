@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jplus.mapper.ZDSSLWMapper">
+    <insert id="addZDSSLW" parameterType="org.jplus.pojo.masterCompartitionAndOther.ZDSSLW">
+        INSERT into zdsslw VALUES (0, #{gh}, #{nd}, #{sylwrs}, #{xylwrs}, #{gzl});
+    </insert>
+
+    <select id="getAllMasterLwGzl" resultType="java.lang.Float">
+        select sum(gzl) from zdsslw;
+    </select>
+
+</mapper>
