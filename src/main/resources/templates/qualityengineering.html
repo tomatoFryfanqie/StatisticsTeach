@@ -41,7 +41,7 @@
             <div id="bachelor">本科生</div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a th:href="@{/classroomteaching}" >课堂教学</a>
+                    <a th:href="@{/classroomteaching}">课堂教学</a>
                 </li>
                 <li class="list-group-item">
                     <a th:href="@{/practiceteh}">实践教学</a>
@@ -54,12 +54,12 @@
             <!-- 研究生 -->
             <div id="postgraduate">研究生</div>
             <ul class="list-group">
-                <li class="list-group-item">课堂教学</li>
-                <li class="list-group-item">实践教学</li>
-                <li class="list-group-item">教学基本建设与学科建设</li>
-                <li class="list-group-item">教学研究项目</li>
-                <li class="list-group-item">指导研究生竞赛获奖</li>
-                <li class="list-group-item">其它工作</li>
+                <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
+                <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
+                <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
+                <li class="list-group-item"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
+                <li class="list-group-item"><a href="graduateother.html">其它工作</a></li>
             </ul>
             <div>
                 <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
@@ -91,8 +91,8 @@
     <div class="msg-warp">
         <!-- 提示信息栏 -->
         <div class="msg">
-            <div class="year">年度<span>2019</span></div>
-            <div class="total-workload">工作总量<span>sss</span></div>
+            <div class="year">年度<span th:text="${year}"></span></div>
+            <div class="total-workload">工作总量<span th:text="${sumOfWorkload}">0</span></div>
             <!-- Button trigger modal -->
             <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                 添加
@@ -188,7 +188,7 @@
                     </td>
                     <td th:text="${zlgcInfo.zlgcxmlx.xmlxmc}"></td>
                     <td th:text="${zlgcInfo.xmmc}"></td>
-                    <td th:text="${zlgcInfo.jb}"></td>
+                    <td th:text="${zlgcInfo.jb == 1 ? '国家级' : '省级'}"></td>
                     <td th:text="${zlgcInfo.nd}"></td>
                     <td th:text="${zlgcInfo.xmpm}"></td>
                     <td th:text="${zlgcInfo.zrs}"></td>

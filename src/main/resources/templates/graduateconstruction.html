@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
@@ -20,76 +23,86 @@
 </head>
 
 <body>
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- 头部 -->
-    <script src="js/titleandnav.js"></script>
-    <!-- 左边导航栏 -->
-    <div class="main">
-        <div class="navbar">
-            <div class="navwarp">
-                <div class="basic-information">
-                    <a th:href="@{/basicinformation}">教师本年度基本信息</a>
-                </div>
-                <!-- 本科生 -->
-                <div id="bachelor">本科生</div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a th:href="@{/classroomteaching}" >课堂教学</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a th:href="@{/practiceteh}">实践教学</a>
-                    </li>
-                    <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
-                    <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-                    <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
-                    <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
-                </ul>
-                <!-- 研究生 -->
-                <div id="postgraduate">研究生</div>
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="graduateclass.html">课堂教学</a></li>
-                    <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
-                    <li class="list-group-item active"><a href="graduateconstruction.html">教学基本建设与学科建设</a></li>
-                    <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
-                    <li class="list-group-item"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
-                    <li class="list-group-item"><a href="graduateother.html">其它工作</a></li>
-                </ul>
-                <div>
-                    <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
-                </div>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a>
+    to improve your experience.</p>
+<![endif]-->
+<!-- 头部 -->
+<script src="js/titleandnav.js"></script>
+<!-- 左边导航栏 -->
+<div class="main">
+    <div class="navbar">
+        <div class="navwarp">
+            <div class="basic-information">
+                <a th:href="@{/basicinformation}">教师本年度基本信息</a>
+            </div>
+            <!-- 本科生 -->
+            <div id="bachelor">本科生</div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a th:href="@{/classroomteaching}">课堂教学</a>
+                </li>
+                <li class="list-group-item">
+                    <a th:href="@{/practiceteh}">实践教学</a>
+                </li>
+                <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
+                <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
+                <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
+            </ul>
+            <!-- 研究生 -->
+            <div id="postgraduate">研究生</div>
+            <ul class="list-group">
+                <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
+                <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
+                <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
+                <li class="list-group-item"><a href="graduateaward.html">指导研究生竞赛获奖</a></li>
+                <li class="list-group-item"><a href="graduateother.html">其它工作</a></li>
+            </ul>
+            <div>
+                <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
             </div>
         </div>
-        <!-- 模态框 -->
-        <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="tips">
-                            <div>提示：</div>
-                            <div style=" text-indent: 2em;">本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。</div>
-                        </div>
-                        <div class="btn-submitted">
-                            <button type="button" id="submitted">继续提交</button>
-                            <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
-                        </div>
+    </div>
+    <!-- 模态框 -->
+    <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="tips">
+                        <div>提示：</div>
+                        <div style=" text-indent: 2em;">本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。</div>
+                    </div>
+                    <div class="btn-submitted">
+                        <button type="button" id="submitted">继续提交</button>
+                        <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 其它教学活动部分 -->
-    <div class="other-teaching">
-        <!-- 标题 -->
-        <div class="teaching-title">教学基本建设与学科建设工作量</div>
-        <div class="msg-warp">
+</div>
+<!-- 其它教学活动部分 -->
+<div class="other-teaching">
+    <!-- 标题 -->
+    <div class="teaching-title">教学基本建设与学科建设工作量</div>
+
+    <div class="msg-warp">
+        <!--TODO
+        判断是否有数据，
+            如果没有按钮执行添加
+            如果有，则执行更新
+            ${JBJSYXKJSInfo} == null ? @{/addGraduateConstruction}: @{/updateGraduateConstruction}
+        -->
+        <form th:action=" @{/addGraduateConstruction}" method="post">
             <!-- 提示信息栏 -->
             <div class="msg">
-                <div class="year">年度<span>2019</span></div>
-                <div class="total-workload">工作量小计<span>sss</span></div>
-                <button type="button" id="save">保存</button>
+                <div class="year">年度<span th:text="${year}"></span></div>
+                <!--如果数据库没有，就提醒还未添加数据，如果有，就从数据库中取出-->
+                <div class="total-workload">工作量小计<span th:text="${sumOfWorkload}"></span></div>
+                <button type="submit"  id="save">保存</button>
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">
@@ -98,24 +111,34 @@
                         <div class="work-theme undertake right-shift" style="width:100%;">
                             教学基本建设与学科建设工作
                         </div>
-                        <div class="complete right-shift">
-                            编撰教人才培养方案:<input type="radio" name="newentry" value="new" class="entry-chose" />是
-                            <input type="radio" name="newentry" value="old" checked="checked" />否
+                        <!--TODO ：初次是否，如果编写了，则是是 -->
+                        <div th:name="sfzxpyfa" class="complete right-shift">
+                            编撰教人才培养方案:
+                            <input th:name="sfzxpyfa" th:value="${1}" type="radio" name="newentry" value="new"
+                                             class="entry-chose"/>是
+                            <input th:name="sfzxpyfa" th:value="${0}" type="radio" name="newentry" value="old" checked="checked"/>否
                         </div>
-                        <div class="complete">
-                            <span class="right-shift">编写课程教学大纲课程数</span><input type="text" placeholder=""
-                                class="enter" />
+                        <div th:name="kddgms" class="complete">
+                            <span class="right-shift">编写课程教学大纲课程数</span>
+                            <input th:name="kddgms" th:value="${JBJSYXKJSInfo} == null ? ${kddgms}:${JBJSYXKJSInfo.kddgms}" type="text"
+                                                                               placeholder=""
+                                                                               class="enter"/>
                         </div>
-                        <div class="complete">
-                            <span class="right-shift">编写实验教学大纲课程数</span><input type="text" placeholder=""
-                                class="enter" />
+                        <div input th:name="sydgms" class="complete">
+                            <span class="right-shift">编写实验教学大纲课程数</span>
+                            <input th:name="sydgms" th:value="${JBJSYXKJSInfo} == null ? ${sydgms}:${JBJSYXKJSInfo.sydgms}"  type="text"
+                                                                               placeholder=""
+                                                                               class="enter"/>
                         </div>
                     </li>
                 </ul>
             </div>
-        </div>
+        </form>
     </div>
-    <script src="" async defer></script>
+
+
+</div>
+<script src="" async defer></script>
 </body>
 
 </html>

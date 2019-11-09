@@ -45,6 +45,11 @@ public class ZlgcServiceImpl implements ZlgcService {
         zlgcMapper.updateZlgcInfoById(zlgcAccept);
     }
 
+    @Override
+    public float calculateSumOfWorkLoad() {
+        return zlgcMapper.calculateSumOfWorkLoad();
+    }
+
     public static void main(String[] args) {
         ZlgcAccept zlgcAccept = new ZlgcAccept();
         zlgcAccept.setGh("dddd");

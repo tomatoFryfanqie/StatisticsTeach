@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.JBJSYXKJSMapper">
+    <resultMap id="JBJSYXKJSInfo" type="org.jplus.pojo.jbjsyxkjs.JBJSYXKJS">
+        <id property="xkjsid" column="xkjsid" jdbcType="INTEGER"></id>
+        <result property="gh" column="gh" jdbcType="CHAR"></result>
+        <result property="nd" column="nd" jdbcType="INTEGER"></result>
+        <result property="sfzxpyfa" column="sfzxpyfa" jdbcType="INTEGER"></result>
+        <result property="kddgms" column="kddgms" jdbcType="INTEGER"></result>
+        <result property="sydgms" column="sydgms" jdbcType="INTEGER"></result>
+        <result property="gzl" column="gzl" jdbcType="FLOAT"></result>
+    </resultMap>
+
+    <insert id="addJBJSYXKJS" parameterType="org.jplus.pojo.jbjsyxkjs.JBJSYXKJSAccept">
+        insert into jbjsyxkjs(
+        gh,
+        nd,
+        sfzxpyfa,
+        kddgms,
+        sydgms,
+        gzl
+        )
+        values (
+        #{gh,jdbcType=CHAR} ,
+        #{nd,jdbcType=INTEGER} ,
+        #{sfzxpyfa,jdbcType=INTEGER} ,
+        #{kddgms,jdbcType=INTEGER} ,
+        #{sydgms,jdbcType=INTEGER} ,
+        #{gzl,jdbcType=FLOAT}
+        )
+    </insert>
+
+    <select id="getJBJSYXKJS" resultMap="JBJSYXKJSInfo">
+        select
+        sfzxpyfa,
+        kddgms,
+        sydgms,
+        gzl
+        from jbjsyxkjs
+        where gh = #{gh,jdbcType=CHAR}
+    </select>
+
+    <select id="getGzlByGh" resultType="java.lang.Float">
+        select
+        gzl
+        from jbjsyxkjs
+        where gh = #{gh,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateaddJBJSYXKJS">
+        update `jbjsyxkjs` set
+        sfzxpyfa = #{sfzxpyfa,jdbcType=INTEGER},
+        kddgms = #{kddgms,jdbcType=INTEGER} ,
+        sydgms = #{sydgms,jdbcType=INTEGER} ,
+        gzl = #{gzl,jdbcType=FLOAT}
+        where gh = #{gh,jdbcType=CHAR}
+    </update>
+</mapper>

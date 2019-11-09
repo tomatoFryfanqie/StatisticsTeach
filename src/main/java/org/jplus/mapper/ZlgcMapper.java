@@ -24,4 +24,6 @@ public interface ZlgcMapper {
     public void deleteZlgcInfoById(int zlgcid);
 
     public void updateZlgcInfoById(ZlgcAccept zlgcAccept);
+
+    public float calculateSumOfWorkLoad();
 }

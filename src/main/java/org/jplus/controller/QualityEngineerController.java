@@ -4,6 +4,7 @@ import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.zlgc.ZlgcAccept;
 import org.jplus.service.ZlgcService;
 import org.jplus.utils.CalculateQualityEngineerWorkLoad;
+import org.jplus.utils.GetYear;
 import org.jplus.utils.UserContext;
 
 import org.jplus.utils.YearAndClass;
@@ -29,7 +30,11 @@ public class QualityEngineerController {
     @NeedLogin
     @RequestMapping("/qualityengineering")
     public String getQualityEngineeringInfo(Model model) {
-//        model.addAttribute("WorkLoad")
+        //获取质量工程的工作总量
+        model.addAttribute("sumOfWorkload",zlgcService.calculateSumOfWorkLoad());
+        //获取年份
+        model.addAttribute("year", GetYear.getYears());
+        // 质量工程的所有信息
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
         return "qualityengineering";
     }
@@ -52,7 +57,7 @@ public class QualityEngineerController {
     }
 
     @NeedLogin
-    @RequestMapping("updateZlgcInfo")
+    @RequestMapping("/updateZlgcInfo")
     public String updateZlgcInfo(@ModelAttribute("zlgcAccept") ZlgcAccept zlgcAccept) {
         zlgcAccept.setGzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
         zlgcService.updateZlgcInfo(zlgcAccept);
