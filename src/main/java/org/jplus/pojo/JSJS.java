@@ -11,16 +11,16 @@ public class JSJS {
     private String jsmc;
     private Integer jsdjbm;
 
-    public Integer getJsjsgzl() {
-        return jsjsgzl;
+    public Integer getGzl() {
+        return gzl;
     }
 
-    public void setJsjsgzl(Integer jsjsgzl) {
-        this.jsjsgzl = jsjsgzl;
+    public void setGzl(Integer gzl) {
+        this.gzl = gzl;
     }
 
     private Integer jsxsbm;
-    private Integer jsjsgzl;
+    private Integer gzl;
 
     public Integer getJsjsid() {
         return jsjsid;

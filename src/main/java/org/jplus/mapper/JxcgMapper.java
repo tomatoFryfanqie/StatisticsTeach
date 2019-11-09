@@ -2,6 +2,7 @@ package org.jplus.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.jplus.pojo.teachingresearchInfo.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @author:zmj
  * @date 2019/10/3116:35
  */
-@Mapper
+@Component
 public interface JxcgMapper {
 // ---------------------------教学成果-------------------------
 //获取教学成果信息

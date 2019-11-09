@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jplus.mapper.YJSQTJXMapper">
+
+    <insert id="addYJSQTJX" parameterType="org.jplus.pojo.masterCompartitionAndOther.YJSQTJX">
+        INSERT into yjsqtjx VALUES (0, #{gh}, #{nd}, #{jxddgzl}, #{mtfs}, #{stfs}, #{jdts}, #{fsjkcs}, #{yjfs}, #{gzl});
+    </insert>
+
+    <select id="getAllQtGzl" resultType="java.lang.Float">
+        select sum(gzl) from yjsqtjx;
+    </select>
+
+</mapper>

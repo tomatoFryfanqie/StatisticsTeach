@@ -2,6 +2,7 @@ package org.jplus.controller;
 
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.JSJS;
+import org.jplus.pojo.Users;
 import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
 import org.jplus.service.JSJSService;
@@ -53,13 +54,14 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/addCompetition")
     @ResponseBody
-    public void addStudentContest(String contestName, int competition,  int contestLevel, int studentNum) {
+    public void addStudentContest(String contestName, int competition,  int contestLevel, int studentNum, Users users) {
         /**
          * 通过竞赛名称contestName、竞赛类别competitionform和指导学生人数studentNum来获取gzl
          * */
         ZDXSJS zDXSJS = new ZDXSJS();
         // 这里的工号可以从session中获取
-        zDXSJS.setGh("00000003");
+        String gh = users.getGh();
+        zDXSJS.setGh(gh);
         zDXSJS.setNd(DateUtils.getCurrentYear());
         zDXSJS.setJsmc(contestName);
         zDXSJS.setJslbbm(competition);
@@ -96,10 +98,11 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/addTeacherCompetition")
     @ResponseBody
-    public void addTeacherCompetition(String teacherCompetitionName, int teacherCompetitioncategory, int teacherCompetitionform) {
+    public void addTeacherCompetition(String teacherCompetitionName, int teacherCompetitioncategory, int teacherCompetitionform, Users users) {
         JSJS jSJS = new JSJS();
         // 这里的工号可以从session中获取
-        jSJS.setGh("00000003");
+        String gh = users.getGh();
+        jSJS.setGh(gh);
         jSJS.setNd(DateUtils.getCurrentYear());
         jSJS.setJsmc(teacherCompetitionName);
         jSJS.setJsdjbm(teacherCompetitioncategory);
@@ -111,7 +114,7 @@ public class UndergraduateKnowledgeContestController {
         if(teacherCompetitionform != 1) {
             gzl /= 2;
         }
-        jSJS.setJsjsgzl(gzl);
+        jSJS.setGzl(gzl);
         // 添加到数据库
         jSJSService.addJSJS(jSJS);
     }
@@ -133,9 +136,10 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/saveCount")
     @ResponseBody
-    public void save(int slwNum, int xlwNum) {
+    public void save(int slwNum, int xlwNum, Users users) {
         ZDXSLW zDXSLW = new ZDXSLW();
-        zDXSLW.setGh("00000003");
+        String gh = users.getGh();
+        zDXSLW.setGh(gh);
         zDXSLW.setNd(DateUtils.getCurrentYear());
         zDXSLW.setSylwrs(slwNum);
         zDXSLW.setXylwrs(xlwNum);
