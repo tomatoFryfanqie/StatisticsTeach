@@ -46,21 +46,7 @@ public class ZlgcServiceImpl implements ZlgcService {
     }
 
     @Override
-    public float calculateSumOfWorkLoad() {
+    public Float calculateSumOfWorkLoad() {
         return zlgcMapper.calculateSumOfWorkLoad();
-    }
-
-    public static void main(String[] args) {
-        ZlgcAccept zlgcAccept = new ZlgcAccept();
-        zlgcAccept.setGh("dddd");
-        zlgcAccept.setZlgcid(1);
-        zlgcAccept.setXmlxbm(1);
-        zlgcAccept.setXmmc("xin");
-        zlgcAccept.setJb(1);
-        zlgcAccept.setXmpm(1);
-        zlgcAccept.setZrs(1);
-        System.out.println(zlgcAccept);
-        ZlgcServiceImpl zlgcService = new ZlgcServiceImpl();
-        zlgcService.updateZlgcInfo(zlgcAccept);
     }
 }

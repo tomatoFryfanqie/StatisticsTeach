@@ -22,5 +22,5 @@ public interface ZlgcService {
 
     void updateZlgcInfo(ZlgcAccept zlgcAccept);
 
-    public float calculateSumOfWorkLoad();
+    public Float calculateSumOfWorkLoad();
 }
