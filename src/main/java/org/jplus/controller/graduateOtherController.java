@@ -7,6 +7,7 @@ import org.jplus.service.YJSQTJXService;
 import org.jplus.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,7 +23,9 @@ public class graduateOtherController {
 
     @RequestMapping("/masterOther")
     @NeedLogin
-    public String hello() {
+    public String hello(Model model, Users users) {
+        YJSQTJX yJSQTJX = yJSQTJXService.findYJSQTJXByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
+        model.addAttribute("yJSQTJX", yJSQTJX);
         return "graduateother";
     }
 
@@ -46,18 +49,27 @@ public class graduateOtherController {
         yJSQTJX.setMtfs(proposition);
         yJSQTJX.setStfs(examining);
         yJSQTJX.setJdts(check);
-        yJSQTJX.setFsjkcs(examiner);
-        yJSQTJX.setYjfs(invigilator);
+        yJSQTJX.setFsmskg(examiner);
+        yJSQTJX.setFsjkcs(invigilator);
+        yJSQTJX.setYjfs(checking);
         double gzl = workloadOfTeachingSupervision + proposition*8 + examining*4 + check*4 + examiner*4 + invigilator*3 + checking*0.3;
         yJSQTJX.setGzl((float)gzl);
-        yJSQTJXService.addYJSQTJX(yJSQTJX);
-        System.out.println("success");
+        // 无则添加，有则更新
+        int count = yJSQTJXService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
+        System.out.println(count);
+        if(count == 0) {
+            // 添加
+            yJSQTJXService.addYJSQTJX(yJSQTJX);
+        }else {
+            // 更新
+            yJSQTJXService.updateYJSQTJX(yJSQTJX);
+        }
     }
 
     @RequestMapping("/getMasterAllQtGzl")
     @ResponseBody
     @NeedLogin
-    public float getAllQtGzl() {
-        return yJSQTJXService.getAllQtGzl();
+    public float getAllQtGzl(Users users) {
+        return yJSQTJXService.getAllQtGzl(users.getGh(), DateUtils.getCurrentYear());
     }
 }

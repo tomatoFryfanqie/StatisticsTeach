@@ -17,11 +17,15 @@ public interface JSJSMapper {
 
     void addJSJS(JSJS jSJS);
 
-    List<JSJS> getTeacherCompetitionList();
+    List<JSJS> getTeacherCompetitionList(@Param("gh") String gh, @Param("nd") int nd);
 
     void addZDXSLW(ZDXSLW zDXSLW);
 
-    float getAllGzl();
+    float getAllGzl(@Param("gh") String gh, @Param("nd") int nd);
 
-    float getAllLwGzl();
+    float getAllLwGzl(@Param("gh") String gh, @Param("nd") int nd);
+
+    void remove(@Param("id") Integer id);
+
+    void updateZDXSLW(ZDXSLW zDXSLW);
 }

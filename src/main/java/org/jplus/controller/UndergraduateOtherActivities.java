@@ -7,6 +7,7 @@ import org.jplus.service.QTJXGZService;
 import org.jplus.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,7 +23,9 @@ public class UndergraduateOtherActivities {
 
     @RequestMapping("/other")
     @NeedLogin
-    public String hello() {
+    public String hello(Model model, Users users) {
+        QTJXGZ qTJXGZ = qTJXGZService.findQTJXGZByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
+        model.addAttribute("qTJXGZ", qTJXGZ);
         return "otheractivities";
     }
 
@@ -44,12 +47,22 @@ public class UndergraduateOtherActivities {
         qTJXGZ.setNd(DateUtils.getCurrentYear());
         qTJXGZ.setDdgzl(workloadOfTeachingSupervision);
         qTJXGZ.setBfxsrs(numberOfStudentsAssisted);
+        qTJXGZ.setZdqnjsrs(guideYoungTeachers);
         qTJXGZ.setXdrcpyfa(reviseTalentTrainingPlan);
         qTJXGZ.setKcdgms(prepareCourseSyllabusCount);
         qTJXGZ.setSydgms(compilingExperimentalSyllabusCount);
         float allGzl = workloadOfTeachingSupervision + guideYoungTeachers*10 + numberOfStudentsAssisted*10 + reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + reviseTalentTrainingPlan*10;
         qTJXGZ.setQtgzl(allGzl);
-        qTJXGZService.addQTJXGZ(qTJXGZ);
+        // 无则添加，有则更新
+        int count = qTJXGZService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
+        System.out.println(count);
+        if(count == 0) {
+            // 添加
+            qTJXGZService.addQTJXGZ(qTJXGZ);
+        }else {
+            // 更新
+            qTJXGZService.updateQTJXGZ(qTJXGZ);
+        }
     }
 
     @RequestMapping("/getTeachStudentCount")
@@ -71,6 +84,7 @@ public class UndergraduateOtherActivities {
     @ResponseBody
     @NeedLogin
     public int getUndertakeCount(int reviseTalentTrainingPlan, int prepareCourseSyllabusCount, int compilingExperimentalSyllabusCount) {
+        System.out.println(reviseTalentTrainingPlan);
         return reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
     }
 
@@ -78,7 +92,7 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/getAllQtGzl")
     @ResponseBody
     @NeedLogin
-    public float getAllQtGzl() {
-        return qTJXGZService.getAllQtGzl();
+    public float getAllQtGzl(Users users) {
+        return qTJXGZService.getAllQtGzl(users.getGh(), DateUtils.getCurrentYear());
     }
 }

@@ -6,12 +6,14 @@ import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 import org.jplus.service.JSJSService;
+import org.jplus.service.TjztService;
 import org.jplus.service.ZDSSLWService;
 import org.jplus.service.ZDXSJSService;
 import org.jplus.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +27,9 @@ import java.util.List;
 public class graduateawardController {
 
     @Autowired
+    private TjztService tjztService;
+
+    @Autowired
     private ZDXSJSService zDXSJSService;
 
     @Autowired
@@ -32,9 +37,11 @@ public class graduateawardController {
 
     @NeedLogin
     @RequestMapping("/masterKnow")
-    public String hello(Model model) {
-        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList();
+    public String hello(Model model, Users users) {
+        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList2(users.getGh(), DateUtils.getCurrentYear());
+        ZDSSLW zDSSLW = zDSSLWService.findZDSSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
         model.addAttribute("allStudentCompetitionList", list);
+        model.addAttribute("zDSSLW", zDSSLW);
         return "graduateaward";
     }
 
@@ -51,6 +58,7 @@ public class graduateawardController {
         zDXSJS.setJslbbm(competition);
         zDXSJS.setJsjbbm(contestLevel);
         zDXSJS.setZdxsrs(studentNum);
+        zDXSJS.setJsxscc(2);
         float gzl = zDXSJSService.getGzl(competition, contestLevel);
         gzl = gzl * studentNum;
         System.out.println(gzl);
@@ -71,29 +79,51 @@ public class graduateawardController {
         zDSSLW.setXylwrs(xlwNum);
         float gzl = slwNum * 50 + xlwNum * 10;
         zDSSLW.setGzl(gzl);
-        zDSSLWService.addZDSSLW(zDSSLW);
-        System.out.println("success");
+        // 判断数据库中是否有记录
+        int count = zDSSLWService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
+        System.out.println(count);
+        if(count == 0) {
+            // 添加
+            zDSSLWService.addZDSSLW(zDSSLW);
+        }else {
+            // 更新
+            zDSSLWService.updateZDSSLW(zDSSLW);
+        }
     }
 
     @NeedLogin
     @RequestMapping("/getMasterLwGzl")
     @ResponseBody
-    public float getLwGzl() {
-        return zDSSLWService.getAllMasterLwGzl();
+    public float getLwGzl(Users users) {
+        return zDSSLWService.getAllMasterLwGzl(users.getGh(), DateUtils.getCurrentYear());
     }
 
     @NeedLogin
     @RequestMapping("/getMasterStudentCompetitionGzl")
     @ResponseBody
-    public float getMasterStudentCompetitionGzl() {
-        return zDXSJSService.getAllGzl();
+    public float getMasterStudentCompetitionGzl(Users users) {
+        return zDXSJSService.getAllGzl2(users.getGh(), DateUtils.getCurrentYear());
     }
 
     @NeedLogin
     @RequestMapping("/getMasterAllGzl")
     @ResponseBody
-    public float getAllGzl() {
+    public float getAllGzl(Users users) {
         System.out.println("hello world");
-        return zDXSJSService.getAllGzl() + zDSSLWService.getAllMasterLwGzl();
+        return zDXSJSService.getAllGzl2(users.getGh(), DateUtils.getCurrentYear()) + zDSSLWService.getAllMasterLwGzl(users.getGh(), DateUtils.getCurrentYear());
+    }
+
+    /**
+     * 删除研究生竞赛
+     */
+    @NeedLogin
+    @RequestMapping(value = "/deleteGraduate")
+    public String deleteGraduate(@ModelAttribute(value = "id") Integer id, Users users) {
+        System.out.println(id);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以删除
+            zDXSJSService.remove(id);
+        }
+        return "redirect:masterKnow";
     }
 }

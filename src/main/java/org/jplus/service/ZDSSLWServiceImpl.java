@@ -16,8 +16,23 @@ public class ZDSSLWServiceImpl implements ZDSSLWService {
     private ZDSSLWMapper zDSSLWMapper;
 
     @Override
-    public float getAllMasterLwGzl() {
-        return zDSSLWMapper.getAllMasterLwGzl();
+    public int isOnlyForOneYear(String gh, int year) {
+        return zDSSLWMapper.isOnlyForOneYear(gh, year);
+    }
+
+    @Override
+    public void updateZDSSLW(ZDSSLW zDSSLW) {
+        zDSSLWMapper.updateZDSSLW(zDSSLW);
+    }
+
+    @Override
+    public float getAllMasterLwGzl(String gh, int year) {
+        return zDSSLWMapper.getAllMasterLwGzl(gh, year);
+    }
+
+    @Override
+    public ZDSSLW findZDSSLWByGhAndYear(String gh, int year) {
+        return zDSSLWMapper.findZDSSLWByGhAndYear(gh, year);
     }
 
     @Override

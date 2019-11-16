@@ -12,6 +12,16 @@ public class YJSQTJX {
     private Integer mtfs;
     private Integer stfs;
     private Integer jdts;
+    private Integer fsmskg;
+
+    public Integer getFsmskg() {
+        return fsmskg;
+    }
+
+    public void setFsmskg(Integer fsmskg) {
+        this.fsmskg = fsmskg;
+    }
+
     private Integer fsjkcs;
     private Integer yjfs;
     private Float gzl;

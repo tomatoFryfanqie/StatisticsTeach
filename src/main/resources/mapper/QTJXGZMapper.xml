@@ -10,9 +10,20 @@
         INSERT into qtjxgz VALUES (0, #{gh}, #{nd}, #{ddgzl}, #{bfxsrs}, #{xdrcpyfa}, #{kcdgms}, #{sydgms}, #{qtgzl});
     </insert>
 
-
-    <select id="getAllQtGzl" resultType="java.lang.Float">
-        select qtgzl from qtjxgz;
+    <select id="isOnlyForOneYear" resultType="java.lang.Integer">
+        select count(*) from qtjxgz WHERE gh=#{gh} AND nd=#{nd};
     </select>
 
+    <select id="getAllQtGzl" resultType="java.lang.Float">
+        select qtgzl from qtjxgz WHERE gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <select id="findQTJXGZByGhAndYear" resultType="org.jplus.pojo.QTJXGZ">
+        select * from qtjxgz WHERE gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <update id="updateQTJXGZ" parameterType="org.jplus.pojo.QTJXGZ">
+        UPDATE qtjxgz SET ddgzl=#{ddgzl} , bfxsrs=#{bfxsrs} , zdqnjsrs=#{zdqnjsrs} , xdrcpyfa=#{xdrcpyfa} , kcdgms=#{kcdgms}
+        , sydgms=#{sydgms} , qtgzl=#{qtgzl};
+    </update>
 </mapper>

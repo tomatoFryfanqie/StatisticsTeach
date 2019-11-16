@@ -7,11 +7,15 @@
 <mapper namespace="org.jplus.mapper.ZDXSJSMapper">
 
     <insert id="addZDXSJS" parameterType="org.jplus.pojo.ZDXSJS">
-        INSERT into zdxsjs VALUES (0, #{gh}, #{nd}, #{jsmc}, #{jslbbm}, #{jsjbbm}, #{zdxsrs}, #{gzl});
+        INSERT into zdxsjs VALUES (0, #{gh}, #{nd}, #{jsmc}, #{jslbbm}, #{jsjbbm}, #{zdxsrs}, #{jsxscc}, #{gzl});
     </insert>
 
     <select id="getStudentCompetitionList" resultType="org.jplus.pojo.ZDXSJS">
-        select jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs;
+        select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=1 AND gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <select id="getStudentCompetitionList2" resultType="org.jplus.pojo.ZDXSJS">
+        select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=2 AND gh=#{gh} AND nd=#{nd};
     </select>
 
     <select id="getGzl" resultType="java.lang.Float">
@@ -19,7 +23,23 @@
     </select>
 
     <select id="getAllGzl" resultType="java.lang.Float">
-        select sum(gzl) from zdxsjs;
+        select sum(gzl) from zdxsjs WHERE jsxscc=1 AND gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <select id="getAllGzl2" resultType="java.lang.Float">
+        select sum(gzl) from zdxsjs WHERE jsxscc=2 AND gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <delete id="remove" >
+        DELETE FROM zdxsjs WHERE xsjsid=#{id};
+    </delete>
+
+    <select id="findZDXSLWByGhAndYear" resultType="org.jplus.pojo.ZDXSLW">
+        select * from zdxslw WHERE gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <select id="isOnlyForOneYear" resultType="java.lang.Integer">
+        select count(*) from zdxslw WHERE gh=#{gh} AND nd=#{nd};
     </select>
 
 </mapper>

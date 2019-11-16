@@ -1,5 +1,6 @@
 package org.jplus.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.jplus.pojo.QTJXGZ;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,11 @@ public interface QTJXGZMapper {
 
     void addQTJXGZ(QTJXGZ qTJXGZ);
 
-    float getAllQtGzl();
+    float getAllQtGzl(@Param("gh") String gh, @Param("nd") int year);
+
+    QTJXGZ findQTJXGZByGhAndYear(@Param("gh") String gh, @Param("nd") int year);
+
+    int isOnlyForOneYear(@Param("gh") String gh, @Param("nd") int year);
+
+    void updateQTJXGZ(QTJXGZ qTJXGZ);
 }

@@ -11,12 +11,28 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class QTJXGZServiceImpl implements QTJXGZService {
+
     @Autowired
     private QTJXGZMapper qTJXGZMapper;
 
     @Override
-    public float getAllQtGzl() {
-        return qTJXGZMapper.getAllQtGzl();
+    public int isOnlyForOneYear(String gh, int year) {
+        return qTJXGZMapper.isOnlyForOneYear(gh, year);
+    }
+
+    @Override
+    public void updateQTJXGZ(QTJXGZ qTJXGZ) {
+        qTJXGZMapper.updateQTJXGZ(qTJXGZ);
+    }
+
+    @Override
+    public float getAllQtGzl(String gh, int year) {
+        return qTJXGZMapper.getAllQtGzl(gh, year);
+    }
+
+    @Override
+    public QTJXGZ findQTJXGZByGhAndYear(String gh, int year) {
+        return qTJXGZMapper.findQTJXGZByGhAndYear(gh ,year);
     }
 
     @Override

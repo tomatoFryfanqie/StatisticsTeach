@@ -10,7 +10,18 @@
     </insert>
 
     <select id="getAllMasterLwGzl" resultType="java.lang.Float">
-        select sum(gzl) from zdsslw;
+        select sum(gzl) from zdsslw WHERE gh=#{gh} AND nd=#{nd};
     </select>
 
+    <select id="findZDSSLWByGhAndYear" resultType="org.jplus.pojo.masterCompartitionAndOther.ZDSSLW">
+        select * from zdsslw WHERE gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <select id="isOnlyForOneYear" resultType="java.lang.Integer">
+        select count(*) from zdsslw WHERE gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <update id="updateZDSSLW" parameterType="org.jplus.pojo.masterCompartitionAndOther.ZDSSLW">
+        UPDATE zdsslw SET sylwrs=#{sylwrs} , xylwrs=#{xylwrs} , gzl=#{gzl};
+    </update>
 </mapper>

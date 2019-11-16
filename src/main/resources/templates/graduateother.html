@@ -36,6 +36,7 @@
                     examining: examining,
                     check: check,
                     examiner: examiner,
+                    examiner: examiner,
                     invigilator: invigilator,
                     checking : checking
                 },
@@ -160,29 +161,29 @@
                     <li style="margin-bottom: 5%;">
                         <div class="right-shift">教学督导员</div>
                         <div class="complete">
-                            <span class="right-shift">教学督导工作量</span><input type="text" id="workloadOfTeachingSupervision" name="workloadOfTeachingSupervision" placeholder="" class="enter"
+                            <span class="right-shift">教学督导工作量</span><input th:if="${yJSQTJX}" th:value="${yJSQTJX.jxddgzl}" type="text" id="workloadOfTeachingSupervision" name="workloadOfTeachingSupervision" placeholder="" class="enter"
                                  /><span class="explain">每学期50分</span>
                         </div>
                     </li>
                     <li>
                         <div class="complete">
-                            <span class="right-shift">初复试自命题</span><input type="text" id="proposition" name="proposition" class="enter" placeholder="" />份
+                            <span class="right-shift">初复试自命题</span><input th:if="${yJSQTJX}" th:value="${yJSQTJX.mtfs}" type="text" id="proposition" name="proposition" class="enter" placeholder="" />份
                         </div>             
                         <div class="complete">
-                            <span class="right-shift">初复试自命题审题</span><input type="text" id="examining" name="examining" placeholder="" class="enter" />份
+                            <span class="right-shift">初复试自命题审题</span><input th:if="${yJSQTJX}" th:value="${yJSQTJX.stfs}" type="text" id="examining" name="examining" placeholder="" class="enter" />份
                         </div>                  
                         <div class="complete">
-                            <span class="right-shift">初复试自命题校对</span><input type="text" id="check" name="check" placeholder=""
+                            <span class="right-shift">初复试自命题校对</span><input th:if="${yJSQTJX}" th:value="${yJSQTJX.jdts}" type="text" id="check" name="check" placeholder=""
                                 class="enter" />套（含AB卷）
                         </div>
                         <div class="complete">
-                            <span class="right-shift">复试面试考官</span><input type="text" id="examiner" name="examiner" placeholder="" class="enter" />次
+                            <span class="right-shift">复试面试考官</span><input th:if="${yJSQTJX}" th:value="${yJSQTJX.fsmskg}" type="text" id="examiner" name="examiner" placeholder="" class="enter" />次
                         </div>
                         <div class="complete">
-                            <span class="right-shift">复试监考</span><input type="text" id="invigilator" name="invigilator" placeholder="" class="enter" />次
+                            <span class="right-shift">复试监考</span><input th:if="${yJSQTJX}" th:value="${yJSQTJX.fsjkcs}" type="text" id="invigilator" name="invigilator" placeholder="" class="enter" />次
                         </div>
                         <div class="complete">
-                            <span class="right-shift">考试阅卷（初试、复试）</span><input type="text" id="checking" name="checking"  placeholder=""
+                            <span class="right-shift">考试阅卷（初试、复试）</span><input th:if="${yJSQTJX}" th:value="${yJSQTJX.yjfs}" type="text" id="checking" name="checking"  placeholder=""
                                 class="enter" />份
                         </div>
                     </li>
