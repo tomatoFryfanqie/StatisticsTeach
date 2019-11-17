@@ -55,7 +55,7 @@
 
     <script>
         function getUndertakeCount() {
-            var reviseTalentTrainingPlan = $("#reviseTalentTrainingPlan").val();
+            var reviseTalentTrainingPlan = $('input:radio[name="reviseTalentTrainingPlan"]:checked').val();
             var prepareCourseSyllabusCount = $("#prepareCourseSyllabusCount").val();
             var compilingExperimentalSyllabusCount  = $("#compilingExperimentalSyllabusCount ").val();
             $.ajax({
@@ -95,7 +95,7 @@
                     compilingExperimentalSyllabusCount : compilingExperimentalSyllabusCount
                 },
                 success: function(data){
-                    alert("success!");
+
                 },
                 error : function(data) {
                     alert("error!");
@@ -214,7 +214,7 @@
                     <li>
                         <div class="right-shift">教学督导员</div>
                         <div class="complete">
-                            <span class="right-shift">教学督导工作量</span><input id="workloadOfTeachingSupervision" name="workloadOfTeachingSupervision" type="text" placeholder=""
+                            <span class="right-shift">教学督导工作量</span><input th:if="${qTJXGZ}" th:value="${qTJXGZ.ddgzl}" id="workloadOfTeachingSupervision" name="workloadOfTeachingSupervision" type="text" placeholder=""
                                 class="enter" /><span class="explain">校级:80 分/年，院级：30 分/年</span>
                         </div>
                     </li>
@@ -222,14 +222,14 @@
                         <div class="work-theme right-shift">学生学业指导帮扶</div>
                         <div class="workload">工作量<span class="prompt" id="studentCount" name="studentCount"></span></div>
                         <div class="complete">
-                            <span class="right-shift">帮扶学生人数</span><input id="numberOfStudentsAssisted" onblur="getTeachStudentCount()" name="numberOfStudentsAssisted" type="text" class="enter" placeholder="" />
+                            <span class="right-shift">帮扶学生人数</span><input th:if="${qTJXGZ}" th:value="${qTJXGZ.bfxsrs}" id="numberOfStudentsAssisted" onblur="getTeachStudentCount()" name="numberOfStudentsAssisted" type="text" class="enter" placeholder="" />
                         </div>
                     </li>
                     <li>
                         <div class="work-theme right-shift">指导青年教师</div>
                         <div class="workload">工作量<span class="prompt" id="teachYoung" name="teachYoung"></span></div>
                         <div class="complete">
-                            <span class="right-shift">指导青年教师人数</span><input id="guideYoungTeachers" name="guideYoungTeachers" onblur="getTeachYoungTeacherCount()" type="text" placeholder="" class="enter" />
+                            <span class="right-shift">指导青年教师人数</span><input th:if="${qTJXGZ}" th:value="${qTJXGZ.zdqnjsrs}" id="guideYoungTeachers" name="guideYoungTeachers" onblur="getTeachYoungTeacherCount()" type="text" placeholder="" class="enter" />
                         </div>
                     </li>
                     <li>
@@ -238,15 +238,15 @@
                         </div>
                         <div class="workload">工作量<span class="prompt" id="undertake" name="undertake"></span></div>
                         <div class="complete right-shift">
-                            参加修订人才培养方案:<input id="reviseTalentTrainingPlan" name="reviseTalentTrainingPlan" type="radio" value="1" class="entry-chose" />是
+                            参加修订人才培养方案:<input th:if="${qTJXGZ}" th:value="${qTJXGZ.xdrcpyfa}" id="reviseTalentTrainingPlan" name="reviseTalentTrainingPlan" type="radio" value="1" class="entry-chose" />是
                             <input type="radio" name="reviseTalentTrainingPlan" value="0" checked="checked" />否
                         </div>
                         <div class="complete">
-                            <span class="right-shift">编写课程教学大纲课程数</span><input id="prepareCourseSyllabusCount" name="prepareCourseSyllabusCount" type="text" placeholder=""
+                            <span class="right-shift">编写课程教学大纲课程数</span><input th:if="${qTJXGZ}" th:value="${qTJXGZ.kcdgms}" id="prepareCourseSyllabusCount" name="prepareCourseSyllabusCount" type="text" placeholder=""
                                 class="enter" />
                         </div>
                         <div class="complete">
-                            <span class="right-shift">编写实验教学大纲课程数</span><input id="compilingExperimentalSyllabusCount" name="compilingExperimentalSyllabusCount" onblur="getUndertakeCount()" type="text" placeholder=""
+                            <span class="right-shift">编写实验教学大纲课程数</span><input th:if="${qTJXGZ}" th:value="${qTJXGZ.sydgms}" id="compilingExperimentalSyllabusCount" name="compilingExperimentalSyllabusCount" onblur="getUndertakeCount()" type="text" placeholder=""
                                 class="enter" />
                         </div>
                     </li>

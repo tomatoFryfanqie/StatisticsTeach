@@ -308,7 +308,7 @@
                         <td th:text="${allStudentCompetition.zdxsrs}">Savings</td>
                         <td th:text="${allStudentCompetition.gzl}">Month</td>
                         <!--<td><a class="modify">修 改</a></td>-->
-                        <td><a class="delete">删 除</a></td>
+                        <td><a th:href="@{/deleteGraduate(id=${allStudentCompetition.xsjsid})}" class="delete">删 除</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -363,10 +363,10 @@
                     <button type="button" id="subtitlesave" onclick="saveCount()">保存</button>
                 </div>
                 <div class="excellentpaper" style="width: 100%;">
-                    省级优秀论文人数<input type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
+                    省级优秀论文人数<input th:if="${zDSSLW}" th:value="${zDSSLW.sylwrs}" type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
                 </div>
                 <div class="excellentpaper">
-                    校级优秀论文人数<input type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
+                    校级优秀论文人数<input th:if="${zDSSLW}" th:value="${zDSSLW.xylwrs}" type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
                 </div>
             </div>
         </div>

@@ -15,8 +15,14 @@ import java.util.List;
 @Service
 public class JSJSServiceImpl implements JSJSService {
 
+
     @Autowired
     private JSJSMapper jSJSMapper;
+
+    @Override
+    public void updateZDXSLW(ZDXSLW zDXSLW) {
+        jSJSMapper.updateZDXSLW(zDXSLW);
+    }
 
     @Override
     public void addJSJS(JSJS jSJS) {
@@ -24,13 +30,13 @@ public class JSJSServiceImpl implements JSJSService {
     }
 
     @Override
-    public float getAllLwGzl() {
-        return jSJSMapper.getAllLwGzl();
+    public float getAllLwGzl(String gh, int year) {
+        return jSJSMapper.getAllLwGzl(gh, year);
     }
 
     @Override
-    public float getAllGzl() {
-        return jSJSMapper.getAllGzl();
+    public float getAllGzl(String gh, int year) {
+        return jSJSMapper.getAllGzl(gh, year);
     }
 
     @Override
@@ -39,12 +45,17 @@ public class JSJSServiceImpl implements JSJSService {
     }
 
     @Override
-    public List<JSJS> getTeacherCompetitionList() {
-        return jSJSMapper.getTeacherCompetitionList();
+    public List<JSJS> getTeacherCompetitionList(String gh, int year) {
+        return jSJSMapper.getTeacherCompetitionList(gh, year);
     }
 
     @Override
     public int getGzl(int teacherCompetitioncategory) {
         return jSJSMapper.getGzl(teacherCompetitioncategory);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        jSJSMapper.remove(id);
     }
 }

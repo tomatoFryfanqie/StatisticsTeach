@@ -12,6 +12,16 @@ public class ZDXSJS {
     private Integer jslbbm;
     private Integer jsjbbm;
     private Integer zdxsrs;
+    private Integer jsxscc;
+
+    public Integer getJsxscc() {
+        return jsxscc;
+    }
+
+    public void setJsxscc(Integer jsxscc) {
+        this.jsxscc = jsxscc;
+    }
+
     private Float gzl;
 
     public Integer getXsjsid() {

@@ -10,5 +10,11 @@ import org.jplus.pojo.QTJXGZ;
 public interface QTJXGZService {
     void addQTJXGZ(QTJXGZ qTJXGZ);
 
-    float getAllQtGzl();
+    float getAllQtGzl(String gh, int year);
+
+    QTJXGZ findQTJXGZByGhAndYear(String gh, int year);
+
+    int isOnlyForOneYear(String gh, int currentYear);
+
+    void updateQTJXGZ(QTJXGZ qTJXGZ);
 }

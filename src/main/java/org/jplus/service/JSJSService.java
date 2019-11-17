@@ -14,11 +14,15 @@ public interface JSJSService {
 
     void addJSJS(JSJS jSJS);
 
-    List<JSJS> getTeacherCompetitionList();
+    List<JSJS> getTeacherCompetitionList(String gh,int year);
 
     void addZDXSLW(ZDXSLW zDXSLW);
 
-    float getAllGzl();
+    float getAllGzl(String gh, int year);
 
-    float getAllLwGzl();
+    float getAllLwGzl(String gh, int year);
+
+    void remove(Integer id);
+
+    void updateZDXSLW(ZDXSLW zDXSLW);
 }
