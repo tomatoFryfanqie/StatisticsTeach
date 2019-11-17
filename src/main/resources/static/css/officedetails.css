@@ -1,0 +1,125 @@
+.informationwarp{
+    text-align: left;
+}
+/* 顶部院系，工号，姓名 */
+.collage-warp{
+    height: 30px;
+    text-align: left;
+    padding: 0 6%;
+    margin-top: 3%;
+}
+.up{
+    float: left;
+}
+.job-number,.teacher-name{
+    margin-left: 5%;
+}
+/* 最小外框 */
+.minimum-part{
+    margin: 0 3%;
+}
+/* 行高 */
+.distance{
+    line-height: 28px;
+}
+/* 工作量总结边框 */
+.table{
+  margin-bottom: 30px;
+}
+/* 表格 */
+.table-wrap{
+  width: 90%;
+  margin-left: 5%;
+}
+.table tr:nth-child(even) {
+  background: #fff2cc;
+}
+/* 实践教学 */
+/* 工作栏列表 */
+.job-category ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* 表单布局 */
+.job-category ul li {
+  width: 35%;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  padding-left: 5%;
+}
+/* 小标题 */
+.job-category ul .tips{
+    width: 100%;
+}
+.job-category ul .indent {
+  width: 30%;
+  padding-left: 10%;
+}
+.job-category ul .filling {
+  width: 70%;
+  padding: 0;
+}
+.job-category ul .new-line {
+  width: 100%;
+}
+
+.job-category ul .managements {
+  width: 60%;
+  margin-bottom: 20px;
+}
+.job-category ul .laboratoryworkloads{
+    width: 40%;
+    margin-bottom: 20px;
+}
+/* 表单与文字部分距离 */
+.description span {
+  margin-left: 10px;
+}
+/* 优秀论文数 */
+.excellentpaper {
+  width: 50%;
+  float: left;
+  padding-left: 5%;
+  margin-bottom: 30px;
+}
+.outline{
+    padding-left: 5%;
+}
+.helpnum{
+    width: 100%;
+    padding-left: 5%;
+    margin-bottom: 30px;
+}
+/* 通过按钮 */
+.btn-add {
+  padding: 0;
+  text-align: center;
+}
+.btn-add button {
+  width: 60px;
+  height: 25px;
+  line-height: 20px;
+  background-color: #d9e1f2;
+  border: none;
+  border-radius: 5px;
+  /* margin-top: 5%; */
+  margin-bottom: 5%;
+  color: black;
+  padding: 0;
+  border: 2px solid #006abb;
+}
+
+.btn-add #through {
+  margin-right: 8%;
+}
+
+.btn-add #withdraw {
+  margin-left: 8%;
+}
+/*  其它教学工作量工作量对齐*/
+.distance .right-shift {
+  display: inline-block;
+  width: 25%;
+}
