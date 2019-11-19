@@ -11,7 +11,7 @@
     </select>
 
     <select id="getTeacherCompetitionList" resultType="org.jplus.pojo.JSJS">
-        select jsmc, jsdjbm, jsxsbm, gzl from jsjs;
+        select jsjsid, jsmc, jsdjbm, jsxsbm, gzl from jsjs WHERE gh=#{gh} AND nd=${nd};
     </select>
 
     <insert id="addJSJS" parameterType="org.jplus.pojo.JSJS">
@@ -23,10 +23,18 @@
     </insert>
 
     <select id="getAllGzl" resultType="java.lang.Float">
-        select sum(gzl) from jsjs;
+        select sum(gzl) from jsjs WHERE gh=#{gh} AND nd=${nd};
     </select>
 
     <select id="getAllLwGzl" resultType="java.lang.Float">
-        select sum(gzl) from zdxslw;
+        select sum(gzl) from zdxslw WHERE gh=#{gh} AND nd=${nd};
     </select>
+
+    <delete id="remove">
+        DELETE FROM jsjs WHERE jsjsid=#{id};
+    </delete>
+
+    <update id="updateZDXSLW" parameterType="org.jplus.pojo.ZDXSLW">
+        UPDATE zdxslw SET sylwrs=#{sylwrs} , xylwrs=#{xylwrs} , gzl=#{gzl};
+    </update>
 </mapper>

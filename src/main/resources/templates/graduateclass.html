@@ -57,9 +57,9 @@
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
                     <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
-                    <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
-                    <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                     <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
@@ -134,7 +134,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name" placeholder="" />
+                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name" th:placeholder="请填写课程名称" />
                                 </div>
                                 <div>
                                     课程类型：<select th:name="kclx" class="form-control-1">
@@ -144,13 +144,13 @@
                                     </select>
                                 </div>
                                 <div>
-                                    授课对象：<input type="text" th:name="skdx" class="form-control-1 class-number" placeholder="" />
+                                    授课对象：<input type="text" th:name="skdx" class="form-control-1 class-number" th:placeholder="请填写授课对象" />
                                 </div>
                                 <div th:name="jhxs">
-                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1"  />
+                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1"  th:placeholder="请填写计划学时"/>
                                 </div>
                                 <div th:name="skrs">
-                                    上课人数：<input type="text" th:name="skrs" class="form-control-1" placeholder="" />
+                                    上课人数：<input type="text" th:name="skrs" class="form-control-1" th:placeholder="请填写上课人数" />
                                 </div>
                                 <div class="btn-add">
                                     <button type="submit" id="add">添加</button>
@@ -158,6 +158,12 @@
                                         取消
                                     </button>
                                 </div>
+                                <span th:if="${GClassError}">
+                                    <script th:inline="javascript">
+                                        var GclassError =/*[[${GClassError}]]*/"!"
+                                        alert(GclassError);
+                                    </script>
+                                </span>
                             </form>
                         </div>
                     </div>
@@ -179,8 +185,8 @@
                             <th colspan="2">操作</th>
                         </tr>
                     </thead>
-                    <tbody class="tbody" id="tbody" th:each="yjs : ${yjsktjx}">
-                        <tr>
+                    <tbody class="tbody" id="tbody" >
+                        <tr th:each="yjs : ${yjsktjx}">
                             <td th:text="${yjs.xq}"></td>
                             <td th:text="${yjs.kcmc}"></td>
                             <td th:text="${yjs.kclx.kclxmc}"></td>

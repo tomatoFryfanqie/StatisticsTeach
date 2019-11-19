@@ -9,6 +9,16 @@ public class QTJXGZ {
     private String gh;
     private Integer nd;
     private float ddgzl;
+    private Integer zdqnjsrs;
+
+    public Integer getZdqnjsrs() {
+        return zdqnjsrs;
+    }
+
+    public void setZdqnjsrs(Integer zdqnjsrs) {
+        this.zdqnjsrs = zdqnjsrs;
+    }
+
     private Integer bfxsrs;
     private Integer xdrcpyfa;
     private Integer kcdgms;

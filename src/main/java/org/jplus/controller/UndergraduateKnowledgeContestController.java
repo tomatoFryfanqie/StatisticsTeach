@@ -6,14 +6,14 @@ import org.jplus.pojo.Users;
 import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
 import org.jplus.service.JSJSService;
+import org.jplus.service.TjztService;
 import org.jplus.service.ZDXSJSService;
 import org.jplus.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -29,6 +29,9 @@ import java.util.List;
 public class UndergraduateKnowledgeContestController {
 
     @Autowired
+    private TjztService tjztService;
+
+    @Autowired
     private ZDXSJSService zDXSJSService;
 
     @Autowired
@@ -36,11 +39,13 @@ public class UndergraduateKnowledgeContestController {
 
     @RequestMapping("/know")
     @NeedLogin
-    public String hello(Model model) {
-        List<JSJS> result = jSJSService.getTeacherCompetitionList();
-        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList();
+    public String hello(Model model,Users users) {
+        List<JSJS> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        ZDXSLW zDXSLW = zDXSJSService.findZDXSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
         model.addAttribute("allStudentCompetitionList", list);
         model.addAttribute("allTeacherCompetitionList", result);
+        model.addAttribute("zDXSLW", zDXSLW);
         return "knowledgecontest";
     }
 
@@ -67,6 +72,7 @@ public class UndergraduateKnowledgeContestController {
         zDXSJS.setJslbbm(competition);
         zDXSJS.setJsjbbm(contestLevel);
         zDXSJS.setZdxsrs(studentNum);
+        zDXSJS.setJsxscc(1);
         /**
          * 根据传过来的competition、contestLevel来确定工作量
          *      setGzl = 工作量 * studentNum
@@ -79,17 +85,6 @@ public class UndergraduateKnowledgeContestController {
         // 添加到数据库
         zDXSJSService.addZDXSJS(zDXSJS);
     }
-
-    /**
-     * 初始化的时候查询数据库并返回指导学生竞赛的信息
-     * 测试成功
-     * */
-    /*@RequestMapping("/getStudentCompetitionList")
-    public String getStudentCompetitionList(Model model) {
-        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList();
-        model.addAttribute("allStudentCompetitionList", list);
-        return "knowledgecontest";
-    }*/
 
     /**
      * 一下是教师教学能力竞赛获奖情况的工作量统计
@@ -119,19 +114,10 @@ public class UndergraduateKnowledgeContestController {
         jSJSService.addJSJS(jSJS);
     }
 
-    /**
-     * 初始化的时候查询数据库并返回教师教学能力竞赛的信息
-     * 测试成功
-     * */
-    @NeedLogin
-    @RequestMapping("/getTeacherCompetitionList")
-    @ResponseBody
-    public List<JSJS> getTeacherCompetitionList() {
-        return jSJSService.getTeacherCompetitionList();
-    }
 
     /**
      * 教师指导学生学士学位论文获奖的信息
+     *      一位老师一年应该只有一条记录，因此在添加的时候如果数据库没有记录则添加有则更新
      * */
     @NeedLogin
     @RequestMapping("/saveCount")
@@ -145,8 +131,16 @@ public class UndergraduateKnowledgeContestController {
         zDXSLW.setXylwrs(xlwNum);
         float gzl = slwNum * 30 + xlwNum * 10;
         zDXSLW.setGzl(gzl);
-        // 向数据库中插入数据
-        jSJSService.addZDXSLW(zDXSLW);
+        // 判断数据库中是否有记录
+        int count = zDXSJSService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
+        System.out.println(count);
+        if(count == 0) {
+            // 添加
+            jSJSService.addZDXSLW(zDXSLW);
+        }else {
+            // 更新
+            jSJSService.updateZDXSLW(zDXSLW);
+        }
         System.out.println("success");
     }
 
@@ -156,8 +150,8 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/getStudentCompetitionGzl")
     @ResponseBody
-    public float getStudentCompetitionGzl() {
-        return zDXSJSService.getAllGzl();
+    public float getStudentCompetitionGzl(Users users) {
+        return zDXSJSService.getAllGzl(users.getGh(), DateUtils.getCurrentYear());
     }
 
     /**
@@ -166,8 +160,8 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/getTeacherCompetitionGzl")
     @ResponseBody
-    public float getTeacherCompetitionGzl() {
-        return jSJSService.getAllGzl();
+    public float getTeacherCompetitionGzl(Users users) {
+        return jSJSService.getAllGzl(users.getGh(), DateUtils.getCurrentYear());
     }
 
     /**
@@ -176,8 +170,8 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/getLwGzl")
     @ResponseBody
-    public float getLwGzl() {
-        return jSJSService.getAllLwGzl();
+    public float getLwGzl(Users users) {
+        return jSJSService.getAllLwGzl(users.getGh(), DateUtils.getCurrentYear());
     }
 
     /**
@@ -186,8 +180,36 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/getAllGzl")
     @ResponseBody
-    public float getAllGzl() {
+    public float getAllGzl(Users users) {
         System.out.println("hello world");
-        return zDXSJSService.getAllGzl() + jSJSService.getAllGzl() + jSJSService.getAllLwGzl();
+        return zDXSJSService.getAllGzl(users.getGh(), DateUtils.getCurrentYear()) + jSJSService.getAllGzl(users.getGh(), DateUtils.getCurrentYear()) + jSJSService.getAllLwGzl(users.getGh(), DateUtils.getCurrentYear());
+    }
+
+    /**
+     * 删除本科生竞赛
+     */
+    @NeedLogin
+    @RequestMapping(value = "/deleteUndergraduate")
+    public String delete(@ModelAttribute(value = "id") Integer id, Users users) {
+        System.out.println(id);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以删除
+            zDXSJSService.remove(id);
+        }
+        return "redirect:know";
+    }
+
+    /**
+     * 删除教师技能竞赛
+     */
+    @NeedLogin
+    @RequestMapping(value = "/deleteTeacherCompetition")
+    public String deleteTeacherCompetition(@ModelAttribute(value = "id") Integer id, Users users) {
+        System.out.println(id);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以删除
+            jSJSService.remove(id);
+        }
+        return "redirect:know";
     }
 }

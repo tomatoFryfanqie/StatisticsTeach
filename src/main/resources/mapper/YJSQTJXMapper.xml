@@ -11,7 +11,19 @@
     </insert>
 
     <select id="getAllQtGzl" resultType="java.lang.Float">
-        select sum(gzl) from yjsqtjx;
+        select sum(gzl) from yjsqtjx WHERE gh=#{gh} AND nd=#{nd};
     </select>
 
+    <select id="findYJSQTJXByGhAndYear" resultType="org.jplus.pojo.masterCompartitionAndOther.YJSQTJX">
+        select * from yjsqtjx WHERE gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <select id="isOnlyForOneYear" resultType="java.lang.Integer">
+        select count(*) from yjsqtjx WHERE gh=#{gh} AND nd=#{nd};
+    </select>
+
+    <update id="updateYJSQTJX" parameterType="org.jplus.pojo.masterCompartitionAndOther.YJSQTJX">
+        UPDATE yjsqtjx SET jxddgzl=#{jxddgzl} , mtfs=#{mtfs} , stfs=#{stfs} , jdts=#{jdts} , fsmskg=#{fsmskg}
+        , fsjkcs=#{fsjkcs} , yjfs=#{yjfs} , gzl=#{gzl};
+    </update>
 </mapper>

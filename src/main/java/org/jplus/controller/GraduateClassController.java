@@ -10,6 +10,8 @@ import org.jplus.utils.GetYjsClassWorkLoad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class GraduateClassController {
+    private String GClassError = null;
 
     @Autowired
     private YjsktjxService yjsktjxService;
@@ -42,21 +45,32 @@ public class GraduateClassController {
         model.addAttribute("yjsktjx", yjsktjxService.getYjsktjxInfo(users.getGh()));
         /*获取研究生课堂教学的总工作量*/
         model.addAttribute("ktjxgzlSum", yjsktjxService.getYjsjxgzlSum(users.getGh()));
+        /*获取验证错误*/
+        model.addAttribute("GClassError", GClassError);
         return "graduateclass";
     }
 
     @PostMapping("/addYjsClassInfo")
     @NeedLogin
-    public String addYjsClssInfo(@ModelAttribute(value = "yjsktjxAccpet")YjsktjxAccpet yjsktjxAccpet,Users users){
+    public String addYjsClssInfo(@Validated @ModelAttribute(value = "yjsktjxAccpet")YjsktjxAccpet yjsktjxAccpet, BindingResult bindingResult, Users users){
         if(tjztService.getTjzt(users.getGh()).getTjzt()==0){
-            /*获取工号*/
-            yjsktjxAccpet.setGh(users.getGh());
-            /*获取教学工作量*/
-            yjsktjxAccpet.setGzl(GetYjsClassWorkLoad.getYjsClassWorkLoad(yjsktjxAccpet.getJhxs(),yjsktjxService.getKclxrsBybm(yjsktjxAccpet.getKclx()), yjsktjxAccpet.getSkrs()));
-            /*存入年份*/
-            yjsktjxAccpet.setNd(GetYear.getYears());
-            /*添加课堂信息*/
-            yjsktjxService.addYjsClassInfo(yjsktjxAccpet);
+            if(bindingResult.hasErrors()){
+                /*获得校验信息*/
+                GClassError = bindingResult.getFieldError().getDefaultMessage();
+                if(GClassError.contains("NumberFormatException")){
+                    GClassError = "请输入正确的信息";
+                }
+            }else {
+                /*获取工号*/
+                yjsktjxAccpet.setGh(users.getGh());
+                /*获取教学工作量*/
+                yjsktjxAccpet.setGzl(GetYjsClassWorkLoad.getYjsClassWorkLoad(yjsktjxAccpet.getJhxs(),yjsktjxService.getKclxrsBybm(yjsktjxAccpet.getKclx()), yjsktjxAccpet.getSkrs()));
+                /*存入年份*/
+                yjsktjxAccpet.setNd(GetYear.getYears());
+                /*添加课堂信息*/
+                yjsktjxService.addYjsClassInfo(yjsktjxAccpet);
+                GClassError = null;
+            }
         }
         return "redirect:graduateclass";
     }

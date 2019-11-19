@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<html class="no-js " xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- 引用bootstrap及基础样式 -->
+    <script src="js/link.js"></script>
+    <script src="js/basicinformation.js"></script>
+    <link rel="stylesheet" href="css/tablestyle.css" />
+    <link rel="stylesheet" href="css/officecolloge.css" />
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <!-- 头部 -->
+    <script src="js/titleandnav.js"></script>
+    <!-- 左边导航栏 -->
+    <div class="main">
+        <div class="navbar" id="navwrap">
+            <div class="navwarp">
+                <div class="maintenance">
+                    <a href="departmentmaintenance.html">本院用户维护</a>
+                </div>
+                <div class="collegeworkload active"><a href="#">审核本院工作量</a></div>
+                <div class="export"><a href="#">导出工作量统计表</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- 用户维护界面 -->
+    <div class="informationwarp" id="informationwarp">
+        <!-- 标题 -->
+        <div class="litter-title">XXX学院教学工作量审核</div>
+        <div class="msg-warp">
+            <!-- 表格数据 -->
+            <div class="table-wrap">
+                <form th:action="@{/officedetails}" method="post">
+                    <table class="table table-bordered edtitable">
+                        <tr>
+                            <td rowspan="2">工号</td>
+                            <td rowspan="2">姓名</td>
+                            <td rowspan="2">职务</td>
+                            <td rowspan="2">额定工作量</td>
+                            <td colspan="3">实际工作量</td>
+                            <td rowspan="2">审核状态</td>
+                            <td rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>本科生教学</td>
+                            <td>研究生教学</td>
+                            <td>总工作量</td>
+                        </tr>
+                        <tr>
+                            <td>Month</td>
+                            <td>ppp</td>
+                            <td>Savings</td>
+                            <td>560001</td>
+                            <td>ppp</td>
+                            <td>Savings</td>
+                            <td>560001</td>
+                            <td>Month</td>
+                            <!-- 查看详情 -->
+                            <td class="del-col notedit">
+                                <!--<a href="officedetails.html" class="detBtn">查看详情</a>-->
+                                <button type="submit" id="add">查看详情</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script async defer></script>
+</body>
+
+</html>

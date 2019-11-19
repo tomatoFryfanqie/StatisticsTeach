@@ -10,6 +10,9 @@ import org.jplus.utils.GetClassWork;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ClassroomTeachController {
+    private String classError = null;
 
     @Autowired
     private BksktjxService bksktjxService;
@@ -36,26 +40,37 @@ public class ClassroomTeachController {
         /*获取课堂类型，存入model*/
         model.addAttribute("ktlx", bksktjxService.getKtlxbm());
         /*获取本科生课堂教学信息，存入model*/
-        System.out.println(bksktjxService.getBksktjxInfo(users.getGh()));
         model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo(users.getGh()));
         /*获取课堂教学的总工作量*/
         model.addAttribute("ktjxgzlSum", bksktjxService.getBkjxgzlSum(users.getGh()));
+        /*获取校验错误信息*/
+        model.addAttribute("ClassError",classError);
         return "classroomteaching";
     }
 
     @NeedLogin
     @PostMapping("/addClassInfo")
-    public String addClassInfo(@ModelAttribute(value = "bksktjxAccpet") BksktjxAccpet bksktjxAccpet, Users users) {
+    public String addClassInfo(@ModelAttribute(value = "bksktjxAccpet") @Validated BksktjxAccpet bksktjxAccpet,BindingResult bindingResult, Users users) {
         /*如果提交状态表的提交状态处于0：未提交状态，则可以进行添加操作*/
         if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
-            /*获取工号*/
-            bksktjxAccpet.setGh(users.getGh());
-            /*获取教学工作量*/
-            bksktjxAccpet.setJxgzl(GetClassWork.getClassWork(bksktjxAccpet.getJhxs(), bksktjxAccpet.getSfsy(), bksktjxService.getKtlxbmBybm(bksktjxAccpet.getKtlxbm()), bksktjxAccpet.getSkrs()));
-            /*存入年份*/
-            bksktjxAccpet.setNd(GetYear.getYears());
-            /*添加课堂信息*/
-            bksktjxService.addClassInfo(bksktjxAccpet);
+            if(bindingResult.hasErrors()){
+                /*获得第一个校验错误*/
+                classError = bindingResult.getFieldError().getDefaultMessage();
+                if(classError.contains("NumberFormatException")){
+                    classError = "请输入正确的信息";
+                }
+            }else {
+                /*获取工号*/
+                bksktjxAccpet.setGh(users.getGh());
+                /*获取教学工作量*/
+                bksktjxAccpet.setJxgzl(GetClassWork.getClassWork(bksktjxAccpet.getJhxs(), bksktjxAccpet.getSfsy(), bksktjxService.getKtlxbmBybm(bksktjxAccpet.getKtlxbm()), bksktjxAccpet.getSkrs()));
+                /*存入年份*/
+                bksktjxAccpet.setNd(GetYear.getYears());
+                /*添加课堂信息*/
+                bksktjxService.addClassInfo(bksktjxAccpet);
+                /*将错误信息清空*/
+                classError = null;
+            }
         }
         return "redirect:classroomteaching";
     }

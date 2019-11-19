@@ -15,6 +15,7 @@
     <script src="../../js/link.js"></script>
     <link rel="stylesheet" href="../../css/knowledgecontest.css" />
     <script src="../../js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+    <script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
 
     <script>
         function addContest() {
@@ -35,7 +36,7 @@
 
                 },
                 error : function(data) {
-                    alert("error!");
+
                 }
             });
         }
@@ -59,7 +60,7 @@
 
                 },
                 error : function(data) {
-                    alert("error!");
+
                 }
             });
         }
@@ -81,7 +82,7 @@
 
                 },
                 error : function(data) {
-                    alert("error!");
+
                 }
             });
         }
@@ -105,7 +106,7 @@
                     $("#count").html(data);
                 },
                 error : function(data) {
-                    alert("error!");
+
                 }
             });
         }
@@ -118,7 +119,7 @@
                     $("#teacherCount").html(data);
                 },
                 error : function(data) {
-                    alert("error!");
+
                 }
             });
         }
@@ -131,7 +132,7 @@
                     $("#studentGzl").html(data);
                 },
                 error : function(data) {
-                    alert("error!");
+
                 }
             });
         }
@@ -144,7 +145,7 @@
                     $("#all").html(data);
                 },
                 error : function(data) {
-                    alert("error");
+
                 }
             });
         }
@@ -157,7 +158,7 @@
                     $("#year").html(data);
                 },
                 error : function(data) {
-                    alert("error!");
+
                 }
             });
         }
@@ -198,11 +199,11 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="graduateclass.html">课堂教学</a></li>
-                    <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
+                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
-                    <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
-                    <li class="list-group-item active"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
+                    <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
                 <div>
@@ -323,7 +324,7 @@
                             <td th:text="${allStudentCompetition.zdxsrs}">Savings</td>
                             <td th:text="${allStudentCompetition.gzl}">Month</td>
                             <!--<td><a class="modify">修 改</a></td>-->
-                            <td><a class="delete">删 除</a></td>
+                            <td><a class="delete" th:href="@{/deleteUndergraduate(id=${allStudentCompetition.xsjsid})}" type="submit">删 除</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -416,7 +417,7 @@
                             </td>
                             <td th:text="${allTeacherCompetition.gzl}">Month</td>
                             <!--<td><a class="modify">修 改</a></td>-->
-                            <td><a class="delete">删 除</a></td>
+                            <td><a th:href="@{/deleteTeacherCompetition(id=${allTeacherCompetition.jsjsid})}" class="delete" >删 除</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -427,10 +428,10 @@
                     <button type="button" onclick="saveCount()">保存</button>
                 </div>
                 <div class="excellentpaper">
-                    省级优秀论文人数<input type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
+                    省级优秀论文人数<input th:if="${zDXSLW}" th:value="${zDXSLW.sylwrs}" type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
                 </div>
                 <div class="excellentpaper">
-                    校级优秀论文人数<input type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
+                    校级优秀论文人数<input th:if="${zDXSLW}" th:value="${zDXSLW.xylwrs}" type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
                 </div>
             </div>
         </div>
