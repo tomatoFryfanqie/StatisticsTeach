@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -49,10 +50,10 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
-                    <li class="list-group-item"><a href="graduatepractice.html">实践教学</a></li>
+                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
-                    <li class="list-group-item"><a href="graduateprogram.html">教学研究项目</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                     <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
@@ -121,7 +122,7 @@
                                 </select>
                                 </div>
                                 <div>
-                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name"/>
+                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name" th:placeholder="请填写课程名称"/>
                                 </div>
                                 <div>
                                     课程类型：<select th:name="ktlxbm" class="form-control-1">
@@ -131,7 +132,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    授课班级：<input type="text" th:name="skbj" class="form-control-1 class-number" />
+                                    授课班级：<input type="text" th:name="skbj" class="form-control-1 class-number" th:placeholder="请填写授课班级" />
                                 </div>
                                 <div th:name="sfsy">
                                     是否双语教学：<input type="radio" th:name="sfsy" th:value="${1}" class="entry-chose" />是
@@ -139,15 +140,21 @@
 
                                 </div>
                                 <div th:name="jhxs">
-                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1" />
+                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1" th:placeholder="请填写计划学时" />
                                 </div>
                                 <div th:name="skrs">
-                                    上课人数：<input type="text" th:name="skrs" class="form-control-1" />
+                                    上课人数：<input type="text" th:name="skrs" class="form-control-1" th:placeholder="请填写上课人数"/>
                                 </div>
                                 <div class="btn-add">
                                     <button type="submit" id="add">添加</button>
                                     <button type="button" id="cancel" data-dismiss="modal">取消</button>
                                 </div>
+                                <span th:if="${ClassError}">
+                                    <script th:inline="javascript">
+                                        var classError =/*[[${ClassError}]]*/"!"
+                                        alert(classError);
+                                    </script>
+                                </span>
                             </form>
                         </div>
                     </div>
