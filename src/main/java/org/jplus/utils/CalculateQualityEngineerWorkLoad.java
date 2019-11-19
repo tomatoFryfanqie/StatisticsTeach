@@ -100,9 +100,4 @@ public class CalculateQualityEngineerWorkLoad {
         float weight = calculateWeight(projectRacking, projectMemberNumbers);
         return weight * score;
     }
-
-    public static void main(String[] args) {
-        float workload = CalculateQualityEngineerWorkLoad.calculateWorkLoad(1,1,1,1);
-        System.out.println(workload);
-    }
 }

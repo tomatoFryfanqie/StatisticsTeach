@@ -89,4 +89,10 @@
         zrs = #{zrs,jdbcType=INTEGER}
         where zlgcid = #{zlgcid,jdbcType=INTEGER}
     </update>
+
+    <select id="calculateSumOfWorkLoad" resultType="java.lang.Float">
+        select
+        SUM(gzl)
+        from zlgc
+    </select>
 </mapper>

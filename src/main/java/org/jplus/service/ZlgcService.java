@@ -21,4 +21,6 @@ public interface ZlgcService {
     List<Zlgc> getZlgcInfo();
 
     void updateZlgcInfo(ZlgcAccept zlgcAccept);
+
+    public Float calculateSumOfWorkLoad();
 }
