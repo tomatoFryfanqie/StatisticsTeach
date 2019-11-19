@@ -185,8 +185,8 @@
                             <th colspan="2">操作</th>
                         </tr>
                     </thead>
-                    <tbody class="tbody" id="tbody" th:each="yjs : ${yjsktjx}">
-                        <tr>
+                    <tbody class="tbody" id="tbody" >
+                        <tr th:each="yjs : ${yjsktjx}">
                             <td th:text="${yjs.xq}"></td>
                             <td th:text="${yjs.kcmc}"></td>
                             <td th:text="${yjs.kclx.kclxmc}"></td>
