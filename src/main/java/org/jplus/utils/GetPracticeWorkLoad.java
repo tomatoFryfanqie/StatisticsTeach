@@ -17,6 +17,15 @@ public class GetPracticeWorkLoad {
      * @return
      */
     public static Float getDayWorkLoad(Integer sjts1,Integer sjts2,Integer sjts3){
+        if(sjts1==null){
+            sjts1=0;
+        }
+        if(sjts2==null){
+            sjts2=0;
+        }
+        if(sjts3==null){
+            sjts3=0;
+        }
 
         Float getWork = 0.0f;
         getWork =  (float)sjts1*2+sjts2*2+sjts3*2;
@@ -29,6 +38,9 @@ public class GetPracticeWorkLoad {
      * @return
      */
     public static Float getForYjsWorkLoad(Integer zdxshdcs){
+        if (zdxshdcs==null){
+            zdxshdcs=0;
+        }
         Float getWork = 0.0f;
         getWork = (float)zdxshdcs*1;
         return getWork;

@@ -63,6 +63,10 @@ public class GraduateYjssjjxController {
             yjssjjxAccpet.setNd(GetYear.getYears());
             /*获取日常工作量*/
             yjssjjxAccpet.setRcgzl(GetPracticeWorkLoad.getDayWorkLoad(yjssjjxAccpet.getSjts1(),yjssjjxAccpet.getSjts2(),yjssjjxAccpet.getSjts3()));
+            /*自输入工作量*/
+            if(yjssjjxAccpet.getGzl()==null){
+                yjssjjxAccpet.setGzl(0f);
+            }
             /*获取总工作量,1.日常工作量，2.指导工作量,3 自输入工作量*/
             yjssjjxAccpet.setGzl(yjssjjxAccpet.getRcgzl()+GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxAccpet.getZdxshdcs())+yjssjjxAccpet.getGzl());
             /*更新信息*/
