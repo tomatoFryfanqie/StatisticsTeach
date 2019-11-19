@@ -20,7 +20,7 @@ import java.io.IOException;
  * @date 2019/10/31 17:13
  */
 @Controller
-public class LoginController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -38,12 +38,23 @@ public class LoginController {
             model.addAttribute("error","账号密码错误");
             return "login";
         }
-        if (user.getActor()==1){
-            return "redirect:/basicinformation";
+        if (user.getActor()==3){
+            return "redirect:/departmentmaintenance";
         }
         if (user.getActor()==2){
-            return "redirect:/basicinformation";
+            return "redirect:/departmentmaintenance";
         }
         return "redirect:/basicinformation";
+    }
+
+    @RequestMapping("/updatepassword")
+    public String updatePassword(Users user,String oldPassword,String newPassword,Model model,HttpServletRequest request){
+        System.out.println(oldPassword+":"+newPassword);
+        boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
+        if (!isOK){
+            model.addAttribute("error","旧密码不正确！！！");
+            return "redirect:/basicinformation";
+        }
+        return "redirect:/";
     }
 }

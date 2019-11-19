@@ -12,4 +12,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserService {
     Users login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response);
+
+    boolean updatePassword(String gh,String oldPassword,String password,HttpServletRequest request);
 }

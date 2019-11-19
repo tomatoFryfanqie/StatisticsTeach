@@ -1,0 +1,39 @@
+/* 基本信息基础布局 */
+.informationwarp {
+  width: 80%;
+  font-size: 14px;
+  min-width: 600px;
+  /* background-color: red; */
+  position: absolute;
+  top: 60px;
+  left: 20%;
+}
+.msg-warp {
+  width: 100%;
+  height: 90%;
+  padding: 1% 6%;
+}
+/* 标题 */
+.litter-title {
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  margin-top: 1%;
+  margin-left: 37%;
+}
+/* 院系选择 */
+.collage-warp{
+    /* height: 30px; */
+    text-align: left;
+    padding: 0 6%;
+    margin-top: 1%;
+}
+/* 表格设置 */
+.table-wrap {
+  width: 100%;
+  height: 90%;
+}
+/* 2行不变色（消除前面样式影响） */
+.table tr:nth-child(even) {
+  background-color: white;
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/link.js"></script>
+    <script src="js/basicinformation.js"></script>
+    <!-- 引用bootstrap及基础样式 -->
+    <link rel="stylesheet" href="css/tablestyle.css" />
+    <link rel="stylesheet" href="css/usermaintenance.css" />
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <!-- 头部 -->
+    <div class="toptitle">
+        <span id="title">湖北师范大学教学工作量统计系统</span>
+        <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
+    </div>
+    <!-- 修改密码 -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                        修改密码
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div>
+                            原密码：<input type="text" class="form-control-1 class-name" placeholder="" id="b" />
+                        </div>
+                        <div>
+                            新密码：<input type="text" class="form-control-1 class-name" placeholder="" />
+                        </div>
+                        <div>
+                            请确认密码：<input type="text" class="form-control-1 class-number" placeholder="" />
+                        </div>
+                        <div class="btn-add">
+                            <button type="button" id="add">修改</button>
+                            <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- 左边导航栏 -->
+    <div class="main">
+        <div class="navbar" id="navwrap">
+            <div class="navwarp">
+                <div class="maintenance active">
+                    <a href="#">院系审核人维护</a>
+                </div>
+                <div class="collegeworkload"><a href="officecollege.html">审核各学院工作量</a></div>
+                <div class="export"><a href="#">导出工作量统计表</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- 用户维护界面 -->
+    <div class="informationwarp" id="informationwarp">
+        <!-- 保存按钮 -->
+        <button type="button" id="save" data-toggle="modal" data-target="#myModal">添加</button>
+        <!-- 模态框（Modal）登陆界面 -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                            用户维护
+                        </h5>
+                    </div>
+                    <!-- 添加维护用户 -->
+                    <div class="modal-body">
+                        <form action="">
+                            <div>
+                                院系：<select name="competitionform" class="form-control-1">
+                                    <option value="lecture">讲课</option>
+                                    <option value="Courseware">课件</option>
+                                    <option value="microlesson">微课</option>
+                                </select>
+                            </div>
+                            <div>
+                                工号：<input type="text" class="form-control-1 class-name" placeholder="" />
+                            </div>
+                            <div>
+                                姓名：<input type="text" class="form-control-1 class-name" placeholder="" />
+                            </div>
+                            <div>
+                                类型：<select name="competitionform" class="form-control-1">
+                                    <option value="lecture">讲课</option>
+                                    <option value="Courseware">课件</option>
+                                    <option value="microlesson">微课</option>
+                                </select>
+                            </div>
+                            <div class="btn-add">
+                                <button type="button" id="add">添加</button>
+                                <button type="button" id="cancel" data-dismiss="modal">
+                                    取消
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="msg-warp">
+            <!-- 表格数据 -->
+            <div class="table-wrap">
+                <table class="table table-bordered edtitable">
+                    <thead>
+                        <tr>
+                            <th>院系</th>
+                            <th>工号</th>
+                            <th>姓名</th>
+                            <th>类型</th>
+                            <th>初始密码</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Month</td>
+                            <td class="notedit">
+                                kkk
+                            </td>
+                            <td class="notedit">
+                                ppp
+                            </td>
+                            <td>Savings</td>
+                            <td class="notedit">560001</td>
+                            <!-- 删除按钮 -->
+                            <td class="del-col notedit">
+                                <a href="javascript:void(0);" class="delBtn">删除</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script async defer></script>
+</body>
+
+</html>

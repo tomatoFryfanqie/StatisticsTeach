@@ -1,5 +1,4 @@
 package org.jplus.service;
-
 import org.jplus.dto.LoginVo;
 import org.jplus.mapper.UserMapper;
 import org.jplus.pojo.Users;
@@ -49,6 +48,25 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
+    @Override
+    public boolean updatePassword(String gh,String oldPassword,String newPassword,HttpServletRequest request) {
+        Users user= userMapper.getById(gh);
+        if (user==null){
+            return false;
+        }
+        String formPassword=MD5Util.md5(oldPassword);
+        if (!formPassword.equals(user.getUpassword())){
+            return false;
+        }
+        String pass=MD5Util.md5(newPassword);
+        //更新密码
+        userMapper.update(pass,gh);
+        //删除session
+        String token= getCookieValue(request, COOK_NAME_TOKEN);
+        request.getSession().removeAttribute(token);
+        return true;
+    }
+
     private void addCookies(HttpServletResponse response,String token) {
         Cookie cookie = new Cookie(COOK_NAME_TOKEN, token);
         //设置Cookie过期时间 12h
@@ -56,5 +74,19 @@ public class UserServiceImpl implements UserService{
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
+    }
+
+    //懒得抽了,直接拿过来, 能用就行.jpg
+    private String getCookieValue(HttpServletRequest request, String cookNameToken) {
+        Cookie[] cookies=request.getCookies();
+        if (cookies==null || cookies.length<=0){
+            return null;
+        }
+        for (Cookie cookie : cookies) {
+            if (cookNameToken.equals(cookie.getName())){
+                return cookie.getValue();
+            }
+        }
+        return null;
     }
 }
