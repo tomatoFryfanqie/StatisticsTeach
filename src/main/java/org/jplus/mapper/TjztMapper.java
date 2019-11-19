@@ -1,5 +1,6 @@
 package org.jplus.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.jplus.pojo.Tjzt.Tjzt;
 
 /**
@@ -11,7 +12,7 @@ import org.jplus.pojo.Tjzt.Tjzt;
  */
 public interface TjztMapper {
 
-    Tjzt getTjzt(String gh);
+    Tjzt getTjzt(@Param("gh") String gh);
 
-    void addTjzt(String gh, Integer tjzt);
+    void addTjzt(@Param("gh") String gh, @Param("tjzt") Integer tjzt);
 }
