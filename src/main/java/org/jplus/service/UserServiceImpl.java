@@ -25,19 +25,19 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public boolean login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response) {
+    public Users login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response) {
         if (loginVo == null){
             //前面有了参数校验,这里还是校验下吧
-            return  false;
+            return  null;
         }
         //System.out.println(loginVo);
         Users user= userMapper.getById(loginVo.getGh());
         if (user==null){
-            return false;
+            return null;
         }
         String loginPassword=MD5Util.md5(loginVo.getPassword());
         if (!loginPassword.equals(user.getUpassword())){
-            return false;
+            return null;
         }
         String token=UUIDUtil.getUuid();
         //将User存到服务端(Tomcat)session中
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
         //添加token到cookie中
         addCookies(response,token);
         System.out.println(user);
-        return true;
+        return user;
     }
 
     private void addCookies(HttpServletResponse response,String token) {

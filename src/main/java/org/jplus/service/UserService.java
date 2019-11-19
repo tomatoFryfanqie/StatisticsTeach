@@ -1,6 +1,8 @@
 package org.jplus.service;
 
 import org.jplus.dto.LoginVo;
+import org.jplus.pojo.Users;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,5 +11,5 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2019/10/31 17:32
  */
 public interface UserService {
-    boolean login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response);
+    Users login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response);
 }

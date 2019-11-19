@@ -1,6 +1,7 @@
 package org.jplus.controller;
 
 import org.jplus.dto.LoginVo;
+import org.jplus.pojo.Users;
 import org.jplus.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,10 +33,16 @@ public class LoginController {
             model.addAttribute("error","账号或密码不能为空！！！");
             return "login";
         }
-        boolean islogin=userService.login(loginVo,request,response);
-        if (!islogin){
+        Users user=userService.login(loginVo,request,response);
+        if (user==null){
             model.addAttribute("error","账号密码错误");
             return "login";
+        }
+        if (user.getActor()==1){
+            return "redirect:/basicinformation";
+        }
+        if (user.getActor()==2){
+            return "redirect:/basicinformation";
         }
         return "redirect:/basicinformation";
     }
