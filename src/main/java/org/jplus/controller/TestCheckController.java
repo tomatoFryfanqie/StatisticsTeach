@@ -4,8 +4,10 @@ import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.JSJS;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.ZDXSJS;
+import org.jplus.pojo.ZDXSLW;
 import org.jplus.pojo.yjssjjx.Yjssjjx;
 import org.jplus.service.*;
+import org.jplus.utils.DateUtils;
 import org.jplus.utils.GetPracticeWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ import static org.jplus.utils.GetSjjxWork.getSjjxWork;
 
 @Controller
 public class TestCheckController {
+    @Autowired
+    CheckService checkService;
+
     @Autowired
     private BksktjxService bksktjxService;  // 课堂教学
     @Autowired
@@ -67,8 +72,13 @@ public class TestCheckController {
     @NeedLogin
     @PostMapping("/officedetails")
     public String getQualityEngineeringInfo(Model model, Users users) {
-     // 将用户的信息取出( 工号， 姓名， 学院)
-        model.addAttribute("");
+     // 将用户的信息取出( 工号， 姓名， 院系编码)
+        model.addAttribute("gh", users.getGh());
+        model.addAttribute("name",users.getUname());
+        /*获取基本信息存到model中*/
+        model.addAttribute("department",checkService.getYxmc(users.getYxbm()));
+
+        checkService.getYxmc(users.getYxbm());
      //本科生教学
         // 1 用户的课堂教学工作量   classroomteaching
         model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo(users.getGh()));
@@ -79,7 +89,8 @@ public class TestCheckController {
                 ("bkssjjx",getSjjxWork(sjjx)));
         // 3 质量工程工作量        qualityengineering
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
-
+        //获取质量工程的工作总量
+        model.addAttribute("zlgcSumOfWorkload",zlgcService.calculateSumOfWorkLoad(users.getGh()));
         /*  4教学研究              teachingresearch */
         // 教学成果工作量
         //  纵向教研项目工作量
@@ -100,7 +111,7 @@ public class TestCheckController {
         model.addAttribute("Jxggs", jxcgService.getJxgg());
         model.addAttribute("Lxjbs", jxcgService.getLxjbInfo());
         model.addAttribute("year", GetYear.getYears());
-        model.addAttribute("gh", users.getGh());
+//        model.addAttribute("gh", users.getGh());
 
         model.addAttribute("jxcgGzl",jxcgService.getJxcgGzlSun(users.getGh()));
         model.addAttribute("zxxmGzl",jxcgService.getZxxmGzlSun(users.getGh()));
@@ -112,10 +123,12 @@ public class TestCheckController {
         // 指导学生竞赛工作量
         // 教师教学能力竞赛获奖工作量
         // 教师指导学生学士学位论文获奖工作量
-        List<JSJS> result = jSJSService.getTeacherCompetitionList();
-        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList();
+        List<JSJS> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        ZDXSLW zDXSLW = zDXSJSService.findZDXSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
         model.addAttribute("allStudentCompetitionList", list);
         model.addAttribute("allTeacherCompetitionList", result);
+        model.addAttribute("zDXSLW", zDXSLW);
         /* 6 其它教育教学活动       TODO  other*/
         // 教学督导工作量
         // 学生学业指导帮扶工作量
@@ -164,9 +177,8 @@ public class TestCheckController {
         /* 5 指导研究生竞赛获奖 masterKnow */
         // 指导研究生竞赛
         // 教师指导学生学士学位论文获奖
-        List<ZDXSJS> list2 = zDXSJSService.getStudentCompetitionList();
+        List<ZDXSJS> list2 = zDXSJSService.getStudentCompetitionList(users.getGh(),GetYear.getYears());
         model.addAttribute("allStudentCompetitionList", list2);
-
         // 6 其它教学工作量    TODO  masterOther
         return "officedetails";
     }

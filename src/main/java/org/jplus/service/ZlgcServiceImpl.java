@@ -46,7 +46,11 @@ public class ZlgcServiceImpl implements ZlgcService {
     }
 
     @Override
-    public Float calculateSumOfWorkLoad() {
-        return zlgcMapper.calculateSumOfWorkLoad();
+    public Float calculateSumOfWorkLoad(String gh) {
+        Float workload = 0.0f;
+        if (zlgcMapper.calculateSumOfWorkLoad(gh) != null){
+            workload = zlgcMapper.calculateSumOfWorkLoad(gh);
+        }
+        return workload;
     }
 }
