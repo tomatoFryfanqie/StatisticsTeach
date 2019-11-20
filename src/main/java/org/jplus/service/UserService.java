@@ -1,8 +1,10 @@
 package org.jplus.service;
 
 import org.jplus.dto.LoginVo;
+import org.jplus.pojo.Users;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author imlgw.top
@@ -10,4 +12,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserService {
     boolean login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response);
+
+    Integer checkGhIsRepeat(String gh);
+
+    void addUser(Users user);
+
+    List<Users> getAllUsers(Integer yxbm);
+
+    void deleteUser(String gh);
 }

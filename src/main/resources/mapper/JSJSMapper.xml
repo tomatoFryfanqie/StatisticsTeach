@@ -10,7 +10,11 @@
         select gdgzl from jsdj WHERE jsdjbm=#{teacherCompetitioncategory};
     </select>
 
-    <select id="getTeacherCompetitionList" resultType="org.jplus.pojo.JSJS">
+    <!--<select id="getTeacherCompetitionList" resultType="org.jplus.pojo.JSJS">
+        select jsjsid, jsmc, jsdjbm, jsxsbm, gzl from jsjs WHERE gh=#{gh} AND nd=${nd};
+    </select>-->
+
+    <select id="getTeacherCompetitionList" resultType="org.jplus.pojo.queryVo.JsjsVo">
         select jsjsid, jsmc, jsdjbm, jsxsbm, gzl from jsjs WHERE gh=#{gh} AND nd=${nd};
     </select>
 
@@ -37,4 +41,8 @@
     <update id="updateZDXSLW" parameterType="org.jplus.pojo.ZDXSLW">
         UPDATE zdxslw SET sylwrs=#{sylwrs} , xylwrs=#{xylwrs} , gzl=#{gzl};
     </update>
+
+    <select id="getcompetitionLevelByBM" resultType="java.lang.String">
+        select jsdjmc from jsdj WHERE jsdjbm=#{jsdjbm};
+    </select>
 </mapper>

@@ -12,11 +12,11 @@ import org.springframework.stereotype.Repository;
 public interface ZDSSLWMapper {
     void addZDSSLW(ZDSSLW zDSSLW);
 
-    float getAllMasterLwGzl(@Param("gh") String gh, @Param("nd") int nd);
+    Float getAllMasterLwGzl(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    ZDSSLW findZDSSLWByGhAndYear(@Param("gh") String gh, @Param("nd") int nd);
+    ZDSSLW findZDSSLWByGhAndYear(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    int isOnlyForOneYear(@Param("gh") String gh, @Param("nd") int nd);
+    Integer isOnlyForOneYear(@Param("gh") String gh, @Param("nd") Integer nd);
 
     void updateZDSSLW(ZDSSLW zDSSLW);
 }

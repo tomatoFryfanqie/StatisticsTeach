@@ -3,6 +3,7 @@ package org.jplus.service;
 import org.jplus.mapper.ZDXSJSMapper;
 import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.queryVo.ZdxsjsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,12 @@ public class ZDXSJSServiceImpl implements ZDXSJSService {
     private ZDXSJSMapper zDXSJSMapper;
 
     @Override
-    public int isOnlyForOneYear(String gh, int year) {
+    public List<ZdxsjsVo> getStudentCompetitionList(String gh, Integer currentYear) {
+        return zDXSJSMapper.getStudentCompetitionList(gh, currentYear);
+    }
+
+    @Override
+    public Integer isOnlyForOneYear(String gh, Integer year) {
         return zDXSJSMapper.isOnlyForOneYear(gh, year);
     }
 
@@ -29,28 +35,33 @@ public class ZDXSJSServiceImpl implements ZDXSJSService {
         zDXSJSMapper.addZDXSJS(zDXSJS);
     }
 
-    @Override
-    public List<ZDXSJS> getStudentCompetitionList(String gh, int nd) {
+    /*@Override
+    public List<ZDXSJS> getStudentCompetitionList(String gh, Integer nd) {
         return zDXSJSMapper.getStudentCompetitionList(gh, nd);
-    }
+    }*/
 
     @Override
-    public float getAllGzl(String gh, int year) {
+    public Float getAllGzl(String gh, Integer year) {
         return zDXSJSMapper.getAllGzl(gh, year);
     }
 
     @Override
-    public float getAllGzl2(String gh, int year) {
-        return zDXSJSMapper.getAllGzl2(gh, year);
-    }
-
-    @Override
-    public List<ZDXSJS> getStudentCompetitionList2(String gh, int year) {
+    public List<ZdxsjsVo> getStudentCompetitionList2(String gh, Integer year) {
         return zDXSJSMapper.getStudentCompetitionList2(gh, year);
     }
 
     @Override
-    public ZDXSLW findZDXSLWByGhAndYear(String gh, int year) {
+    public Float getAllGzl2(String gh, Integer year) {
+        return zDXSJSMapper.getAllGzl2(gh, year);
+    }
+
+    /*@Override
+    public List<ZDXSJS> getStudentCompetitionList2(String gh, Integer year) {
+        return zDXSJSMapper.getStudentCompetitionList2(gh, year);
+    }*/
+
+    @Override
+    public ZDXSLW findZDXSLWByGhAndYear(String gh, Integer year) {
         return zDXSJSMapper.findZDXSLWByGhAndYear(gh, year);
     }
 
@@ -60,7 +71,7 @@ public class ZDXSJSServiceImpl implements ZDXSJSService {
     }
 
     @Override
-    public float getGzl(int competition, int contestLevel) {
+    public Float getGzl(Integer competition, Integer contestLevel) {
         return zDXSJSMapper.getGzl(competition, contestLevel);
     }
 

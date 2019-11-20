@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jplus.mapper.UserMapper">
+
+    <insert id="addUser" parameterType="org.jplus.pojo.Users">
+        INSERT into users VALUES (#{gh}, #{yxbm}, #{uname}, #{upassword}, #{actor});
+    </insert>
+
+</mapper>

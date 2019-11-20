@@ -10,11 +10,19 @@
         INSERT into zdxsjs VALUES (0, #{gh}, #{nd}, #{jsmc}, #{jslbbm}, #{jsjbbm}, #{zdxsrs}, #{jsxscc}, #{gzl});
     </insert>
 
-    <select id="getStudentCompetitionList" resultType="org.jplus.pojo.ZDXSJS">
+    <!--<select id="getStudentCompetitionList" resultType="org.jplus.pojo.ZDXSJS">
+        select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=1 AND gh=#{gh} AND nd=#{nd};
+    </select>-->
+
+    <select id="getStudentCompetitionList" resultType="org.jplus.pojo.queryVo.ZdxsjsVo">
         select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=1 AND gh=#{gh} AND nd=#{nd};
     </select>
 
-    <select id="getStudentCompetitionList2" resultType="org.jplus.pojo.ZDXSJS">
+    <!--<select id="getStudentCompetitionList2" resultType="org.jplus.pojo.ZDXSJS">
+        select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=2 AND gh=#{gh} AND nd=#{nd};
+    </select>-->
+
+    <select id="getStudentCompetitionList2" resultType="org.jplus.pojo.queryVo.ZdxsjsVo">
         select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=2 AND gh=#{gh} AND nd=#{nd};
     </select>
 

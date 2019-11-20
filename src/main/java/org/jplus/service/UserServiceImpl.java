@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 /**
  * @author imlgw.top
  * @date 2019/10/31 17:32
@@ -20,9 +22,19 @@ public class UserServiceImpl implements UserService{
 
     public static final String COOK_NAME_TOKEN="jplus_user";
 
+
     @Autowired
     private UserMapper userMapper;
 
+    @Override
+    public void deleteUser(String gh) {
+        userMapper.deleteUser(gh);
+    }
+
+    @Override
+    public List<Users> getAllUsers(Integer yxbm) {
+        return userMapper.getAllUsers(yxbm);
+    }
 
     @Override
     public boolean login(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response) {
@@ -47,6 +59,16 @@ public class UserServiceImpl implements UserService{
         addCookies(response,token);
         System.out.println(user);
         return true;
+    }
+
+    @Override
+    public void addUser(Users user) {
+        userMapper.addUser(user);
+    }
+
+    @Override
+    public Integer checkGhIsRepeat(String gh) {
+        return userMapper.checkGhIsRepeat(gh);
     }
 
     private void addCookies(HttpServletResponse response,String token) {

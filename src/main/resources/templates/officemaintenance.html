@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <script src="../../js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+    <script src="../../js/link.js"></script>
+    <script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="js/basicinformation.js"></script>
+    <!-- 引用bootstrap及基础样式 -->
+    <link rel="stylesheet" href="css/tablestyle.css" />
+    <link rel="stylesheet" href="css/usermaintenance.css" />
+
+    <script>
+        function addUser() {
+            var department = $("#department").val();
+            var gh = $("#gh").val();
+            var name = $("#name").val();
+            var type = $("#type").val();
+            $.ajax({
+                type: 'POST',
+                url: "/addUser",
+                data:{
+                    department: department,
+                    gh: gh,
+                    name: name,
+                    type: type
+                },
+                success: function(data){
+                    alert(data);
+                },
+                error : function(data) {
+
+                }
+            });
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <!-- 头部 -->
+    <div class="toptitle">
+        <span id="title">湖北师范大学教学工作量统计系统</span>
+        <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
+    </div>
+    <!-- 修改密码 -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                        修改密码
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div>
+                            原密码：<input type="text" class="form-control-1 class-name" placeholder="" id="b" />
+                        </div>
+                        <div>
+                            新密码：<input type="text" class="form-control-1 class-name" placeholder="" />
+                        </div>
+                        <div>
+                            请确认密码：<input type="text" class="form-control-1 class-number" placeholder="" />
+                        </div>
+                        <div class="btn-add">
+                            <button type="button" id="add">修改</button>
+                            <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- 左边导航栏 -->
+    <div class="main">
+        <div class="navbar" id="navwrap">
+            <div class="navwarp">
+                <div class="maintenance active">
+                    <a href="#">院系审核人维护</a>
+                </div>
+                <div class="collegeworkload"><a href="officecollege.html">审核各学院工作量</a></div>
+                <div class="export"><a href="#">导出工作量统计表</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- 用户维护界面 -->
+    <div class="informationwarp" id="informationwarp">
+        <!-- 保存按钮 -->
+        <button type="button" id="save" data-toggle="modal" data-target="#myModal">添加</button>
+        <!-- 模态框（Modal）登陆界面 -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                            用户维护
+                        </h5>
+                    </div>
+                    <!-- 添加维护用户 -->
+                    <div class="modal-body">
+                            <div>
+                                院系：<select id="department" name="department" class="form-control-1">
+                                    <option value="1">经济管理与法学院</option>
+                                    <option value="2">马克思主义学院</option>
+                                    <option value="3">教育科学学院</option>
+                                    <option value="4">教师教育学院</option>
+                                    <option value="5">体育学院</option>
+                                    <option value="6">文学院</option>
+                                    <option value="7">外国语学院</option>
+                                    <option value="8">历史文化学院</option>
+                                    <option value="9">数学与统计学院</option>
+                                    <option value="10">物理与电子科学学院</option>
+                                    <option value="11">化学化工学院</option>
+                                    <option value="12">城市与环境学院</option>
+                                    <option value="13">生命科学学院</option>
+                                    <option value="14">机电与控制工程学院</option>
+                                    <option value="15">计算机与信息工程学院</option>
+                                    <option value="16">音乐学院</option>
+                                    <option value="17">美术学院</option>
+                                    <option value="18">继续教育学院</option>
+                                    <option value="19">先进材料研究院</option>
+                                    <option value="20">继续教育学院</option>
+                                    <option value="21">研究生院</option>
+                                    <option value="22">教务处</option>
+                                    <option value="23">科研处</option>
+                                    <option value="24">信息化建设与管理中心</option>
+                                    <option value="25">机关</option>
+                                    <option value="26">图书馆</option>
+                                    <option value="27">档案馆</option>
+                                    <option value="28">学报编辑部</option>
+                                    <option value="29">后勤及其他</option>
+                                </select>
+                            </div>
+                            <div>
+                                工号：<input id="gh" name="gh" type="text" class="form-control-1 class-name" placeholder="" />
+                            </div>
+                            <div>
+                                姓名：<input id="name" name="name" type="text" class="form-control-1 class-name" placeholder="" />
+                            </div>
+                            <div>
+                                类型：<select id="type" name="type" class="form-control-1">
+                                    <option value="1">普通教师</option>
+                                    <option value="2">教研室主任</option>
+                                    <option value="3">院系</option>
+                                <option value="4">教务处</option>
+                                </select>
+                            </div>
+                            <div class="btn-add">
+                                <button type="button" id="add" onclick="addUser()">添加</button>
+                                <button type="button" id="cancel" data-dismiss="modal">
+                                    取消
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="msg-warp">
+            <!-- 表格数据 -->
+            <div class="table-wrap">
+                <table class="table table-bordered edtitable">
+                    <thead>
+                        <tr>
+                            <th>院系</th>
+                            <th>工号</th>
+                            <th>姓名</th>
+                            <th>类型</th>
+                            <th>初始密码</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="userList:${userList}">
+                            <td th:text="${userList.yxbm}">Month</td>
+                            <td th:text="${userList.gh}" class="notedit">
+                                kkk
+                            </td>
+                            <td th:text="${userList.uname}" class="notedit">
+                                ppp
+                            </td>
+                            <td th:text="${userList.actor}">Savings</td>
+                            <td class="notedit">560001</td>
+                            <!-- 删除按钮 -->
+                            <td class="del-col notedit">
+                                <a th:href="@{/deleteUser(gh=${userList.gh})}" type="submit" class="delBtn">删 除</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script async defer></script>
+</body>
+
+</html>

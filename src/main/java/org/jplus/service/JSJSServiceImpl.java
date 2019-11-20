@@ -3,6 +3,7 @@ package org.jplus.service;
 import org.jplus.mapper.JSJSMapper;
 import org.jplus.pojo.JSJS;
 import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.queryVo.JsjsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +31,18 @@ public class JSJSServiceImpl implements JSJSService {
     }
 
     @Override
-    public float getAllLwGzl(String gh, int year) {
+    public Float getAllLwGzl(String gh, Integer year) {
         return jSJSMapper.getAllLwGzl(gh, year);
     }
 
     @Override
-    public float getAllGzl(String gh, int year) {
+    public Float getAllGzl(String gh, Integer year) {
         return jSJSMapper.getAllGzl(gh, year);
+    }
+
+    @Override
+    public String getcompetitionLevelByBM(Integer jsdjbm) {
+        return jSJSMapper.getcompetitionLevelByBM(jsdjbm);
     }
 
     @Override
@@ -45,12 +51,17 @@ public class JSJSServiceImpl implements JSJSService {
     }
 
     @Override
-    public List<JSJS> getTeacherCompetitionList(String gh, int year) {
+    public List<JsjsVo> getTeacherCompetitionList(String gh, Integer year) {
         return jSJSMapper.getTeacherCompetitionList(gh, year);
     }
 
+    /*@Override
+    public List<JSJS> getTeacherCompetitionList(String gh, Integer year) {
+        return jSJSMapper.getTeacherCompetitionList(gh, year);
+    }*/
+
     @Override
-    public int getGzl(int teacherCompetitioncategory) {
+    public Integer getGzl(Integer teacherCompetitioncategory) {
         return jSJSMapper.getGzl(teacherCompetitioncategory);
     }
 

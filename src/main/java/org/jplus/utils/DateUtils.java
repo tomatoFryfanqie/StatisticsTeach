@@ -8,7 +8,7 @@ import java.util.Calendar;
  * 项目中操作时间的工具类
  */
 public class DateUtils {
-    public static int getCurrentYear() {
+    public static Integer getCurrentYear() {
         Calendar calendar = Calendar.getInstance();
         long time = calendar.getTimeInMillis();
         int year = calendar.getWeekYear();

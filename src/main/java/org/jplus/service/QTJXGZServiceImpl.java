@@ -16,7 +16,7 @@ public class QTJXGZServiceImpl implements QTJXGZService {
     private QTJXGZMapper qTJXGZMapper;
 
     @Override
-    public int isOnlyForOneYear(String gh, int year) {
+    public Integer isOnlyForOneYear(String gh, Integer year) {
         return qTJXGZMapper.isOnlyForOneYear(gh, year);
     }
 
@@ -26,12 +26,12 @@ public class QTJXGZServiceImpl implements QTJXGZService {
     }
 
     @Override
-    public float getAllQtGzl(String gh, int year) {
+    public Float getAllQtGzl(String gh, Integer year) {
         return qTJXGZMapper.getAllQtGzl(gh, year);
     }
 
     @Override
-    public QTJXGZ findQTJXGZByGhAndYear(String gh, int year) {
+    public QTJXGZ findQTJXGZByGhAndYear(String gh, Integer year) {
         return qTJXGZMapper.findQTJXGZByGhAndYear(gh ,year);
     }
 
