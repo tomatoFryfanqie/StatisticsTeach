@@ -5,6 +5,8 @@ import org.jplus.pojo.JSJS;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.queryVo.JsjsVo;
+import org.jplus.pojo.queryVo.ZdxsjsVo;
 import org.jplus.pojo.yjssjjx.Yjssjjx;
 import org.jplus.service.*;
 import org.jplus.utils.DateUtils;
@@ -123,8 +125,8 @@ public class TestCheckController {
         // 指导学生竞赛工作量
         // 教师教学能力竞赛获奖工作量
         // 教师指导学生学士学位论文获奖工作量
-        List<JSJS> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
-        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        List<JsjsVo> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        List<ZdxsjsVo> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
         ZDXSLW zDXSLW = zDXSJSService.findZDXSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
         model.addAttribute("allStudentCompetitionList", list);
         model.addAttribute("allTeacherCompetitionList", result);
@@ -177,7 +179,7 @@ public class TestCheckController {
         /* 5 指导研究生竞赛获奖 masterKnow */
         // 指导研究生竞赛
         // 教师指导学生学士学位论文获奖
-        List<ZDXSJS> list2 = zDXSJSService.getStudentCompetitionList(users.getGh(),GetYear.getYears());
+        List<ZdxsjsVo> list2 = zDXSJSService.getStudentCompetitionList(users.getGh(),GetYear.getYears());
         model.addAttribute("allStudentCompetitionList", list2);
         // 6 其它教学工作量    TODO  masterOther
         return "officedetails";
