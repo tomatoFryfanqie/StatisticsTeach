@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.CheckMapper">
+    <!-- 本科生实践教学BKSSJJX ResultMap lgw-->
+    <resultMap id="BKSSJJXInfo" type="org.jplus.pojo.bks.Bkssjjx">
+        <!-- 实习类型编码要级联-->
+        <result property="sxlxbm1" column="sxlxbm1" jdbcType="INTEGER"></result>
+        <result property="sxts1" column="sxts1" jdbcType="INTEGER"></result>
+
+        <result property="sxlxbm2" column="sxlxbm2" jdbcType="INTEGER"></result>
+        <result property="sxts2" column="sxts2" jdbcType="INTEGER"></result>
+
+        <result property="sxlxbm3" column="sxlxbm3" jdbcType="INTEGER"></result>
+        <result property="sxts3" column="sxts3" jdbcType="INTEGER"></result>
+
+        <!--微格试讲人数-->
+        <result property="wgsjrs" column="wgsjrs" jdbcType="INTEGER"></result>
+        <!--&lt;!&ndash;专业类型编码， 要级联&ndash;&gt;-->
+        <!--<result property="zylxbm" column="zylxbm" jdbcType="INTEGER"></result>-->
+        <!--指导论文人数-->
+        <result property="zdlwrs" column="zdlwrs" jdbcType="INTEGER"></result>
+        <!-- 管理内容-->
+        <result property="glnr" column="glnr" jdbcType="CHAR"></result>
+        <!-- 管理工作量-->
+        <result property="glgzl" column="glgzl" jdbcType="FLOAT"></result>
+
+        <association property="zylxbm" javaType="org.jplus.pojo.zlgc.Zlgcxmlx">
+            <result property="xmlxbm" column="xmlxbm" jdbcType="INTEGER"></result>
+            <result property="xmlxmc" column="xmlxmc" jdbcType="VARCHAR"></result>
+        </association>
+    </resultMap>
+
+    <!--根据院系编码，取出院系名称-->
+    <select id="getLxmc" resultType="java.lang.String">
+        select
+        yxmc
+        from yxbm
+        where yxbm = #{zlgcid,jdbcType=INTEGER}
+    </select>
+    <!--根据工号，取出教学实践信息 practiceteh 本科生 BKSSJJX-->
+
+    <!-- 指导学士论文 本科生 学生论文 ZDXSLW-->
+    <!-- 根据工号取出其他教学工作信息  本科生 QTJXGZ-->
+
+    <!-- 根据工号，取出教学实践信息 研究生 YJSSJJX-->
+    <!-- 根据工号，取出教学基本建设与学科建设 JBJSYXKJS-->
+    <!-- 指导学士论文 本科生 硕士论文 ZDSSLW-->
+    <!-- 根据工号取出其他教学工作信息  研究生 YJSQTJX-->
+
+</mapper>

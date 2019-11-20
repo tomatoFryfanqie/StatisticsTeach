@@ -13,4 +13,6 @@ public interface TjztService {
     Tjzt getTjzt(String gh);
 
     void addTjzt(String gh, Integer tjzt);
+
+    void updateTjzt(String gh);
 }

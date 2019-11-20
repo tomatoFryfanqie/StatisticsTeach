@@ -87,7 +87,6 @@ public class GraduateProgramController {
             yjshxxm.setNd(GetYear.getYears());
             //获取工作量
             yjshxxm.setGzl(GetWorkCount.GetHxWorkCount(yjshxxm.getZrs(),yjshxxm.getXmpm(),
-                    yjshxxm.getDzjf()) > 200 ? 200 : GetWorkCount.GetHxWorkCount(yjshxxm.getZrs(),yjshxxm.getXmpm(),
                     yjshxxm.getDzjf()));
             //添加项目的一列
             yjsjyxmService.addYjshxxm(yjshxxm);

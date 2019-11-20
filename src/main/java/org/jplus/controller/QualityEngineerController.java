@@ -1,6 +1,7 @@
 package org.jplus.controller;
 
 import org.jplus.interceptor.NeedLogin;
+import org.jplus.pojo.Users;
 import org.jplus.pojo.zlgc.ZlgcAccept;
 import org.jplus.service.ZlgcService;
 import org.jplus.utils.CalculateQualityEngineerWorkLoad;
@@ -29,9 +30,9 @@ public class QualityEngineerController {
 
     @NeedLogin
     @RequestMapping("/qualityengineering")
-    public String getQualityEngineeringInfo(Model model) {
+    public String getQualityEngineeringInfo(Model model, Users users) {
         //获取质量工程的工作总量
-        model.addAttribute("sumOfWorkload",zlgcService.calculateSumOfWorkLoad());
+        model.addAttribute("sumOfWorkload",zlgcService.calculateSumOfWorkLoad(users.getGh()));
         //获取年份
         model.addAttribute("year", GetYear.getYears());
         // 质量工程的所有信息

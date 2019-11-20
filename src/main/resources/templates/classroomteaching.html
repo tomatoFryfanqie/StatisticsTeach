@@ -177,8 +177,8 @@
                             <th colspan="2">操作</th>
                         </tr>
                     </thead>
-                    <tbody class="tbody" id="tbody"th:each="bks : ${bksktjx}">
-                                <tr>
+                    <tbody class="tbody" id="tbody">
+                                <tr th:each="bks : ${bksktjx}">
                                 <td th:text="${bks.xq}"></td>
                                 <td th:text="${bks.kcmc}"></td>
                                 <td th:text="${bks.kclx.ktlxmc}"></td>

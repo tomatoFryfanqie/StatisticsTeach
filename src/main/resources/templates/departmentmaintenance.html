@@ -27,50 +27,15 @@
       </p>
     <![endif]-->
     <!-- 头部 -->
-    <div class="toptitle">
-        <span id="title">湖北师范大学教学工作量统计系统</span>
-        <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
-    </div>
-    <!-- 修改密码 -->
-    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                        修改密码
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div>
-                            原密码：<input type="text" class="form-control-1 class-name" placeholder="" id="b" />
-                        </div>
-                        <div>
-                            新密码：<input type="text" class="form-control-1 class-name" placeholder="" />
-                        </div>
-                        <div>
-                            请确认密码：<input type="text" class="form-control-1 class-number" placeholder="" />
-                        </div>
-                        <div class="btn-add">
-                            <button type="button" id="add">修改</button>
-                            <button type="button" id="cancel" data-dismiss="modal">取消</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>    <!-- 左边导航栏 -->
+    <script src="js/titleandnav.js"></script>
+    <!-- 左边导航栏 -->
     <div class="main">
         <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="maintenance active">
-                    <a href="#">院系审核人维护</a>
+                    <a href="#">本院用户维护</a>
                 </div>
-                <div class="collegeworkload"><a href="officecollege.html">审核各学院工作量</a></div>
+                <div class="collegeworkload"><a href="officecollege.html">审核本院工作量</a></div>
                 <div class="export"><a href="#">导出工作量统计表</a></div>
             </div>
         </div>
@@ -96,13 +61,6 @@
                     <!-- 添加维护用户 -->
                     <div class="modal-body">
                         <form action="">
-                            <div>
-                                院系：<select name="competitionform" class="form-control-1">
-                                    <option value="lecture">讲课</option>
-                                    <option value="Courseware">课件</option>
-                                    <option value="microlesson">微课</option>
-                                </select>
-                            </div>
                             <div>
                                 工号：<input type="text" class="form-control-1 class-name" placeholder="" />
                             </div>
@@ -133,7 +91,6 @@
                 <table class="table table-bordered edtitable">
                     <thead>
                         <tr>
-                            <th>院系</th>
                             <th>工号</th>
                             <th>姓名</th>
                             <th>类型</th>
@@ -143,7 +100,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Month</td>
                             <td class="notedit">
                                 kkk
                             </td>
