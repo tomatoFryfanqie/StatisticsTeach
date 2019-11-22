@@ -1,8 +1,16 @@
 package org.jplus.service;
 
 import org.jplus.mapper.CheckMapper;
+import org.jplus.pojo.QTJXGZ;
+import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.check.BkssjjxInfo;
+import org.jplus.pojo.check.YjssjjxInfo;
+import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
+import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @program: StatisticsTeach
@@ -17,5 +25,40 @@ public class CheckServiceImpl implements CheckService{
     @Override
     public String getYxmc(int yxbm) {
         return checkMapper.getLxmc(yxbm);
+    }
+
+    @Override
+    public BkssjjxInfo getBKSSJJXInfo(String gh) {
+        System.out.println("获取BKSSJJXInfo");
+        BkssjjxInfo bkssjjxInfo = checkMapper.getBKSSJJXInfo(gh);
+        System.out.println(bkssjjxInfo.toString());
+      //  System.out.println("list：");
+       // //bkssjjxInfo.getList().forEach(System.out::println);
+        return checkMapper.getBKSSJJXInfo(gh);
+    }
+
+    @Override
+    public YJSQTJX getYJSQTJXInfo(String gh) {
+        return checkMapper.getYJSQTJXInfo(gh);
+    }
+
+    @Override
+    public ZDXSLW getZDXSLWInfo(String gh) {
+        return checkMapper.getZDXSLWInfo(gh);
+    }
+
+    @Override
+    public QTJXGZ getQTJXGZInfo(String gh) {
+        return checkMapper.getQTJXGZInfo(gh);
+    }
+
+    @Override
+    public ZDSSLW getZDSSLWInfo(String gh) {
+        return checkMapper.getZDSSLWInfo(gh);
+    }
+
+    @Override
+    public YjssjjxInfo getYJSSJJXInfo(String gh) {
+        return checkMapper.getYJSSJJXInfo(gh);
     }
 }
