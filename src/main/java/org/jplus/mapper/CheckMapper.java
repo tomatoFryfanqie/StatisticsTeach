@@ -46,6 +46,16 @@ public interface CheckMapper {
     // <!-- 根据工号，取出教学实践信息 研究生 YJSSJJX-->
     public YjssjjxInfo getYJSSJJXInfo(String gh);
 
+    // <!--教师竞赛工作量-->
+    public Float getJsjsGzl(String gh);
 
+    // <!--本科 学生竞赛工作量-->
+    public Float getZdxsjsGzl(String gh);
+
+
+    // <!--研究生 学生竞赛工作量-->
+    public Float getYjsZdxsjsGzl(String gh);
+
+    //
 
 }

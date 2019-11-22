@@ -1,29 +1,11 @@
-package org.jplus.pojo;
+package org.jplus.pojo.queryVo;
 
 /**
  * @author wb
- * @date 2019/10/31 - 13:44
+ * @date 2019/11/19 - 19:37
  */
-public class ZDXSJS {
+public class ZdxsjsVo {
     private Integer xsjsid;
-    private String gh;
-    private Integer nd;
-    private String jsmc;
-    private Integer jslbbm;
-    // 竞赛级别
-    private Integer jsjbbm;
-    private Integer zdxsrs;
-    private Integer jsxscc;
-
-    public Integer getJsxscc() {
-        return jsxscc;
-    }
-
-    public void setJsxscc(Integer jsxscc) {
-        this.jsxscc = jsxscc;
-    }
-
-    private Float gzl;
 
     public Integer getXsjsid() {
         return xsjsid;
@@ -33,21 +15,32 @@ public class ZDXSJS {
         this.xsjsid = xsjsid;
     }
 
-    public String getGh() {
-        return gh;
+    private String jsmc;
+    private Integer jslbbm;
+    private String jslbmc;
+
+    public String getJslbmc() {
+        return jslbmc;
     }
 
-    public void setGh(String gh) {
-        this.gh = gh;
+    public void setJslbmc(String jslbmc) {
+        this.jslbmc = jslbmc;
     }
 
-    public Integer getNd() {
-        return nd;
+    private Integer jsjbbm;
+    // 竞赛级别名称
+    private String jsjbmc;
+
+    public String getJsjbmc() {
+        return jsjbmc;
     }
 
-    public void setNd(Integer nd) {
-        this.nd = nd;
+    public void setJsjbmc(String jsjbmc) {
+        this.jsjbmc = jsjbmc;
     }
+
+    private Integer zdxsrs;
+    private Float gzl;
 
     public String getJsmc() {
         return jsmc;

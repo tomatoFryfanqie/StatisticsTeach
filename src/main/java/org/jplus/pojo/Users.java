@@ -20,13 +20,13 @@ public class Users {
     //工号
     private String gh;
     //院系编码
-    private int yxbm;
+    private Integer yxbm;
     //用户名
     private String uname;
     //密码
     private String upassword;
     //角色
-    private int actor;
+    private Integer actor;
 
     @Override
     public String toString() {

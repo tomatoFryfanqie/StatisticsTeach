@@ -33,4 +33,14 @@ public interface CheckService {
     public ZDSSLW getZDSSLWInfo(String gh);
 
     public YjssjjxInfo getYJSSJJXInfo(String gh);
+
+    // <!--本科学生竞赛工作量-->
+    public Float getZdxsjsGzl(String gh);
+
+    // <!--研究生 学生竞赛工作量-->
+    public Float getYjsZdxsjsGzl(String gh);
+
+    // <!--教师竞赛工作量-->
+    public Float getJsjsGzl(String gh);
+
 }

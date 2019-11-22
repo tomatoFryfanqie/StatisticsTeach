@@ -183,4 +183,25 @@
         where gh=#{gh}
     </select>
 
+<!--本科 教师竞赛工作量-->
+    <select id="getJsjsGzl" resultType="java.lang.Float">
+        SELECT
+        SUM(gzl)
+        FROM `jsjs`
+        where  gh=#{gh}
+    </select>
+    <!--本科 学生竞赛工作量-->
+    <select id="getZdxsjsGzl" resultType="java.lang.Float">
+        SELECT
+        SUM(gzl)
+        FROM `zdxsjs`
+        where gh=#{gh} and jsxscc=1
+    </select>
+    <!--研究生 学生竞赛工作量-->
+    <select id="getYjsZdxsjsGzl" resultType="java.lang.Float">
+        SELECT
+        SUM(gzl)
+        FROM `zdxsjs`
+        where gh=#{gh} and jsxscc=2
+    </select>
 </mapper>

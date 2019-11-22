@@ -3,6 +3,7 @@ package org.jplus.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.queryVo.ZdxsjsVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,19 +17,23 @@ public interface ZDXSJSMapper {
 
     void addZDXSJS(ZDXSJS zDXSJS);
 
-    List<ZDXSJS> getStudentCompetitionList(@Param("gh") String gh, @Param("nd") int nd);
+    //List<ZDXSJS> getStudentCompetitionList(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    float getGzl(@Param("competition") int competition, @Param("contestLevel") int contestLevel);
+    Float getGzl(@Param("competition") Integer competition, @Param("contestLevel") Integer contestLevel);
 
-    float getAllGzl(@Param("gh") String gh, @Param("nd") int nd);
+    Float getAllGzl(@Param("gh") String gh, @Param("nd") Integer nd);
 
     void remove(@Param("id") Integer id);
 
-    ZDXSLW findZDXSLWByGhAndYear(@Param("gh") String gh, @Param("nd") int nd);
+    ZDXSLW findZDXSLWByGhAndYear(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    List<ZDXSJS> getStudentCompetitionList2(@Param("gh") String gh, @Param("nd") int nd);
+    //List<ZDXSJS> getStudentCompetitionList2(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    float getAllGzl2(@Param("gh") String gh, @Param("nd") int nd);
+    Float getAllGzl2(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    int isOnlyForOneYear(@Param("gh") String gh, @Param("nd") int nd);
+    Integer isOnlyForOneYear(@Param("gh") String gh, @Param("nd") Integer nd);
+
+    List<ZdxsjsVo> getStudentCompetitionList(@Param("gh") String gh, @Param("nd") Integer nd);
+
+    List<ZdxsjsVo> getStudentCompetitionList2(@Param("gh") String gh, @Param("nd") Integer nd);
 }

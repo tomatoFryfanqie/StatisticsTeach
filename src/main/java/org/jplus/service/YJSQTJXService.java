@@ -7,11 +7,11 @@ import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX; /**
 public interface YJSQTJXService {
     void addYJSQTJX(YJSQTJX yJSQTJX);
 
-    float getAllQtGzl(String gh, int year);
+    Float getAllQtGzl(String gh, Integer year);
 
-    YJSQTJX findYJSQTJXByGhAndYear(String gh, int year);
+    YJSQTJX findYJSQTJXByGhAndYear(String gh, Integer year);
 
-    int isOnlyForOneYear(String gh, int currentYear);
+    Integer isOnlyForOneYear(String gh, Integer currentYear);
 
     void updateYJSQTJX(YJSQTJX yJSQTJX);
 }

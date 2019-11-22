@@ -3,6 +3,7 @@ package org.jplus.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.jplus.pojo.JSJS;
 import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.queryVo.JsjsVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,19 +14,23 @@ import java.util.List;
  */
 @Repository
 public interface JSJSMapper {
-    int getGzl(@Param("teacherCompetitioncategory") int teacherCompetitioncategory);
+    Integer getGzl(@Param("teacherCompetitioncategory") Integer teacherCompetitioncategory);
 
     void addJSJS(JSJS jSJS);
 
-    List<JSJS> getTeacherCompetitionList(@Param("gh") String gh, @Param("nd") int nd);
+    /*List<JSJS> getTeacherCompetitionList(@Param("gh") String gh, @Param("nd") Integer nd);*/
 
     void addZDXSLW(ZDXSLW zDXSLW);
 
-    float getAllGzl(@Param("gh") String gh, @Param("nd") int nd);
+    Float getAllGzl(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    float getAllLwGzl(@Param("gh") String gh, @Param("nd") int nd);
+    Float getAllLwGzl(@Param("gh") String gh, @Param("nd") Integer nd);
 
     void remove(@Param("id") Integer id);
 
     void updateZDXSLW(ZDXSLW zDXSLW);
+
+    List<JsjsVo> getTeacherCompetitionList(@Param("gh") String gh, @Param("nd") Integer nd);
+
+    String getcompetitionLevelByBM(@Param("jsdjbm") Integer jsdjbm);
 }

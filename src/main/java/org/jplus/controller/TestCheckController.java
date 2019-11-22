@@ -1,10 +1,11 @@
 package org.jplus.controller;
 
 import org.jplus.interceptor.NeedLogin;
-import org.jplus.pojo.JSJS;
 import org.jplus.pojo.Users;
-import org.jplus.pojo.ZDXSJS;
 import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
+import org.jplus.pojo.queryVo.JsjsVo;
+import org.jplus.pojo.queryVo.ZdxsjsVo;
 import org.jplus.pojo.yjssjjx.Yjssjjx;
 import org.jplus.service.*;
 import org.jplus.utils.DateUtils;
@@ -30,6 +31,10 @@ import static org.jplus.utils.GetSjjxWork.getSjjxWork;
 
 @Controller
 public class TestCheckController {
+    //wb 的
+    @Autowired
+    private ZDSSLWService zDSSLWService;
+
     @Autowired
     CheckService checkService;
 
@@ -118,25 +123,35 @@ public class TestCheckController {
         model.addAttribute("bksJxggGzl",jxcgService.getJxggGzlSun(users.getGh()));
 
         /* 5 教学知识竞赛              know*/
-        List<JSJS> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
-        List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        // TODO 后续自己重写，都不用王博的  学生竞赛和教师竞赛
+        List<JsjsVo> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
+        List<ZdxsjsVo> list1 = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
         ZDXSLW zDXSLW = zDXSJSService.findZDXSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
-        model.addAttribute("allStudentCompetitionList", list);
+        model.addAttribute("allStudentCompetitionList", list1);
         model.addAttribute("allTeacherCompetitionList", result);
         model.addAttribute("zDXSLW", zDXSLW);
-        // 指导学生竞赛工作量
+        // 本科 指导学生竞赛工作量
+        model.addAttribute("ZdxsjsGzl",checkService.getZdxsjsGzl(users.getGh()));
+        // 研究生 指导学生竞赛工作量
+        model.addAttribute("YjsZdxsjsGzl",checkService.getYjsZdxsjsGzl(users.getGh()));
 
         // 教师教学能力竞赛获奖工作量
-        
+        model.addAttribute("JsjsGzl",checkService.getJsjsGzl(users.getGh()));
         // 教师指导学生学士学位论文获奖工作量
        model.addAttribute("ZDSSLWInfo",checkService.getZDSSLWInfo(users.getGh()));
-        /* 6 其它教育教学活动       TODO  other*/
-        // 教学督导工作量
+        /* 6 其它教育教学活动         other*/
+        // 教学督导工作量 （可从数据库取）
         // 学生学业指导帮扶工作量
         // 指导青年教师工作量
         // 承担或参与教学文件制定、修订工作量
         model.addAttribute("QTJXGZInfo",checkService.getQTJXGZInfo(users.getGh()));
-
+        // TODO
+//        //学生学业指导帮扶工作量
+//        model.addAttribute("");
+//        // 指导青年教师工作量
+//        model.addAttribute("");
+//        // 承担或参与教学文件制定、修订工作量
+//        model.addAttribute("");
 
      //研究生教学
         // 1 课堂教学工作量 graduateclass
@@ -148,8 +163,16 @@ public class TestCheckController {
         model.addAttribute("ktjxgzlSum", yjsktjxService.getYjsjxgzlSum(users.getGh()));
 
         // 2 实践教学工作量 graduatepractice
-        /*获取实践类型*/
+        /*获取实践信息*/
         model.addAttribute("YJSSJJXInfo",checkService.getYJSSJJXInfo(users.getGh()));
+        // 王行的
+        Yjssjjx jbxx = yjssjjxService.getYjssjjxJbxx(users.getGh());
+        if(jbxx!=null) {
+            /*获取指导学生次数工作量（显示）*/
+            model.addAttribute("zdxshdcsGzl", GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
+            /*获取日常工作量*/
+            model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
+        }
         // 3 教学基本建设与学科建设工作 graduateconstruction
         if (jbjsyxkjsService.getWorkLoad(users.getGh()) == null) {
             model.addAttribute("sumOfWorkload", 0);
@@ -168,7 +191,34 @@ public class TestCheckController {
         model.addAttribute("jyxmGzl",yjsjyxmService.getYjsjyxmGzlSum(users.getGh()));
         model.addAttribute("hxxmGzl",yjsjyxmService.getYjshxxmGzlSum(users.getGh()));
         /* 5 指导研究生竞赛获奖 masterKnow */
-        // 指导研究生竞赛
+        //****************************************************************************丑死了
+        ZDSSLW zDSSLW = zDSSLWService.findZDSSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
+        List<ZdxsjsVo> list = zDXSJSService.getStudentCompetitionList2(users.getGh(), DateUtils.getCurrentYear());
+        for(int i = 0; i < list.size(); i++) {
+            int jbbm = list.get(i).getJsjbbm();
+            if(jbbm == 1) {
+                list.get(i).setJsjbmc("省级");
+            }else if(jbbm == 2) {
+                list.get(i).setJsjbmc("校级重点");
+            }else if(jbbm == 3){
+                list.get(i).setJsjbmc("一般项目");
+            }
+            int lbbm = list.get(i).getJslbbm();
+            if(lbbm == 1) {
+                list.get(i).setJslbmc("A类师范生教学技能竞赛");
+            }else if(lbbm == 2) {
+                list.get(i).setJslbmc("B类师范生教学技能竞赛");
+            }else if(lbbm == 3) {
+                list.get(i).setJslbmc("A类其他竞赛");
+            }else if(lbbm == 4) {
+                list.get(i).setJslbmc("B类其他竞赛");
+            }
+        }
+        model.addAttribute("allStudentCompetitionList2", list);
+        model.addAttribute("zDSSLW", zDSSLW);
+        //****************************************************************************
+        //TODO 后续自己写指导研究生竞赛
+       // model.addAttribute("");
         // 教师指导学生学士学位论文获奖
         model.addAttribute("ZDXSLWInfo",checkService.getZDXSLWInfo(users.getGh()));
         // 6 其它教学工作量      masterOther

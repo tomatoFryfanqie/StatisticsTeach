@@ -61,4 +61,19 @@ public class CheckServiceImpl implements CheckService{
     public YjssjjxInfo getYJSSJJXInfo(String gh) {
         return checkMapper.getYJSSJJXInfo(gh);
     }
+
+    @Override
+    public Float getZdxsjsGzl(String gh) {
+        return checkMapper.getZdxsjsGzl(gh);
+    }
+
+    @Override
+    public Float getYjsZdxsjsGzl(String gh) {
+        return checkMapper.getYjsZdxsjsGzl(gh);
+    }
+
+    @Override
+    public Float getJsjsGzl(String gh) {
+        return checkMapper.getJsjsGzl(gh);
+    }
 }

@@ -27,4 +27,9 @@ public class TjztServiceImpl implements TjztService {
     public void addTjzt(String gh, Integer tjzt) {
         tjztMapper.addTjzt(gh,tjzt);
     }
+
+    @Override
+    public void updateTjzt(String gh) {
+        tjztMapper.updateTjzt(gh);
+    }
 }

@@ -32,14 +32,14 @@ public class graduateOtherController {
     @RequestMapping("/getNumber")
     @ResponseBody
     @NeedLogin
-    public int getYear() {
+    public Integer getYear() {
         return DateUtils.getCurrentYear();
     }
 
     @RequestMapping("/addMasterOtherTeachWork")
     @ResponseBody
     @NeedLogin
-    public void addMasterOtherTeachWorkload(Users users, float workloadOfTeachingSupervision, int proposition, int examining,
+    public void addMasterOtherTeachWorkload(Users users, Float workloadOfTeachingSupervision, int proposition, int examining,
                                       int check, int examiner, int invigilator, int checking) {
         YJSQTJX yJSQTJX = new YJSQTJX();
         String gh = users.getGh();
@@ -53,7 +53,7 @@ public class graduateOtherController {
         yJSQTJX.setFsjkcs(invigilator);
         yJSQTJX.setYjfs(checking);
         double gzl = workloadOfTeachingSupervision + proposition*8 + examining*4 + check*4 + examiner*4 + invigilator*3 + checking*0.3;
-        yJSQTJX.setGzl((float)gzl);
+        yJSQTJX.setGzl((float) gzl);
         // 无则添加，有则更新
         int count = yJSQTJXService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
         System.out.println(count);
@@ -69,7 +69,7 @@ public class graduateOtherController {
     @RequestMapping("/getMasterAllQtGzl")
     @ResponseBody
     @NeedLogin
-    public float getAllQtGzl(Users users) {
+    public Float getAllQtGzl(Users users) {
         return yJSQTJXService.getAllQtGzl(users.getGh(), DateUtils.getCurrentYear());
     }
 }

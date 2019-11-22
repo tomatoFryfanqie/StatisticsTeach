@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.CheckgzlMapper">
+    <select id="getYxByGh" resultType="String">
+        SELECT yxmc FROM yxbm WHERE yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
+    </select>
+
+    <select id="getAllJbxx" resultType="map">
+        SELECT gh,zwbm,edgzl FROM jbxx WHERE yxbm = (SELECT yxbm from users WHERE gh = #{gh})
+    </select>
+
+    <select id="getAllUname" resultType="String">
+        SELECT uname FROM users
+        <where>
+                <if test="list.size()>0 and list != null ">
+                  gh =
+                    <foreach item="gh" collection="list" open="(" separator="," close=")">
+                          #{gh}
+                    </foreach>
+                </if>
+        </where>
+    </select>
+
+    <select id="getAllZw" resultType="String">
+        SELECT zwmc FROM zwbm
+        <where>
+            <if test="list.size()>0 and list != null ">
+                zwbm =
+                <foreach item="zwbm" collection="list" open="(" separator="," close=")">
+                    #{zwbm}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getBksSumGzl" resultType="float">
+        SELECT SUM(edgzl + jxgzl + bkssjjx.gzl + zlgc.gzl + jxcg.gzl + hxxm.gzl
+          + zxxm.gzl + jc.gzl + jxgg.gzl + zdxsjs.gzl + jsjs.gzl + zdxslw.gzl +
+          ddgzl + qtgzl) AS "sumgzl"
+        FROM
+          jbxx,bksktjx,bkssjjx,zlgc,jxcg,hxxm,zxxm,jc,jxgg,zdxsjs,jsjs,zdxslw,qtjxgz
+        <where>
+            <if test="list.size()>0 and list != null ">
+              jbxx.gh = bksktjx.gh = bkssjjx .gh = zlgc.gh = jxcg.gh =
+              hxxm .gh = zxxm.gh = jc.gh = jxgg.gh = zdxsjs.gh = jsjs.gh = zdxslw.gh =
+              qtjxgz.gh =
+                <foreach item="gh" collection="list" open="(" separator="," close=")">
+                    #{gh}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getYjsSumGzl" resultType="float">
+       SELECT SUM(yjsktjx.gzl + jbjsyxkjs.gzl + rcgzl + yjssjjx.gzl + yjsjyxm.gzl +
+            yjshxxm.gzl + zdsslw.gzl + yjsqtjx.gzl) AS "sumgzl"
+        FROM
+            yjsktjx,jbjsyxkjs,yjssjjx,yjsjyxm,yjshxxm,zdsslw,yjsqtjx
+        <where>
+          <if test="list.size()>0 and list != null ">
+            yjsktjx.gh = jbjsyxkjs.gh = yjssjjx.gh = yjsjyxm.gh = yjshxxm.gh =
+            zdsslw.gh = yjsqtjx.gh =
+              <foreach item="gh" collection="list" open="(" separator="," close=")">
+                   #{gh}
+              </foreach>
+          </if>
+        </where>
+    </select>
+
+    <select id="getAllTjzt" resultType="java.lang.Integer">
+        SELECT tjzt from tjzt
+        <where>
+            <if test="list.size()>0 and list != null ">
+                gh =
+                <foreach item="gh" collection="list" open="(" separator="," close=")">
+                    #{gh}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>

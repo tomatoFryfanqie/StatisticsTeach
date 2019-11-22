@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html class="no-js" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 
 <head>
@@ -45,13 +45,7 @@
         <!-- 标题 -->
         <div class="litter-title">教学工作量审核</div>
         <!-- 院系按钮 -->
-        <div class="collage-warp">
-            院系：<select name="competitionform" class="form-control-1">
-                <option value="lecture">讲课</option>
-                <option value="Courseware">课件</option>
-                <option value="microlesson">微课</option>
-            </select>
-        </div>
+        <div class="collage-warp" th:text="'院系：'+${yxmc}"></div>
         <div class="msg-warp">
             <!-- 表格数据 -->
             <div class="table-wrap">
@@ -70,15 +64,15 @@
                         <td>研究生教学</td>
                         <td>总工作量</td>
                     </tr>
-                    <tr>
-                        <td>Month</td>
-                        <td>ppp</td>
-                        <td>Savings</td>
-                        <td>560001</td>
-                        <td>ppp</td>
-                        <td>Savings</td>
-                        <td>560001</td>
-                        <td>Month</td>
+                    <tr th:each="checkgzl:${Checkgzls}">
+                        <td th:text="${checkgzl.gh}"></td>
+                        <td th:text="${checkgzl.uname}"></td>
+                        <td th:text="${checkgzl.zw}"></td>
+                        <td th:text="${checkgzl.edgzl}"></td>
+                        <td th:text="${checkgzl.bksgzl}"></td>
+                        <td th:text="${checkgzl.yjsgzl}"></td>
+                        <td th:text="${checkgzl.allgzl}"></td>
+                        <td th:text="${checkgzl.shzt}"></td>
                         <!-- 查看详情 -->
                         <td class="del-col notedit">
                             <a href="officedetails.html" class="detBtn">查看详情</a>
