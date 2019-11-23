@@ -33,7 +33,7 @@ public class GetWorkCount {
     }
 
     //横向工作量获取
-    public static Float GetHxWorkCount(int xmzrs, int xmpm, int dzjf) {
+    public static Float GetHxWorkCount(int xmzrs, int xmpm, float dzjf) {
 
         return GetWorkCount(xmzrs,xmpm,(int)Math.ceil(0.001 * dzjf));
     }

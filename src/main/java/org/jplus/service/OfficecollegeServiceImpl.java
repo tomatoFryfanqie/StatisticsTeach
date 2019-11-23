@@ -1,13 +1,14 @@
 package org.jplus.service;
 
 import org.jplus.mapper.CheckgzlMapper;
+import org.jplus.pojo.Users;
+import org.jplus.pojo.basisInfo.Jbxx;
 import org.jplus.pojo.checkgzl.Checkgzl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @description:审核本院工作量1服务层接口实现
@@ -25,43 +26,64 @@ public class OfficecollegeServiceImpl implements OfficecollegeService{
 
     public List<Checkgzl> getCheckgzlInf(String gh) {
         List<Checkgzl> checkgzlArrayList = new ArrayList<>();
-        //先查询到所有该院系的工号，职务编码和额定工作量
-        List<Map<String,Object>> mapList = checkgzlMapper.getAllJbxx(gh);
 
-        //定义上面三列的List集合
-        List<String> ghList = new ArrayList<>();
-        List<Integer> zwbmList = new ArrayList<>();
-        List<Float> edgzlList = new ArrayList<>();
+        List<Users> userList = checkgzlMapper.getAllGhAndUname(gh);
+        Jbxx allJbxx = checkgzlMapper.getAllJbxx("");
 
-        //对三列赋值
-        for (Map<String,Object> map:mapList) {
-            ghList.add((String)map.get("gh"));
-            zwbmList.add((Integer) map.get("zwbm"));
-            edgzlList.add((Float)map.get("edgzl"));
-        }
-        Checkgzl checkgzl = new Checkgzl();
-        for (int i = 0;i < ghList.size();i++) {
-            //工号放入对象集合
-                checkgzl.setGh(ghList.get(i));
 
-            //姓名放入对象集合
-                checkgzl.setUname(checkgzlMapper.getAllUname(ghList).get(i));
+        Checkgzl checkgzl = null;
+        for (Users user:userList) {
+            checkgzl = new Checkgzl();
+            //设置工号
+           checkgzl.setGh(user.getGh());
+           //设置姓名
+           checkgzl.setUname(user.getUname());
+           //设置职务
+            if (checkgzlMapper.getAllJbxx(user.getGh()) != null && checkgzlMapper.getAllJbxx(user.getGh()).getZwbm() != null) {
+                checkgzl.setZw(checkgzlMapper.getZwByZwbm(checkgzlMapper.getAllJbxx(user.getGh()).getZwbm().getZwbm()));
+            }else{
+                checkgzl.setZw("");
+            }
 
-            //职务放进对象集合
-                checkgzl.setZw(checkgzlMapper.getAllZw(zwbmList).get(i));
-            //额定工作量放入集合
-                checkgzl.setEdgzl(edgzlList.get(i));
-            //本科生工作量总和放入集合
-                checkgzl.setBksgzl(checkgzlMapper.getBksSumGzl(ghList).get(i));
-            //研究生工作量总和放入集合
-                checkgzl.setYjsgzl(checkgzlMapper.getYjsSumGzl(ghList).get(i));
-            //本科生和研究生总和放入集合
-                checkgzl.setAllgzl(checkgzlMapper.getBksSumGzl(ghList).get(i) + checkgzlMapper.getYjsSumGzl(ghList).get(i)                     );
-            //提交状态放入对象集合
-                checkgzl.setShzt(checkgzlMapper.getAllTjzt(ghList).get(i));
+           //设置额定工作量
+            if (checkgzlMapper.getAllJbxx(user.getGh()) != null && checkgzlMapper.getAllJbxx(user.getGh()).getEdgzl() != null)
+           checkgzl.setEdgzl(checkgzlMapper.getAllJbxx(user.getGh()).getEdgzl());
+            else{
+                checkgzl.setEdgzl(0);
+            }
 
+           //设置本科生教学
+            if (checkgzlMapper.getBksSumGzl(user.getGh()) != null)
+           checkgzl.setBksgzl(checkgzlMapper.getBksSumGzl(user.getGh()));
+            else{
+                checkgzl.setBksgzl(0);
+            }
+
+           //设置研究生教学
+            if (checkgzlMapper.getYjsSumGzl(user.getGh()) != null)
+           checkgzl.setYjsgzl(checkgzlMapper.getYjsSumGzl(user.getGh()));
+            else{
+                checkgzl.setYjsgzl(0);
+            }
+
+           //设置总工作量
+            if (checkgzlMapper.getBksSumGzl(user.getGh()) != null && checkgzlMapper.getYjsSumGzl(user.getGh()) != null)
+                checkgzl.setAllgzl(checkgzlMapper.getBksSumGzl(user.getGh()) + checkgzlMapper.getYjsSumGzl(user.getGh()));
+            else{
+                checkgzl.setAllgzl(0);
+            }
+           //设置审核状态
+            if (checkgzlMapper.getTjztAndShzt(user.getGh()) != null && checkgzlMapper.getTjztAndShzt(user.getGh()).getTjzt() == 1) {
+                checkgzl.setShzt(checkgzlMapper.getTjztAndShzt(user.getGh()).getShzt());
+            }else {
+                checkgzl.setShzt(4);
+            }
+            //放入checkgzl对象
             checkgzlArrayList.add(checkgzl);
         }
+//        for ( Checkgzl checkgzl1 : checkgzlArrayList) {
+//            System.out.println(checkgzl1);
+//        }
         return checkgzlArrayList;
     }
 }

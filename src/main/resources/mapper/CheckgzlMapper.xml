@@ -5,32 +5,16 @@
         SELECT yxmc FROM yxbm WHERE yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
     </select>
 
-    <select id="getAllJbxx" resultType="map">
-        SELECT gh,zwbm,edgzl FROM jbxx WHERE yxbm = (SELECT yxbm from users WHERE gh = #{gh})
+    <select id="getAllGhAndUname" resultType="org.jplus.pojo.Users">
+        SELECT gh,uname FROM users WHERE yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
+     </select>
+
+    <select id="getAllJbxx" resultType="org.jplus.pojo.basisInfo.Jbxx">
+        SELECT zwbm,edgzl FROM jbxx WHERE gh = #{gh}
     </select>
 
-    <select id="getAllUname" resultType="String">
-        SELECT uname FROM users
-        <where>
-                <if test="list.size()>0 and list != null ">
-                  gh =
-                    <foreach item="gh" collection="list" open="(" separator="," close=")">
-                          #{gh}
-                    </foreach>
-                </if>
-        </where>
-    </select>
-
-    <select id="getAllZw" resultType="String">
-        SELECT zwmc FROM zwbm
-        <where>
-            <if test="list.size()>0 and list != null ">
-                zwbm =
-                <foreach item="zwbm" collection="list" open="(" separator="," close=")">
-                    #{zwbm}
-                </foreach>
-            </if>
-        </where>
+    <select id="getZwByZwbm" resultType="String">
+        SELECT zwmc FROM zwbm WHERE zwbm = #{zwbm}
     </select>
 
     <select id="getBksSumGzl" resultType="float">
@@ -39,16 +23,10 @@
           ddgzl + qtgzl) AS "sumgzl"
         FROM
           jbxx,bksktjx,bkssjjx,zlgc,jxcg,hxxm,zxxm,jc,jxgg,zdxsjs,jsjs,zdxslw,qtjxgz
-        <where>
-            <if test="list.size()>0 and list != null ">
-              jbxx.gh = bksktjx.gh = bkssjjx .gh = zlgc.gh = jxcg.gh =
-              hxxm .gh = zxxm.gh = jc.gh = jxgg.gh = zdxsjs.gh = jsjs.gh = zdxslw.gh =
-              qtjxgz.gh =
-                <foreach item="gh" collection="list" open="(" separator="," close=")">
-                    #{gh}
-                </foreach>
-            </if>
-        </where>
+        WHERE
+          jbxx.gh = bksktjx.gh = bkssjjx .gh = zlgc.gh = jxcg.gh =
+          hxxm .gh = zxxm.gh = jc.gh = jxgg.gh = zdxsjs.gh = jsjs.gh = zdxslw.gh =
+          qtjxgz.gh = #{gh}
     </select>
 
     <select id="getYjsSumGzl" resultType="float">
@@ -56,27 +34,14 @@
             yjshxxm.gzl + zdsslw.gzl + yjsqtjx.gzl) AS "sumgzl"
         FROM
             yjsktjx,jbjsyxkjs,yjssjjx,yjsjyxm,yjshxxm,zdsslw,yjsqtjx
-        <where>
-          <if test="list.size()>0 and list != null ">
+       WHERE
             yjsktjx.gh = jbjsyxkjs.gh = yjssjjx.gh = yjsjyxm.gh = yjshxxm.gh =
-            zdsslw.gh = yjsqtjx.gh =
-              <foreach item="gh" collection="list" open="(" separator="," close=")">
-                   #{gh}
-              </foreach>
-          </if>
-        </where>
+            zdsslw.gh = yjsqtjx.gh = #{gh}
+
     </select>
 
-    <select id="getAllTjzt" resultType="java.lang.Integer">
-        SELECT tjzt from tjzt
-        <where>
-            <if test="list.size()>0 and list != null ">
-                gh =
-                <foreach item="gh" collection="list" open="(" separator="," close=")">
-                    #{gh}
-                </foreach>
-            </if>
-        </where>
+    <select id="getTjztAndShzt" resultType="org.jplus.pojo.Tjzt.Tjzt">
+        SELECT tjzt,shzt from tjzt  WHERE gh = #{gh}
     </select>
 
 </mapper>
