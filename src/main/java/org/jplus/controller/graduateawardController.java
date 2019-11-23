@@ -43,11 +43,11 @@ public class graduateawardController {
         for(int i = 0; i < list.size(); i++) {
             int jbbm = list.get(i).getJsjbbm();
             if(jbbm == 1) {
-                list.get(i).setJsjbmc("省级");
+                list.get(i).setJsjbmc("国家级");
             }else if(jbbm == 2) {
-                list.get(i).setJsjbmc("校级重点");
+                list.get(i).setJsjbmc("省级");
             }else if(jbbm == 3){
-                list.get(i).setJsjbmc("一般项目");
+                list.get(i).setJsjbmc("校级");
             }
             int lbbm = list.get(i).getJslbbm();
             if(lbbm == 1) {
@@ -90,7 +90,7 @@ public class graduateawardController {
     @NeedLogin
     @RequestMapping("/saveMasterCount")
     @ResponseBody
-    public void save(int slwNum, int xlwNum, Users users) {
+    public void save(Integer slwNum, Integer xlwNum, Users users) {
         ZDSSLW zDSSLW = new ZDSSLW();
         String gh = users.getGh();
         zDSSLW.setGh(gh);
@@ -134,8 +134,12 @@ public class graduateawardController {
         Float lwgzl = zDSSLWService.getAllMasterLwGzl(users.getGh(), DateUtils.getCurrentYear());
         if(lwgzl != null && gul2 != null) {
             return gul2+lwgzl;
+        }else if(lwgzl != null){
+            return lwgzl;
+        }else if(gul2 != null) {
+            return gul2;
         }else {
-            return 0.0f;
+            return 0f;
         }
     }
 

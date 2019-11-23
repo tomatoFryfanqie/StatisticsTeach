@@ -37,8 +37,8 @@ public class UndergraduateOtherActivities {
     }
 
     @RequestMapping("/addOtherTeachWork")
-    @ResponseBody
     @NeedLogin
+    @ResponseBody
     public void addOtherTeachWorkload(Users users, Float workloadOfTeachingSupervision, Integer numberOfStudentsAssisted, Integer guideYoungTeachers,
                                       Integer reviseTalentTrainingPlan, Integer prepareCourseSyllabusCount, Integer compilingExperimentalSyllabusCount) {
         System.out.println(compilingExperimentalSyllabusCount);
@@ -69,14 +69,14 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/getTeachStudentCount")
     @ResponseBody
     @NeedLogin
-    public Integer getTeachStudentCount(int numberOfStudentsAssisted) {
+    public Integer getTeachStudentCount(Integer numberOfStudentsAssisted) {
         return numberOfStudentsAssisted * 10;
     }
 
     @RequestMapping("/getTeachYoungTeacherCount")
     @ResponseBody
     @NeedLogin
-    public Integer getTeachYoungTeacherCount(int guideYoungTeachers) {
+    public Integer getTeachYoungTeacherCount(Integer guideYoungTeachers) {
         return guideYoungTeachers * 10;
     }
 
@@ -84,7 +84,7 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/getUndertakeCount")
     @ResponseBody
     @NeedLogin
-    public Integer getUndertakeCount(int reviseTalentTrainingPlan, int prepareCourseSyllabusCount, int compilingExperimentalSyllabusCount) {
+    public Integer getUndertakeCount(Integer reviseTalentTrainingPlan, Integer prepareCourseSyllabusCount, Integer compilingExperimentalSyllabusCount) {
         System.out.println(prepareCourseSyllabusCount);
         return reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
     }

@@ -44,11 +44,11 @@ public class UndergraduateKnowledgeContestController {
         for(int i = 0; i < list.size(); i++) {
             int jbbm = list.get(i).getJsjbbm();
             if(jbbm == 1) {
-                list.get(i).setJsjbmc("省级");
+                list.get(i).setJsjbmc("国家级");
             }else if(jbbm == 2) {
-                list.get(i).setJsjbmc("校级重点");
+                list.get(i).setJsjbmc("省级");
             }else if(jbbm == 3){
-                list.get(i).setJsjbmc("一般项目");
+                list.get(i).setJsjbmc("校级");
             }
             int lbbm = list.get(i).getJslbbm();
             if(lbbm == 1) {
@@ -93,7 +93,7 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping("/addCompetition")
     @ResponseBody
-    public void addStudentContest(String contestName, int competition,  int contestLevel, int studentNum, Users users) {
+    public void addStudentContest(String contestName, Integer competition,  Integer contestLevel, Integer studentNum, Users users) {
         /**
          * 通过竞赛名称contestName、竞赛类别competitionform和指导学生人数studentNum来获取gzl
          * */
@@ -175,7 +175,6 @@ public class UndergraduateKnowledgeContestController {
             // 更新
             jSJSService.updateZDXSLW(zDXSLW);
         }
-        System.out.println("success");
     }
 
     /**
@@ -224,7 +223,6 @@ public class UndergraduateKnowledgeContestController {
     @ResponseBody
     public Float getAllGzl(Users users) {
         float result = 0;
-        System.out.println("hello world");
         if(zDXSJSService.getAllGzl(users.getGh(), DateUtils.getCurrentYear()) != null) {
             result += zDXSJSService.getAllGzl(users.getGh(), DateUtils.getCurrentYear());
         }
@@ -243,7 +241,6 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping(value = "/deleteUndergraduate")
     public String delete(@ModelAttribute(value = "id") Integer id, Users users) {
-        System.out.println(id);
         if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
             // 未提交，可以删除
             zDXSJSService.remove(id);
@@ -257,7 +254,6 @@ public class UndergraduateKnowledgeContestController {
     @NeedLogin
     @RequestMapping(value = "/deleteTeacherCompetition")
     public String deleteTeacherCompetition(@ModelAttribute(value = "id") Integer id, Users users) {
-        System.out.println(id);
         if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
             // 未提交，可以删除
             jSJSService.remove(id);
