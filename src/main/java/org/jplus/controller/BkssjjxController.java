@@ -43,6 +43,7 @@ public class BkssjjxController {
                 bkssjjxService.insertBkssjjx(bkssjjxVo);
             } else {
                 BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
+                bkssjjxVo.setNd(GetYear.getYears());
                 bkssjjxVo.setGzl(sjjxWork.getGzl());
                 bkssjjxService.updateBkssjjx(bkssjjxVo);
             }

@@ -24,7 +24,7 @@ public class Hxxm {
     private String xmmc;
 
 //到账经费
-    private Integer dzjf;
+    private Float dzjf;
 
 //项目排名
     private Integer xmpm;

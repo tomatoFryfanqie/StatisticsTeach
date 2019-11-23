@@ -106,3 +106,12 @@ ul li {
 .content {
   zoom: 1;
 }
+/* 警告 */
+.modal-body .warning {
+  color: red;
+  display: none;
+  margin-left: 70px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+}

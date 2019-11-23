@@ -35,7 +35,7 @@ public interface BkssjjxMapper {
     List<Zylxbm> selectZylxbm();
 
     @Update("update bkssjjx set nd=#{nd},sxlxbm1=#{sxlxbm1},sxts1=#{sxts1},sxlxbm2=#{sxlxbm2},sxts2=#{sxts2}," +
-            "sxlxbm3=#{sxlxbm3},sxts3=#{sxts3}, wgsjrs=#{wgsjrs},zylxbm=#{zylxbm},zdlwrs=#{zylxbm}, " +
+            "sxlxbm3=#{sxlxbm3},sxts3=#{sxts3}, wgsjrs=#{wgsjrs},zylxbm=#{zylxbm},zdlwrs=#{zdlwrs}, " +
             "glnr=#{glnr},glgzl=#{glgzl},gzl=#{gzl} where gh=#{gh}")
     void updateBksjjx(Bkssjjx bkssjjx);
 }

@@ -72,7 +72,13 @@
                         <td th:text="${checkgzl.bksgzl}"></td>
                         <td th:text="${checkgzl.yjsgzl}"></td>
                         <td th:text="${checkgzl.allgzl}"></td>
-                        <td th:text="${checkgzl.shzt}"></td>
+                        <div th:switch="${checkgzl.shzt}">
+                            <td th:case="0" th:text="未审核"></td>
+                            <td th:case="1" th:text="教研室已审核"></td>
+                            <td th:case="2" th:text="院系已审核"></td>
+                            <td th:case="3" th:text="教务处已审核"></td>
+                            <td th:case="4" th:text="未提交"></td>
+                        </div>
                         <!-- 查看详情 -->
                         <td class="del-col notedit">
                             <a href="officedetails.html" class="detBtn">查看详情</a>
