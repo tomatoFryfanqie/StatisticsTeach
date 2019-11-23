@@ -1,11 +1,10 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,6 +15,7 @@
     <script src="js/link.js"></script>
     <link rel="stylesheet" href="css/knowledgecontest.css" />
     <link rel="stylesheet" href="css/tablestyle.css" />
+    <script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
 
     <script>
         function addContest() {
@@ -33,10 +33,10 @@
                     studentNum: studentNum
                 },
                 success: function(data){
-
+                    location.reload(true);
                 },
                 error : function(data) {
-
+                    location.reload(true);
                 }
             });
         }
@@ -55,37 +55,17 @@
                     xlwNum: xlwNum
                 },
                 success: function(data){
-
+                    location.reload(true);
                 },
                 error : function(data) {
-
+                    location.reload(true);
                 }
             });
         }
 
     </script>
 
-    <script>
-        function saveCount() {
-            var slwNum = $("#slwNum").val();
-            var xlwNum = $("#xlwNum").val();
-            $.ajax({
-                type:'POST',
-                url:"/saveMasterCount",
-                data:{
-                    slwNum: slwNum,
-                    xlwNum: xlwNum
-                },
-                success: function(data){
 
-                },
-                error : function(data) {
-
-                }
-            });
-        }
-
-    </script>
 
     <script type="text/javascript">
         $(function(){
@@ -264,9 +244,9 @@
                                 </div>
                                 <div>
                                     竞赛级别：<select id="contestLevel" name="contestLevel" class="form-control-1">
-                                    <option value="1">省级</option>
-                                    <option value="2">校级重点</option>
-                                    <option value="3">一般项目</option>
+                                    <option value="1">国家级</option>
+                                    <option value="2">省级</option>
+                                    <option value="3">校级</option>
 
                                 </select>
                                     <!--竞赛级别：<input type="text" id="contestLevel" name="contestLevel" class="form-control-1 class-number" placeholder="" />-->

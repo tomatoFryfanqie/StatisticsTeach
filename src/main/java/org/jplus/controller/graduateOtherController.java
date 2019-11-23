@@ -37,10 +37,10 @@ public class graduateOtherController {
     }
 
     @RequestMapping("/addMasterOtherTeachWork")
-    @ResponseBody
     @NeedLogin
-    public void addMasterOtherTeachWorkload(Users users, Float workloadOfTeachingSupervision, int proposition, int examining,
-                                      int check, int examiner, int invigilator, int checking) {
+    @ResponseBody
+    public void addMasterOtherTeachWorkload(Users users, Float workloadOfTeachingSupervision, Integer proposition, Integer examining,
+                                            Integer check, Integer examiner, Integer invigilator, Integer checking) {
         YJSQTJX yJSQTJX = new YJSQTJX();
         String gh = users.getGh();
         yJSQTJX.setGh(gh);

@@ -15,7 +15,7 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="../../js/link.js"></script>
     <link rel="stylesheet" href="../../css/otheractivities.css">
-    <script src="../../js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+    <script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
 
     <script>
         function getTeachYoungTeacherCount() {
@@ -95,10 +95,10 @@
                     compilingExperimentalSyllabusCount : compilingExperimentalSyllabusCount
                 },
                 success: function(data){
-
+                    location.reload(true);
                 },
                 error : function(data) {
-                    alert("error!");
+                    location.reload(true);
                 }
             });
         }
