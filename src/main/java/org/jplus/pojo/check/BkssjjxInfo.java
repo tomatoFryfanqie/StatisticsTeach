@@ -15,21 +15,21 @@ import java.util.List;
  **/
 @Data
 public class BkssjjxInfo {
-    private int bkssjjxid;
+    private Integer bkssjjxid;
     private String gh;
-    private int nd;
+    private Integer nd;
     private Sxlx sxlx1;
-    private int sxts1;
+    private Integer sxts1;
     private Sxlx sxlx2;
-    private int sxts2;
+    private Integer sxts2;
     private Sxlx sxlx3;
-    private int sxts3;
+    private Integer sxts3;
     //微格试讲人数
-    private int wgsjrs;
+    private Integer wgsjrs;
     //专业类型编码
     private Zylxbm zylxbm;
     //指导论文人数
-    private int zdlwrs;
+    private Integer zdlwrs;
     //管理内容
     private String glnr;
     //管理工作量

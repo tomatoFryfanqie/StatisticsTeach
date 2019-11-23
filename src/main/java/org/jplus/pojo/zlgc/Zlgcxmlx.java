@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class Zlgcxmlx {
     //项目类型编码
-    private int xmlxbm;
+    private Integer xmlxbm;
     //项目类型名称
     private String xmlxmc;
 }

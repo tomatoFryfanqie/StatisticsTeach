@@ -59,8 +59,8 @@
         <div class="distance">本科生教学</div>
         <div class="minimum-part">
             <!-- 课堂教学工作量 -->
-            <div th:if="${ktjxgzlSum} ne '0' ">
-                <div class="distance">课堂教学工作量 <span th:text="${ktjxgzlSum}"></span></div>
+            <div th:if="${bksKtjxgzlSum} ne '0' ">
+                <div class="distance">课堂教学工作量 <span th:text="${bksKtjxgzlSum}"></span></div>
                 <!-- 课堂教学工作量表格 -->
                 <div class="table-wrap">
                     <!-- 表格数据 -->
@@ -78,7 +78,7 @@
                             <th>教学工作量</th>
                         </tr>
                         </thead>
-                        <tbody class="tbody" id="tbody" th:each="bks : ${bksktjx}">
+                        <tbody class="tbody" th:each="bks : ${bksktjx}">
                         <tr>
                             <td th:text="${bks.xq}"></td>
                             <td th:text="${bks.kcmc}"></td>
@@ -97,7 +97,6 @@
             <div th:if="${bkssjjxInfo.gzl} ne '0' ">
                 <div class="workload distance">实践教学工作量 <span th:text="${bkssjjxInfo.gzl}"> </span></div>
                 <!--具体工作类别及数目 -->
-                <!--TODO 前三个作量使用LGW 的 model的 bkssjjx，其他数据从数据库中取出-->
                 <div class="job-category">
                     <ul>
                         <li class="tips">1.指导实习工作量：
@@ -196,8 +195,6 @@
                     </table>
                 </div>
             </div>
-
-
             <!-- 教学成果工作量 -->
             <div th:if="${bksJxcgGzl} ne '0' ">
                 <div class="workload distance">教学成果工作量 <span th:text="${bksJxcgGzl}"></span></div>
@@ -230,7 +227,6 @@
                     </table>
                 </div>
             </div>
-
             <!-- 纵向教研项目工作量 -->
             <div th:if="${bksZxxmGzl} ne '0' ">
                 <div class="workload distance">纵向教研项目工作量 <span th:text="${bksZxxmGzl}"></span></div>
@@ -262,8 +258,6 @@
                     </table>
                 </div>
             </div>
-
-
             <!-- 横向教研项目工作量 -->
             <div th:if="${bksHxxmGzl} ne '0' ">
                 <div class="workload distance">横向教研项目工作量 <span th:text="${bksHxxmGzl}"></span></div>
@@ -291,8 +285,6 @@
                     </table>
                 </div>
             </div>
-
-
             <!-- 编写规划教材、教材获奖工作量 -->
             <div th:if="${bksJcGzl} ne '0' ">
                 <div class="workload distance">编写规划教材、教材获奖工作量 <span th:text="${bksJcGzl}"></span></div>
@@ -324,8 +316,6 @@
                     </table>
                 </div>
             </div>
-
-
             <!-- 教学改革工作量 -->
             <div th:if="${bksJxggGzl} ne '0' ">
                 <div class="workload distance">教学改革工作量 <span th:text="${bksJxggGzl}"></span></div>
@@ -357,11 +347,8 @@
                     </table>
                 </div>
             </div>
-
-
-
-            <!-- 指导学生竞赛工作量 --> <!-- TODO 除了第一个所有工作总量，其余全部从数据库中取出, -->
-            <div th:if="${ZdxsjsGzl} ne '0' ">
+            <!-- 指导学生竞赛工作量 -->
+            <div th:if="${ZdxsjsGzl} ne null ">
                 <div class="workload distance">指导学生竞赛工作量 <span th:text="${ZdxsjsGzl}"></span></div>
                 <!-- 指导学生竞赛工作量表格 -->
                 <div class="table-wrap">
@@ -400,10 +387,8 @@
                     </table>
                 </div>
             </div>
-
-
             <!--教师教学能力竞赛获奖工作量-->
-            <div th:if="${JsjsGzl} ne '0' ">
+            <div th:if="${JsjsGzl} ne null ">
                 <div class="workload distance">教师教学能力竞赛获奖 <span th:text="${JsjsGzl}"></span></div>
                 <!-- 教师教学能力竞赛获奖表格 -->
                 <div class="table-wrap">
@@ -446,8 +431,6 @@
                     </table>
                 </div>
             </div>
-
-
             <!-- 教师指导学生学士学位论文获奖工作量 -->
             <div th:if="${ZDSSLWInfo.gzl} ne '0' ">
                 <div class="workload distance">教师指导学生学士学位论文获奖工作量 <span th:text="${ZDSSLWInfo.gzl}">2019</span></div>
@@ -458,51 +441,45 @@
                     校级优秀论文人数 <span th:text="${ZDSSLWInfo.xylwrs}"></span>
                 </div>
             </div>
-
-
-
-            <!--TODO 全部从数据库取-->
-            <!--TODO 帮扶工作量自己算-->
-            <!--TODO 指导青年教师工作量自己算-->
-            <!--TODO 承担或参与教学文件制定、修订工作量自己算-->
             <!-- 教学督导工作量 -->
             <div th:if="${QTJXGZInfo.ddgzl} ne '0' ">
                 <div class="workload distance">教学督导工作量 <span th:text="${QTJXGZInfo.ddgzl}">2019</span></div>
             </div>
-
-            <!-- 学生学业指导帮扶工作量 TODO-->
-            <div th:if="${bksJxcgGzl} ne '0' ">
-                <div class="workload distance">学生学业指导帮扶工作量 <span>TODO</span></div>
+            <!-- 学生学业指导帮扶工作量 -->
+            <div th:if="${BfGzl} ne '0' ">
+                <div class="workload distance">学生学业指导帮扶工作量 <span th:text="${BfGzl}"></span></div>
                 <div class="helpnum distance">
                     帮扶学生人数 <span th:text="${QTJXGZInfo.bfxsrs}"></span>
                 </div>
             </div>
-
-            <!-- 指导青年教师工作量  TODO-->
-            <div th:if="${bksJxcgGzl} ne '0' ">
-                <div class="workload distance">指导青年教师工作量 <span>TODO</span></div>
+            <!-- 指导青年教师工作量 -->
+            <div th:if="${ZdqnjsGzl} ne '0' ">
+                <div class="workload distance">指导青年教师工作量 <span th:text="${ZdqnjsGzl}"></span></div>
                 <div class="helpnum distance">
                     指导青年教师人数 <span th:text="${QTJXGZInfo.zdqnjsrs}">sss</span>
                 </div>
             </div>
+            <!-- 承担或参与教学文件制定、修订工作量 -->
+            <div th:if="${WenjianGzl} ne '0' ">
+                <div class="workload distance">承担或参与教学文件制定、修订工作量 <span th:text="${WenjianGzl}"></span></div>
+                <div th:if="${QTJXGZInfo.kcdgms} ne null ">
+                    <div class="outline distance">
+                        参加修订人才培养方案<span th:text="${QTJXGZInfo.xdrcpyfa}">sss</span>
+                    </div>
+                </div>
+                <div th:if="${QTJXGZInfo.kcdgms} ne null ">
+                    <div class="outline distance">
+                        编写课程教学大纲课程数 <span th:text="${QTJXGZInfo.kcdgms}">sss</span>
+                    </div>
+                </div>
 
-            <!-- 承担或参与教学文件制定、修订工作量 TODO-->
-            <div th:if="${bksJxcgGzl} ne '0' ">
-                <div class="workload distance">承担或参与教学文件制定、修订工作量 <span>TODO</span></div>
-                <div class="outline distance">
-                    <!--TODO 参加修订人才培养方案 有显示，没有不显示-->
-                    参加修订人才培养方案<span th:text="${QTJXGZInfo.xdrcpyfa}">sss</span>
+                <div th:if="${QTJXGZInfo.sydgms} ne null ">
+                    <div class="helpnum distance">
+                        编写实验教学大纲课程数 <span th:text="${QTJXGZInfo.sydgms}">sss</span>
+                    </div>
                 </div>
-                <div th:if="${bksJxcgGzl} ne '0' "></div>
-                <div class="outline distance">
-                    编写课程教学大纲课程数 <span th:text="${QTJXGZInfo.kcdgms}">sss</span>
-                </div>
-                <div th:if="${bksJxcgGzl} ne '0' "></div>
-                <div class="helpnum distance">
-                    编写实验教学大纲课程数 <span th:text="${QTJXGZInfo.sydgms}">sss</span>
-                </div>
+
             </div>
-
         </div>
 
 
@@ -524,7 +501,7 @@
                         <th>教学工作量</th>
                     </tr>
                     </thead>
-                    <tbody class="tbody" id="tbody" th:each="yjs : ${yjsktjx}">
+                    <tbody class="tbody"  th:each="yjs : ${yjsktjx}">
                     <tr>
                         <td th:text="${yjs.xq}"></td>
                         <td th:text="${yjs.kcmc}"></td>
@@ -537,49 +514,64 @@
                     </tbody>
                 </table>
             </div>
-
             <!-- 实践教学工作量 -->
-            <!--TODO 具体为空不显示-->
             <div th:if="${YJSSJJXInfo.gzl} ne '0' ">
                 <div class="workload distance">实践教学工作量 <span th:if="${YJSSJJXInfo!=null && YJSSJJXInfo.gzl!=null}"><span
                         th:text="${YJSSJJXInfo.gzl}"></span></span></div>
                 <!-- 具体工作类别及数目 -->
                 <div class="job-category">
                     <ul>
-                        <li class="tips">1.实践教学指导工作量：<span class="prompt" th:text="${YJSSJJXInfo.rcgzl}">TODO</span></li>
-                        <li class="description indent">
-                            实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm1.yjssxlxmc}"></span>
-                        </li>
-                        <li class="description filling">
-                            实践天数<span th:text="${YJSSJJXInfo.sjts1}"></span>
-                        </li>
+                        <div th:if="${YJSSJJXInfo.rcgzl} ne '0' ">
+                            <li class="tips">1.实践教学指导工作量：<span class="prompt" th:text="${YJSSJJXInfo.rcgzl}"></span>
+                            </li>
 
-                        <li class="description indent">
-                            实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm2.yjssxlxmc}"></span>
-                        </li>
-                        <li class="description filling">
-                            实践天数<span th:text="${YJSSJJXInfo.sjts2}"></span>
-                        </li>
+                            <div th:if="${YJSSJJXInfo.sjts1} ne '0' ">
+                                <li class="description indent">
+                                    实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm1.yjssxlxmc}"></span>
+                                </li>
+                                <li class="description filling">
+                                    实践天数<span th:text="${YJSSJJXInfo.sjts1}"></span>
+                                </li>
+                            </div>
 
-                        <li class="description indent">
-                            实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm3.yjssxlxmc}"></span>
-                        </li>
-                        <li class="description filling">
-                            实践天数<span th:text="${YJSSJJXInfo.sjts3}"></span>
-                        </li>
+                            <div th:if="${YJSSJJXInfo.sjts2} ne '0' ">
+                                <li class="description indent">
+                                    实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm2.yjssxlxmc}"></span>
+                                </li>
+                                <li class="description filling">
+                                    实践天数<span th:text="${YJSSJJXInfo.sjts2}"></span>
+                                </li>
+                            </div>
 
-                        <li class="tips">2.指导研究生的学术（论坛）活动工作量：<span class="prompt" th:text="${zdxshdcsGzl}"></span></li>
-                        <li class="description new-line indent">
-                            指导次数<span th:text="${YJSSJJXInfo.zdxshdcs}">2019</span>
-                        </li>
-                        <li class="tips">3.导师指导研究生日常工作工作量：<span class="prompt" th:text="${ZtGzl}"></span></li>
-                        <li class="description new-line indent" style="margin-bottom: 30px;">
-                            工作内容：<span th:text="${YJSSJJXInfo.rcgzsm}">2019</span>
-                        </li>
+                            <div th:if="${YJSSJJXInfo.sjts3} ne '0' ">
+                                <li class="description indent">
+                                    实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm3.yjssxlxmc}"></span>
+                                </li>
+                                <li class="description filling">
+                                    实践天数<span th:text="${YJSSJJXInfo.sjts3}"></span>
+                                </li>
+                            </div>
+                        </div>
+
+
+                        <div th:if="${zdxshdcsGzl} ne '0' ">
+                            <li class="tips">2.指导研究生的学术（论坛）活动工作量：<span class="prompt" th:text="${zdxshdcsGzl}"></span>
+                            </li>
+                            <li class="description new-line indent">
+                                指导次数<span th:text="${YJSSJJXInfo.zdxshdcs}">2019</span>
+                            </li>
+                        </div>
+
+                        <div th:if="${ZtGzl} ne '0' ">
+                            <li class="tips">3.导师指导研究生日常工作工作量：<span class="prompt" th:text="${ZtGzl}"></span></li>
+                            <li class="description new-line indent" style="margin-bottom: 30px;">
+                                工作内容：<span th:text="${YJSSJJXInfo.rcgzsm}">2019</span>
+                            </li>
+                        </div>
+
                     </ul>
                 </div>
             </div>
-
             <!--  教学基本建设与学科建设工作工作量 -->
             <div th:if="${sumOfWorkload} ne '0' ">
                 <div class="workload distance"> 教学基本建设与学科建设工作量 <span th:text="${sumOfWorkload}">2019</span></div>
@@ -600,7 +592,6 @@
                     </div>
                 </div>
             </div>
-
             <!--  学科与研究生教育项目工作量 -->
             <div th:if="${jyxmGzl} ne '0' ">
                 <div class="workload distance">学科与研究生教育项目工作量 <span th:text="${jyxmGzl}"></span></div>
@@ -631,7 +622,6 @@
                     </table>
                 </div>
             </div>
-
             <!--  研究生横向项目项目工作量 -->
             <div th:if="${hxxmGzl} ne '0' ">
                 <div class="workload distance">研究生横向项目项目工作量 <span th:text="${hxxmGzl}"></span></div>
@@ -659,10 +649,9 @@
                     </table>
                 </div>
             </div>
-
             <!--  指导研究生竞赛工作量 -->
-            <div th:if="${YjsZdxsjsGzl} ne '0' ">
-                <div class="workload distance">指导研究生竞赛工作量 <span th:text="${YjsZdxsjsGzl}"></span></div><!-- TODO -->
+            <div th:if="${YjsZdxsjsGzl} ne null ">
+                <div class="workload distance">指导研究生竞赛工作量 <span th:text="${YjsZdxsjsGzl}"></span></div>
                 <!--  指导研究生竞赛表格 -->
                 <div class="table-wrap">
                     <table class="table table-bordered edtitable">
@@ -699,7 +688,6 @@
                     </table>
                 </div>
             </div>
-
             <!-- 教师指导学生学士学位论文获奖 -->
             <div th:if="${ZDXSLWInfo.gzl} ne '0' ">
                 <div class="workload distance">教师指导学生学士学位论文获奖工作量 <span th:text="${ZDXSLWInfo.gzl}"></span></div>
@@ -714,7 +702,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- 其它教学工作量工作量 -->
             <div th:if="${YJSQTJXInfo.gzl} ne '0' ">
                 <div class="workload distance">其它教学工作量工作量 <span th:text="${YJSQTJXInfo.gzl}">2019</span></div>
@@ -755,7 +742,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="btn-add">
             <button type="button" id="through">审核通过</button>

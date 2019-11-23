@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.jplus.mapper.CheckMapper">
+    <!-- MH -->
     <!-- 本科生实践教学BKSSJJX ResultMap -->
     <resultMap id="BKSSJJXInfo" type="org.jplus.pojo.check.BkssjjxInfo">
         <id property="bkssjjxid" column="bkssjjxid" jdbcType="INTEGER"></id>
@@ -31,7 +32,6 @@
             <result property="sxlxmc" column="sxlxmc3" jdbcType="VARCHAR"></result>
         </association>
     </resultMap>
-
     <!--研究生实践教学-->
     <resultMap id="YjssjjxInfo" type="org.jplus.pojo.check.YjssjjxInfo">
         <id property="yjssjjxid" column="yjssjjxid" jdbcType="INTEGER"></id>
@@ -59,7 +59,6 @@
             <result property="yjssxlxmc" column="yjssxlxmc3" jdbcType="VARCHAR"></result>
         </association>
     </resultMap>
-
     <!--根据院系编码，取出院系名称-->
     <select id="getLxmc" resultType="java.lang.String">
         select
@@ -104,9 +103,6 @@
         from zdsslw
         where gh=#{gh}
     </select>
-    <!--帮如学生工作量另外计算-->
-    <!--指导青年工作量另外计算-->
-    <!--承担或参与教学文件制定、修订工作量另外计算-->
     <!-- 根据工号取出其他教学工作信息  ,本科生 QTJXGZ-->
     <select id="getQTJXGZInfo" resultType="org.jplus.pojo.QTJXGZ">
         select
@@ -120,9 +116,6 @@
         from qtjxgz
         where gh=#{gh}
     </select>
-    <!--TODO 级联-->
-    <!--实践教学指导和另外计算
-    研究生学术活动工作量另外计算-->
     <!-- 根据工号，取出教学实践信息 研究生 YJSSJJX-->
     <select id="getYJSSJJXInfo" resultMap="YjssjjxInfo">
         select
@@ -149,7 +142,7 @@
         LEFT JOIN `yjssxlxbm` as e on(a.sjlxbm3 = e.yjssxlxbm)
         where gh=#{gh}
     </select>
-    <!-- 根据工号，取出教学基本建设与学科建设 JBJSYXKJS-->
+    <!-- 根据工号，取出教学基本建设与学科建设 研究生 JBJSYXKJS-->
     <select id="getJBJSYXKJSInfo" resultType="org.jplus.pojo.jbjsyxkjs.JBJSYXKJS">
         select
         sfzxpyfa,
@@ -182,8 +175,7 @@
         from yjsqtjx
         where gh=#{gh}
     </select>
-
-<!--本科 教师竞赛工作量-->
+    <!--本科 教师竞赛工作量-->
     <select id="getJsjsGzl" resultType="java.lang.Float">
         SELECT
         SUM(gzl)
