@@ -131,7 +131,7 @@
                         实习天数
                         <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts1}" type="number" id="day" class="day"
                                name="sxts1"/>
-                        <input th:unless="${bkssjjx}" type="number" id="day" class="day" name="sxts1"/>
+                        <input th:unless="${bkssjjx}" type="number" id="day" th:value="0" class="day" name="sxts1"/>
                     </li>
                     <li class="description indent">
                         实习类型
@@ -151,7 +151,7 @@
                         实习天数
                         <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts2}" type="number" id="day" class="day"
                                name="sxts2"/>
-                        <input th:unless="${bkssjjx}" type="number" id="day" class="day" name="sxts2"/>
+                        <input th:unless="${bkssjjx}" type="number" th:value="0"id="day" class="day" name="sxts2"/>
                     </li>
                     <li class="description indent">
                         实习类型
@@ -171,7 +171,7 @@
                         实习天数
                         <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts3}" type="number" id="day" class="day"
                                name="sxts3"/>
-                        <input th:unless="${bkssjjx}" type="number" id="day" class="day" name="sxts3"/>
+                        <input th:unless="${bkssjjx}" type="number"th:value="0" id="day" class="day" name="sxts3"/>
                     </li>
                     <li class="tips">2.微格试讲</li>
                     <li class="tips workload-display">工作量小计
@@ -183,7 +183,7 @@
                         指导学生人数
                         <input type="number" th:if="${bkssjjx}" th:value="${bkssjjx.wgsjrs}" class="student-num"
                                th:name="wgsjrs"/>
-                        <input th:unless="${bkssjjx}" type="number" id="day" class="day" th:name="wgsjrs"/>
+                        <input th:unless="${bkssjjx}" type="number" th:value="0"id="day" class="day" th:name="wgsjrs"/>
                     </li>
                     <li class="tips">3.指导毕业论文</li>
                     <li class="tips workload-display">工作量小计
@@ -205,7 +205,7 @@
                         指导学生人数
                         <input type="number" id="student-num" class="student-num" th:if="${bkssjjx}"
                                th:value="${bkssjjx.zdlwrs}" name="zdlwrs"/>
-                        <input th:unless="${bkssjjx}" type="number" id="day" class="day" name="zdlwrs"/>
+                        <input th:unless="${bkssjjx}" type="number" id="day"th:value="0" class="day" name="zdlwrs"/>
                     </li>
                     <li class="tips new-line">4.实验室建设与管理</li>
                     <li class="description indent managements">
@@ -217,7 +217,7 @@
                         实验室管理工作量
                         <input type="number" id="laboratory-workload" class="laboratory-workload"
                                th:if="${bkssjjx}" th:value="${bkssjjx.glgzl}" name="glgzl"/>
-                        <input th:unless="${bkssjjx}" type="text" id="day" class="day" name="glgzl"/>
+                        <input th:unless="${bkssjjx}" type="text"th:value="0" id="day" class="day" name="glgzl"/>
                     </li>
                 </ul>
             </div>

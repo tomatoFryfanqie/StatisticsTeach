@@ -116,7 +116,7 @@
                     </li>
                     <li class="description filling">
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="${yjssjjxJbxx.sjts1}" id="day" class="day" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" id="day" class="day" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="0" id="day" class="day" placeholder="" />
                     </li>
                     <li class="description indent">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm2!=null}">
@@ -136,7 +136,7 @@
                     </li>
                     <li class="description filling">
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="${yjssjjxJbxx.sjts2}" type="text" id="day" class="day" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" type="text" id="day" class="day" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="0"type="text" id="day" class="day" placeholder="" />
                     </li>
                     <li class="description indent">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm3!=null}">
@@ -156,13 +156,13 @@
                     </li>
                     <li class="description filling">
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3" th:value="${yjssjjxJbxx.sjts3}" type="text" id="day" class="day" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3" type="text" id="day" class="day" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3"th:value="0" type="text" id="day" class="day" placeholder="" />
                     </li>
                     <li class="tips">2.指导研究生的学术（论坛）活动</li>
                     <li class="tips workload-display">工作量小计<span class="prompt" th:text="${zdxshdcsGzl!=null}?${zdxshdcsGzl}:0.0"></span></li>
                     <li class="description new-line indent">
                         指导次数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" th:value="${yjssjjxJbxx.zdxshdcs}" type="text" id="student-num" class="student-num" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" type="text" id="student-num" class="student-num" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" type="text" th:value="0"id="student-num" class="student-num" placeholder="" />
                     </li>
                     <li class="tips" style="width: 60%;">3.导师指导研究生日常工作</li>
                     <li class="description indent managements" style="width: 60%;">
