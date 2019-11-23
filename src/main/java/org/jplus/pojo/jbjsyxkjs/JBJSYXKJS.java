@@ -1,4 +1,5 @@
 package org.jplus.pojo.jbjsyxkjs;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +18,7 @@ import lombok.Setter;
   `sydgms` int(2)  COMMENT '实验大纲门数',
   `gzl` float(8,1)  COMMENT '工作量',
 */
-@Setter
-@Getter
+@Data
 public class JBJSYXKJS {
     //主键
     private int xkjsid;
@@ -34,16 +34,4 @@ public class JBJSYXKJS {
     private int sydgms;
     //工作量
     private float gzl;
-
-    @Override
-    public String toString() {
-        return "JBJSYXKJS{" +
-                "工号=" + gh + '\'' +
-                ", 年度=" + nd +
-                ", 是否撰写培养方案=" + sfzxpyfa + '\'' +
-                ", 课堂大纲门数=" + kddgms + '\'' +
-                ", 实验大纲门数=" + sydgms +
-                ",工作量=" + gzl +
-                '}';
-    }
 }

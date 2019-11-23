@@ -114,9 +114,18 @@
                         <!--TODO ：初次是否，如果编写了，则是是 -->
                         <div th:name="sfzxpyfa" class="complete right-shift">
                             编撰教人才培养方案:
-                            <input th:name="sfzxpyfa" th:value="${1}" type="radio" name="newentry" value="new"
-                                             class="entry-chose"/>是
-                            <input th:name="sfzxpyfa" th:value="${0}" type="radio" name="newentry" value="old" checked="checked"/>否
+                            <div th:switch="${JBJSYXKJSInfo.sfzxpyfa}">
+                                <div th:case="0">
+                                    <input  th:name="sfzxpyfa" th:value="1" type="radio" name="newentry" value="new"
+                                            class="entry-chose"/>是
+                                    <input  th:name="sfzxpyfa" th:value="0" type="radio" name="newentry" value="old" checked="checked"/>否
+                                </div>
+                                <div th:case="1">
+                                    <input  th:name="sfzxpyfa" th:value="1" type="radio" name="newentry" value="new" checked="checked"
+                                            class="entry-chose"/>是
+                                    <input  th:name="sfzxpyfa" th:value="0" type="radio" name="newentry" value="old" />否
+                                </div>
+                            </div>
                         </div>
                         <div th:name="kddgms" class="complete">
                             <span class="right-shift">编写课程教学大纲课程数</span>
