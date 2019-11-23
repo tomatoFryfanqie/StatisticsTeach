@@ -59,369 +59,406 @@
         <div class="distance">本科生教学</div>
         <div class="minimum-part">
             <!-- 课堂教学工作量 -->
-            <div class="distance">课堂教学工作量 <span th:text="${ktjxgzlSum}"></span></div>
-            <!-- 课堂教学工作量表格 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <!--文章列表-->
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>学期</th>
-                        <th>课程名称</th>
-                        <th>课程类型</th>
-                        <th>授课班级</th>
-                        <th>双语教学</th>
-                        <th>计划学时</th>
-                        <th>上课人数</th>
-                        <th>教学工作量</th>
-                    </tr>
-                    </thead>
-                    <tbody class="tbody" id="tbody" th:each="bks : ${bksktjx}">
-                    <tr>
-                        <td th:text="${bks.xq}"></td>
-                        <td th:text="${bks.kcmc}"></td>
-                        <td th:text="${bks.kclx.ktlxmc}"></td>
-                        <td th:text="${bks.skbj}"></td>
-                        <td th:text="${bks.sfsy==1?'是':'否'}"></td>
-                        <td th:text="${bks.jhxs}"></td>
-                        <td th:text="${bks.skrs}"></td>
-                        <td th:text="${bks.jxgzl}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${ktjxgzlSum} ne '0' ">
+                <div class="distance">课堂教学工作量 <span th:text="${ktjxgzlSum}"></span></div>
+                <!-- 课堂教学工作量表格 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <!--文章列表-->
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>学期</th>
+                            <th>课程名称</th>
+                            <th>课程类型</th>
+                            <th>授课班级</th>
+                            <th>双语教学</th>
+                            <th>计划学时</th>
+                            <th>上课人数</th>
+                            <th>教学工作量</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody" id="tbody" th:each="bks : ${bksktjx}">
+                        <tr>
+                            <td th:text="${bks.xq}"></td>
+                            <td th:text="${bks.kcmc}"></td>
+                            <td th:text="${bks.kclx.ktlxmc}"></td>
+                            <td th:text="${bks.skbj}"></td>
+                            <td th:text="${bks.sfsy==1?'是':'否'}"></td>
+                            <td th:text="${bks.jhxs}"></td>
+                            <td th:text="${bks.skrs}"></td>
+                            <td th:text="${bks.jxgzl}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- 实践教学工作量 -->
-            <div class="workload distance">实践教学工作量 <span th:text="${bkssjjxInfo.gzl}"> </span></div>
-            <!--具体工作类别及数目 -->
-            <!--TODO 前三个作量使用LGW 的 model的 bkssjjx，其他数据从数据库中取出-->
-            <div class="job-category">
-                <ul>
-                    <li class="tips">1.指导实习工作量：
-                        <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.zdsxgzl}">
+            <div th:if="${bkssjjxInfo.gzl} ne '0' ">
+                <div class="workload distance">实践教学工作量 <span th:text="${bkssjjxInfo.gzl}"> </span></div>
+                <!--具体工作类别及数目 -->
+                <!--TODO 前三个作量使用LGW 的 model的 bkssjjx，其他数据从数据库中取出-->
+                <div class="job-category">
+                    <ul>
+                        <li class="tips">1.指导实习工作量：
+                            <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.zdsxgzl}">
                         </span>
-                        <span class="prompt" th:unless="${bkssjjx}" th:text="0.0">
+                            <span class="prompt" th:unless="${bkssjjx}" th:text="0.0">
                         </span>
-                    </li>
+                        </li>
 
-                    <li class="description indent">
-                        实习类型<span th:text="${bkssjjxInfo.sxlx1.sxlxmc}"></span>
-                    </li>
-                    <li class="description filling">
-                        实习天数<span th:text="${bkssjjxInfo.sxts1}">2019</span>
-                    </li>
-                    <li class="description indent">
-                        实习类型<span th:text="${bkssjjxInfo.sxlx2.sxlxmc}"></span>
-                    </li>
-                    <li class="description filling">
-                        实习天数<span th:text="${bkssjjxInfo.sxts2}">2019</span>
-                    </li>
-                    <li class="description indent">
-                        实习类型<span th:text="${bkssjjxInfo.sxlx3.sxlxmc}"></span>
-                    </li>
-                    <li class="description filling">
-                        实习天数<span th:text="${bkssjjxInfo.sxts3}">2019</span>
-                    </li>
+                        <li class="description indent">
+                            实习类型<span th:text="${bkssjjxInfo.sxlx1.sxlxmc}"></span>
+                        </li>
+                        <li class="description filling">
+                            实习天数<span th:text="${bkssjjxInfo.sxts1}">2019</span>
+                        </li>
+                        <li class="description indent">
+                            实习类型<span th:text="${bkssjjxInfo.sxlx2.sxlxmc}"></span>
+                        </li>
+                        <li class="description filling">
+                            实习天数<span th:text="${bkssjjxInfo.sxts2}">2019</span>
+                        </li>
+                        <li class="description indent">
+                            实习类型<span th:text="${bkssjjxInfo.sxlx3.sxlxmc}"></span>
+                        </li>
+                        <li class="description filling">
+                            实习天数<span th:text="${bkssjjxInfo.sxts3}">2019</span>
+                        </li>
 
-                    <li class="tips">2.微格试讲工作量：
-                        <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.wgsjgzl}"></span>
-                        <span class="prompt"  th:unless="${bkssjjx}" th:text="0.0"></span></li>
-                    <li class="description new-line indent">
-                        指导学生人数<span th:text="${bkssjjxInfo.wgsjrs}">2019</span>
-                    </li>
-                    <li class="tips">3.指导毕业论文工作量：
-                        <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.zdlwgzl}">xxx</span>
-                        <span class="prompt" th:unless="${bkssjjx}" th:text="0.0"></span>
-                    </li>
-                    <li class="description indent">
-                        专业类型<span th:text="${bkssjjxInfo.zylxbm.zylxmc}">2019</span>
-                    </li>
-                    <li class="description filling">
-                        指导学生人数<span th:text="${bkssjjxInfo.zdlwrs}"></span>
-                    </li>
-                    <li class="tips new-line">4.实验室建设与管理工作量：<span class="prompt" th:text="${bkssjjxInfo.glgzl}"></span></li>
-                    <li class="description indent managements">
-                        管理内容<span th:text="${bkssjjxInfo.glnr}"></span>
-                    </li>
-                    <li class="description laboratoryworkloads">
-                        实验室管理工作量<span th:text="${bkssjjxInfo.glgzl}"></span>
-                    </li>
-                </ul>
+                        <li class="tips">2.微格试讲工作量：
+                            <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.wgsjgzl}"></span>
+                            <span class="prompt" th:unless="${bkssjjx}" th:text="0.0"></span></li>
+                        <li class="description new-line indent">
+                            指导学生人数<span th:text="${bkssjjxInfo.wgsjrs}">2019</span>
+                        </li>
+                        <li class="tips">3.指导毕业论文工作量：
+                            <span class="prompt" th:if="${bkssjjx}" th:text="${bkssjjx.zdlwgzl}">xxx</span>
+                            <span class="prompt" th:unless="${bkssjjx}" th:text="0.0"></span>
+                        </li>
+                        <li class="description indent">
+                            专业类型<span th:text="${bkssjjxInfo.zylxbm.zylxmc}">2019</span>
+                        </li>
+                        <li class="description filling">
+                            指导学生人数<span th:text="${bkssjjxInfo.zdlwrs}"></span>
+                        </li>
+                        <li class="tips new-line">4.实验室建设与管理工作量：<span class="prompt"
+                                                                      th:text="${bkssjjxInfo.glgzl}"></span></li>
+                        <li class="description indent managements">
+                            管理内容<span th:text="${bkssjjxInfo.glnr}"></span>
+                        </li>
+                        <li class="description laboratoryworkloads">
+                            实验室管理工作量<span th:text="${bkssjjxInfo.glgzl}"></span>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <!-- 质量工程工作量 -->
-            <div class="workload distance">质量工程工作量 <span th:text="${zlgcSumOfWorkload}"></span></div>
-            <!-- 质量工程工作量表格 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <!--文章列表-->
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <th>项目类型</th>
-                        <th>项目名称</th>
-                        <th>级别</th>
-                        <th>获批(奖)年份</th>
-                        <th>项目排名</th>
-                        <th>项目总人数</th>
-                        <th>工作量</th>
-                    </tr>
-                    </thead>
-                    <!---->
-                    <tbody class="tbody" id="tbody">
-                    <tr th:each="zlgcInfo : ${zlgc}">
+            <div th:if="${zlgcSumOfWorkload} ne '0' ">
+                <div class="workload distance">质量工程工作量 <span th:text="${zlgcSumOfWorkload}"></span></div>
+                <!-- 质量工程工作量表格 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <!--文章列表-->
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <th>项目类型</th>
+                            <th>项目名称</th>
+                            <th>级别</th>
+                            <th>获批(奖)年份</th>
+                            <th>项目排名</th>
+                            <th>项目总人数</th>
+                            <th>工作量</th>
+                        </tr>
+                        </thead>
+                        <!---->
+                        <tbody class="tbody" id="tbody">
+                        <tr th:each="zlgcInfo : ${zlgc}">
 
-                        <td hidden>
-                            <input hidden th:name="zlgcid" th:value="${zlgcInfo.zlgcid}">
-                        </td>
-                        <td th:text="${zlgcInfo.zlgcxmlx.xmlxmc}"></td>
-                        <td th:text="${zlgcInfo.xmmc}"></td>
-                        <td th:text="${zlgcInfo.jb == 1 ? '国家级' : '省级'}"></td>
-                        <td th:text="${zlgcInfo.nd}"></td>
-                        <td th:text="${zlgcInfo.xmpm}"></td>
-                        <td th:text="${zlgcInfo.zrs}"></td>
-                        <td th:text="${zlgcInfo.gzl}"></td>
-                    </tr>
-                    </tr>
-                    <!-- 新生成表格位置 -->
-                    <tr class="append-row">
-                    </tr>
-                    </tr>
-                    </tbody>
-                </table>
+                            <td hidden>
+                                <input hidden th:name="zlgcid" th:value="${zlgcInfo.zlgcid}">
+                            </td>
+                            <td th:text="${zlgcInfo.zlgcxmlx.xmlxmc}"></td>
+                            <td th:text="${zlgcInfo.xmmc}"></td>
+                            <td th:text="${zlgcInfo.jb == 1 ? '国家级' : '省级'}"></td>
+                            <td th:text="${zlgcInfo.nd}"></td>
+                            <td th:text="${zlgcInfo.xmpm}"></td>
+                            <td th:text="${zlgcInfo.zrs}"></td>
+                            <td th:text="${zlgcInfo.gzl}"></td>
+                        </tr>
+                        </tr>
+                        <!-- 新生成表格位置 -->
+                        <tr class="append-row">
+                        </tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
 
             <!-- 教学成果工作量 -->
-            <div class="workload distance">教学成果工作量 <span th:text="${bksJxcgGzl}"></span></div>
-            <!-- 教学成果工作量表格 -->
-            <div class="table-wrap">
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <th>成果名称</th>
-                        <th>成果等级</th>
-                        <th>项目排名</th>
-                        <th>项目总人数</th>
-                        <th>工作量</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="Jxcg:${Jxcgs}">
-                        <th th:text="${Jxcg.getCgmc()}"></th>
-                        <div th:switch="${Jxcg.getCgdjbm()}">
-                            <th th:each="Jxcgdj:${Jxcgdjs}"
-                                th:case="${Jxcgdj.getCgdjbm()}"
-                                th:text="${Jxcgdj.getCgdjmc()}">
-                            </th>
-                        </div>
-                        <th th:text="${Jxcg.getXmpm()}"></th>
-                        <th th:text="${Jxcg.getZrs()}"></th>
-                        <th th:text="${Jxcg.getGzl()}"></th>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${bksJxcgGzl} ne '0' ">
+                <div class="workload distance">教学成果工作量 <span th:text="${bksJxcgGzl}"></span></div>
+                <!-- 教学成果工作量表格 -->
+                <div class="table-wrap">
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <th>成果名称</th>
+                            <th>成果等级</th>
+                            <th>项目排名</th>
+                            <th>项目总人数</th>
+                            <th>工作量</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="Jxcg:${Jxcgs}">
+                            <th th:text="${Jxcg.getCgmc()}"></th>
+                            <div th:switch="${Jxcg.getCgdjbm()}">
+                                <th th:each="Jxcgdj:${Jxcgdjs}"
+                                    th:case="${Jxcgdj.getCgdjbm()}"
+                                    th:text="${Jxcgdj.getCgdjmc()}">
+                                </th>
+                            </div>
+                            <th th:text="${Jxcg.getXmpm()}"></th>
+                            <th th:text="${Jxcg.getZrs()}"></th>
+                            <th th:text="${Jxcg.getGzl()}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
             <!-- 纵向教研项目工作量 -->
-            <div class="workload distance">纵向教研项目工作量 <span th:text="${bksZxxmGzl}"></span></div>
-            <!-- 纵向教研项目工作量表格 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <td>教研项目名称</td>
-                        <td>项目等级</td>
-                        <td>项目排名</td>
-                        <td>项目总人数</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="zxxm:${Zxxms}">
-                        <td th:text="${zxxm.getXmmc()}"></td>
-                        <div th:switch="${zxxm.getXmdjbm()}">
-                            <th th:each="Zxxmdj:${Zxxmdjs}" th:case="${Zxxmdj.xmdjbm}"
-                                th:text="${Zxxmdj.xmdjmc}"></th>
-                        </div>
-                        <td th:text="${zxxm.getXmpm()}"></td>
-                        <td th:text="${zxxm.getZrs()}"></td>
-                        <td th:text="${zxxm.getGzl()}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${bksZxxmGzl} ne '0' ">
+                <div class="workload distance">纵向教研项目工作量 <span th:text="${bksZxxmGzl}"></span></div>
+                <!-- 纵向教研项目工作量表格 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <td>教研项目名称</td>
+                            <td>项目等级</td>
+                            <td>项目排名</td>
+                            <td>项目总人数</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="zxxm:${Zxxms}">
+                            <td th:text="${zxxm.getXmmc()}"></td>
+                            <div th:switch="${zxxm.getXmdjbm()}">
+                                <th th:each="Zxxmdj:${Zxxmdjs}" th:case="${Zxxmdj.xmdjbm}"
+                                    th:text="${Zxxmdj.xmdjmc}"></th>
+                            </div>
+                            <td th:text="${zxxm.getXmpm()}"></td>
+                            <td th:text="${zxxm.getZrs()}"></td>
+                            <td th:text="${zxxm.getGzl()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+
             <!-- 横向教研项目工作量 -->
-            <div class="workload distance">横向教研项目工作量 <span th:text="${bksHxxmGzl}"></span></div>
-            <!-- 横向教研项目工作量表格 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <td>横向项目名称</td>
-                        <td>到账经费</td>
-                        <td>项目排名</td>
-                        <td>项目总人数</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tr th:each="Hxxm:${Hxxms}">
-                        <td th:text="${Hxxm.getXmmc()}"></td>
-                        <td th:text="${Hxxm.getDzjf()}"></td>
-                        <td th:text="${Hxxm.getXmpm()}"></td>
-                        <td th:text="${Hxxm.getZrs()}"></td>
-                        <td th:text="${Hxxm.getGzl()}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${bksHxxmGzl} ne '0' ">
+                <div class="workload distance">横向教研项目工作量 <span th:text="${bksHxxmGzl}"></span></div>
+                <!-- 横向教研项目工作量表格 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <td>横向项目名称</td>
+                            <td>到账经费</td>
+                            <td>项目排名</td>
+                            <td>项目总人数</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tr th:each="Hxxm:${Hxxms}">
+                            <td th:text="${Hxxm.getXmmc()}"></td>
+                            <td th:text="${Hxxm.getDzjf()}"></td>
+                            <td th:text="${Hxxm.getXmpm()}"></td>
+                            <td th:text="${Hxxm.getZrs()}"></td>
+                            <td th:text="${Hxxm.getGzl()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+
             <!-- 编写规划教材、教材获奖工作量 -->
-            <div class="workload distance">编写规划教材、教材获奖工作量 <span th:text="${bksJcGzl}"></span></div>
-            <!-- 编写规划教材、教材获奖工作量 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <td>教材名称</td>
-                        <td>教材级别</td>
-                        <td>项目排名</td>
-                        <td>项目总人数</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="Jc:${Jcs}">
-                        <th th:text="${Jc.jcmc}"></th>
-                        <div th:switch="${Jc.jcjbbm}">
-                            <th th:each="Jcjb:${Jcjbs}" th:case="${Jcjb.jcjbbm}"
-                                th:text="${Jcjb.jcjbmc}"></th>
-                        </div>
-                        <th th:text="${Jc.xmpm}"></th>
-                        <th th:text="${Jc.zrs}"></th>
-                        <th th:text="${Jc.gzl}"></th>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${bksJcGzl} ne '0' ">
+                <div class="workload distance">编写规划教材、教材获奖工作量 <span th:text="${bksJcGzl}"></span></div>
+                <!-- 编写规划教材、教材获奖工作量 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td>教材名称</td>
+                            <td>教材级别</td>
+                            <td>项目排名</td>
+                            <td>项目总人数</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="Jc:${Jcs}">
+                            <th th:text="${Jc.jcmc}"></th>
+                            <div th:switch="${Jc.jcjbbm}">
+                                <th th:each="Jcjb:${Jcjbs}" th:case="${Jcjb.jcjbbm}"
+                                    th:text="${Jcjb.jcjbmc}"></th>
+                            </div>
+                            <th th:text="${Jc.xmpm}"></th>
+                            <th th:text="${Jc.zrs}"></th>
+                            <th th:text="${Jc.gzl}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+
             <!-- 教学改革工作量 -->
-            <div class="workload distance">教学改革工作量 <span th:text="${bksJxggGzl}"></span></div>
-            <!-- 教学改革工作量 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <td>项目名称</td>
-                        <td>立项级别</td>
-                        <td>项目排名</td>
-                        <td>项目总人数</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="Jxgg:${Jxggs}">
-                        <th th:text="${Jxgg.xmmc}"></th>
-                        <div th:switch="${Jxgg.lxjbbm}">
-                            <th th:each="Lxjb:${Lxjbs}" th:case="${Lxjb.lxjbbm}"
-                                th:text="${Lxjb.lxjbmc}"></th>
-                        </div>
-                        <th th:text="${Jxgg.xmmc}"></th>
-                        <th th:text="${Jxgg.zrs}"></th>
-                        <th th:text="${Jxgg.gzl}"></th>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${bksJxggGzl} ne '0' ">
+                <div class="workload distance">教学改革工作量 <span th:text="${bksJxggGzl}"></span></div>
+                <!-- 教学改革工作量 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <td>项目名称</td>
+                            <td>立项级别</td>
+                            <td>项目排名</td>
+                            <td>项目总人数</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="Jxgg:${Jxggs}">
+                            <th th:text="${Jxgg.xmmc}"></th>
+                            <div th:switch="${Jxgg.lxjbbm}">
+                                <th th:each="Lxjb:${Lxjbs}" th:case="${Lxjb.lxjbbm}"
+                                    th:text="${Lxjb.lxjbmc}"></th>
+                            </div>
+                            <th th:text="${Jxgg.xmmc}"></th>
+                            <th th:text="${Jxgg.zrs}"></th>
+                            <th th:text="${Jxgg.gzl}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
 
 
             <!-- 指导学生竞赛工作量 --> <!-- TODO 除了第一个所有工作总量，其余全部从数据库中取出, -->
-            <div class="workload distance">指导学生竞赛工作量 <span th:text="${ZdxsjsGzl}"></span></div>
-            <!-- 指导学生竞赛工作量表格 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <td>竞赛名称</td>
-                        <td>竞赛类别</td>
-                        <td>竞赛级别</td>
-                        <td>指导学生人数</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="allStudentCompetition:${allStudentCompetitionList}">
-                        <td th:text="${allStudentCompetition.jsmc}">Month</td>
-                        <td th:text="${allStudentCompetition.jslbbm}">
-                            <select name="competitioncategory">
-                                <option value="1">A类师范生教学技能竞赛</option>
-                                <option value="2">B类师范生教学技能竞赛</option>
-                                <option value="3">A类其他竞赛</option>
-                                <option value="4">B类其他竞赛</option>
-                            </select>
-                        </td>
-                        <td th:text="${allStudentCompetition.jsjbbm}">
-                            <select name="competitionlevel">
-                                <option value="1">国家级</option>
-                                <option value="2">省级</option>
-                            </select>
-                        </td>
-                        <td th:text="${allStudentCompetition.zdxsrs}">Savings</td>
-                        <td th:text="${allStudentCompetition.gzl}">Month</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${ZdxsjsGzl} ne '0' ">
+                <div class="workload distance">指导学生竞赛工作量 <span th:text="${ZdxsjsGzl}"></span></div>
+                <!-- 指导学生竞赛工作量表格 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td>竞赛名称</td>
+                            <td>竞赛类别</td>
+                            <td>竞赛级别</td>
+                            <td>指导学生人数</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="allStudentCompetition:${allStudentCompetitionList}">
+                            <td th:text="${allStudentCompetition.jsmc}">Month</td>
+                            <td th:text="${allStudentCompetition.jslbbm}">
+                                <select name="competitioncategory">
+                                    <option value="1">A类师范生教学技能竞赛</option>
+                                    <option value="2">B类师范生教学技能竞赛</option>
+                                    <option value="3">A类其他竞赛</option>
+                                    <option value="4">B类其他竞赛</option>
+                                </select>
+                            </td>
+                            <td th:text="${allStudentCompetition.jsjbbm}">
+                                <select name="competitionlevel">
+                                    <option value="1">国家级</option>
+                                    <option value="2">省级</option>
+                                </select>
+                            </td>
+                            <td th:text="${allStudentCompetition.zdxsrs}">Savings</td>
+                            <td th:text="${allStudentCompetition.gzl}">Month</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+
             <!--教师教学能力竞赛获奖工作量-->
-            <div class="workload distance">教师教学能力竞赛获奖 <span th:text="${JsjsGzl}"></span></div>
-            <!-- 教师教学能力竞赛获奖表格 -->
-            <div class="table-wrap">
-                <!-- 表格数据 -->
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <td>竞赛名称</td>
-                        <td>竞赛等级</td>
-                        <td>竞赛形式</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="allTeacherCompetition:${allTeacherCompetitionList}">
-                        <td th:text="${allTeacherCompetition.jsmc}">Month</td>
-                        <td th:text="${allTeacherCompetition.jsdjbm}">
-                            <select name="competitiongrade">
-                                <option value="nationallevelA">国家级一等奖</option>
-                                <option value="nationallevelB">国家级二等奖</option>
-                                <option value="nationallevelC">国家级三等奖</option>
-                                <option value="provincialA">省级一等奖</option>
-                                <option value="provincialB">省级二等奖</option>
-                                <option value="provincialC">省级三等奖</option>
-                                <option value="schoollevelA">校级一等奖</option>
-                                <option value="schoollevelB">校级二等奖</option>
-                                <option value="schoollevelC">校级三等奖</option>
-                            </select>
-                        </td>
-                        <td th:text="${allTeacherCompetition.jsxsbm}">
-                            <select name="competitionform">
-                                <option value="lecture">讲课</option>
-                                <option value="Courseware">课件</option>
-                                <option value="microlesson">微课</option>
-                            </select>
-                        </td>
-                        <td th:text="${allTeacherCompetition.gzl}">Month</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${JsjsGzl} ne '0' ">
+                <div class="workload distance">教师教学能力竞赛获奖 <span th:text="${JsjsGzl}"></span></div>
+                <!-- 教师教学能力竞赛获奖表格 -->
+                <div class="table-wrap">
+                    <!-- 表格数据 -->
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td>竞赛名称</td>
+                            <td>竞赛等级</td>
+                            <td>竞赛形式</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="allTeacherCompetition:${allTeacherCompetitionList}">
+                            <td th:text="${allTeacherCompetition.jsmc}">Month</td>
+                            <td th:text="${allTeacherCompetition.jsdjbm}">
+                                <select name="competitiongrade">
+                                    <option value="nationallevelA">国家级一等奖</option>
+                                    <option value="nationallevelB">国家级二等奖</option>
+                                    <option value="nationallevelC">国家级三等奖</option>
+                                    <option value="provincialA">省级一等奖</option>
+                                    <option value="provincialB">省级二等奖</option>
+                                    <option value="provincialC">省级三等奖</option>
+                                    <option value="schoollevelA">校级一等奖</option>
+                                    <option value="schoollevelB">校级二等奖</option>
+                                    <option value="schoollevelC">校级三等奖</option>
+                                </select>
+                            </td>
+                            <td th:text="${allTeacherCompetition.jsxsbm}">
+                                <select name="competitionform">
+                                    <option value="lecture">讲课</option>
+                                    <option value="Courseware">课件</option>
+                                    <option value="microlesson">微课</option>
+                                </select>
+                            </td>
+                            <td th:text="${allTeacherCompetition.gzl}">Month</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+
             <!-- 教师指导学生学士学位论文获奖工作量 -->
-            <div class="workload distance">教师指导学生学士学位论文获奖工作量 <span th:text="${ZDSSLWInfo.gzl}">2019</span></div>
-            <div class="excellentpaper distance">
-                省级优秀论文人数 <span th:text="${ZDSSLWInfo.sylwrs}"></span>
+            <div th:if="${ZDSSLWInfo.gzl} ne '0' ">
+                <div class="workload distance">教师指导学生学士学位论文获奖工作量 <span th:text="${ZDSSLWInfo.gzl}">2019</span></div>
+                <div class="excellentpaper distance">
+                    省级优秀论文人数 <span th:text="${ZDSSLWInfo.sylwrs}"></span>
+                </div>
+                <div class="excellentpaper distance">
+                    校级优秀论文人数 <span th:text="${ZDSSLWInfo.xylwrs}"></span>
+                </div>
             </div>
-            <div class="excellentpaper distance">
-                校级优秀论文人数 <span th:text="${ZDSSLWInfo.xylwrs}"></span>
-            </div>
+
 
 
             <!--TODO 全部从数据库取-->
@@ -429,239 +466,296 @@
             <!--TODO 指导青年教师工作量自己算-->
             <!--TODO 承担或参与教学文件制定、修订工作量自己算-->
             <!-- 教学督导工作量 -->
-            <div class="workload distance">教学督导工作量 <span th:text="${QTJXGZInfo.ddgzl}">2019</span></div>
-            <!-- 学生学业指导帮扶工作量 -->
-            <div class="workload distance">学生学业指导帮扶工作量 <span>TODO</span></div>
-            <div class="helpnum distance">
-                帮扶学生人数 <span th:text="${QTJXGZInfo.bfxsrs}"></span>
+            <div th:if="${QTJXGZInfo.ddgzl} ne '0' ">
+                <div class="workload distance">教学督导工作量 <span th:text="${QTJXGZInfo.ddgzl}">2019</span></div>
             </div>
-            <!-- 指导青年教师工作量 -->
-            <div class="workload distance">指导青年教师工作量 <span>TODO</span></div>
-            <div class="helpnum distance">
-                指导青年教师人数 <span th:text="${QTJXGZInfo.zdqnjsrs}">sss</span>
-            </div>
-            <!-- 承担或参与教学文件制定、修订工作量 -->
 
-            <div class="workload distance">承担或参与教学文件制定、修订工作量 <span>TODO</span></div>
-            <div class="outline distance">
-                <!--TODO 参加修订人才培养方案 有显示，没有不显示-->
-                参加修订人才培养方案<span th:text="${QTJXGZInfo.xdrcpyfa}">sss</span>
+            <!-- 学生学业指导帮扶工作量 TODO-->
+            <div th:if="${bksJxcgGzl} ne '0' ">
+                <div class="workload distance">学生学业指导帮扶工作量 <span>TODO</span></div>
+                <div class="helpnum distance">
+                    帮扶学生人数 <span th:text="${QTJXGZInfo.bfxsrs}"></span>
+                </div>
             </div>
-            <div class="outline distance">
-                编写课程教学大纲课程数 <span th:text="${QTJXGZInfo.kcdgms}">sss</span>
+
+            <!-- 指导青年教师工作量  TODO-->
+            <div th:if="${bksJxcgGzl} ne '0' ">
+                <div class="workload distance">指导青年教师工作量 <span>TODO</span></div>
+                <div class="helpnum distance">
+                    指导青年教师人数 <span th:text="${QTJXGZInfo.zdqnjsrs}">sss</span>
+                </div>
             </div>
-            <div class="helpnum distance">
-                编写实验教学大纲课程数 <span th:text="${QTJXGZInfo.sydgms}">sss</span>
+
+            <!-- 承担或参与教学文件制定、修订工作量 TODO-->
+            <div th:if="${bksJxcgGzl} ne '0' ">
+                <div class="workload distance">承担或参与教学文件制定、修订工作量 <span>TODO</span></div>
+                <div class="outline distance">
+                    <!--TODO 参加修订人才培养方案 有显示，没有不显示-->
+                    参加修订人才培养方案<span th:text="${QTJXGZInfo.xdrcpyfa}">sss</span>
+                </div>
+                <div th:if="${bksJxcgGzl} ne '0' "></div>
+                <div class="outline distance">
+                    编写课程教学大纲课程数 <span th:text="${QTJXGZInfo.kcdgms}">sss</span>
+                </div>
+                <div th:if="${bksJxcgGzl} ne '0' "></div>
+                <div class="helpnum distance">
+                    编写实验教学大纲课程数 <span th:text="${QTJXGZInfo.sydgms}">sss</span>
+                </div>
             </div>
+
         </div>
 
 
         <div class="distance">研究生教学</div>
         <div class="minimum-part">
             <!-- 课堂教学工作量 -->
-            <div class="distance">课堂教学工作量 <span th:text="${ktjxgzlSum}"></span></div>
-            <!-- 课堂教学工作量表格 -->
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>学期</th>
-                    <th>课程名称</th>
-                    <th>课程类型</th>
-                    <th>授课对象</th>
-                    <th>计划学时</th>
-                    <th>上课人数</th>
-                    <th>教学工作量</th>
-                </tr>
-                </thead>
-                <tbody class="tbody" id="tbody" th:each="yjs : ${yjsktjx}">
-                <tr>
-                    <td th:text="${yjs.xq}"></td>
-                    <td th:text="${yjs.kcmc}"></td>
-                    <td th:text="${yjs.kclx.kclxmc}"></td>
-                    <td th:text="${yjs.skdx}"></td>
-                    <td th:text="${yjs.jhxs}"></td>
-                    <td th:text="${yjs.skrs}"></td>
-                    <td th:text="${yjs.gzl}"></td>
-                </tr>
-                </tbody>
-            </table>
+            <div th:if="${ktjxgzlSum} ne '0' ">
+                <div class="distance">课堂教学工作量 <span th:text="${ktjxgzlSum}"></span></div>
+                <!-- 课堂教学工作量表格 -->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>学期</th>
+                        <th>课程名称</th>
+                        <th>课程类型</th>
+                        <th>授课对象</th>
+                        <th>计划学时</th>
+                        <th>上课人数</th>
+                        <th>教学工作量</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tbody" id="tbody" th:each="yjs : ${yjsktjx}">
+                    <tr>
+                        <td th:text="${yjs.xq}"></td>
+                        <td th:text="${yjs.kcmc}"></td>
+                        <td th:text="${yjs.kclx.kclxmc}"></td>
+                        <td th:text="${yjs.skdx}"></td>
+                        <td th:text="${yjs.jhxs}"></td>
+                        <td th:text="${yjs.skrs}"></td>
+                        <td th:text="${yjs.gzl}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <!-- 实践教学工作量 -->
-            <div class="workload distance">实践教学工作量 <span th:if="${YJSSJJXInfo!=null && YJSSJJXInfo.gzl!=null}"><span
-                    th:text="${YJSSJJXInfo.gzl}"></span></span></div>
-            <!-- 具体工作类别及数目 -->
-            <div class="job-category">
-                <ul>
-                    <li class="tips">1.实践教学指导工作量：<span class="prompt" th:text="${YJSSJJXInfo.rcgzl}">TODO</span></li>
-                    <li class="description indent">
-                        实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm1.yjssxlxmc}"></span>
-                    </li>
-                    <li class="description filling">
-                        实践天数<span th:text="${YJSSJJXInfo.sjts1}"></span>
-                    </li>
+            <!--TODO 具体为空不显示-->
+            <div th:if="${YJSSJJXInfo.gzl} ne '0' ">
+                <div class="workload distance">实践教学工作量 <span th:if="${YJSSJJXInfo!=null && YJSSJJXInfo.gzl!=null}"><span
+                        th:text="${YJSSJJXInfo.gzl}"></span></span></div>
+                <!-- 具体工作类别及数目 -->
+                <div class="job-category">
+                    <ul>
+                        <li class="tips">1.实践教学指导工作量：<span class="prompt" th:text="${YJSSJJXInfo.rcgzl}">TODO</span></li>
+                        <li class="description indent">
+                            实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm1.yjssxlxmc}"></span>
+                        </li>
+                        <li class="description filling">
+                            实践天数<span th:text="${YJSSJJXInfo.sjts1}"></span>
+                        </li>
 
-                    <li class="description indent">
-                        实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm2.yjssxlxmc}"></span>
-                    </li>
-                    <li class="description filling">
-                        实践天数<span th:text="${YJSSJJXInfo.sjts2}"></span>
-                    </li>
+                        <li class="description indent">
+                            实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm2.yjssxlxmc}"></span>
+                        </li>
+                        <li class="description filling">
+                            实践天数<span th:text="${YJSSJJXInfo.sjts2}"></span>
+                        </li>
 
-                    <li class="description indent">
-                        实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm3.yjssxlxmc}"></span>
-                    </li>
-                    <li class="description filling">
-                        实践天数<span th:text="${YJSSJJXInfo.sjts3}"></span>
-                    </li>
+                        <li class="description indent">
+                            实践类型<span th:text="${YJSSJJXInfo.yjssxlxbm3.yjssxlxmc}"></span>
+                        </li>
+                        <li class="description filling">
+                            实践天数<span th:text="${YJSSJJXInfo.sjts3}"></span>
+                        </li>
 
-                    <li class="tips">2.指导研究生的学术（论坛）活动工作量：<span class="prompt" th:text="${zdxshdcsGzl}"></span></li>
-                    <li class="description new-line indent">
-                        指导次数<span th:text="${YJSSJJXInfo.zdxshdcs}">2019</span>
-                    </li>
-                    <li class="tips">3.导师指导研究生日常工作工作量：<span class="prompt" th:text="${ZtGzl}"></span></li>
-                    <li class="description new-line indent" style="margin-bottom: 30px;">
-                        工作内容：<span th:text="${YJSSJJXInfo.rcgzsm}">2019</span>
-                    </li>
-                </ul>
+                        <li class="tips">2.指导研究生的学术（论坛）活动工作量：<span class="prompt" th:text="${zdxshdcsGzl}"></span></li>
+                        <li class="description new-line indent">
+                            指导次数<span th:text="${YJSSJJXInfo.zdxshdcs}">2019</span>
+                        </li>
+                        <li class="tips">3.导师指导研究生日常工作工作量：<span class="prompt" th:text="${ZtGzl}"></span></li>
+                        <li class="description new-line indent" style="margin-bottom: 30px;">
+                            工作内容：<span th:text="${YJSSJJXInfo.rcgzsm}">2019</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <!--  教学基本建设与学科建设工作工作量 -->
-            <div class="workload distance"> 教学基本建设与学科建设工作量 <span th:text="${sumOfWorkload}">2019</span></div>
-            <div class="outline distance">
-                <!-- TODO -->
-                编撰教人才培养方案 <span th:text="${JBJSYXKJSInfo.sfzxpyfa}"></span>
-            </div>
-            <div class="outline distance">
-                编写课程教学大纲课程数 <span th:text="${JBJSYXKJSInfo.kddgms}"></span>
-            </div>
-            <div class="helpnum distance">
-                编写实验教学大纲课程数 <span th:text="${JBJSYXKJSInfo.sydgms}"></span>
+            <div th:if="${sumOfWorkload} ne '0' ">
+                <div class="workload distance"> 教学基本建设与学科建设工作量 <span th:text="${sumOfWorkload}">2019</span></div>
+                <div th:if="${JBJSYXKJSInfo.sfzxpyfa} ne '0' ">
+                    <div class="outline distance">
+                        编撰教人才培养方案
+                        <!--<span th:text="${JBJSYXKJSInfo.sfzxpyfa}"></span>-->
+                    </div>
+                </div>
+                <div th:if="${JBJSYXKJSInfo.kddgms} ne '0' ">
+                    <div class="outline distance">
+                        编写课程教学大纲课程数 <span th:text="${JBJSYXKJSInfo.kddgms}"></span>
+                    </div>
+                </div>
+                <div th:if="${JBJSYXKJSInfo.sydgms} ne '0' ">
+                    <div class="helpnum distance">
+                        编写实验教学大纲课程数 <span th:text="${JBJSYXKJSInfo.sydgms}"></span>
+                    </div>
+                </div>
             </div>
 
             <!--  学科与研究生教育项目工作量 -->
-            <div class="workload distance">学科与研究生教育项目工作量 <span th:text="${jyxmGzl}"></span></div>
-            <!-- 学科与研究生教育项目工作量表格 -->
-            <div class="table-wrap">
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <td>项目名称</td>
-                        <td>项目等级</td>
-                        <td>项目排名</td>
-                        <td>项目总人数</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="yjsjyxm:${yjsjyxms}">
-                        <td th:text="${yjsjyxm.xmmc}"></td>
-                        <td class="notedit" th:switch="${yjsjyxm.xmdjbm}">
-                            <span th:case="1">国家级</span>
-                            <span th:case="2">省级</span>
-                        </td>
-                        <td th:text="${yjsjyxm.xmpm}"></td>
-                        <td th:text="${yjsjyxm.zrs}"></td>
-                        <td class="notedit" th:text="${yjsjyxm.gzl}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!--  研究生横向项目项目工作量 -->
-            <div class="workload distance">研究生横向项目项目工作量 <span th:text="${hxxmGzl}"></span></div>
-            <!--  研究生横向项目项目表格 -->
-            <div class="table-wrap">
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <td>项目名称</td>
-                        <td>到账经费</td>
-                        <td>项目排名</td>
-                        <td>项目总人数</td>
-                        <td>工作量</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="yjshxxm:${yjshxxms}">
-                        <td th:text="${yjshxxm.xmmc}"></td>
-                        <td class="notedit" th:text="${yjshxxm.dzjf}"></td>
-                        <td th:text="${yjshxxm.xmpm}"></td>
-                        <td th:text="${yjshxxm.zrs}"></td>
-                        <td class="notedit" th:text="${yjshxxm.gzl}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${jyxmGzl} ne '0' ">
+                <div class="workload distance">学科与研究生教育项目工作量 <span th:text="${jyxmGzl}"></span></div>
+                <!-- 学科与研究生教育项目工作量表格 -->
+                <div class="table-wrap">
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <td>项目名称</td>
+                            <td>项目等级</td>
+                            <td>项目排名</td>
+                            <td>项目总人数</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="yjsjyxm:${yjsjyxms}">
+                            <td th:text="${yjsjyxm.xmmc}"></td>
+                            <td class="notedit" th:switch="${yjsjyxm.xmdjbm}">
+                                <span th:case="1">国家级</span>
+                                <span th:case="2">省级</span>
+                            </td>
+                            <td th:text="${yjsjyxm.xmpm}"></td>
+                            <td th:text="${yjsjyxm.zrs}"></td>
+                            <td class="notedit" th:text="${yjsjyxm.gzl}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
+            <!--  研究生横向项目项目工作量 -->
+            <div th:if="${hxxmGzl} ne '0' ">
+                <div class="workload distance">研究生横向项目项目工作量 <span th:text="${hxxmGzl}"></span></div>
+                <!--  研究生横向项目项目表格 -->
+                <div class="table-wrap">
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <td>项目名称</td>
+                            <td>到账经费</td>
+                            <td>项目排名</td>
+                            <td>项目总人数</td>
+                            <td>工作量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="yjshxxm:${yjshxxms}">
+                            <td th:text="${yjshxxm.xmmc}"></td>
+                            <td class="notedit" th:text="${yjshxxm.dzjf}"></td>
+                            <td th:text="${yjshxxm.xmpm}"></td>
+                            <td th:text="${yjshxxm.zrs}"></td>
+                            <td class="notedit" th:text="${yjshxxm.gzl}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             <!--  指导研究生竞赛工作量 -->
-            <div class="workload distance">指导研究生竞赛工作量 <span th:text="${YjsZdxsjsGzl}"></span></div><!-- TODO -->
-            <!--  指导研究生竞赛表格 -->
-            <div class="table-wrap">
-                <table class="table table-bordered edtitable">
-                    <thead>
-                    <tr>
-                        <th>竞赛名称</th>
-                        <th>竞赛类别</th>
-                        <th>竞赛级别</th>
-                        <th>指导学生人数</th>
-                        <th>工作量</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="allStudentCompetition:${allStudentCompetitionList2}">
-                        <td th:text="${allStudentCompetition.jsmc}"></td>
-                        <td th:text="${allStudentCompetition.jslbmc}">
-                            <select name="competitioncategory">
-                                <option value="1">A类师范生教学技能竞赛</option>
-                                <option value="2">B类师范生教学技能竞赛</option>
-                                <option value="3">A类其他竞赛</option>
-                                <option value="4">B类其他竞赛</option>
-                            </select>
-                        </td>
-                        <td th:text="${allStudentCompetition.jsjbmc}">
-                            <select name="competitionlevel">
-                                <option value="1">国家级</option>
-                                <option value="2">省级</option>
-                            </select>
-                        </td>
-                        <td th:text="${allStudentCompetition.zdxsrs}"></td>
-                        <td th:text="${allStudentCompetition.gzl}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:if="${YjsZdxsjsGzl} ne '0' ">
+                <div class="workload distance">指导研究生竞赛工作量 <span th:text="${YjsZdxsjsGzl}"></span></div><!-- TODO -->
+                <!--  指导研究生竞赛表格 -->
+                <div class="table-wrap">
+                    <table class="table table-bordered edtitable">
+                        <thead>
+                        <tr>
+                            <th>竞赛名称</th>
+                            <th>竞赛类别</th>
+                            <th>竞赛级别</th>
+                            <th>指导学生人数</th>
+                            <th>工作量</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="allStudentCompetition:${allStudentCompetitionList2}">
+                            <td th:text="${allStudentCompetition.jsmc}"></td>
+                            <td th:text="${allStudentCompetition.jslbmc}">
+                                <select name="competitioncategory">
+                                    <option value="1">A类师范生教学技能竞赛</option>
+                                    <option value="2">B类师范生教学技能竞赛</option>
+                                    <option value="3">A类其他竞赛</option>
+                                    <option value="4">B类其他竞赛</option>
+                                </select>
+                            </td>
+                            <td th:text="${allStudentCompetition.jsjbmc}">
+                                <select name="competitionlevel">
+                                    <option value="1">国家级</option>
+                                    <option value="2">省级</option>
+                                </select>
+                            </td>
+                            <td th:text="${allStudentCompetition.zdxsrs}"></td>
+                            <td th:text="${allStudentCompetition.gzl}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
             <!-- 教师指导学生学士学位论文获奖 -->
-            <div class="workload distance">教师指导学生学士学位论文获奖工作量 <span th:text="${ZDXSLWInfo.gzl}"></span></div>
-            <div class="excellentpaper distance">
-                省级优秀论文人数 <span th:text="${ZDXSLWInfo.sylwrs}"></span>
-            </div>
-            <div class="excellentpaper distance">
-                校级优秀论文人数 <span th:text="${ZDXSLWInfo.xylwrs}"></span>
+            <div th:if="${ZDXSLWInfo.gzl} ne '0' ">
+                <div class="workload distance">教师指导学生学士学位论文获奖工作量 <span th:text="${ZDXSLWInfo.gzl}"></span></div>
+                <div th:if="${ZDXSLWInfo.sylwrs} ne '0' ">
+                    <div class="excellentpaper distance">
+                        省级优秀论文人数 <span th:text="${ZDXSLWInfo.sylwrs}"></span>
+                    </div>
+                </div>
+                <div th:if="${ZDXSLWInfo.xylwrs} ne '0' ">
+                    <div class="excellentpaper distance">
+                        校级优秀论文人数 <span th:text="${ZDXSLWInfo.xylwrs}"></span>
+                    </div>
+                </div>
             </div>
 
             <!-- 其它教学工作量工作量 -->
-            <div class="workload distance">其它教学工作量工作量 <span th:text="${YJSQTJXInfo.gzl}">2019</span></div>
-            <div class="outline distance">
-                <span class="right-shift">教学督导工作量</span><span th:text="${YJSQTJXInfo.jxddgzl}">sss</span>
+            <div th:if="${YJSQTJXInfo.gzl} ne '0' ">
+                <div class="workload distance">其它教学工作量工作量 <span th:text="${YJSQTJXInfo.gzl}">2019</span></div>
+                <div th:if="${YJSQTJXInfo.jxddgzl} ne '0' ">
+                    <div class="outline distance">
+                        <span class="right-shift">教学督导工作量</span><span th:text="${YJSQTJXInfo.jxddgzl}">sss</span>
+                    </div>
+                </div>
+                <div th:if="${YJSQTJXInfo.mtfs} ne '0' ">
+                    <div class="outline distance">
+                        <span class="right-shift">初复试自命题</span><span th:text="${YJSQTJXInfo.mtfs}">sss</span> 份
+                    </div>
+                </div>
+                <div th:if="${YJSQTJXInfo.stfs} ne '0' ">
+                    <div class="outline distance">
+                        <span class="right-shift">初复试自命题审题</span><span th:text="${YJSQTJXInfo.stfs}">sss</span> 份
+                    </div>
+                </div>
+                <div th:if="${YJSQTJXInfo.jdts} ne '0' ">
+                    <div class="outline distance">
+                        <span class="right-shift">初复试自命题校对</span><span th:text="${YJSQTJXInfo.jdts}">sss</span> 套（含AB卷）
+                    </div>
+                </div>
+                <div th:if="${YJSQTJXInfo.fsmskg} ne '0' ">
+                    <div class="outline distance">
+                        <span class="right-shift">复试面试考官</span><span th:text="${YJSQTJXInfo.fsmskg}">sss</span> 次
+                    </div>
+                </div>
+                <div th:if="${YJSQTJXInfo.fsjkcs} ne '0' ">
+                    <div class="outline distance">
+                        <span class="right-shift">复试监考</span><span th:text="${YJSQTJXInfo.fsjkcs}">sss</span> 次
+                    </div>
+                </div>
+
+                <div th:if="${YJSQTJXInfo.yjfs} ne '0' ">
+                    <div class="helpnum distance">
+                        <span class="right-shift">考试阅卷（初试、复试）</span><span th:text="${YJSQTJXInfo.yjfs}">sss</span> 次
+                    </div>
+                </div>
             </div>
-            <div class="outline distance">
-                <span class="right-shift">初复试自命题</span><span th:text="${YJSQTJXInfo.mtfs}">sss</span> 份
-            </div>
-            <div class="outline distance">
-                <span class="right-shift">初复试自命题审题</span><span th:text="${YJSQTJXInfo.stfs}">sss</span> 份
-            </div>
-            <div class="outline distance">
-                <span class="right-shift">初复试自命题校对</span><span th:text="${YJSQTJXInfo.jdts}">sss</span> 套（含AB卷）
-            </div>
-            <div class="outline distance">
-                <span class="right-shift">复试面试考官</span><span th:text="${YJSQTJXInfo.fsmskg}">sss</span> 次
-            </div>
-            <div class="outline distance">
-                <span class="right-shift">复试监考</span><span th:text="${YJSQTJXInfo.fsjkcs}">sss</span> 次
-            </div>
-            <div class="helpnum distance">
-                <span class="right-shift">考试阅卷（初试、复试）</span><span th:text="${YJSQTJXInfo.yjfs}">sss</span> 次
-            </div>
+
         </div>
         <div class="btn-add">
             <button type="button" id="through">审核通过</button>
