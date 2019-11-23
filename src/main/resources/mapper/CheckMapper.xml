@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.jplus.mapper.CheckMapper">
-    <!-- 本科生实践教学BKSSJJX ResultMap lgw-->
-    <resultMap id="BKSSJJXInfo" type="org.jplus.pojo.bks.Bkssjjx">
-        <!-- 实习类型编码要级联-->
-        <result property="sxlxbm1" column="sxlxbm1" jdbcType="INTEGER"></result>
+    <!-- 本科生实践教学BKSSJJX ResultMap -->
+    <resultMap id="BKSSJJXInfo" type="org.jplus.pojo.check.BkssjjxInfo">
+        <id property="bkssjjxid" column="bkssjjxid" jdbcType="INTEGER"></id>
+        <result property="gh" column="gh" jdbcType="CHAR"></result>
+        <result property="nd" column="nd" jdbcType="INTEGER"></result>
         <result property="sxts1" column="sxts1" jdbcType="INTEGER"></result>
-
-        <result property="sxlxbm2" column="sxlxbm2" jdbcType="INTEGER"></result>
         <result property="sxts2" column="sxts2" jdbcType="INTEGER"></result>
-
-        <result property="sxlxbm3" column="sxlxbm3" jdbcType="INTEGER"></result>
         <result property="sxts3" column="sxts3" jdbcType="INTEGER"></result>
-
-        <!--微格试讲人数-->
         <result property="wgsjrs" column="wgsjrs" jdbcType="INTEGER"></result>
-        <!--&lt;!&ndash;专业类型编码， 要级联&ndash;&gt;-->
-        <!--<result property="zylxbm" column="zylxbm" jdbcType="INTEGER"></result>-->
-        <!--指导论文人数-->
         <result property="zdlwrs" column="zdlwrs" jdbcType="INTEGER"></result>
-        <!-- 管理内容-->
         <result property="glnr" column="glnr" jdbcType="CHAR"></result>
-        <!-- 管理工作量-->
         <result property="glgzl" column="glgzl" jdbcType="FLOAT"></result>
+        <result property="gzl" column="gzl" jdbcType="FLOAT"></result>
+        <association property="zylxbm" javaType="org.jplus.pojo.check.Zylxbm">
+            <result property="zylxbm" column="zylxbm" jdbcType="INTEGER"></result>
+            <result property="zylxmc" column="zylxmc" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="sxlx1"  javaType="org.jplus.pojo.check.Sxlx">
+            <result property="sxlxbm" column="sxlxbm1" jdbcType="INTEGER"></result>
+            <result property="sxlxmc" column="sxlxmc1" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="sxlx2"  javaType="org.jplus.pojo.check.Sxlx">
+            <result property="sxlxbm" column="sxlxbm2" jdbcType="INTEGER"></result>
+            <result property="sxlxmc" column="sxlxmc2" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="sxlx3"  javaType="org.jplus.pojo.check.Sxlx">
+            <result property="sxlxbm" column="sxlxbm3" jdbcType="INTEGER"></result>
+            <result property="sxlxmc" column="sxlxmc3" jdbcType="VARCHAR"></result>
+        </association>
+    </resultMap>
 
-        <association property="zylxbm" javaType="org.jplus.pojo.zlgc.Zlgcxmlx">
-            <result property="xmlxbm" column="xmlxbm" jdbcType="INTEGER"></result>
-            <result property="xmlxmc" column="xmlxmc" jdbcType="VARCHAR"></result>
+    <!--研究生实践教学-->
+    <resultMap id="YjssjjxInfo" type="org.jplus.pojo.check.YjssjjxInfo">
+        <id property="yjssjjxid" column="yjssjjxid" jdbcType="INTEGER"></id>
+        <result property="gh" column="gh" jdbcType="CHAR"></result>
+        <result property="nd" column="nd" jdbcType="INTEGER"></result>
+        <result property="sjts1" column="sjts1" jdbcType="INTEGER"></result>
+        <result property="sjts2" column="sjts2" jdbcType="INTEGER"></result>
+        <result property="sjts3" column="sjts3" jdbcType="INTEGER"></result>
+
+        <result property="zdxshdcs" column="zdxshdcs" jdbcType="INTEGER"></result>
+        <result property="rcgzsm" column="rcgzsm" jdbcType="CHAR"></result>
+        <result property="rcgzl" column="rcgzl" jdbcType="FLOAT"></result>
+        <result property="gzl" column="gzl" jdbcType="FLOAT"></result>
+
+        <association property="yjssxlxbm1"  javaType="org.jplus.pojo.check.Yjssxlxbm">
+            <result property="yjssxlxbm" column="yjssxlxbm1" jdbcType="INTEGER"></result>
+            <result property="yjssxlxmc" column="yjssxlxmc1" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="yjssxlxbm2"  javaType="org.jplus.pojo.check.Yjssxlxbm">
+            <result property="yjssxlxbm" column="yjssxlxbm2" jdbcType="INTEGER"></result>
+            <result property="yjssxlxmc" column="yjssxlxmc2" jdbcType="VARCHAR"></result>
+        </association>
+        <association property="yjssxlxbm3"  javaType="org.jplus.pojo.check.Yjssxlxbm">
+            <result property="yjssxlxbm" column="yjssxlxbm3" jdbcType="INTEGER"></result>
+            <result property="yjssxlxmc" column="yjssxlxmc3" jdbcType="VARCHAR"></result>
         </association>
     </resultMap>
 
@@ -38,13 +68,140 @@
         where yxbm = #{zlgcid,jdbcType=INTEGER}
     </select>
     <!--根据工号，取出教学实践信息 practiceteh 本科生 BKSSJJX-->
-
+    <select id="getBKSSJJXInfo" resultMap="BKSSJJXInfo">
+        select
+        gh,
+        nd,
+        c.sxlxbm sxlxbm1,
+        c.sxlxmc sxlxmc1,
+        sxts1,
+        d.sxlxbm sxlxbm2,
+        d.sxlxmc sxlxmc2,
+        sxts2,
+        e.sxlxbm sxlxbm3,
+        e.sxlxmc sxlxmc3,
+        sxts3,
+        wgsjrs,
+        b.zylxbm,
+        b.zylxmc,
+        zdlwrs,
+        glnr,
+        glgzl,
+        gzl
+        FROM `bkssjjx` as a
+        LEFT JOIN `zylxbm` as b on( a.zylxbm = b.zylxbm)
+        LEFT JOIN `sxlx` as c on(a.sxlxbm1 = c.sxlxbm)
+        LEFT JOIN `sxlx` as d on(a.sxlxbm2 = d.sxlxbm)
+        LEFT JOIN `sxlx` as e on(a.sxlxbm3 = e.sxlxbm)
+        where gh=#{gh}
+    </select>
     <!-- 指导学士论文 本科生 学生论文 ZDXSLW-->
-    <!-- 根据工号取出其他教学工作信息  本科生 QTJXGZ-->
-
+    <select id="getZDXSLWInfo" resultType="org.jplus.pojo.ZDXSLW">
+        select
+        sylwrs,
+        xylwrs,
+        gzl
+        from zdsslw
+        where gh=#{gh}
+    </select>
+    <!--帮如学生工作量另外计算-->
+    <!--指导青年工作量另外计算-->
+    <!--承担或参与教学文件制定、修订工作量另外计算-->
+    <!-- 根据工号取出其他教学工作信息  ,本科生 QTJXGZ-->
+    <select id="getQTJXGZInfo" resultType="org.jplus.pojo.QTJXGZ">
+        select
+        ddgzl,
+        bfxsrs,
+        zdqnjsrs,
+        qtgzl,
+        xdrcpyfa,
+        kcdgms,
+        sydgms
+        from qtjxgz
+        where gh=#{gh}
+    </select>
+    <!--TODO 级联-->
+    <!--实践教学指导和另外计算
+    研究生学术活动工作量另外计算-->
     <!-- 根据工号，取出教学实践信息 研究生 YJSSJJX-->
-    <!-- 根据工号，取出教学基本建设与学科建设 JBJSYXKJS-->
-    <!-- 指导学士论文 本科生 硕士论文 ZDSSLW-->
-    <!-- 根据工号取出其他教学工作信息  研究生 YJSQTJX-->
+    <select id="getYJSSJJXInfo" resultMap="YjssjjxInfo">
+        select
+        gh,
+        nd,
 
+        c.yjssxlxbm yjssxlxbm1,
+        c.yjssxlxmc yjssxlxmc1,
+        sjts1,
+        d.yjssxlxbm yjssxlxbm2,
+        d.yjssxlxmc yjssxlxmc2,
+        sjts2,
+        e.yjssxlxbm yjssxlxbm3,
+        e.yjssxlxmc yjssxlxmc3,
+        sjts3,
+
+        zdxshdcs,
+        rcgzsm,
+        rcgzl,
+        gzl
+        FROM `yjssjjx` as a
+        LEFT JOIN `yjssxlxbm` as c on(a.sjlxbm1 = c.yjssxlxbm)
+        LEFT JOIN `yjssxlxbm` as d on(a.sjlxbm2 = d.yjssxlxbm)
+        LEFT JOIN `yjssxlxbm` as e on(a.sjlxbm3 = e.yjssxlxbm)
+        where gh=#{gh}
+    </select>
+    <!-- 根据工号，取出教学基本建设与学科建设 JBJSYXKJS-->
+    <select id="getJBJSYXKJSInfo" resultType="org.jplus.pojo.jbjsyxkjs.JBJSYXKJS">
+        select
+        sfzxpyfa,
+        kddgms,
+        sydgms,
+        gzl
+        from jbjsyxkjs
+        where gh=#{gh}
+    </select>
+    <!-- 指导学士论文 本科生 硕士论文 ZDSSLW-->
+    <select id="getZDSSLWInfo" resultType="org.jplus.pojo.masterCompartitionAndOther.ZDSSLW">
+        select
+        sylwrs,
+        xylwrs,
+        gzl
+        from zdxslw
+        where gh=#{gh}
+    </select>
+    <!-- 根据工号取出其他教学工作信息  研究生 YJSQTJX-->
+    <select id="getYJSQTJXInfo" resultType="org.jplus.pojo.masterCompartitionAndOther.YJSQTJX">
+        select
+        jxddgzl,
+        mtfs,
+        stfs,
+        jdts,
+        fsmskg,
+        fsjkcs,
+        yjfs,
+        gzl
+        from yjsqtjx
+        where gh=#{gh}
+    </select>
+
+<!--本科 教师竞赛工作量-->
+    <select id="getJsjsGzl" resultType="java.lang.Float">
+        SELECT
+        SUM(gzl)
+        FROM `jsjs`
+        where  gh=#{gh}
+    </select>
+    <!--本科 学生竞赛工作量-->
+    <select id="getZdxsjsGzl" resultType="java.lang.Float">
+        SELECT
+        SUM(gzl)
+        FROM `zdxsjs`
+        where gh=#{gh} and jsxscc=1
+    </select>
+    <!--研究生 学生竞赛工作量-->
+    <select id="getYjsZdxsjsGzl" resultType="java.lang.Float">
+        SELECT
+        SUM(gzl)
+        FROM `zdxsjs`
+        where gh=#{gh} and jsxscc=2
+    </select>
 </mapper>

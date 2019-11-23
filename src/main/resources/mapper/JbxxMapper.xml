@@ -71,6 +71,7 @@
     </select>
     <update id="updateBasisInfo">
         update `jbxx` set
+        nd =#{nd,jdbcType=INTEGER} ,
         yxbm = #{yxbm,jdbcType=INTEGER} ,
         zwbm = #{zwbm,jdbcType=INTEGER} ,
         zcbm = #{zcbm,jdbcType=INTEGER} ,

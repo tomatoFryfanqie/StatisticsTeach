@@ -8,7 +8,8 @@ public class QTJXGZ {
     private Integer qtjxgzid;
     private String gh;
     private Integer nd;
-    private float ddgzl;
+    private Float ddgzl;
+    private Integer bfxsrs;
     private Integer zdqnjsrs;
 
     public Integer getZdqnjsrs() {
@@ -19,22 +20,22 @@ public class QTJXGZ {
         this.zdqnjsrs = zdqnjsrs;
     }
 
-    private Integer bfxsrs;
     private Integer xdrcpyfa;
     private Integer kcdgms;
     private Integer sydgms;
+
+    public Float getDdgzl() {
+        return ddgzl;
+    }
+
+    public void setDdgzl(Float ddgzl) {
+        this.ddgzl = ddgzl;
+    }
 
     public void setGh(String gh) {
         this.gh = gh;
     }
 
-    public float getDdgzl() {
-        return ddgzl;
-    }
-
-    public void setDdgzl(float ddgzl) {
-        this.ddgzl = ddgzl;
-    }
 
     public Integer getBfxsrs() {
         return bfxsrs;

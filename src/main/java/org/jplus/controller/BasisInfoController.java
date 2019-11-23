@@ -1,6 +1,5 @@
 package org.jplus.controller;
 
-import net.bytebuddy.asm.Advice;
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Tjzt.Tjzt;
 import org.jplus.pojo.Users;
@@ -74,6 +73,7 @@ public class BasisInfoController {
             if(jbxxService.getJbxxInfo(users.getGh())==null){
                 jbxxService.addJbxx(users.getGh());
             }
+            jbxxAccpet.setNd(GetYear.getYears());
             /*获取额定工作量*/
             jbxxAccpet.setEdgzl(GetRatedWorkload.getRatedWorkload(jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
             /*获取本科生最低授课工作量*/

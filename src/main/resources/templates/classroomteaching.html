@@ -14,8 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
+    <!--<script src="js/classroomteaching.js"></script>-->
     <link rel="stylesheet" href="css/classroomteaching.css">
     <link rel="stylesheet" href="css/tablestyle.css" />
+    <script src="js/classroomteaching.js"></script>
 
 </head>
 
@@ -122,8 +124,10 @@
                                 </select>
                                 </div>
                                 <div>
-                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name" th:placeholder="请填写课程名称"/>
+                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 form-control-jub class-number" />
                                 </div>
+                                <div class="warning">课程名称不能为空！</div>
+
                                 <div>
                                     课程类型：<select th:name="ktlxbm" class="form-control-1">
                                         <option th:name="ktlxbm" th:each="ktlxType:${ktlx}" th:value="${ktlxType.ktlxbm}"
@@ -132,29 +136,32 @@
                                     </select>
                                 </div>
                                 <div>
-                                    授课班级：<input type="text" th:name="skbj" class="form-control-1 class-number" th:placeholder="请填写授课班级" />
+                                    授课班级：<input type="text" th:name="skbj" class="form-control-1 form-control-jub class-number"  />
                                 </div>
+                                <div class="warning">授课班级不能为空！</div>
                                 <div th:name="sfsy">
                                     是否双语教学：<input type="radio" th:name="sfsy" th:value="${1}" class="entry-chose" />是
                                     <input type="radio" th:name="sfsy" th:value="${0}" checked="checked" />否
 
                                 </div>
                                 <div th:name="jhxs">
-                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1" th:placeholder="请填写计划学时" />
+                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1 form-control-jub timenum"  />
                                 </div>
+                                <div class="warning">计划学时不能为空！</div>
                                 <div th:name="skrs">
-                                    上课人数：<input type="text" th:name="skrs" class="form-control-1" th:placeholder="请填写上课人数"/>
+                                    上课人数：<input type="text" th:name="skrs" class="form-control-1 form-control-jub timenum" />
                                 </div>
+                                <div class="warning">上课人数不能为空！</div>
                                 <div class="btn-add">
-                                    <button type="submit" id="add">添加</button>
+                                    <button type="submit" class="add">添加</button>
                                     <button type="button" id="cancel" data-dismiss="modal">取消</button>
                                 </div>
-                                <span th:if="${ClassError}">
+                                <!--<span th:if="${ClassError}">
                                     <script th:inline="javascript">
                                         var classError =/*[[${ClassError}]]*/"!"
                                         alert(classError);
                                     </script>
-                                </span>
+                                </span>-->
                             </form>
                         </div>
                     </div>

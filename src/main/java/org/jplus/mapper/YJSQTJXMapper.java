@@ -12,11 +12,11 @@ import org.springframework.stereotype.Repository;
 public interface YJSQTJXMapper {
     void addYJSQTJX(YJSQTJX yJSQTJX);
 
-    float getAllQtGzl(@Param("gh") String gh, @Param("nd") int nd);
+    Float getAllQtGzl(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    YJSQTJX findYJSQTJXByGhAndYear(@Param("gh") String gh, @Param("nd") int nd);
+    YJSQTJX findYJSQTJXByGhAndYear(@Param("gh") String gh, @Param("nd") Integer nd);
 
-    int isOnlyForOneYear(@Param("gh") String gh, @Param("nd") int nd);
+    Integer isOnlyForOneYear(@Param("gh") String gh, @Param("nd") Integer nd);
 
     void updateYJSQTJX(YJSQTJX yJSQTJX);
 }

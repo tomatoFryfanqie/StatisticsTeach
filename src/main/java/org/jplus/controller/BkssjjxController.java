@@ -33,7 +33,7 @@ public class BkssjjxController {
 
     @RequestMapping("/saveBkssjjx")
     @NeedLogin
-    public String insertTest(@Validated @ModelAttribute(value = "bkssjjxVo") Bkssjjx bkssjjxVo, Users users,Model model){
+    public String insertTest(@ModelAttribute(value = "bkssjjxVo") Bkssjjx bkssjjxVo, Users users,Model model){
         if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
             bkssjjxVo.setGh(users.getGh());
             if (bkssjjxVo.getGzl() == null) {
@@ -43,6 +43,7 @@ public class BkssjjxController {
                 bkssjjxService.insertBkssjjx(bkssjjxVo);
             } else {
                 BkssjjxEx sjjxWork = getSjjxWork(bkssjjxVo);
+                bkssjjxVo.setNd(GetYear.getYears());
                 bkssjjxVo.setGzl(sjjxWork.getGzl());
                 bkssjjxService.updateBkssjjx(bkssjjxVo);
             }

@@ -13,11 +13,11 @@ public interface QTJXGZMapper {
 
     void addQTJXGZ(QTJXGZ qTJXGZ);
 
-    float getAllQtGzl(@Param("gh") String gh, @Param("nd") int year);
+    Float getAllQtGzl(@Param("gh") String gh, @Param("nd") Integer year);
 
-    QTJXGZ findQTJXGZByGhAndYear(@Param("gh") String gh, @Param("nd") int year);
+    QTJXGZ findQTJXGZByGhAndYear(@Param("gh") String gh, @Param("nd") Integer year);
 
-    int isOnlyForOneYear(@Param("gh") String gh, @Param("nd") int year);
+    Integer isOnlyForOneYear(@Param("gh") String gh, @Param("nd") Integer year);
 
     void updateQTJXGZ(QTJXGZ qTJXGZ);
 }

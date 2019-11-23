@@ -17,6 +17,8 @@ public class JbxxAccpet {
     private Integer jbxxid;
     /*工号*/
     private String gh;
+    /*年度*/
+    private Integer nd;
     /*院系编码*/
     private Integer yxbm;
     /*职务编码*/
