@@ -16,7 +16,7 @@ public class YJSQTJXServiceImpl implements YJSQTJXService {
     private YJSQTJXMapper yJSQTJXMapper;
 
     @Override
-    public int isOnlyForOneYear(String gh, int year) {
+    public Integer isOnlyForOneYear(String gh, Integer year) {
         return yJSQTJXMapper.isOnlyForOneYear(gh, year);
     }
 
@@ -26,12 +26,12 @@ public class YJSQTJXServiceImpl implements YJSQTJXService {
     }
 
     @Override
-    public float getAllQtGzl(String gh, int year) {
+    public Float getAllQtGzl(String gh, Integer year) {
         return yJSQTJXMapper.getAllQtGzl(gh, year);
     }
 
     @Override
-    public YJSQTJX findYJSQTJXByGhAndYear(String gh, int year) {
+    public YJSQTJX findYJSQTJXByGhAndYear(String gh, Integer year) {
         return yJSQTJXMapper.findYJSQTJXByGhAndYear(gh, year);
     }
 

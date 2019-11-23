@@ -10,6 +10,7 @@ public class ZDXSJS {
     private Integer nd;
     private String jsmc;
     private Integer jslbbm;
+    // 竞赛级别
     private Integer jsjbbm;
     private Integer zdxsrs;
     private Integer jsxscc;

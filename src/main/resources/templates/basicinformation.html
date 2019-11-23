@@ -12,7 +12,6 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="js/input.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" type="text/css" href="css/basicinformation.css" />
@@ -48,18 +47,19 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="/updatepassword" method="post">
                         <div>
-                            原密码：<input type="text" class="form-control-1 class-name" placeholder="" id="b"/>
+                            原密码：<input type="password" class="form-control-1 class-name" placeholder="" name="oldPassword"/>
                         </div>
                         <div>
-                            新密码：<input type="text" class="form-control-1 class-name" placeholder="" />
+                            新密码：<input type="password" class="form-control-1 class-name" placeholder="" name="newPassword"/>
                         </div>
                         <div>
-                            请确认密码：<input type="text" class="form-control-1 class-number" placeholder="" />
+                            请确认密码：<input type="password" class="form-control-1 class-number" placeholder=""
+                                         name="newPassword2" />
                         </div>
                         <div class="btn-add">
-                            <button type="button" id="add">修改</button>
+                            <button type="submit" >修改</button>
                             <button type="button" id="cancel" data-dismiss="modal">取消</button>
                         </div>
                     </form>
@@ -99,7 +99,9 @@
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
                 <div>
-                    <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
+                    <a th:href="@{/submit}"><button type="button" id="Submitbtn" data-toggle="modal"
+                                            data-target="#Submission">提交
+                    </button></a>
                 </div>
             </div>
         </div>

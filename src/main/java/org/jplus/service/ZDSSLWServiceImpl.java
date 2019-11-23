@@ -16,7 +16,7 @@ public class ZDSSLWServiceImpl implements ZDSSLWService {
     private ZDSSLWMapper zDSSLWMapper;
 
     @Override
-    public int isOnlyForOneYear(String gh, int year) {
+    public Integer isOnlyForOneYear(String gh, Integer year) {
         return zDSSLWMapper.isOnlyForOneYear(gh, year);
     }
 
@@ -26,12 +26,12 @@ public class ZDSSLWServiceImpl implements ZDSSLWService {
     }
 
     @Override
-    public float getAllMasterLwGzl(String gh, int year) {
+    public Float getAllMasterLwGzl(String gh, Integer year) {
         return zDSSLWMapper.getAllMasterLwGzl(gh, year);
     }
 
     @Override
-    public ZDSSLW findZDSSLWByGhAndYear(String gh, int year) {
+    public ZDSSLW findZDSSLWByGhAndYear(String gh, Integer year) {
         return zDSSLWMapper.findZDSSLWByGhAndYear(gh, year);
     }
 

@@ -2,6 +2,7 @@ package org.jplus.service;
 
 import org.jplus.pojo.JSJS;
 import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.queryVo.JsjsVo;
 
 import java.util.List;
 
@@ -10,19 +11,23 @@ import java.util.List;
  * @date 2019/10/31 - 18:53
  */
 public interface JSJSService {
-    int getGzl(int teacherCompetitioncategory);
+    Integer getGzl(Integer teacherCompetitioncategory);
 
     void addJSJS(JSJS jSJS);
 
-    List<JSJS> getTeacherCompetitionList(String gh,int year);
+    //List<JSJS> getTeacherCompetitionList(String gh,Integer year);
 
     void addZDXSLW(ZDXSLW zDXSLW);
 
-    float getAllGzl(String gh, int year);
+    Float getAllGzl(String gh, Integer year);
 
-    float getAllLwGzl(String gh, int year);
+    Float getAllLwGzl(String gh, Integer year);
 
     void remove(Integer id);
 
     void updateZDXSLW(ZDXSLW zDXSLW);
+
+    List<JsjsVo> getTeacherCompetitionList(String gh, Integer currentYear);
+
+    String getcompetitionLevelByBM(Integer jsdjbm);
 }

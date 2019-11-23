@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2019/10/3116:35
  */
 @Controller
-public class teachingresearchController {
+public class TeachingResearchController {
 
     @Autowired
     JxcgServiceImpl jxcgService;
@@ -142,8 +142,7 @@ public class teachingresearchController {
             hxxm.setGh(user.getGh());
             //获取工作量
             hxxm.setGzl(GetWorkCount.GetHxWorkCount(hxxm.getZrs(),hxxm.getXmpm(),
-                    hxxm.getDzjf()) > 200? 200 : GetWorkCount.GetHxWorkCount(hxxm.getZrs(),hxxm.getXmpm(),
-                    hxxm.getDzjf()) );
+                    hxxm.getDzjf()));
             //存入年份
             hxxm.setNd(GetYear.getYears());
             //添加信息

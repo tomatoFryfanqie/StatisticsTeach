@@ -94,5 +94,6 @@
         select
         SUM(gzl)
         from zlgc
+        where gh = #{gh,jdbcType=CHAR}
     </select>
 </mapper>

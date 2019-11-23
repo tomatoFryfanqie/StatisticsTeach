@@ -111,6 +111,19 @@
             });
         }
 
+        function getStudentCompetitionGzl(){
+            $.ajax({
+                type:'GET',
+                url:"/getStudentCompetitionGzl",
+                success: function(data){
+                    $("#studentGzl").html(data);
+                },
+                error : function(data) {
+
+                }
+            });
+        }
+
         function getTeacherCompetitionGzl(){
             $.ajax({
                 type:'GET',
@@ -124,18 +137,6 @@
             });
         }
 
-        function getStudentCompetitionGzl(){
-            $.ajax({
-                type:'GET',
-                url:"/getStudentCompetitionGzl",
-                success: function(data){
-                    $("#studentGzl").html(data);
-                },
-                error : function(data) {
-
-                }
-            });
-        }
 
         function getAllGzl(){
             $.ajax({
@@ -241,13 +242,13 @@
             <!-- 提示信息栏 -->
             <div class="msg">
                 <div class="year" id="year" name="year">年度<span></span></div>
-                <div class="total-workload">工作总量<span id="all" name="all">sss</span></div>
+                <div class="total-workload">工作总量<span id="all" name="all"></span></div>
             </div>
             <div>
                 <!-- 指导学生竞赛-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">指导学生竞赛</div>
-                    <div class="workload">工作量小计<span id="studentGzl" name="studentGzl">sss</span></div>
+                    <div class="workload">工作量小计<span id="studentGzl" name="studentGzl"></span></div>
                     <button type="button"  data-toggle="modal" data-target="#guidingStudents">
                         添加
                     </button>
@@ -279,7 +280,14 @@
                                         </select>
                                     </div>
                                     <div>
-                                        竞赛级别：<input type="text" id="contestLevel" name="contestLevel" class="form-control-1 class-number" placeholder="" />
+                                        竞赛级别：<select id="contestLevel" name="contestLevel" class="form-control-1">
+                                        <option value="1">省级</option>
+                                        <option value="2">校级重点</option>
+                                        <option value="3">一般项目</option>
+
+                                    </select>
+
+                                        <!--<input type="text" id="contestLevel" name="contestLevel" class="form-control-1 class-number" placeholder="" />-->
                                     </div>
                                     <div>
                                         指导学生人数：<input type="text" id="studentNum" name="studentNum" class="form-control-1" placeholder="" />
@@ -306,8 +314,8 @@
                     </thead>
                     <tbody>
                         <tr th:each="allStudentCompetition:${allStudentCompetitionList}">
-                            <td th:text="${allStudentCompetition.jsmc}">Month</td>
-                            <td th:text="${allStudentCompetition.jslbbm}">
+                            <td th:text="${allStudentCompetition.jsmc}"></td>
+                            <td th:text="${allStudentCompetition.jslbmc}">
                                 <select name="competitioncategory">
                                     <option value="1">A类师范生教学技能竞赛</option>
                                     <option value="2">B类师范生教学技能竞赛</option>
@@ -315,14 +323,14 @@
                                     <option value="4">B类其他竞赛</option>
                                 </select>
                             </td>
-                            <td th:text="${allStudentCompetition.jsjbbm}">
+                            <td th:text="${allStudentCompetition.jsjbmc}">
                                 <select name="competitionlevel">
                                     <option value="1">国家级</option>
                                     <option value="2">省级</option>
                                 </select>
                             </td>
                             <td th:text="${allStudentCompetition.zdxsrs}">Savings</td>
-                            <td th:text="${allStudentCompetition.gzl}">Month</td>
+                            <td th:text="${allStudentCompetition.gzl}"></td>
                             <!--<td><a class="modify">修 改</a></td>-->
                             <td><a class="delete" th:href="@{/deleteUndergraduate(id=${allStudentCompetition.xsjsid})}" type="submit">删 除</a></td>
                         </tr>
@@ -331,7 +339,7 @@
                 <!-- 教师教学能力竞赛获奖-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">教师教学能力竞赛获奖</div>
-                    <div class="workload">工作量小计<span id="teacherCount" name="teacherCount">sss</span></div>
+                    <div class="workload">工作量小计<span id="teacherCount" name="teacherCount"></span></div>
                     <button type="button" id="save" data-toggle="modal" data-target="#teachingAbility">
                         添加
                     </button>
@@ -394,8 +402,8 @@
                     </thead>
                     <tbody>
                         <tr th:each="allTeacherCompetition:${allTeacherCompetitionList}">
-                            <td th:text="${allTeacherCompetition.jsmc}">Month</td>
-                            <td th:text="${allTeacherCompetition.jsdjbm}">
+                            <td th:text="${allTeacherCompetition.jsmc}"></td>
+                            <td th:text="${allTeacherCompetition.jsdjmc}">
                                 <select name="competitiongrade">
                                     <option value="nationallevelA">国家级一等奖</option>
                                     <option value="nationallevelB">国家级二等奖</option>
@@ -408,14 +416,14 @@
                                     <option value="schoollevelC">校级三等奖</option>
                                 </select>
                             </td>
-                            <td th:text="${allTeacherCompetition.jsxsbm}">
+                            <td th:text="${allTeacherCompetition.jsxsmc}">
                                 <select name="competitionform">
                                     <option value="lecture">讲课</option>
                                     <option value="Courseware">课件</option>
                                     <option value="microlesson">微课</option>
                                 </select>
                             </td>
-                            <td th:text="${allTeacherCompetition.gzl}">Month</td>
+                            <td th:text="${allTeacherCompetition.gzl}"></td>
                             <!--<td><a class="modify">修 改</a></td>-->
                             <td><a th:href="@{/deleteTeacherCompetition(id=${allTeacherCompetition.jsjsid})}" class="delete" >删 除</a></td>
                         </tr>
@@ -424,14 +432,14 @@
                 <!-- 教师指导学生学士学位论文获奖-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">教师指导学生学士学位论文获奖</div>
-                    <div class="workload" id="lwCount" name="lwCount">工作量小计<span id="count" name="count">sss</span></div>
+                    <div class="workload" id="lwCount" name="lwCount">工作量小计<span id="count" name="count"></span></div>
                     <button type="button" onclick="saveCount()">保存</button>
                 </div>
                 <div class="excellentpaper">
-                    省级优秀论文人数<input th:if="${zDXSLW}" th:value="${zDXSLW.sylwrs}" type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
+                    省级优秀论文人数<input th:value="${zDXSLW}?${zDXSLW.sylwrs}:${0}" type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
                 </div>
                 <div class="excellentpaper">
-                    校级优秀论文人数<input th:if="${zDXSLW}" th:value="${zDXSLW.xylwrs}" type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
+                    校级优秀论文人数<input th:value="${zDXSLW}?${zDXSLW.xylwrs}:${0}" type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
                 </div>
             </div>
         </div>

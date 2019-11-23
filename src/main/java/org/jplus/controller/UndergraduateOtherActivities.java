@@ -32,15 +32,16 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/getYearNumber")
     @ResponseBody
     @NeedLogin
-    public int getYear() {
+    public Integer getYear() {
         return DateUtils.getCurrentYear();
     }
 
     @RequestMapping("/addOtherTeachWork")
     @ResponseBody
     @NeedLogin
-    public void addOtherTeachWorkload(Users users, float workloadOfTeachingSupervision, int numberOfStudentsAssisted, int guideYoungTeachers,
-                                      int reviseTalentTrainingPlan, int prepareCourseSyllabusCount, int compilingExperimentalSyllabusCount) {
+    public void addOtherTeachWorkload(Users users, Float workloadOfTeachingSupervision, Integer numberOfStudentsAssisted, Integer guideYoungTeachers,
+                                      Integer reviseTalentTrainingPlan, Integer prepareCourseSyllabusCount, Integer compilingExperimentalSyllabusCount) {
+        System.out.println(compilingExperimentalSyllabusCount);
         QTJXGZ qTJXGZ = new QTJXGZ();
         String gh = users.getGh();
         qTJXGZ.setGh(gh);
@@ -51,12 +52,12 @@ public class UndergraduateOtherActivities {
         qTJXGZ.setXdrcpyfa(reviseTalentTrainingPlan);
         qTJXGZ.setKcdgms(prepareCourseSyllabusCount);
         qTJXGZ.setSydgms(compilingExperimentalSyllabusCount);
-        float allGzl = workloadOfTeachingSupervision + guideYoungTeachers*10 + numberOfStudentsAssisted*10 + reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + reviseTalentTrainingPlan*10;
+        Float allGzl = workloadOfTeachingSupervision + guideYoungTeachers*10 + numberOfStudentsAssisted*10 + reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
         qTJXGZ.setQtgzl(allGzl);
         // 无则添加，有则更新
-        int count = qTJXGZService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
+        Integer count = qTJXGZService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
         System.out.println(count);
-        if(count == 0) {
+        if(count == 0 || count == null) {
             // 添加
             qTJXGZService.addQTJXGZ(qTJXGZ);
         }else {
@@ -68,14 +69,14 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/getTeachStudentCount")
     @ResponseBody
     @NeedLogin
-    public int getTeachStudentCount(int numberOfStudentsAssisted) {
+    public Integer getTeachStudentCount(int numberOfStudentsAssisted) {
         return numberOfStudentsAssisted * 10;
     }
 
     @RequestMapping("/getTeachYoungTeacherCount")
     @ResponseBody
     @NeedLogin
-    public int getTeachYoungTeacherCount(int guideYoungTeachers) {
+    public Integer getTeachYoungTeacherCount(int guideYoungTeachers) {
         return guideYoungTeachers * 10;
     }
 
@@ -83,8 +84,8 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/getUndertakeCount")
     @ResponseBody
     @NeedLogin
-    public int getUndertakeCount(int reviseTalentTrainingPlan, int prepareCourseSyllabusCount, int compilingExperimentalSyllabusCount) {
-        System.out.println(reviseTalentTrainingPlan);
+    public Integer getUndertakeCount(int reviseTalentTrainingPlan, int prepareCourseSyllabusCount, int compilingExperimentalSyllabusCount) {
+        System.out.println(prepareCourseSyllabusCount);
         return reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
     }
 
@@ -92,7 +93,12 @@ public class UndergraduateOtherActivities {
     @RequestMapping("/getAllQtGzl")
     @ResponseBody
     @NeedLogin
-    public float getAllQtGzl(Users users) {
-        return qTJXGZService.getAllQtGzl(users.getGh(), DateUtils.getCurrentYear());
+    public Float getAllQtGzl(Users users) {
+        Float result = qTJXGZService.getAllQtGzl(users.getGh(), DateUtils.getCurrentYear());
+        System.out.println(result);
+        if(result == null) {
+            return 0.0f;
+        }
+        return result;
     }
 }

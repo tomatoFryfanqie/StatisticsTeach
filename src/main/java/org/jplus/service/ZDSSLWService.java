@@ -7,11 +7,11 @@ import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW; /**
 public interface ZDSSLWService {
     void addZDSSLW(ZDSSLW zDSSLW);
 
-    float getAllMasterLwGzl(String gh, int year);
+    Float getAllMasterLwGzl(String gh, Integer year);
 
-    ZDSSLW findZDSSLWByGhAndYear(String gh, int year);
+    ZDSSLW findZDSSLWByGhAndYear(String gh, Integer year);
 
-    int isOnlyForOneYear(String gh, int currentYear);
+    Integer isOnlyForOneYear(String gh, Integer currentYear);
 
     void updateZDSSLW(ZDSSLW zDSSLW);
 }
