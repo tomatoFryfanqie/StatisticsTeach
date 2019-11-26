@@ -80,7 +80,7 @@
             var workloadOfTeachingSupervision = $("#workloadOfTeachingSupervision").val();
             var numberOfStudentsAssisted = $("#numberOfStudentsAssisted").val();
             var guideYoungTeachers = $("#guideYoungTeachers").val();
-            var reviseTalentTrainingPlan = $("#reviseTalentTrainingPlan").val();
+            var reviseTalentTrainingPlan = $('input:radio[name="reviseTalentTrainingPlan"]:checked').val();
             var prepareCourseSyllabusCount = $("#prepareCourseSyllabusCount").val();
             var compilingExperimentalSyllabusCount  = $("#compilingExperimentalSyllabusCount ").val();
             $.ajax({
@@ -239,8 +239,16 @@
                         </div>
                         <div class="workload">工作量<span class="prompt" id="undertake" name="undertake"></span></div>
                         <div class="complete right-shift">
-                            参加修订人才培养方案:<input th:value="${qTJXGZ}?${qTJXGZ.xdrcpyfa}:${0}" id="reviseTalentTrainingPlan" name="reviseTalentTrainingPlan" type="radio" value="1" class="entry-chose" />是
-                            <input type="radio" name="reviseTalentTrainingPlan" value="0" checked="checked" />否
+                            参加修订人才培养方案:
+                            <span th:if="${qTJXGZ!=null && qTJXGZ.xdrcpyfa!=null}">
+                                <input  th:checked="${qTJXGZ.xdrcpyfa}==1" name="reviseTalentTrainingPlan" type="radio" value="1" class="entry-chose" />是
+                                                <input type="radio" th:checked="${qTJXGZ.xdrcpyfa}==0" name="reviseTalentTrainingPlan" value="0"  />否
+                            </span>
+                            <span th:unless="${qTJXGZ!=null && qTJXGZ.xdrcpyfa!=null}">
+                                <input   name="reviseTalentTrainingPlan" type="radio" value="1" class="entry-chose" />是
+                                                <input type="radio"  name="reviseTalentTrainingPlan" value="0" checked="checked" />否
+                            </span>
+
                         </div>
                         <div class="complete">
                             <span class="right-shift">编写课程教学大纲课程数</span><input  th:value="${qTJXGZ}?${qTJXGZ.kcdgms}:${0}" id="prepareCourseSyllabusCount" name="prepareCourseSyllabusCount" type="text" placeholder=""
