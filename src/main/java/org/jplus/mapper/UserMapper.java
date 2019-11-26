@@ -1,10 +1,8 @@
 package org.jplus.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.jplus.pojo.Users;
+import org.jplus.pojo.queryVo.UserVo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,8 +26,16 @@ public interface UserMapper {
     void addUser(Users user);
 
     @Select("SELECT * FROM users WHERE yxbm=#{yxbm}")
-    List<Users> getAllUsers(@Param("yxbm") Integer yxbm);
+    List<UserVo> getAllUsers(@Param("yxbm") Integer yxbm);
 
     @Delete("DELETE FROM users WHERE gh=#{gh}")
     void deleteUser(@Param("gh") String gh);
+    @Select("SELECT * FROM users WHERE actor=#{actor} || actor=2")
+    List<UserVo> getAllOfficeUsers(@Param("actor")  Integer actor);
+    @Insert("INSERT INTO users VALUES(#{gh}, #{yxbm}, #{uname}, #{upassword}, #{actor})")
+    void addOfficeUser(Users user);
+    @Select("SELECT yxmc FROM yxbm WHERE yxbm=#{yxbm}")
+    String findYxmcByYxbm(@Param("yxbm") int yxbm);
+    @Select("SELECT yxbm FROM users WHERE gh=#{gh}")
+    Integer findYxmcByActor(@Param("gh") String gh);
 }

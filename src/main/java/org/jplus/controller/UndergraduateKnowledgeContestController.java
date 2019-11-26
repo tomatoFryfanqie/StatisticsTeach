@@ -114,7 +114,6 @@ public class UndergraduateKnowledgeContestController {
          * */
         Float gzl = zDXSJSService.getGzl(competition, contestLevel);
         gzl = gzl * studentNum;
-        System.out.println(gzl);
         zDXSJS.setGzl(gzl);
         // 添加到数据库
         zDXSJSService.addZDXSJS(zDXSJS);

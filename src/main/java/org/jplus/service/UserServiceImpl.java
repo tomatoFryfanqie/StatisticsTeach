@@ -2,6 +2,7 @@ package org.jplus.service;
 import org.jplus.dto.LoginVo;
 import org.jplus.mapper.UserMapper;
 import org.jplus.pojo.Users;
+import org.jplus.pojo.queryVo.UserVo;
 import org.jplus.utils.MD5Util;
 import org.jplus.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,28 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<Users> getAllUsers(Integer yxbm) {
+    public List<UserVo> getAllUsers(Integer yxbm) {
         return userMapper.getAllUsers(yxbm);
+    }
+
+    @Override
+    public void addOfficeUser(Users user) {
+        userMapper.addOfficeUser(user);
+    }
+
+    @Override
+    public Integer findYxmcByActor(String gh) {
+        return userMapper.findYxmcByActor(gh);
+    }
+
+    @Override
+    public String findYxmcByYxbm(int yxbm) {
+        return userMapper.findYxmcByYxbm(yxbm);
+    }
+
+    @Override
+    public List<UserVo> getAllOfficeUsers(Integer actor) {
+        return userMapper.getAllOfficeUsers(actor);
     }
 
     @Override
