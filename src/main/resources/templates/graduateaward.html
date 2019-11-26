@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="css/knowledgecontest.css" />
     <link rel="stylesheet" href="css/tablestyle.css" />
     <script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <!--    输入框-->
+    <script src="js/classroomteaching.js"></script>
 
     <script>
         function addContest() {
@@ -141,7 +143,7 @@
     <script src="js/titleandnav.js"></script>
     <!-- 左边导航栏 -->
     <div class="main">
-        <div class="navbar">
+        <div class="navbar" id="navwarp">
             <div class="navwarp">
                 <div class="basic-information">
                     <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -163,11 +165,11 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
-                    <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
+                    <li class="list-group-item active"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
                 <div>
@@ -198,7 +200,7 @@
         </div>
     </div>
     <!-- 知识竞赛部分 -->
-    <div class="knowledge-contest">
+    <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
         <div class="teaching-title">指导研究生竞赛获奖工作量</div>
         <div class="msg-warp">
@@ -231,8 +233,9 @@
                             </div>
                             <div class="modal-body">
                                 <div>
-                                    竞赛名称：<input type="text" id="contestName" name="contestName" class="form-control-1 class-name" placeholder="" />
+                                    竞赛名称：<input type="text" id="contestName" name="contestName" class="form-control-1 class-name form-control-jub" placeholder="" />
                                 </div>
+                                <div class="warning">竞赛名称不能为空！</div>
                                 <div>
                                     竞赛类别：<select id="competition" name="competition" class="form-control-1">
                                     <option value="1">A类师范生教学技能竞赛</option>
@@ -252,10 +255,11 @@
                                     <!--竞赛级别：<input type="text" id="contestLevel" name="contestLevel" class="form-control-1 class-number" placeholder="" />-->
                                 </div>
                                 <div>
-                                    指导学生人数：<input type="text" id="studentNum" name="studentNum" class="form-control-1" placeholder="" />
+                                    指导学生人数：<input type="text" id="studentNum" name="studentNum" class="form-control-1 form-control-jub timenum" placeholder="" />
                                 </div>
+                                <div class="warning">指导学生人数不能为空！</div>
                                 <div class="btn-add">
-                                    <button type="button" id="addStudentContest" name="addStudentContest" onclick="addContest()">添加</button>
+                                    <button type="button" id="addStudentContest" name="addStudentContest" onclick="addContest()" class="add">添加</button>
                                     <button type="button"  data-dismiss="modal">取消</button>
                                 </div>
                             </div>
@@ -266,12 +270,12 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <td>竞赛名称</td>
-                        <td>竞赛类别</td>
-                        <td>竞赛级别</td>
-                        <td>指导学生人数</td>
-                        <td>工作量</td>
-                        <td colspan="2">操作</td>
+                        <th>竞赛名称</th>
+                        <th>竞赛类别</th>
+                        <th>竞赛级别</th>
+                        <th>指导学生人数</th>
+                        <th>工作量</th>
+                        <th colspan="2">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -298,50 +302,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <!-- 模态框（Modal）指导学生竞赛界面 -->
-                <div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    &times;
-                                </button>
-                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                                    指导学生竞赛
-                                </h5>
-                            </div>
-                            <div class="modal-body">
-                                <form action="">
-                                    <div>
-                                        竞赛名称：<input type="text" class="form-control-1 class-name" placeholder="" />
-                                    </div>
-                                    <div>
-                                        竞赛类别：<select name="competitionform">
-                                            <option value="lecture">讲课</option>
-                                            <option value="Courseware">课件</option>
-                                            <option value="microlesson">微课</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        竞赛级别：<select name="competitionform">
-                                            <option value="lecture">讲课</option>
-                                            <option value="Courseware">课件</option>
-                                            <option value="microlesson">微课</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        指导学生人数：<input type="text" class="form-control-1" placeholder="" />
-                                    </div>
-                                    <div class="btn-add">
-                                        <button type="button" id="add">确定</button>
-                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- 教师指导学生学士学位论文获奖-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">教师指导学生学士学位论文获奖</div>
@@ -349,10 +310,10 @@
                     <button type="button" id="subtitlesave" onclick="saveCount()">保存</button>
                 </div>
                 <div class="excellentpaper" style="width: 100%;">
-                    省级优秀论文人数<input th:value="${zDSSLW}?${zDSSLW.sylwrs}:${0}" type="text" id="slwNum" name="slwNum" class="management" placeholder="" />
+                    省级优秀论文人数<input th:value="${zDSSLW}?${zDSSLW.sylwrs}:${0}" type="text" id="slwNum" name="slwNum" class="management timenum" placeholder="" />
                 </div>
                 <div class="excellentpaper">
-                    校级优秀论文人数<input th:value="${zDSSLW}?${zDSSLW.xylwrs}:${0}" type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
+                    校级优秀论文人数<input th:value="${zDSSLW}?${zDSSLW.xylwrs}:${0}" type="text" id="xlwNum" name="xlwNum" class="management timenum" placeholder="" />
                 </div>
             </div>
         </div>

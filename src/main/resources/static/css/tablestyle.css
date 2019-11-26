@@ -1,12 +1,4 @@
 /* 表格 */
-/* .table td,
-.table th {
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  padding: 0;
-  font-weight: 500;
-} */
 .table thead tr th,
 .table tbody tr td,
 .table > thead > tr > td,

@@ -1,16 +1,18 @@
 /* 系统标题 */
 .toptitle {
-  width: 100%;
+  width: 100vw;
+  min-width: 750px;
   height: 60px;
   background-color: #003e78;
+  text-align: center;
   color: white;
   font-size: 20px;
   display: block;
   position: fixed;
   z-index: 999;
-  /* padding: 0; */
   top: 0;
 }
+
 #title {
   line-height: 60px;
   margin: auto;
@@ -25,17 +27,29 @@
   color: white;
   position: absolute;
   right: 8%;
-  top: 18px;
+  top: 15px;
+}
+.main {
+  width: 20%;
+  height: 100%;
+  top: 60px;
+  /* position: fixed;
+  top: 60px;
+  left: 0; */
+  z-index: 9999;
 }
 /* 系统左侧导航栏 */
 .navbar {
   width: 20%;
+  min-width: 200px;
   background-color: #e7e6e6;
   font-size: 14px;
   height: 100%;
+  margin-bottom: 0;
   display: block;
   position: fixed;
   top: 60px;
+  left: 0;
   padding: 0;
   color: #006abb;
   border-radius: 0;
@@ -55,6 +69,7 @@ ul {
 
 .navwarp ul li,
 .navwarp div {
+  min-width: 200px;
   height: 28px;
   line-height: 28px;
   text-align: left;
@@ -66,4 +81,15 @@ ul {
   padding: 0;
   padding-left: 10%;
 }
-
+/*主要内容栏*/
+/* 基本信息基础布局 */
+#informationwarp {
+  width: 80%;
+  font-size: 14px;
+  min-width: 650px;
+  text-align: left;
+  position: absolute;
+  top: 60px;
+  left: 20%;
+  background-color: #9bc2e6;
+}

@@ -1,14 +1,3 @@
-/* 基本信息基础布局 */
-.qualityen-gineering {
-  font-size: 14px;
-  width: 80%;
-  text-align: left;
-  position: absolute;
-  /* top: 15%; */
-  top: 11%;
-  right: 0;
-}
-
 /* 标题 */
 .teaching-title {
   height: 30px;

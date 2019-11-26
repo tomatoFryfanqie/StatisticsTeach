@@ -1,13 +1,4 @@
 /* 基本信息基础布局 */
-.other-teaching {
-  font-size: 14px;
-  width: 80%;
-  text-align: left;
-  position: absolute;
-  top: 11%;
-  right: 0;
-}
-
 /* 标题 */
 .teaching-title {
   height: 30px;
@@ -67,7 +58,7 @@
 }
 .job-category ul li .enter {
   width: 105px;
-  height: 20px;
+  height: 21px;
 }
 /* 表单与文字部分距离 */
 .prompt,
@@ -92,6 +83,9 @@
   width: 25%;
   float: left;
 }
+.job-category ul li .max{
+  min-width: 285px;
+}
 .job-category ul li .undertake {
   width: 35%;
   float: left;
@@ -102,4 +96,5 @@
 .job-category ul li .complete .right-shift {
   display: inline-block;
   width: 25%;
+  min-width: 195px;
 }

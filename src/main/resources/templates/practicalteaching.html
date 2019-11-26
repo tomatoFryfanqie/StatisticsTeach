@@ -15,9 +15,16 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
+    <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <!--    加载jq-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
+    <!--css样式-->
     <link rel="stylesheet" href="css/practicalteaching.css">
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
 </head>
 
 <body>
@@ -29,7 +36,7 @@
 <script src="js/titleandnav.js"></script>
 <!-- 左边导航栏 -->
 <div class="main">
-    <div class="navbar">
+    <div class="navbar" id="navwrap">
         <div class="navwarp">
             <div class="basic-information">
                 <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -38,9 +45,9 @@
             <div id="bachelor">本科生</div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a th:href="@{/classroomteaching}">课堂教学</a>
+                    <a th:href="@{/classroomteaching}" >课堂教学</a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item active">
                     <a th:href="@{/practiceteh}">实践教学</a>
                 </li>
                 <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
@@ -51,20 +58,20 @@
             <!-- 研究生 -->
             <div id="postgraduate">研究生</div>
             <ul class="list-group">
-                <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                 <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                 <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                 <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                 <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                 <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
             </ul>
+            <!-- 提交按钮 -->
             <div>
-                    <button type="button" id="Submitbtn" data-toggle="modal"
-                            data-target="#Submission">提交
-                    </button>
+                <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
             </div>
         </div>
     </div>
+    <!-- 模态框-是否提交 -->
     <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -75,7 +82,7 @@
                         <div style=" text-indent: 2em;">本年度工作量提交以后，就不能修改。如果提交后需要修改，请让系主任或教学秘书做撤回操作。</div>
                     </div>
                     <div class="btn-submitted">
-                        <a th:href="@{/submit}"><button type="button" id="submitted">继续提交</button></a>
+                        <button type="button" id="submitted">继续提交</button>
                         <button type="button" id="notsubmitted" data-dismiss="modal">不提交</button>
                     </div>
                 </div>
@@ -83,8 +90,9 @@
         </div>
     </div>
 </div>
+
 <!-- 实践教学部分 -->
-<div class="practical-teaching">
+<div class="informationwarp" id="informationwarp">
     <!-- 标题 -->
     <div class="teaching-title">本科生实践教学工作量</div>
     <form th:action="@{/saveBkssjjx}" th:object="${bkssjjxVo}" method="post">
@@ -129,9 +137,9 @@
                     </li>
                     <li class="description filling">
                         实习天数
-                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts1}" type="number" id="day" class="day"
+                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts1}" type="text" id="day" class="day timenum"
                                name="sxts1"/>
-                        <input th:unless="${bkssjjx}" type="number" id="day" th:value="0" class="day" name="sxts1"/>
+                        <input th:unless="${bkssjjx}" type="text" id="day" th:value="0" class="day timenum" name="sxts1"/>
                     </li>
                     <li class="description indent">
                         实习类型
@@ -149,9 +157,9 @@
                     </li>
                     <li class="description filling">
                         实习天数
-                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts2}" type="number" id="day" class="day"
+                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts2}" type="text" id="day" class="day timenum"
                                name="sxts2"/>
-                        <input th:unless="${bkssjjx}" type="number" th:value="0"id="day" class="day" name="sxts2"/>
+                        <input th:unless="${bkssjjx}" type="text" th:value="0"id="day" class="day timenum" name="sxts2"/>
                     </li>
                     <li class="description indent">
                         实习类型
@@ -169,9 +177,9 @@
                     </li>
                     <li class="description filling">
                         实习天数
-                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts3}" type="number" id="day" class="day"
+                        <input th:if="${bkssjjx}" th:value="${bkssjjx.sxts3}" type="text" id="day" class="day timenum"
                                name="sxts3"/>
-                        <input th:unless="${bkssjjx}" type="number"th:value="0" id="day" class="day" name="sxts3"/>
+                        <input th:unless="${bkssjjx}" type="text"th:value="0" id="day" class="day timenum" name="sxts3"/>
                     </li>
                     <li class="tips">2.微格试讲</li>
                     <li class="tips workload-display">工作量小计
@@ -181,9 +189,9 @@
                     </li>
                     <li class="description new-line indent">
                         指导学生人数
-                        <input type="number" th:if="${bkssjjx}" th:value="${bkssjjx.wgsjrs}" class="student-num"
+                        <input type="text" th:if="${bkssjjx}" th:value="${bkssjjx.wgsjrs}" class="student-num timenum"
                                th:name="wgsjrs"/>
-                        <input th:unless="${bkssjjx}" type="number" th:value="0"id="day" class="day" th:name="wgsjrs"/>
+                        <input th:unless="${bkssjjx}" type="text" th:value="0"id="day" class="day timenum" th:name="wgsjrs"/>
                     </li>
                     <li class="tips">3.指导毕业论文</li>
                     <li class="tips workload-display">工作量小计
@@ -203,9 +211,9 @@
                     </li>
                     <li class="description filling">
                         指导学生人数
-                        <input type="number" id="student-num" class="student-num" th:if="${bkssjjx}"
+                        <input type="text" id="student-num" class="student-num timenum" th:if="${bkssjjx}"
                                th:value="${bkssjjx.zdlwrs}" name="zdlwrs"/>
-                        <input th:unless="${bkssjjx}" type="number" id="day"th:value="0" class="day" name="zdlwrs"/>
+                        <input th:unless="${bkssjjx}" type="text" id="day"th:value="0" class="day timenum" name="zdlwrs"/>
                     </li>
                     <li class="tips new-line">4.实验室建设与管理</li>
                     <li class="description indent managements">
@@ -215,7 +223,7 @@
                     </li>
                     <li class="description laboratoryworkloads">
                         实验室管理工作量
-                        <input type="number" id="laboratory-workload" class="laboratory-workload"
+                        <input type="text" id="laboratory-workload" class="laboratory-workload"
                                th:if="${bkssjjx}" th:value="${bkssjjx.glgzl}" name="glgzl"/>
                         <input th:unless="${bkssjjx}" type="text"th:value="0" id="day" class="day" name="glgzl"/>
                     </li>

@@ -18,6 +18,8 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" href="css/practicalteaching.css">
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
     <script src="js/titleandnav.js"></script>
     <!-- 左边导航栏 -->
     <div class="main">
-        <div class="navbar">
+        <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="basic-information">
                     <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -50,20 +52,22 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
-                    <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item active"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                     <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
+                <!-- 提交按钮 -->
                 <div>
                     <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
                 </div>
             </div>
         </div>
+        <!-- 模态框-是否提交 -->
         <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -81,7 +85,7 @@
         </div>
     </div>
     <!-- 实践教学部分 -->
-    <div class="practical-teaching">
+    <div class="informationwarp" id="informationwarp">
         <form th:action="@{/updateYjssjjxInfo}" method="post">
         <!-- 标题 -->
         <div class="teaching-title">研究生实践教学工作量</div>
@@ -90,7 +94,7 @@
             <div class="msg">
                 <div class="year">年度<span class="prompt">2019</span></div>
                 <div class="total-workload">实践教学工作量总计<span class="prompt" th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.gzl!=null}"><span th:text="${yjssjjxJbxx.gzl}"></span></span></div>
-                <button type="submit" id="save">保存</button>
+                <button type="submit" id="save"  style="margin-left: 19%;">保存</button>
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">
@@ -115,8 +119,8 @@
                         </span>
                     </li>
                     <li class="description filling">
-                        实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="${yjssjjxJbxx.sjts1}" id="day" class="day" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="0" id="day" class="day" placeholder="" />
+                        实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="${yjssjjxJbxx.sjts1}" id="day" class="day timenum" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="0" id="day" class="day timenum" placeholder="" />
                     </li>
                     <li class="description indent">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm2!=null}">
@@ -135,8 +139,8 @@
                         </span>
                     </li>
                     <li class="description filling">
-                        实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="${yjssjjxJbxx.sjts2}" type="text" id="day" class="day" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="0"type="text" id="day" class="day" placeholder="" />
+                        实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="${yjssjjxJbxx.sjts2}" type="text" id="day" class="day timenum" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="0"type="text" id="day" class="day timenum" placeholder="" />
                     </li>
                     <li class="description indent">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm3!=null}">
@@ -155,14 +159,14 @@
                         </span>
                     </li>
                     <li class="description filling">
-                        实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3" th:value="${yjssjjxJbxx.sjts3}" type="text" id="day" class="day" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3"th:value="0" type="text" id="day" class="day" placeholder="" />
+                        实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3" th:value="${yjssjjxJbxx.sjts3}" type="text" id="day" class="day timenum" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3"th:value="0" type="text" id="day" class="day timenum" placeholder="" />
                     </li>
                     <li class="tips">2.指导研究生的学术（论坛）活动</li>
                     <li class="tips workload-display">工作量小计<span class="prompt" th:text="${zdxshdcsGzl!=null}?${zdxshdcsGzl}:0.0"></span></li>
                     <li class="description new-line indent">
-                        指导次数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" th:value="${yjssjjxJbxx.zdxshdcs}" type="text" id="student-num" class="student-num" placeholder="" />
-                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" type="text" th:value="0"id="student-num" class="student-num" placeholder="" />
+                        指导次数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" th:value="${yjssjjxJbxx.zdxshdcs}" type="text" id="student-num" class="student-num timenum" placeholder="" />
+                        <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" type="text" th:value="0"id="student-num" class="student-num timenum" placeholder="" />
                     </li>
                     <li class="tips" style="width: 60%;">3.导师指导研究生日常工作</li>
                     <li class="description indent managements" style="width: 60%;">

@@ -46,7 +46,7 @@ public class UserController {
             return "redirect:/departmentmaintenance";
         }
         if (user.getActor()==2){
-            return "redirect:/departmentmaintenance";
+            return "redirect:/user";
         }
         return "redirect:/basicinformation";
     }

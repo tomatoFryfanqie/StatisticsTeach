@@ -12,11 +12,19 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 加载bootstrap -->
+    <link rel='stylesheet' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+    <script src='https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
+    <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <!--    加载jq-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
-    <!--<script src="js/classroomteaching.js"></script>-->
+    <!--css样式-->
+    <link rel="stylesheet" type="text/css" href="css/basicinformation.css" />
     <link rel="stylesheet" href="css/classroomteaching.css">
     <link rel="stylesheet" href="css/tablestyle.css" />
+    <!--    输入框验证-->
     <script src="js/classroomteaching.js"></script>
 
 </head>
@@ -30,7 +38,7 @@
     <script src="js/titleandnav.js"></script>
     <!-- 左边导航栏 -->
     <div class="main">
-        <div class="navbar">
+        <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="basic-information">
                     <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -52,7 +60,7 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
@@ -67,7 +75,7 @@
         </div>
         <!-- 模态框-是否提交 -->
         <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -85,7 +93,7 @@
         </div>
     </div>
     <!-- 课堂教学部分 -->
-    <div class="classroom-teaching">
+    <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
         <div class="teaching-title">本科生课堂教学工作量</div>
         <div class="msg-warp">
@@ -116,13 +124,14 @@
                         <!-- 添加课程内容 -->
                         <div class="modal-body">
                             <form th:action="@{/addClassInfo}" method="post">
-
                                 <div>
-                                    <span class="passwordtip" style="letter-spacing: 30px;">学</span>期：<select th:name="xq" class="form-control-1">
-                                    <option th:name="xq" th:value="${1}">1</option>
-                                    <option th:name="xq" th:value="${2}">2</option>
-                                </select>
+                                    <span class="passwordtip" style="letter-spacing: 30px;">学</span>期：
+                                        <select th:name="xq" class="form-control-1">
+                                        <option th:name="xq" th:value="${1}">1</option>
+                                        <option th:name="xq" th:value="${2}">2</option>
+                                        </select>
                                 </div>
+
                                 <div>
                                     课程名称：<input type="text" th:name="kcmc" class="form-control-1 form-control-jub class-number" />
                                 </div>
@@ -135,9 +144,11 @@
                                         ></option>
                                     </select>
                                 </div>
+
                                 <div>
                                     授课班级：<input type="text" th:name="skbj" class="form-control-1 form-control-jub class-number"  />
                                 </div>
+
                                 <div class="warning">授课班级不能为空！</div>
                                 <div th:name="sfsy">
                                     是否双语教学：<input type="radio" th:name="sfsy" th:value="${1}" class="entry-chose" />是

@@ -48,6 +48,7 @@
 
 .subtitle {
   width: 25%;
+  min-width: 204px;
   /* padding-left: 5%; */
 }
 
@@ -81,12 +82,16 @@
 /* 优秀论文数 */
 .excellentpaper {
   width: 40%;
-  height: 25px;
+  min-width: 300px;
+  height: 28px;
   float: left;
 }
 .excellentpaper input,
 .workload span {
   margin-left: 10px;
+}
+.excellentpaper input{
+  height: 20px;
 }
 /* 表格宽度 */
 /* .table tbody tr th:nth-child(2){
@@ -126,7 +131,7 @@
 }
 
 .modal-body div .form-control-1 {
-  width: 30%;
+  /* width: 30%; */
   height: 25px;
 }
 

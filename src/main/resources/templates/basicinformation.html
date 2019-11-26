@@ -11,10 +11,18 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 加载bootstrap -->
+    <link rel='stylesheet' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+    <script src='https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
+    <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <!--    加载jq-->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
+<!--css样式-->
     <link rel="stylesheet" type="text/css" href="css/basicinformation.css" />
+<!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
 </head>
 
 <body>
@@ -25,10 +33,6 @@
       </p>
     <![endif]-->
     <!-- 头部 -->
-    <div class="toptitle">
-        <span id="title">湖北师范大学教学工作量统计系统</span>
-        <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
-    </div>
     <div class="toptitle">
         <span id="title">湖北师范大学教学工作量统计系统</span>
         <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
@@ -49,17 +53,21 @@
                 <div class="modal-body">
                     <form action="/updatepassword" method="post">
                         <div>
-                            原密码：<input type="password" class="form-control-1 class-name" placeholder="" name="oldPassword"/>
+                            原密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="oldPassword"/>
                         </div>
+                        <div class="warning">原密码不能为空！</div>
                         <div>
-                            新密码：<input type="password" class="form-control-1 class-name" placeholder="" name="newPassword"/>
+                            新密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="newPassword"/>
                         </div>
+                        <div class="warning">新密码不能为空！</div>
                         <div>
-                            请确认密码：<input type="password" class="form-control-1 class-number" placeholder=""
+                            请确认密码：<input type="password" class="form-control-1 form-control-jub class-number password" placeholder=""
                                          name="newPassword2" />
                         </div>
+                        <div class="warning">请确认密码不能为空！</div>
+                        <div class="notnull">新密码与确认密码不一致！</div>
                         <div class="btn-add">
-                            <button type="submit" >修改</button>
+                            <button type="submit" class="modify">修改</button>
                             <button type="button" id="cancel" data-dismiss="modal">取消</button>
                         </div>
                     </form>
@@ -69,10 +77,10 @@
     </div>
     <!-- 左边导航栏 -->
     <div class="main">
-        <div class="navbar">
+        <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="basic-information active">
-                    <a th:href="@{basicinformation}">教师本年度基本信息</a>
+                    <a th:href="@{/basicinformation}">教师本年度基本信息</a>
                 </div>
                 <!-- 本科生 -->
                 <div id="bachelor">本科生</div>
@@ -91,22 +99,22 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                     <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
+                <!-- 提交按钮 -->
                 <div>
-                    <a th:href="@{/submit}"><button type="button" id="Submitbtn" data-toggle="modal"
-                                            data-target="#Submission">提交
-                    </button></a>
+                    <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
                 </div>
             </div>
         </div>
+        <!-- 模态框-是否提交 -->
         <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -126,7 +134,7 @@
 
     <!-- 教师本年度基本信息 -->
     <!-- 教师本年度基本信息编辑栏 -->
-    <div class="basicinformation">
+    <div class="informationwarp" id="informationwarp">
         <div class="information-title">教师本年度基本信息</div>
         <form th:action="@{/updateBasisInfo}" method="post" th:object="${jbxxAccpet}">
         <!-- 保存按钮 -->

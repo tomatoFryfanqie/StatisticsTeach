@@ -1,13 +1,4 @@
 /* 基本信息基础布局 */
-.practical-teaching {
-  font-size: 14px;
-  width: 80%;
-  text-align: left;
-  position: absolute;
-  top: 11%;
-  right: 0;
-}
-
 /* 标题 */
 .teaching-title {
   height: 30px;
@@ -28,6 +19,9 @@
 }
 .year {
   width: 30%;
+  margin-left: 5%;
+}
+.total-workload {
   margin-left: 5%;
 }
 .msg div,
@@ -67,10 +61,13 @@
 .job-category ul .indent {
   width: 30%;
   padding-left: 10%;
+  min-width: 200px;
 }
 .job-category ul .filling {
   width: 60%;
+  min-width: 200px;
   padding: 0;
+  padding-left: 2%;
 }
 .job-category ul .new-line {
   width: 100%;
@@ -82,9 +79,14 @@
 }
 .job-category ul .managements {
   width: 50%;
+  min-width: 400px;
 }
-.job-category ul li .management {
-  width: 80%;
+.job-category ul .managements {
+  width: 50%;
+  min-width: 400px;
+}
+.job-category ul li .laboratoryworkloads {
+  min-width: 270px;
 }
 /* 表单与文字部分距离 */
 .job-category ul li select,

@@ -17,10 +17,8 @@
     <!-- 表格样式 -->
     <link rel="stylesheet" href="css/classroomteaching.css" />
     <link rel="stylesheet" href="css/tablestyle.css" />
-    <!-- 表格编辑 -->
-    <!-- <link href="css/editTable.css" type="text/css" rel="stylesheet" />
-    <script language="javascript" type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    <script language="javascript" type="text/javascript" src="js/editTable.js"></script> -->
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
 </head>
 
 <body>
@@ -35,7 +33,7 @@
     <!-- 左边导航栏 -->
     <div class="main">
         <div class="navbar">
-            <div class="navwarp">
+            <div class="navwarp" id="navwrap">
                 <div class="basic-information">
                     <a th:href="@{/basicinformation}">教师本年度基本信息</a>
                 </div>
@@ -95,7 +93,7 @@
         </div>
     </div>
     <!-- 课堂教学部分 -->
-    <div class="classroom-teaching">
+    <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
         <div class="teaching-title">研究生课堂教学工作量</div>
         <div class="msg-warp">
@@ -134,8 +132,9 @@
                                     </select>
                                 </div>
                                 <div>
-                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name" th:placeholder="请填写课程名称" />
+                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name form-control-jub"  />
                                 </div>
+                                <div class="warning">课程名称不能为空！</div>
                                 <div>
                                     课程类型：<select th:name="kclx" class="form-control-1">
                                     <option th:name="kclx" th:each="ktlxType:${yjskclx}" th:value="${ktlxType.kclxbm}"
@@ -144,17 +143,20 @@
                                     </select>
                                 </div>
                                 <div>
-                                    授课对象：<input type="text" th:name="skdx" class="form-control-1 class-number" th:placeholder="请填写授课对象" />
+                                    授课对象：<input type="text" th:name="skdx" class="form-control-1 class-number form-control-jub"  />
                                 </div>
+                                <div class="warning">授课对象不能为空！</div>
                                 <div th:name="jhxs">
-                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1"  th:placeholder="请填写计划学时"/>
+                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1 form-control-jub timenum"  />
                                 </div>
+                                <div class="warning">计划学时不能为空！</div>
                                 <div th:name="skrs">
-                                    上课人数：<input type="text" th:name="skrs" class="form-control-1" th:placeholder="请填写上课人数" />
+                                    上课人数：<input type="text" th:name="skrs" class="form-control-1 form-control-jub timenum"  />
                                 </div>
+                                <div class="warning">上课人数不能为空！</div>
                                 <div class="btn-add">
-                                    <button type="submit" id="add">添加</button>
-                                    <button type="button" id="cancel" data-dismiss="modal">
+                                    <button type="submit" class="add">添加</button>
+                                    <button type="button" class="cancel" data-dismiss="modal">
                                         取消
                                     </button>
                                 </div>
@@ -202,61 +204,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- 模态框（Modal）修改界面 -->
-                <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!-- 模态框头部 -->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    &times;
-                                </button>
-                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                                    课堂教学修改
-                                </h5>
-                            </div>
-                            <!-- 添加课程内容 -->
-                            <div class="modal-body">
-                                <form action="">
-                                    <div>
-                                        <span class="passwordtip" style="letter-spacing: 30px;">学</span>期：<input
-                                            type="text" class="form-control-1" placeholder="" />
-                                    </div>
-                                    <div>
-                                        课程名称：<input type="text" class="form-control-1 class-name" placeholder="" />
-                                    </div>
-                                    <div>
-                                        课程类型：<select name="competitionform" class="form-control-1">
-                                            <option value="lecture">讲课</option>
-                                            <option value="Courseware">课件</option>
-                                            <option value="microlesson">微课</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        授课对象：<input type="text" class="form-control-1 class-number" placeholder="" />
-                                    </div>
-                                    <div>
-                                        是否双语教学：<input type="radio" name="newentry" value="new" class="entry-chose" />是
-                                        <input type="radio" name="newentry" value="old" checked="checked" />否
-                                    </div>
-                                    <div>
-                                        计划学时：<input type="text" class="form-control-1" placeholder="" />
-                                    </div>
-                                    <div>
-                                        上课人数：<input type="text" class="form-control-1" placeholder="" />
-                                    </div>
-                                    <div class="btn-add">
-                                        <button type="button" id="add">确定</button>
-                                        <button type="button" id="cancel" data-dismiss="modal">
-                                            取消
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

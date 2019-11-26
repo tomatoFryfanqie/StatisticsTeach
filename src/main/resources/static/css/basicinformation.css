@@ -1,12 +1,4 @@
 /* 基本信息基础布局 */
-.basicinformation {
-  font-size: 14px;
-  width: 80%;
-  text-align: left;
-  position: absolute;
-  top: 11%;
-  right: 0;
-}
 /* 标题 */
 .information-title {
   height: 30px;
@@ -59,6 +51,7 @@
 
 .informaction ul li {
   width: 40%;
+  min-width: 260px;
   height: 40px;
   line-height: 40px;
   float: left;
@@ -115,7 +108,6 @@
   /* height: 400px; */
   /* border-radius: 2px; */
   margin-top: 80px;
-  text-align: left;
   background-color: #d9e1f2;
 }
 

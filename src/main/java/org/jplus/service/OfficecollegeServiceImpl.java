@@ -25,6 +25,7 @@ public class OfficecollegeServiceImpl implements OfficecollegeService{
     }
 
     public List<Checkgzl> getCheckgzlInf(String gh) {
+
         List<Checkgzl> checkgzlArrayList = new ArrayList<>();
 
         List<Users> userList = checkgzlMapper.getAllGhAndUname(gh);

@@ -18,8 +18,8 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" href="css/otheractivities.css">
-    <!-- 工作量显示 -->
-    <!-- <script src="js/input.js"></script> -->
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 <script src="js/titleandnav.js"></script>
 <!-- 左边导航栏 -->
 <div class="main">
-    <div class="navbar">
+    <div class="navbar" id="navwarp">
         <div class="navwarp">
             <div class="basic-information">
                 <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -53,9 +53,9 @@
             <!-- 研究生 -->
             <div id="postgraduate">研究生</div>
             <ul class="list-group">
-                <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                 <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
-                <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
+                <li class="list-group-item active"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                 <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                 <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                 <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
@@ -85,7 +85,7 @@
     </div>
 </div>
 <!-- 其它教学活动部分 -->
-<div class="other-teaching">
+<div class="informationwarp" id="informationwarp">
     <!-- 标题 -->
     <div class="teaching-title">教学基本建设与学科建设工作量</div>
 
@@ -114,30 +114,30 @@
                         <!--TODO ：初次是否，如果编写了，则是是 -->
                         <div th:name="sfzxpyfa" class="complete right-shift">
                             编撰教人才培养方案:
-                            <div th:switch="${JBJSYXKJSInfo.sfzxpyfa}">
-                                <div th:case="0">
+                            <span th:switch="${JBJSYXKJSInfo.sfzxpyfa}">
+                                <span th:case="0">
                                     <input  th:name="sfzxpyfa" th:value="1" type="radio" name="newentry" value="new"
                                             class="entry-chose"/>是
                                     <input  th:name="sfzxpyfa" th:value="0" type="radio" name="newentry" value="old" checked="checked"/>否
-                                </div>
-                                <div th:case="1">
+                                </span>
+                                <span th:case="1">
                                     <input  th:name="sfzxpyfa" th:value="1" type="radio" name="newentry" value="new" checked="checked"
                                             class="entry-chose"/>是
                                     <input  th:name="sfzxpyfa" th:value="0" type="radio" name="newentry" value="old" />否
-                                </div>
-                            </div>
+                                </span>
+                            </span>
                         </div>
                         <div th:name="kddgms" class="complete">
                             <span class="right-shift">编写课程教学大纲课程数</span>
                             <input th:name="kddgms" th:value="${JBJSYXKJSInfo} == null ? ${kddgms}:${JBJSYXKJSInfo.kddgms}" type="text"
                                                                                placeholder=""
-                                                                               class="enter"/>
+                                                                               class="enter timenum"/>
                         </div>
                         <div input th:name="sydgms" class="complete">
                             <span class="right-shift">编写实验教学大纲课程数</span>
                             <input th:name="sydgms" th:value="${JBJSYXKJSInfo} == null ? ${sydgms}:${JBJSYXKJSInfo.sydgms}"  type="text"
                                                                                placeholder=""
-                                                                               class="enter"/>
+                                                                               class="enter timenum"/>
                         </div>
                     </li>
                 </ul>

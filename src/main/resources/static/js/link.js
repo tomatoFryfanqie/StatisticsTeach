@@ -1,3 +1,4 @@
+//css初始化
 // 引用bootstrap及基础样式
 document.writeln("    <!-- 加载bootstrap -->");
 document.writeln("    <link rel=\'stylesheet\' href=\'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css\' />");

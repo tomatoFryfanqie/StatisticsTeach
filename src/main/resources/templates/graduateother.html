@@ -15,8 +15,8 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <link rel="stylesheet" href="css/otheractivities.css">
-    <!-- 工作量显示 -->
-    <!-- <script src="js/input.js"></script> -->
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
 
     <script>
         function saveOther() {
@@ -91,7 +91,7 @@
     <script src="js/titleandnav.js"></script>
     <!-- 左边导航栏 -->
     <div class="main">
-        <div class="navbar">
+        <div class="navbar" id="navwarp">
             <div class="navwarp">
                 <div class="basic-information">
                     <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -113,12 +113,12 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                     <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
-                    <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
+                    <li class="list-group-item active"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
                 <div>
                     <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
@@ -145,7 +145,7 @@
         </div>
     </div>
     <!-- 其它教学活动部分 -->
-    <div class="other-teaching">
+    <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
         <div class="teaching-title">研究生教学其它教学工作量</div>
         <div class="msg-warp">
@@ -161,30 +161,30 @@
                     <li style="margin-bottom: 5%;">
                         <div class="right-shift">教学督导员</div>
                         <div class="complete">
-                            <span class="right-shift">教学督导工作量</span><input th:value="${yJSQTJX}?${yJSQTJX.jxddgzl}:${0}" type="text" id="workloadOfTeachingSupervision" name="workloadOfTeachingSupervision" placeholder="" class="enter"
+                            <span class="right-shift">教学督导工作量</span><input th:value="${yJSQTJX}?${yJSQTJX.jxddgzl}:${0}" type="text" id="workloadOfTeachingSupervision" name="workloadOfTeachingSupervision" placeholder="" class="enter timenum"
                                  /><span class="explain">每学期50分</span>
                         </div>
                     </li>
                     <li>
                         <div class="complete">
-                            <span class="right-shift">初复试自命题</span><input th:value="${yJSQTJX}?${yJSQTJX.mtfs}:${0}" type="text" id="proposition" name="proposition" class="enter" placeholder="" />份
+                            <span class="right-shift">初复试自命题</span><input th:value="${yJSQTJX}?${yJSQTJX.mtfs}:${0}" type="text" id="proposition" name="proposition" class="enter timenum" placeholder="" />份
                         </div>             
                         <div class="complete">
-                            <span class="right-shift">初复试自命题审题</span><input th:value="${yJSQTJX}?${yJSQTJX.stfs}:${0}" type="text" id="examining" name="examining" placeholder="" class="enter" />份
+                            <span class="right-shift">初复试自命题审题</span><input th:value="${yJSQTJX}?${yJSQTJX.stfs}:${0}" type="text" id="examining" name="examining" placeholder="" class="enter timenum" />份
                         </div>                  
                         <div class="complete">
                             <span class="right-shift">初复试自命题校对</span><input th:value="${yJSQTJX}?${yJSQTJX.jdts}:${0}" type="text" id="check" name="check" placeholder=""
-                                class="enter" />套（含AB卷）
+                                class="enter timenum" />套（含AB卷）
                         </div>
                         <div class="complete">
-                            <span class="right-shift">复试面试考官</span><input th:value="${yJSQTJX}?${yJSQTJX.fsmskg}:${0}" type="text" id="examiner" name="examiner" placeholder="" class="enter" />次
+                            <span class="right-shift">复试面试考官</span><input th:value="${yJSQTJX}?${yJSQTJX.fsmskg}:${0}" type="text" id="examiner" name="examiner" placeholder="" class="enter timenum" />次
                         </div>
                         <div class="complete">
-                            <span class="right-shift">复试监考</span><input th:value="${yJSQTJX}?${yJSQTJX.fsjkcs}:${0}" type="text" id="invigilator" name="invigilator" placeholder="" class="enter" />次
+                            <span class="right-shift">复试监考</span><input th:value="${yJSQTJX}?${yJSQTJX.fsjkcs}:${0}" type="text" id="invigilator" name="invigilator" placeholder="" class="enter timenum" />次
                         </div>
                         <div class="complete">
                             <span class="right-shift">考试阅卷（初试、复试）</span><input th:value="${yJSQTJX}?${yJSQTJX.yjfs}:${0}" type="text" id="checking" name="checking"  placeholder=""
-                                class="enter" />份
+                                class="enter timenum" />份
                         </div>
                     </li>
                 </ul>

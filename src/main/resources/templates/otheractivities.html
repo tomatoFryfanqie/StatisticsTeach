@@ -144,7 +144,7 @@
     <script src="js/titleandnav.js"></script>
     <!-- 左边导航栏 -->
     <div class="main">
-        <div class="navbar">
+        <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="basic-information">
                     <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -161,26 +161,27 @@
                     <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                     <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
                     <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
-                    <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
+                    <li class="list-group-item active"><a th:href="@{/other}">其它教育教学活动</a></li>
                 </ul>
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                     <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
+                <!-- 提交按钮 -->
                 <div>
                     <button type="button" id="Submitbtn" data-toggle="modal" data-target="#Submission">提交</button>
                 </div>
             </div>
         </div>
-        <!-- 模态框 -->
+        <!-- 模态框-是否提交 -->
         <div class="modal fade" id="Submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -198,7 +199,7 @@
         </div>
     </div>
     <!-- 其它教学活动部分 -->
-    <div class="other-teaching">
+    <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
         <div class="teaching-title">其它教学工作量</div>
         <div class="msg-warp">
@@ -233,7 +234,7 @@
                         </div>
                     </li>
                     <li>
-                        <div class="work-theme undertake right-shift">
+                        <div class="work-theme undertake right-shift max">
                             承担或参与教学文件制定、修订工作
                         </div>
                         <div class="workload">工作量<span class="prompt" id="undertake" name="undertake"></span></div>

@@ -18,6 +18,8 @@
     <!-- 编辑表格脚本 -->
     <script src="js/edittable.js"></script>
     <link rel="stylesheet" href="css/tablestyle.css" />
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
     <script src="js/titleandnav.js"></script>
     <!-- 左边导航栏 -->
     <div class="main">
-        <div class="navbar">
+        <div class="navbar" id="navwarp">
             <div class="navwarp">
                 <div class="basic-information">
                     <a th:href="@{/basicinformation}">教师本年度基本信息</a>
@@ -50,10 +52,10 @@
                 <!-- 研究生 -->
                 <div id="postgraduate">研究生</div>
                 <ul class="list-group">
-                    <li class="list-group-item active"><a th:href="@{/graduateclass}">课堂教学</a></li>
+                    <li class="list-group-item"><a th:href="@{/graduateclass}">课堂教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduatepractice}">实践教学</a></li>
                     <li class="list-group-item"><a th:href="@{/graduateconstruction}">教学基本建设与学科建设</a></li>
-                    <li class="list-group-item"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
+                    <li class="list-group-item active"><a th:href="@{/graduateprogram}">教学研究项目</a></li>
                     <li class="list-group-item"><a th:href="@{/masterKnow}">指导研究生竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/masterOther}">其它工作</a></li>
                 </ul>
@@ -81,7 +83,7 @@
         </div>
     </div>
     <!-- 教学研究部分 -->
-    <div class="qualityen-gineering">
+    <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
         <div class="teaching-title">教学研究项目工作量</div>
         <div class="msg-warp">
@@ -114,8 +116,9 @@
                             <div class="modal-body">
                                 <form th:action="@{/addYjsjyxm}" method="post">
                                     <div>
-                                        项目名称：<input type="text" class="form-control-1 class-name" placeholder="请输入项目名称" th:name="xmmc"/>
+                                        项目名称：<input type="text" class="form-control-1 class-name form-control-jub" th:name="xmmc"/>
                                     </div>
+                                    <div class="warning">项目名称不能为空！</div>
                                     <div>
                                         项目等级：<select  th:name="xmdjbm" class="form-control-1">
                                             <option th:text="国家级" th:value="1"></option>
@@ -123,14 +126,16 @@
                                         </select>
                                     </div>
                                     <div>
-                                        项目排名：<input type="text" class="form-control-1 class-number" placeholder="请输入项目排名" th:name="xmpm"/>
+                                        项目排名：<input type="text" class="form-control-1 class-number form-control-jub timenum" th:name="xmpm"/>
                                     </div>
+                                    <div class="warning">项目排名不能为空！</div>
                                     <div>
-                                        项目总人数：<input type="text" class="form-control-1 class-number" placeholder="请输入项目总人数" th:name="zrs"/>
+                                        项目总人数：<input type="text" class="form-control-1 class-number form-control-jub timenum" th:name="zrs"/>
                                     </div>
+                                    <div class="warning">项目总人数不能为空！</div>
                                     <div class="btn-add">
-                                        <button type="submit" id="add">添加</button>
-                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                        <button type="submit" class="add">添加</button>
+                                        <button type="button" class="cancel" data-dismiss="modal">取消</button>
                                     </div>
                                 </form>
                             </div>
@@ -169,46 +174,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- 模态框（Modal）登陆界面 -->
-                <div class="modal fade" id="achievementsModal" tabindex="-1" role="dialog"
-                    aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    &times;
-                                </button>
-                                <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                                    学科与研究生教育项目
-                                </h5>
-                            </div>
-                            <div class="modal-body">
-                                <form action="">
-                                    <div>
-                                        项目名称：<input type="text" class="form-control-1 class-name" placeholder="" />
-                                    </div>
-                                    <div>
-                                        项目等级：<select name="competitionform" class="form-control-1">
-                                            <option value="lecture">讲课</option>
-                                            <option value="Courseware">课件</option>
-                                            <option value="microlesson">微课</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        项目排名：<input type="text" class="form-control-1 class-number" placeholder="" />
-                                    </div>
-                                    <div>
-                                        项目总人数：<input type="text" class="form-control-1 class-number" placeholder="" />
-                                    </div>
-                                    <div class="btn-add">
-                                        <button type="button" id="add">添加</button>
-                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- 研究生横向项目项目-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">研究生横向项目项目</div>
@@ -231,20 +197,24 @@
                             <div class="modal-body">
                                 <form th:action="@{/addYjshxxm}" method="post">
                                     <div>
-                                        项目名称：<input type="text" class="form-control-1 class-name" placeholder="请输入项目名称" th:name="xmmc"/>
+                                        项目名称：<input type="text" class="form-control-1 class-name form-control-jub" placeholder="" th:name="xmmc"/>
                                     </div>
+                                    <div class="warning">项目名称不能为空！</div>
                                     <div>
-                                        到账经费：<input type="text" class="form-control-1 class-number" placeholder="请输入到账经费" th:name="dzjf"/>
+                                        到账经费：<input type="text" class="form-control-1 class-number form-control-jub" placeholder="" th:name="dzjf"/>
                                     </div>
+                                    <div class="warning">到账经费不能为空！</div>
                                     <div>
-                                        项目排名：<input type="text" class="form-control-1 class-number" placeholder="请输入项目排名" th:name="xmpm" />
+                                        项目排名：<input type="text" class="form-control-1 class-number form-control-jub timenum" placeholder="" th:name="xmpm" />
                                     </div>
+                                    <div class="warning">项目排名不能为空！</div>
                                     <div>
-                                        项目总人数：<input type="text" class="form-control-1 class-number" placeholder="请输入项目总人数" th:name="zrs"/>
+                                        项目总人数：<input type="text" class="form-control-1 class-number form-control-jub timenum" placeholder="" th:name="zrs"/>
                                     </div>
+                                    <div class="warning">项目总人数不能为空！</div>
                                     <div class="btn-add">
-                                        <button type="submit" id="add">添加</button>
-                                        <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                        <button type="submit" id="add" class="add">添加</button>
+                                        <button type="button" class="cancel" data-dismiss="modal">取消</button>
                                     </div>
                                 </form>
                             </div>
