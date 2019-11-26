@@ -56,6 +56,10 @@ public interface CheckMapper {
     // <!--研究生 学生竞赛工作量-->
     public Float getYjsZdxsjsGzl(String gh);
 
-    //
+    //<!--撤回提交状态 撤回审核状态-->
+    public void clearTjztAndShzt(String gh);
+
+    //<!--更新提交状态为1 更新审核状态为1 -->
+    public void setTjztAndShzt(String gh);
 
 }

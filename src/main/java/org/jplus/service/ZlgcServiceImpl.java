@@ -21,22 +21,17 @@ public class ZlgcServiceImpl implements ZlgcService {
 
     @Override
     public void addZlgcInfo(ZlgcAccept zlgcAccept) {
-        System.out.println("准备添加到数据库：");
         zlgcMapper.addZlgcInfo(zlgcAccept);
     }
 
     @Override
     public void deleteZlgcInfo(int zlgcid) {
-        System.out.println("准备删除：");
         zlgcMapper.deleteZlgcInfoById(zlgcid);
     }
 
     @Override
     public List<Zlgc> getZlgcInfo() {
         List<Zlgc> list = zlgcMapper.getZlgcInfo();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("取出数据" + list.get(i));
-        }
         return zlgcMapper.getZlgcInfo();
     }
 
