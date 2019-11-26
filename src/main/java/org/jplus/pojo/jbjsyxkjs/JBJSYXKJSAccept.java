@@ -13,28 +13,17 @@ import lombok.Setter;
 @Setter
 public class JBJSYXKJSAccept {
     //主键
-    private int xkjsid;
+    private Integer xkjsid;
     //工号
     private String gh;
     //年度
-    private int nd;
+    private Integer nd;
     //是否撰写培养方案
-    private int sfzxpyfa;
+    private Integer sfzxpyfa;
     //课堂大纲门数
-    private int  kddgms;
+    private Integer  kddgms;
     //实验大纲门数
-    private int sydgms;
+    private Integer sydgms;
     //工作量
-    private float gzl;
-    @Override
-    public String toString() {
-        return "JBJSYXKJSAccept{" +
-                "工号=" + gh + '\'' +
-                ", 年度=" + nd +
-                ", 是否撰写培养方案=" + sfzxpyfa + '\'' +
-                ", 课堂大纲门数=" + kddgms + '\'' +
-                ", 实验大纲门数=" + sydgms +
-                ",工作量=" + gzl +
-                '}';
-    }
+    private Float gzl;
 }

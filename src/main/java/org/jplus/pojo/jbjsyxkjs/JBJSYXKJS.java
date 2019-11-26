@@ -21,17 +21,17 @@ import lombok.Setter;
 @Data
 public class JBJSYXKJS {
     //主键
-    private int xkjsid;
+    private Integer xkjsid;
     //工号
     private String gh;
     //年度
-    private int nd;
+    private Integer nd;
     //是否撰写培养方案
-    private int sfzxpyfa;
+    private Integer sfzxpyfa;
     //课堂大纲门数
-    private int  kddgms;
+    private Integer  kddgms;
     //实验大纲门数
-    private int sydgms;
+    private Integer sydgms;
     //工作量
-    private float gzl;
+    private Float gzl;
 }

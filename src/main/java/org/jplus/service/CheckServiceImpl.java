@@ -69,6 +69,7 @@ public class CheckServiceImpl implements CheckService{
 
     @Override
     public Float getYjsZdxsjsGzl(String gh) {
+        System.out.println("研究生工作量" + checkMapper.getYjsZdxsjsGzl(gh));
         return checkMapper.getYjsZdxsjsGzl(gh);
     }
 
