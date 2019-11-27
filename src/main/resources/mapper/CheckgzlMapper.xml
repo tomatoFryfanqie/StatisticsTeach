@@ -5,43 +5,50 @@
         SELECT yxmc FROM yxbm WHERE yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
     </select>
 
-    <select id="getAllGhAndUname" resultType="org.jplus.pojo.Users">
-        SELECT gh,uname FROM users WHERE yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
-     </select>
-
-    <select id="getAllJbxx" resultType="org.jplus.pojo.basisInfo.Jbxx">
-        SELECT zwbm,edgzl FROM jbxx WHERE gh = #{gh}
+    <select id="getYxbmByGh" resultType="java.lang.Integer">
+        SELECT yxbm FROM  users WHERE gh = #{gh}
     </select>
 
-    <select id="getZwByZwbm" resultType="String">
-        SELECT zwmc FROM zwbm WHERE zwbm = #{zwbm}
+    <select id="getCheckgzlInfByGh" resultType="org.jplus.pojo.checkgzl.Checkgzl">
+                SELECT
+                    users.gh,
+                    users.uname,
+                    jbxx.edgzl,
+                    tjzt.tjzt,
+                    tjzt.shzt,
+                    zwbm.zwmc,
+                    tjb.yjszgzl,
+                    tjb.bkszgzl
+                FROM
+                    users
+                LEFT JOIN jbxx ON jbxx.gh = users.gh
+                LEFT JOIN tjzt ON tjzt.gh = users.gh
+                LEFT JOIN tjb ON tjb.gh = users.gh
+                LEFT JOIN zwbm ON jbxx.zwbm = zwbm.zwbm
+                WHERE users.yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
     </select>
 
-    <select id="getBksSumGzl" resultType="float">
-        SELECT SUM(edgzl + jxgzl + bkssjjx.gzl + zlgc.gzl + jxcg.gzl + hxxm.gzl
-          + zxxm.gzl + jc.gzl + jxgg.gzl + zdxsjs.gzl + jsjs.gzl + zdxslw.gzl +
-          ddgzl + qtgzl) AS "sumgzl"
-        FROM
-          jbxx,bksktjx,bkssjjx,zlgc,jxcg,hxxm,zxxm,jc,jxgg,zdxsjs,jsjs,zdxslw,qtjxgz
-        WHERE
-          jbxx.gh = bksktjx.gh = bkssjjx .gh = zlgc.gh = jxcg.gh =
-          hxxm .gh = zxxm.gh = jc.gh = jxgg.gh = zdxsjs.gh = jsjs.gh = zdxslw.gh =
-          qtjxgz.gh = #{gh}
+    <select id="getAllYxbm" resultType="org.jplus.pojo.basisInfo.Yxbm">
+        SELECT * FROM yxbm
     </select>
 
-    <select id="getYjsSumGzl" resultType="float">
-       SELECT SUM(yjsktjx.gzl + jbjsyxkjs.gzl + rcgzl + yjssjjx.gzl + yjsjyxm.gzl +
-            yjshxxm.gzl + zdsslw.gzl + yjsqtjx.gzl) AS "sumgzl"
-        FROM
-            yjsktjx,jbjsyxkjs,yjssjjx,yjsjyxm,yjshxxm,zdsslw,yjsqtjx
-       WHERE
-            yjsktjx.gh = jbjsyxkjs.gh = yjssjjx.gh = yjsjyxm.gh = yjshxxm.gh =
-            zdsslw.gh = yjsqtjx.gh = #{gh}
-
-    </select>
-
-    <select id="getTjztAndShzt" resultType="org.jplus.pojo.Tjzt.Tjzt">
-        SELECT tjzt,shzt from tjzt  WHERE gh = #{gh}
+    <select id="getCheckgzlInfByYxbm" resultType="org.jplus.pojo.checkgzl.Checkgzl">
+                SELECT
+                    users.gh,
+                    users.uname,
+                    jbxx.edgzl,
+                    tjzt.tjzt,
+                    tjzt.shzt,
+                    zwbm.zwmc,
+                    tjb.yjszgzl,
+                    tjb.bkszgzl
+                FROM
+                    users
+                LEFT JOIN jbxx ON jbxx.gh = users.gh
+                LEFT JOIN tjzt ON tjzt.gh = users.gh
+                LEFT JOIN tjb ON tjb.gh = users.gh
+                LEFT JOIN zwbm ON jbxx.zwbm = zwbm.zwbm
+                WHERE users.yxbm = #{yxbm}
     </select>
 
 </mapper>

@@ -19,17 +19,17 @@ public class Checkgzl {
     private String zw;
 
     //额定工作量
-    private float edgzl;
+    private Float edgzl;
 
     //本科生教学工作量
-    private float bksgzl;
+    private Float bksgzl;
 
     //研究生教学工作量
-    private float yjsgzl;
-
-    //总工作量量
-    private float allgzl;
+    private Float yjsgzl;
 
     //审核状态
     private Integer shzt;
+
+    //提交状态
+    private Integer tjzt;
 }
