@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class OfficecollegeController {
 
-    private Integer yxbmF = null;
 
    @Autowired
    OfficecollegeService officecollegeService;
@@ -25,7 +24,7 @@ public class OfficecollegeController {
     @NeedLogin
     @RequestMapping("/officecollege")
     public String officecollege(Users user, Model model){
-        model.addAttribute("yxbm",officecollegeService.getYxbm(user.getGh()));
+        model.addAttribute("yxmc",officecollegeService.getYxmc(user.getGh()));
         model.addAttribute("Checkgzls",officecollegeService.getCheckgzlInfByGh(user.getGh()));
         return "officecollege";
     }
