@@ -29,11 +29,7 @@ public class CheckServiceImpl implements CheckService{
 
     @Override
     public BkssjjxInfo getBKSSJJXInfo(String gh) {
-        System.out.println("获取BKSSJJXInfo");
         BkssjjxInfo bkssjjxInfo = checkMapper.getBKSSJJXInfo(gh);
-        System.out.println(bkssjjxInfo.toString());
-      //  System.out.println("list：");
-       // //bkssjjxInfo.getList().forEach(System.out::println);
         return checkMapper.getBKSSJJXInfo(gh);
     }
 
@@ -69,12 +65,21 @@ public class CheckServiceImpl implements CheckService{
 
     @Override
     public Float getYjsZdxsjsGzl(String gh) {
-        System.out.println("研究生工作量" + checkMapper.getYjsZdxsjsGzl(gh));
         return checkMapper.getYjsZdxsjsGzl(gh);
     }
 
     @Override
     public Float getJsjsGzl(String gh) {
         return checkMapper.getJsjsGzl(gh);
+    }
+
+    @Override
+    public void clearTjztAndShzt(String gh) {
+        checkMapper.clearTjztAndShzt(gh);
+    }
+
+    @Override
+    public void setTjztAndShzt(String gh) {
+        checkMapper.setTjztAndShzt(gh);
     }
 }
