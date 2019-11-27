@@ -50,6 +50,7 @@
 /* 表单布局 */
 .job-category ul li {
   width: 35%;
+  min-width: 300px;
   height: 35px;
   line-height: 30px;
   float: left;
@@ -61,7 +62,10 @@
 .job-category ul .indent {
   width: 30%;
   padding-left: 10%;
-  min-width: 200px;
+  min-width: 260px;
+}
+.job-category ul .indents {
+  min-width: 400px;
 }
 .job-category ul .filling {
   width: 60%;
@@ -85,8 +89,8 @@
   width: 50%;
   min-width: 400px;
 }
-.job-category ul li .laboratoryworkloads {
-  min-width: 270px;
+.job-category ul  .laboratoryworkloads {
+  min-width: 300px;
 }
 /* 表单与文字部分距离 */
 .job-category ul li select,

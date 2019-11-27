@@ -20,8 +20,17 @@
     </select>
     <insert id="addTjzt">
         insert into
-        `tjzt`(gh,tjzt)
+        `tjzt`(gh,tjzt,shzt)
         values
-        (#{gh},#{tjzt})
+        (#{gh},#{tjzt},#{shzt})
     </insert>
+    <update id="updateTjzt">
+        update tjzt set
+        tjzt = 1,
+        tjsj = #{tjsj,jdbcType=DATE}
+        where gh=#{gh}
+    </update>
+    <select id="insertTJB" statementType="CALLABLE">
+        CALL proc_qxtj(#{param1},#{param2} )
+    </select>
 </mapper>

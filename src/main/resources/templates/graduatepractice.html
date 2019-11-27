@@ -101,7 +101,7 @@
                 <ul>
                     <li class="tips">1.实践教学指导</li>
                     <li class="tips workload-display">工作量小计<span class="prompt" th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.rcgzl!=null}"><span th:text="${yjssjjxJbxx.rcgzl}"></span></span></li>
-                    <li class="description indent">
+                    <li class="description indent indents">
                         实习类型
                         <span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm1!=null}">
                             <select name="internshiptype" th:name="sjlxbm1">
@@ -122,7 +122,7 @@
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="${yjssjjxJbxx.sjts1}" id="day" class="day timenum" placeholder="" />
                         <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="0" id="day" class="day timenum" placeholder="" />
                     </li>
-                    <li class="description indent">
+                    <li class="description indent indents">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm2!=null}">
                             <select name="internshiptype" th:name="sjlxbm2" >
                                 <option th:each="lxType : ${yjssjlx}" th:name="sjlxbm2" th:value="${lxType.yjssxlxbm}"
@@ -142,7 +142,7 @@
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="${yjssjjxJbxx.sjts2}" type="text" id="day" class="day timenum" placeholder="" />
                         <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="0"type="text" id="day" class="day timenum" placeholder="" />
                     </li>
-                    <li class="description indent">
+                    <li class="description indent indents">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm3!=null}">
                             <select name="internshiptype" th:name="sjlxbm3" >
                                 <option th:each="lxType : ${yjssjlx}" th:name="sjlxbm3" th:value="${lxType.yjssxlxbm}"
@@ -162,18 +162,21 @@
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3" th:value="${yjssjjxJbxx.sjts3}" type="text" id="day" class="day timenum" placeholder="" />
                         <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts3!=null}" th:name="sjts3"th:value="0" type="text" id="day" class="day timenum" placeholder="" />
                     </li>
+                    <div style="width: 100%;">
                     <li class="tips">2.指导研究生的学术（论坛）活动</li>
                     <li class="tips workload-display">工作量小计<span class="prompt" th:text="${zdxshdcsGzl!=null}?${zdxshdcsGzl}:0.0"></span></li>
-                    <li class="description new-line indent">
+                    </div>
+                        <li class="description new-line indent">
                         指导次数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" th:value="${yjssjjxJbxx.zdxshdcs}" type="text" id="student-num" class="student-num timenum" placeholder="" />
                         <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.zdxshdcs!=null}" th:name="zdxshdcs" type="text" th:value="0"id="student-num" class="student-num timenum" placeholder="" />
                     </li>
                     <li class="tips" style="width: 60%;">3.导师指导研究生日常工作</li>
+                    <div style="width:100%;min-width: 600px;">
                     <li class="description indent managements" style="width: 60%;">
-                        <table style="width: 100%;">
+                        <table style="width: 100%;min-width: 300px">
                             <tbody>
                             <tr>
-                                <td valign="top">日常工作说明</td>
+                                <td valign="top" style="width:5%;min-width: 100px">日常工作说明</td>
                                 <td th:name="rcgzsm"><textarea th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.rcgzsm!=null}" th:name="rcgzsm" th:text="${yjssjjxJbxx.rcgzsm}" rows="4" cols="35" style="width: 95%;height: 100%;"></textarea>
                                     <textarea th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.rcgzsm!=null}" th:name="rcgzsm"  rows="4" cols="35" style="width: 95%;height: 100%;"></textarea>
                                 </td>
@@ -181,10 +184,11 @@
                             </tbody>
                         </table>
                     </li>
-                    <li class="description laboratoryworkloads" style="padding-left:0;width: 30%;">
+                    <li class="description laboratoryworkloads" style="padding-left:0;width: 30%;min-width: 170px">
                         工作量<input th:name="gzl" type="text"  th:value="${ZtGzl!=null}?${ZtGzl}:0.0" id="laboratory-workload" class="laboratory-workload" placeholder="请输入" />
                         <div>计算方法说明：<br>研一：20分/人/学期<br>研二：30分/人/学期<br>研二：50分/人/学期</div>
                     </li>
+                    </div>
                 </ul>
             </div>
         </div>

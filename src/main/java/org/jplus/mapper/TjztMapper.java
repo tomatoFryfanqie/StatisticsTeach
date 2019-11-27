@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Update;
 import org.jplus.pojo.Tjzt.Tjzt;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 /**
  * @BelongsProject: StatisticsTeach
  * @BelongsPackage: org.jplus.mapper
@@ -17,8 +20,9 @@ public interface TjztMapper {
 
     Tjzt getTjzt(@Param("gh") String gh);
 
-    void addTjzt(@Param("gh") String gh, @Param("tjzt") Integer tjzt);
+    void addTjzt(@Param("gh") String gh, @Param("tjzt") Integer tjzt,@Param("shzt")Integer shzt);
 
-    @Update("update tjzt set tjzt=1 where gh=#{gh}")
-    void updateTjzt(String gh);
+    void updateTjzt(@Param("gh") String gh, @Param("tjsj") Timestamp tjsj);
+
+    void insertTJB(Integer years,String gh);
 }

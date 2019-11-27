@@ -58,7 +58,8 @@ public class BasisInfoController {
             Tjzt tjzt = new Tjzt();
             tjzt.setGh(users.getGh());
             tjzt.setTjzt(0);
-            tjztService.addTjzt(tjzt.getGh(),tjzt.getTjzt());
+            tjzt.setShzt(0);
+            tjztService.addTjzt(tjzt.getGh(),tjzt.getTjzt(),tjzt.getShzt());
         }
         return "basicinformation";
     }
@@ -79,6 +80,7 @@ public class BasisInfoController {
             /*获取本科生最低授课工作量*/
             jbxxAccpet.setBkszdsk(GetRatedTeachTime.getTeachTime(jbxxAccpet.getZcbm(), jbxxAccpet.getGwlxbm()));
             /*更新部分基本信息*/
+            System.out.println(jbxxAccpet);
             jbxxService.updateBasisInfo(jbxxAccpet);
         }
         return "redirect:basicinformation";
