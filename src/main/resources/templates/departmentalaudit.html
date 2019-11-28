@@ -34,17 +34,27 @@
         <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="maintenance">
-                    <a href="departmentmaintenance.html">用户维护</a>
+                    <a href="departmentmaintenance.html">本院用户维护</a>
                 </div>
                 <div class="collegeworkload active"><a href="#">审核各学院工作量</a></div>
-                <div class="export"><a href="#">导出工作量统计表</a></div>
             </div>
         </div>
     </div>
     <!-- 用户维护界面 -->
     <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
-        <div class="litter-title">XXX学院教学工作量审核</div>
+        <div class="litter-title">全院教学工作量审核</div>
+        <!-- 院系按钮 -->
+        <form th:action="@{/departmentalaudit2}" method="post">
+        <div class="collage-warp">
+            <select th:name="yxbm">
+            院系：<option th:each="yxbm:${yxbms}" th:selected="${yxbm.yxbm}==${theyxbm}"
+                       th:text="${yxbm.yxmc}" th:value="${yxbm.yxbm}" th:name="yxbm">
+                </option>
+            </select>
+            <button type="submit" class="delBtn">查询</button>
+        </div>
+        </form>
         <div class="msg-warp">
             <!-- 表格数据 -->
             <div class="table-wrap">
@@ -64,19 +74,23 @@
                             <td>研究生教学</td>
                             <td>总工作量</td>
                         </tr>
-                        <tr>
-                            <td>Month</td>
-                            <td>ppp</td>
-                            <td>Savings</td>
-                            <td>560001</td>
-                            <td>ppp</td>
-                            <td>Savings</td>
-                            <td>560001</td>
-                            <td>Month</td>
+                        <tr th:each="checkgzl:${Checkgzls}">
+                            <td th:text="${checkgzl.gh}"></td>
+                            <td th:text="${checkgzl.uname}"></td>
+                            <td th:text="${checkgzl.zw}"></td>
+                            <td th:text="${checkgzl.edgzl}"></td>
+                            <td th:text="${checkgzl.bksgzl}"></td>
+                            <td th:text="${checkgzl.yjsgzl}"></td>
+                            <td th:text="${checkgzl.bksgzl+checkgzl.yjsgzl}"></td>
+                            <div th:switch="${checkgzl.shzt}">
+                                <td th:case="0" th:text="未审核"></td>
+                                <td th:case="2" th:text="院系已审核"></td>
+                                <td th:case="3" th:text="教务处已审核"></td>
+                                <td th:case="4" th:text="未提交"></td>
+                            </div>
                             <!-- 查看详情 -->
                             <td class="del-col notedit">
-                                <!--<a href="officedetails.html" class="detBtn">查看详情</a>-->
-                                <button type="submit" id="add">查看详情</button>
+                                <a href="officedetails.html" class="detBtn">查看详情</a>
                             </td>
                         </tr>
                     </table>

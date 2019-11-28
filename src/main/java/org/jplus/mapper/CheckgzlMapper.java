@@ -1,14 +1,13 @@
 package org.jplus.mapper;
 
-import org.jplus.pojo.Tjzt.Tjzt;
-import org.jplus.pojo.Users;
-import org.jplus.pojo.basisInfo.Jbxx;
+import org.jplus.pojo.basisInfo.Yxbm;
+import org.jplus.pojo.checkgzl.Checkgzl;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * @description:审核本院工作量1持久层
+ * @description:审核本院和各院工作量1持久层
  * @author:zmj
  * @date 2019/11/1618:44
  */
@@ -17,22 +16,16 @@ public interface CheckgzlMapper {
     //根据工号查院系
     String getYxByGh(String gh);
 
-    //查询该院系所有工号和姓名
-    List<Users> getAllGhAndUname(String gh);
+    //根据工号查院系编码
+    Integer getYxbmByGh(String gh);
 
-    //根据工号查教师基本信息，可获取职务编号和额定工作量
-    Jbxx getAllJbxx(String gh);
+    //查一个院系的数据根据工号
+    List<Checkgzl> getCheckgzlInfByGh(String gh);
 
-    //根据职务编码查职务
-    String getZwByZwbm(Integer zwbm);
+    //查询所有院系和院系编码
+    List<Yxbm> getAllYxbm();
 
-    //根据工号查询本科生工作量总和
-    Float getBksSumGzl(String gh);
-
-    //根据工号查询研究生工作量总和
-    Float getYjsSumGzl(String gh);
-
-    //根据工号查询提交状态和审核状态
-    Tjzt getTjztAndShzt(String gh);
+    //查一个院系的数据根据院系编码
+    List<Checkgzl> getCheckgzlInfByYxbm(Integer yxbm);
 
 }
