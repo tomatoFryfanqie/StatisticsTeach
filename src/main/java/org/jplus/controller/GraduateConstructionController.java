@@ -45,18 +45,14 @@ public class GraduateConstructionController {
     public String addGraduateConstruction(@ModelAttribute(value = "jBJSYXKJSAccept") JBJSYXKJSAccept jbjsyxkjsAccept, Users users) {
         // 没有数据就添加
         if (jbjsyxkjsService.getWorkLoad(users.getGh()) == null) {
-            System.out.println("添加：——");
             jbjsyxkjsAccept.setGh(users.getGh());
             jbjsyxkjsAccept.setNd(GetYear.getYears());
             jbjsyxkjsAccept.setGzl(CalculateJbjsyxkjsWorkload.calculateWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
-            System.out.println("添加的数据" + jbjsyxkjsAccept);
             jbjsyxkjsService.addGraduateConstruction(jbjsyxkjsAccept);
         } else {
-            System.out.println("更新：——");
             jbjsyxkjsAccept.setGh(users.getGh());
             jbjsyxkjsAccept.setNd(GetYear.getYears());
             jbjsyxkjsAccept.setGzl(CalculateJbjsyxkjsWorkload.calculateWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
-            System.out.println("更新的数据：" + jbjsyxkjsAccept);
             jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
         }
         return "redirect:/graduateconstruction";
@@ -66,10 +62,8 @@ public class GraduateConstructionController {
     @NeedLogin
     @RequestMapping("/updateGraduateConstruction")
     public String updateGraduateConstruction(@ModelAttribute(value = "jBJSYXKJSAccept") JBJSYXKJSAccept jbjsyxkjsAccept, Users users) {
-        System.out.println("更新：——");
         jbjsyxkjsAccept.setGzl(CalculateJbjsyxkjsWorkload.calculateWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
         jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
-        System.out.println("更新的数据：" + jbjsyxkjsAccept);
         return "redirect:/graduateconstruction";
     }
 }

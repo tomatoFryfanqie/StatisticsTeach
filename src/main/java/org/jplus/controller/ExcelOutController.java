@@ -51,7 +51,7 @@ public class ExcelOutController {
         HSSFRow row = workLoad.createRow(0);
         row.setHeightInPoints(30);
         HSSFCell cell = row.createCell(0);
-        HSSFCellStyle cellStyle = sheets.createCellStyle().;
+        HSSFCellStyle cellStyle = sheets.createCellStyle();
         //cellStyle.set
 
         /*

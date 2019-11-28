@@ -21,7 +21,6 @@
 
     <script>
         function addUser() {
-            var department = $("#department").val();
             var gh = $("#gh").val();
             var name = $("#name").val();
             var type = $("#type").val();
@@ -29,16 +28,16 @@
                 type: 'POST',
                 url: "/addUser",
                 data:{
-                    department: department,
                     gh: gh,
                     name: name,
                     type: type
                 },
                 success: function(data){
+                    location.reload(true);
                     alert(data);
                 },
                 error : function(data) {
-
+                    location.reload(true);
                 }
             });
         }
@@ -95,10 +94,10 @@
         <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="maintenance active">
-                    <a href="#">院系审核人维护</a>
+                    <a href="#">本院用户维护</a>
                 </div>
-                <div class="collegeworkload"><a th:href="@{/officecollege}">审核各学院工作量</a></div>
-                <div class="export"><a th:href="@{/excelOut}">导出工作量统计表</a></div>
+                <div class="collegeworkload"><a th:href="@{/officecollege}">审核本学院工作量</a></div>
+                <div class="export"><a href="#">导出工作量统计表</a></div>
             </div>
         </div>
     </div>
@@ -122,7 +121,7 @@
                     </div>
                     <!-- 添加维护用户 -->
                     <div class="modal-body">
-                        <div>
+                        <!--<div>
                             院系：<select id="department" name="department" class="form-control-1">
                             <option value="1">经济管理与法学院</option>
                             <option value="2">马克思主义学院</option>
@@ -143,7 +142,6 @@
                             <option value="17">美术学院</option>
                             <option value="18">继续教育学院</option>
                             <option value="19">先进材料研究院</option>
-                            <option value="20">继续教育学院</option>
                             <option value="21">研究生院</option>
                             <option value="22">教务处</option>
                             <option value="23">科研处</option>
@@ -154,7 +152,7 @@
                             <option value="28">学报编辑部</option>
                             <option value="29">后勤及其他</option>
                         </select>
-                        </div>
+                        </div>-->
                         <div>
                             工号：<input id="gh" name="gh" type="text" class="form-control-1 class-name" placeholder="" />
                         </div>
@@ -163,10 +161,10 @@
                         </div>
                         <div>
                             类型：<select id="type" name="type" class="form-control-1">
+                            <!--<option value="3">教务处</option>-->
                             <option value="1">普通教师</option>
-                            <option value="2">教研室主任</option>
-                            <option value="3">院系</option>
-                            <option value="4">教务处</option>
+                            <!--<option value="2">院系</option>-->
+                            <!--<option value="4">教研室主任</option>-->
                         </select>
                         </div>
                         <div class="btn-add">
@@ -189,21 +187,21 @@
                         <th>工号</th>
                         <th>姓名</th>
                         <th>类型</th>
-                        <th>初始密码</th>
+                        <!--<th>初始密码</th>-->
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="userList:${userList}">
-                        <td th:text="${userList.yxbm}">Month</td>
+                        <td th:text="${userList.ysname}">Month</td>
                         <td th:text="${userList.gh}" class="notedit">
                             kkk
                         </td>
                         <td th:text="${userList.uname}" class="notedit">
                             ppp
                         </td>
-                        <td th:text="${userList.actor}">Savings</td>
-                        <td class="notedit">560001</td>
+                        <td th:text="${userList.acterName}">Savings</td>
+                        <!--<td class="notedit">560001</td>-->
                         <!-- 删除按钮 -->
                         <td class="del-col notedit">
                             <a th:href="@{/deleteUser(gh=${userList.gh})}" type="submit" class="delBtn">删 除</a>

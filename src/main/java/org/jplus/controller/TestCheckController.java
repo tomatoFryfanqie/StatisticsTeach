@@ -14,6 +14,8 @@ import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -57,32 +59,48 @@ public class TestCheckController {
     JbjsyxkjsService jbjsyxkjsService;      // 教学基本建设与学科建设工作
     @Autowired
     private YjsjyxmService yjsjyxmService;  // 教学研究项目
+
     @NeedLogin
     @RequestMapping("/testCheck")
     public String getofficedetails(Model model) {
         return "departmentalaudit";
     }
+
     @NeedLogin
-    @PostMapping("/officedetails")
-    public String getQualityEngineeringInfo(Model model, Users users) {
+    @GetMapping("/officedetails")
+    public String getQualityEngineeringInfo(@ModelAttribute(value = "gh") String gh,
+                                            @ModelAttribute(value = "userName") String userName,
+                                            @ModelAttribute(value = "yxmc") String yxmc,
+                                            Model model, Users users) {
         // 将用户的信息取出( 工号， 姓名， 院系编码)
-        model.addAttribute("gh", users.getGh());
-        model.addAttribute("name", users.getUname());
+        model.addAttribute("gh", gh);
+        model.addAttribute("name", userName);
         /*获取基本信息存到model中*/
-        model.addAttribute("department", checkService.getYxmc(users.getYxbm()));
+//        model.addAttribute("department", checkService.getYxmc(users.getYxbm()));
+        model.addAttribute("department", yxmc);
         //本科生教学
         // 1 用户的课堂教学信息   classroomteaching
-        model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo(users.getGh()));
+        model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo(gh));
         /*获取课堂教学的总工作量*/
-        model.addAttribute("bksKtjxgzlSum", bksktjxService.getBkjxgzlSum(users.getGh()));
+        model.addAttribute("bksKtjxgzlSum", bksktjxService.getBkjxgzlSum(gh));
         // 2 实践教学工作量         practiceteh
-        Optional.ofNullable(bkssjjxService.selectBkssjjx(users.getGh())).ifPresent(sjjx -> model.addAttribute
+        Optional.ofNullable(bkssjjxService.selectBkssjjx(gh)).ifPresent(sjjx -> model.addAttribute
                 ("bkssjjx", getSjjxWork(sjjx)));
-        model.addAttribute("bkssjjxInfo", checkService.getBKSSJJXInfo(users.getGh()));
+        //model.addAttribute("bkssjjxInfo",null);
+        model.addAttribute("bkssjjxInfo", checkService.getBKSSJJXInfo(gh));
+        // 本科生实践教学工作量
+        if (checkService.getBKSSJJXInfo(gh) != null) {
+            model.addAttribute("bkssjjxGzl", checkService.getBKSSJJXInfo(gh).getGzl());
+        } else {
+            model.addAttribute("bkssjjxGzl", 0.0);
+        }
+
         // 3 质量工程工作量        qualityengineering
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
-        //获取质量工程的工作总量
-        model.addAttribute("zlgcSumOfWorkload", zlgcService.calculateSumOfWorkLoad(users.getGh()));
+        //获取质量工 程的工作总量
+        model.addAttribute("zlgcSumOfWorkload", zlgcService.calculateSumOfWorkLoad(gh));
+
+
         /*  4教学研究              teachingresearch */
         // 教学成果工作量
         //  纵向教研项目工作量
@@ -103,90 +121,125 @@ public class TestCheckController {
         model.addAttribute("Jxggs", jxcgService.getJxgg());
         model.addAttribute("Lxjbs", jxcgService.getLxjbInfo());
         model.addAttribute("year", GetYear.getYears());
-//        model.addAttribute("gh", users.getGh());
+//        model.addAttribute("gh", gh);
 
-        model.addAttribute("bksJxcgGzl", jxcgService.getJxcgGzlSun(users.getGh()));
-        model.addAttribute("bksZxxmGzl", jxcgService.getZxxmGzlSun(users.getGh()));
-        model.addAttribute("bksHxxmGzl", jxcgService.getHxxmGzlSun(users.getGh()));
-        model.addAttribute("bksJcGzl", jxcgService.getJcGzlSun(users.getGh()));
-        model.addAttribute("bksJxggGzl", jxcgService.getJxggGzlSun(users.getGh()));
+        model.addAttribute("bksJxcgGzl", jxcgService.getJxcgGzlSun(gh));
+        model.addAttribute("bksZxxmGzl", jxcgService.getZxxmGzlSun(gh));
+        model.addAttribute("bksHxxmGzl", jxcgService.getHxxmGzlSun(gh));
+        model.addAttribute("bksJcGzl", jxcgService.getJcGzlSun(gh));
+        model.addAttribute("bksJxggGzl", jxcgService.getJxggGzlSun(gh));
 
         /* 5 教学知识竞赛              know*/
         // TODO 后续自己重写，都不用wb的  学生竞赛和教师竞赛
-        List<JsjsVo> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
-        List<ZdxsjsVo> list1 = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
-        ZDXSLW zDXSLW = zDXSJSService.findZDXSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
+        List<JsjsVo> result = jSJSService.getTeacherCompetitionList(gh, DateUtils.getCurrentYear());
+        List<ZdxsjsVo> list1 = zDXSJSService.getStudentCompetitionList(gh, DateUtils.getCurrentYear());
+        ZDXSLW zDXSLW = zDXSJSService.findZDXSLWByGhAndYear(gh, DateUtils.getCurrentYear());
         model.addAttribute("allStudentCompetitionList", list1);
         model.addAttribute("allTeacherCompetitionList", result);
         model.addAttribute("zDXSLW", zDXSLW);
         // 本科 指导学生竞赛工作量
-        model.addAttribute("ZdxsjsGzl", checkService.getZdxsjsGzl(users.getGh()));
-        // 研究生 指导学生竞赛工作量
+        if (checkService.getZdxsjsGzl(gh) != null) {
+            model.addAttribute("ZdxsjsGzl", checkService.getZdxsjsGzl(gh));
+        } else {
+            model.addAttribute("ZdxsjsGzl", 0.0);
+        }
 
-        model.addAttribute("YjsZdxsjsGzl", checkService.getYjsZdxsjsGzl(users.getGh()));
-
-        model.addAttribute("YjsZdxsjsGzl", checkService.getYjsZdxsjsGzl(users.getGh()));
 
         // 教师教学能力竞赛获奖工作量
-        model.addAttribute("JsjsGzl", checkService.getJsjsGzl(users.getGh()));
+        //model.addAttribute("JsjsGzl", checkService.getJsjsGzl(gh));
+        if (checkService.getJsjsGzl(gh) != null) {
+            model.addAttribute("JsjsGzl", checkService.getJsjsGzl(gh));
+        } else {
+            model.addAttribute("JsjsGzl", 0.0);
+        }
         // 教师指导学生学士学位论文获奖工作量
-        model.addAttribute("ZDSSLWInfo", checkService.getZDSSLWInfo(users.getGh()));
+        model.addAttribute("ZDSSLWInfo", checkService.getZDSSLWInfo(gh));
+        if (checkService.getZDSSLWInfo(gh) != null) {
+            model.addAttribute("ZDSSLWInfoGzl", checkService.getZDSSLWInfo(gh).getGzl());
+        } else {
+            model.addAttribute("ZDSSLWInfoGzl", 0.0);
+        }
+
         /* 6 其它教育教学活动         other*/
         // 教学督导工作量 （可从数据库取）
         // 学生学业指导帮扶工作量
         // 指导青年教师工作量
         // 承担或参与教学文件制定、修订工作量
-        model.addAttribute("QTJXGZInfo", checkService.getQTJXGZInfo(users.getGh()));
+        if (checkService.getQTJXGZInfo(gh) != null) {
+            model.addAttribute("QTJXGZInfoGzl", checkService.getQTJXGZInfo(gh).getQtgzl());
+        } else {
+            model.addAttribute("QTJXGZInfoGzl", 0.0);
+        }
+        model.addAttribute("QTJXGZInfo", checkService.getQTJXGZInfo(gh));
         // 强行在controller 中计算，难受，数据库为什么不存啊
         //学生学业指导帮扶工作量  ,取出帮扶学生人数，再计算
-        model.addAttribute("BfGzl", checkService.getQTJXGZInfo(users.getGh()).getBfxsrs() * 10);
+        if (checkService.getQTJXGZInfo(gh) != null) {
+            model.addAttribute("BfGzl", checkService.getQTJXGZInfo(gh).getBfxsrs() * 10);
+        } else {
+            model.addAttribute("BfGzl", 0.0);
+        }
+
         // 指导青年教师工作量  ，取出指导青年教师人数，再计算
-        model.addAttribute("ZdqnjsGzl", checkService.getQTJXGZInfo(users.getGh()).getZdqnjsrs() * 10);
+        if (checkService.getQTJXGZInfo(gh) != null) {
+            model.addAttribute("ZdqnjsGzl", checkService.getQTJXGZInfo(gh).getZdqnjsrs() * 10);
+        } else {
+            model.addAttribute("ZdqnjsGzl", 0.0);
+        }
         // 承担或参与教学文件制定、修订工作量， 取出是否写了人才培养方案，取出课程大纲数，取出实验大纲数，再计算
-        model.addAttribute("WenjianGzl", checkService.getQTJXGZInfo(users.getGh()).getXdrcpyfa() * 20
-                + checkService.getQTJXGZInfo(users.getGh()).getKcdgms() * 10
-                + checkService.getQTJXGZInfo(users.getGh()).getSydgms() * 10);
-        //研究生教学
+        if (checkService.getQTJXGZInfo(gh) != null) {
+            model.addAttribute("WenjianGzl", checkService.getQTJXGZInfo(gh).getXdrcpyfa() * 20
+                    + checkService.getQTJXGZInfo(gh).getKcdgms() * 10
+                    + checkService.getQTJXGZInfo(gh).getSydgms() * 10);
+        } else {
+            model.addAttribute("WenjianGzl", 0.0);
+        }
+        //        //研究生教学
         // 1 课堂教学工作量 graduateclass
         /*获取研究生的课堂类型，存入model*/
         model.addAttribute("yjskclx", yjsktjxService.getKclx());
         /*获取研究生的课堂信息，存入model*/
-        model.addAttribute("yjsktjx", yjsktjxService.getYjsktjxInfo(users.getGh()));
+        model.addAttribute("yjsktjx", yjsktjxService.getYjsktjxInfo(gh));
         /*获取研究生课堂教学的总工作量*/
-        model.addAttribute("ktjxgzlSum", yjsktjxService.getYjsjxgzlSum(users.getGh()));
+        model.addAttribute("ktjxgzlSum", yjsktjxService.getYjsjxgzlSum(gh));
 
         // 2 实践教学工作量 graduatepractice
         /*获取实践信息*/
-        model.addAttribute("YJSSJJXInfo", checkService.getYJSSJJXInfo(users.getGh()));
+        model.addAttribute("YJSSJJXInfo", checkService.getYJSSJJXInfo(gh));
+        if (checkService.getYJSSJJXInfo(gh) != null) {
+            model.addAttribute("YJSSJJXInfoGzl", checkService.getYJSSJJXInfo(gh).getGzl());
+        } else {
+            model.addAttribute("YJSSJJXInfoGzl", 0.0);
+        }
+
         // 王行的
-        Yjssjjx jbxx = yjssjjxService.getYjssjjxJbxx(users.getGh());
+        Yjssjjx jbxx = yjssjjxService.getYjssjjxJbxx(gh);
         if (jbxx != null) {
             /*获取指导学生次数工作量（显示）*/
-            model.addAttribute("zdxshdcsGzl", GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
+            model.addAttribute("zdxshdcsGzl", GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(gh).getZdxshdcs()));
             /*获取日常工作量*/
-            model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
+            model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(gh).getZdxshdcs()));
         }
         // 3 教学基本建设与学科建设工作 graduateconstruction
-        if (jbjsyxkjsService.getWorkLoad(users.getGh()) == null) {
+        if (jbjsyxkjsService.getWorkLoad(gh) == null) {
             model.addAttribute("sumOfWorkload", 0);
             model.addAttribute("sfzxpyfa", 0);
             model.addAttribute("kddgms", 0);
             model.addAttribute("sydgms", 0);
         } else {
-            model.addAttribute("sumOfWorkload", jbjsyxkjsService.getWorkLoad(users.getGh()));
-            model.addAttribute("JBJSYXKJSInfo", jbjsyxkjsService.getJBJSYXKJSInfo(users.getGh()));
+            model.addAttribute("sumOfWorkload", jbjsyxkjsService.getWorkLoad(gh));
+            model.addAttribute("JBJSYXKJSInfo", jbjsyxkjsService.getJBJSYXKJSInfo(gh));
         }
         /* 4 教学研究项目         graduateprogram */
         // 学科与研究生教育项目
         // 研究生横向项目项目
         model.addAttribute("yjsjyxms", yjsjyxmService.getYjsjyxm());
         model.addAttribute("yjshxxms", yjsjyxmService.getYjshxxm());
-        model.addAttribute("jyxmGzl", yjsjyxmService.getYjsjyxmGzlSum(users.getGh()));
-        model.addAttribute("hxxmGzl", yjsjyxmService.getYjshxxmGzlSum(users.getGh()));
+        model.addAttribute("jyxmGzl", yjsjyxmService.getYjsjyxmGzlSum(gh));
+        model.addAttribute("hxxmGzl", yjsjyxmService.getYjshxxmGzlSum(gh));
         /* 5 指导研究生竞赛获奖 masterKnow */
         //****************************************************************************丑死了
-        ZDSSLW zDSSLW = zDSSLWService.findZDSSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
-        List<ZdxsjsVo> list = zDXSJSService.getStudentCompetitionList2(users.getGh(), DateUtils.getCurrentYear());
+        ZDSSLW zDSSLW = zDSSLWService.findZDSSLWByGhAndYear(gh, DateUtils.getCurrentYear());
+        List<ZdxsjsVo> list = zDXSJSService.getStudentCompetitionList2(gh, DateUtils.getCurrentYear());
         for (int i = 0; i < list.size(); i++) {
             int jbbm = list.get(i).getJsjbbm();
             if (jbbm == 1) {
@@ -211,11 +264,50 @@ public class TestCheckController {
         model.addAttribute("zDSSLW", zDSSLW);
         //****************************************************************************
         //TODO 后续自己写指导研究生竞赛
+        // 研究生 指导学生竞赛工作量
+        //model.addAttribute("YjsZdxsjsGzl", checkService.getYjsZdxsjsGzl(gh));
+        if (checkService.getYjsZdxsjsGzl(gh) != null) {
+            model.addAttribute("YjsZdxsjsGzl", checkService.getYjsZdxsjsGzl(gh));
+        } else {
+            model.addAttribute("YjsZdxsjsGzl", 0.0);
+        }
         // model.addAttribute("");
         // 教师指导学生学士学位论文获奖
-        model.addAttribute("ZDXSLWInfo", checkService.getZDXSLWInfo(users.getGh()));
+        model.addAttribute("ZDXSLWInfo", checkService.getZDXSLWInfo(gh));
+        if (checkService.getZDXSLWInfo(gh) != null) {
+            model.addAttribute("ZDXSLWInfoGzl", checkService.getZDXSLWInfo(gh).getGzl());
+        } else {
+            model.addAttribute("ZDXSLWInfoGzl", 0.0);
+        }
+
         // 6 其它教学工作量      masterOther
-        model.addAttribute("YJSQTJXInfo", checkService.getYJSQTJXInfo(users.getGh()));
+        model.addAttribute("YJSQTJXInfo", checkService.getYJSQTJXInfo(gh));
+        if (checkService.getYJSQTJXInfo(gh) != null) {
+            model.addAttribute("YJSQTJXInfoGzl", checkService.getYJSQTJXInfo(gh).getGzl());
+        } else {
+            model.addAttribute("YJSQTJXInfoGzl", 0.0);
+        }
+
+
         return "officedetails";
     }
+
+    @NeedLogin
+    @GetMapping("/passCheck")
+    public String passCheck(@ModelAttribute(value = "gh") String gh) {
+        // 将审核状态设置为审核 ,将提交状态设置为提交
+        checkService.setTjztAndShzt(gh);
+        return "redirect:/officecollege";
+    }
+
+    @NeedLogin
+    @GetMapping("/backCheck")
+    public String backCheck(@ModelAttribute(value = "gh") String gh) {
+        // 将审核状态设置为未审核 ,将提交状态设置为未提交
+        checkService.clearTjztAndShzt(gh);
+        // 返回上一个页面 officecollege
+        return "redirect:/officecollege";
+    }
+
+
 }

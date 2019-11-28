@@ -50,7 +50,6 @@ public class BksktjxServiceImpl implements BksktjxService {
 
     @Override
     public Float getBkjxgzlSum(String gh) {
-
         return bksktjxMapper.getBksktjxSum(gh);
     }
 

@@ -1,54 +1,57 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title></title>
-    <meta name="description" content="" />
+    <meta name="description" content=""/>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <script src="js/basicinformation.js"></script>
-    <link rel="stylesheet" href="css/tablestyle.css" />
-    <link rel="stylesheet" href="css/officecolloge.css" />
+    <link rel="stylesheet" href="css/tablestyle.css"/>
+    <link rel="stylesheet" href="css/officecolloge.css"/>
 </head>
 
 <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
-    <!-- 头部 -->
-    <script src="js/titleandnav.js"></script>
-    <!-- 左边导航栏 -->
-    <div class="main">
-        <div class="navbar" id="navwrap">
-            <div class="navwarp">
-                <div class="maintenance">
-                    <a href="officemaintenance.html">院系审核人维护</a>
-                </div>
-                <div class="collegeworkload active"><a th:href="@{/user}">审核各学院工作量</a></div>
-                <div class="export"><a href="#">导出工作量统计表</a></div>
+<!--[if lt IE 7]>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser. Please
+    <a href="#">upgrade your browser</a> to improve your experience.
+</p>
+<![endif]-->
+<!-- 头部 -->
+<script src="js/titleandnav.js"></script>
+<!-- 左边导航栏 -->
+<div class="main">
+    <div class="navbar" id="navwrap">
+        <div class="navwarp">
+            <div class="maintenance">
+                <a href="officemaintenance.html">院系审核人维护</a>
             </div>
+            <div class="collegeworkload active"><a th:href="@{/user}">审核各学院工作量</a></div>
+            <div class="export"><a href="#">导出工作量统计表</a></div>
         </div>
     </div>
-    <!-- 用户维护界面 -->
-    <div class="informationwarp" id="informationwarp">
-        <!-- 标题 -->
-        <div class="litter-title">教学工作量审核</div>
-        <!-- 院系按钮 -->
-        <div class="collage-warp" th:text="'院系：'+${yxmc}"></div>
-        <div class="msg-warp">
-            <!-- 表格数据 -->
-            <div class="table-wrap">
+</div>
+<!-- 用户维护界面 -->
+<div class="informationwarp" id="informationwarp">
+    <!-- 标题 -->
+    <div class="litter-title">教学工作量审核</div>
+    <!-- 院系按钮 -->
+    <div class="collage-warp" th:text="'院系：'+${yxmc}"></div>
+    <div class="msg-warp">
+        <!-- 表格数据 -->
+        <div class="table-wrap">
                 <table class="table table-bordered edtitable">
                     <tr>
                         <td rowspan="2">工号</td>
@@ -81,14 +84,17 @@
                         </div>
                         <!-- 查看详情 -->
                         <td class="del-col notedit">
-                            <a href="officedetails.html" class="detBtn">查看详情</a>
+                            <a th:href="@{/officedetails(gh=${checkgzl.gh},userName=${checkgzl.uname},yxmc=${yxmc})}" type="submit" class="detBtn">查看详情</a>
                         </td>
+                        <!--<td><a th:href="@{/deleteZlgcInfo(id=${zlgcInfo.zlgcid})}" type="submit" class="delete">删 除</a></td>-->
+                        <!--<button type="submit"  id="save">查看详情</button>-->
                     </tr>
                 </table>
-            </div>
+
         </div>
     </div>
-    <script async defer></script>
+</div>
+<script async defer></script>
 </body>
 
 </html>

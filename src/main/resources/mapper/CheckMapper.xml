@@ -196,4 +196,20 @@
         FROM `zdxsjs`
         where gh=#{gh} and jsxscc=2
     </select>
+
+
+    <!--撤回提交状态 撤回审核状态-->
+    <update id="clearTjztAndShzt">
+        update `tjzt` set
+        tjzt = 0,
+        shzt = 0
+        where gh=#{gh}
+    </update>
+    <!--更新提交状态为1 更新审核状态为1 -->
+    <update id="setTjztAndShzt">
+        update `tjzt` set
+        tjzt = 1,
+        shzt = 1
+        where gh=#{gh}
+    </update>
 </mapper>

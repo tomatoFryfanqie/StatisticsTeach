@@ -43,4 +43,9 @@ public interface CheckService {
     // <!--教师竞赛工作量-->
     public Float getJsjsGzl(String gh);
 
+    //<!--撤回提交状态 撤回审核状态-->
+    public void clearTjztAndShzt(String gh);
+
+    //<!--更新提交状态为1 更新审核状态为1 -->
+    public void setTjztAndShzt(String gh);
 }
