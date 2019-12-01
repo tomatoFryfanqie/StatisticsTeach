@@ -137,9 +137,9 @@ public class TestCheckController {
         model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo(gh));
 
         // 2 实践教学工作量         practiceteh
-//        Optional.ofNullable(bkssjjxService.selectBkssjjx(gh)).ifPresent(sjjx -> model.addAttribute
-//                ("bkssjjx", getSjjxWork(sjjx)));
-        //model.addAttribute("bkssjjxInfo",null);
+        Optional.ofNullable(bkssjjxService.selectBkssjjx(gh)).ifPresent(sjjx -> model.addAttribute
+                ("bkssjjx", getSjjxWork(sjjx)));
+        model.addAttribute("bkssjjxInfo",null);
         model.addAttribute("bkssjjxInfo", checkService.getBKSSJJXInfo(gh));
         // 3 质量工程工作量        qualityengineering
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
@@ -240,6 +240,7 @@ public class TestCheckController {
         // 研究生横向项目项目
         model.addAttribute("yjsjyxms", yjsjyxmService.getYjsjyxm());
         model.addAttribute("yjshxxms", yjsjyxmService.getYjshxxm());
+
 
         /* 5 指导研究生竞赛获奖 masterKnow */
         //****************************************************************************丑死了
