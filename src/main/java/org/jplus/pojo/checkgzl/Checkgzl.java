@@ -16,16 +16,16 @@ public class Checkgzl {
     private String uname;
 
     //职务
-    private String zw;
+    private String zwmc;
 
     //额定工作量
     private Float edgzl;
 
     //本科生教学工作量
-    private Float bksgzl;
+    private Float bkszgzl;
 
     //研究生教学工作量
-    private Float yjsgzl;
+    private Float yjszgzl;
 
     //审核状态
     private Integer shzt;
