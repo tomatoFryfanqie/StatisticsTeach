@@ -32,6 +32,7 @@
 .main {
   width: 20%;
   height: 100%;
+  min-width: 200px;
   top: 60px;
   /* position: fixed;
   top: 60px;
@@ -62,11 +63,13 @@
 }
 
 .navwarp div,
-ul {
+.navwarp ul {
   width: 100%;
   padding-left: 3%;
 }
-
+.navwarp ul {
+  padding-left:0;
+}
 .navwarp ul li,
 .navwarp div {
   min-width: 200px;
@@ -79,17 +82,16 @@ ul {
   background-color: #e7e6e6;
   border: none;
   padding: 0;
-  padding-left: 10%;
+  padding-left: 11%;
 }
 /*主要内容栏*/
 /* 基本信息基础布局 */
 #informationwarp {
   width: 80%;
   font-size: 14px;
-  min-width: 650px;
+  min-width: 700px;
   text-align: left;
   position: absolute;
   top: 60px;
   left: 20%;
-  background-color: #9bc2e6;
 }

@@ -29,56 +29,58 @@ public class Tjb {
     private String zw;
     private String yxmc;
     //额定工作量
-    private float edgzl;
+    private Float edgzl;
     //本科生最低授课
-    private float bkszdsk;
+    private Float bkszdsk;
     //本科生课堂工作量
-    private float bksktgzl;
+    private Float bksktgzl;
+    /*本科生事件教学工作量*/
+    private Float bkssjgzl;
     //质量工程工作狼
-    private float zlgcgzl;
+    private Float zlgcgzl;
     //教学成果工作量
-    private float jxcggzl;
+    private Float jxcggzl;
     //..
-    private float bkszxxmgzl;
+    private Float bkszxxmgzl;
     //..
-    private float bkshxxmgzl;
+    private Float bkshxxmgzl;
     //较菜工作量
-    private float jcgzl;
+    private Float jcgzl;
     //教学改革工作量
-    private float jxgggzl;
+    private Float jxgggzl;
     //本科生竞赛工作量
-    private float bksjsgzl;
+    private Float bksjsgzl;
     //的教师竞赛
-    private float jsjsgzl;
+    private Float jsjsgzl;
     //本科生论文
-    private float bkslwgzl;
+    private Float bkslwgzl;
     //本科生其他
-    private float bksqtgzl;
+    private Float bksqtgzl;
     //本科生总工作量
-    private  float bkszgzl;
+    private  Float bkszgzl;
     //研究生课堂教学工作量
-    private float yjsktjxgzl;
+    private Float yjsktjxgzl;
     //研究生实践教学工作量
-    private float yjssjjxgzl;
+    private Float jsjsjjxgzl;
     //学科建设工作量
-    private float xkjsgzl;
+    private Float xkjsgzl;
     //研究生教研项目据工作量
-    private float yjsjyxmgzl;
+    private Float yjsjyxmgzl;
     //yjshxxmgzl
-    private float yjshxxmgzl;
+    private Float yjshxxmgzl;
     //yjslwgzl
-    private float yjslwgzl;
+    private Float yjslwgzl;
     //yjsqtgzl
-    private float yjsqtgzl;
+    private Float yjsqtgzl;
     //yjszgzl
-    private float yjszgzl;
+    private Float yjszgzl;
     //sjjxgzl
-    private float sjjxgzl;
+    private Float sjjxgzl;
     //bksskwwc
-    private float bksskwwc;
+    private Float bksskwwc;
     //edjxwwc
-    private float edjxwwc;
+    private Float edjxwwc;
     //shrgh
-    private float shrgh;
+    private Integer shrgh;
 
 }

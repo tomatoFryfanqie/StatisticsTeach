@@ -12,6 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <meta name="description" content="" />
+    <!-- 加载bootstrap -->
+    <link rel='stylesheet' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+    <script src='https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
+    <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
@@ -34,7 +38,7 @@
         <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="maintenance">
-                    <a th:href="@{/officeUser#}">用户维护</a>
+                    <a th:href="@{/officeUser}">用户维护</a>
                 </div>
                 <div class="collegeworkload active"><a href="#">审核各学院工作量</a></div>
                 <div class="export"><a href="#">导出工作量统计表</a></div>
@@ -78,7 +82,7 @@
                         <tr th:each="checkgzl:${Checkgzls}">
                             <td th:text="${checkgzl.gh}"></td>
                             <td th:text="${checkgzl.uname}"></td>
-                            <td th:text="${checkgzl.zw}"></td>
+                            <td th:text="${checkgzl.zwmc}"></td>
                             <td th:text="${checkgzl.edgzl}"></td>
                             <td th:text="${checkgzl.bkszgzl}"></td>
                             <td th:text="${checkgzl.yjszgzl}"></td>

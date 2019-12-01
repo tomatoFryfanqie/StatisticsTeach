@@ -31,8 +31,8 @@ public class OfficecollegeServiceImpl implements OfficecollegeService{
         List<Checkgzl> checkgzlList = checkgzlMapper.getCheckgzlInfByYxbm(yxbm);
         for (Checkgzl checkgzl : checkgzlList) {
             {
-                if (checkgzl.getZw() == null) {
-                    checkgzl.setZw("");
+                if (checkgzl.getZwmc() == null) {
+                    checkgzl.setZwmc("");
                 }
                 if (checkgzl.getEdgzl() == null) {
                     checkgzl.setEdgzl(0.0f);
@@ -44,15 +44,14 @@ public class OfficecollegeServiceImpl implements OfficecollegeService{
                 }
             }
         }
-        System.out.println(checkgzlList);
         return checkgzlList;
     }
 
     public List<Checkgzl> getCheckgzlInfByGh(String gh) {
         List<Checkgzl> checkgzlList = checkgzlMapper.getCheckgzlInfByGh(gh);
         for (Checkgzl checkgzl:checkgzlList) {
-            if (checkgzl.getZw() == null){
-                checkgzl.setZw("");
+            if (checkgzl.getZwmc() == null){
+                checkgzl.setZwmc("");
             }
 
             if (checkgzl.getEdgzl() == null){

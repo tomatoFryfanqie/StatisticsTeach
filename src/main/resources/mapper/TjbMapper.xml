@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jplus.mapper.TjbMapper">
+
+
+    <select id="getAllTjb" resultType="org.jplus.pojo.Tjzt.Tjb">
+        select
+        nd,
+        gh,
+        xm,
+        zw,
+        yxmc,
+        edgzl,
+        bkszdsk,
+        bksktgzl,
+        bkssjgzl,
+        zlgcgzl,
+        jxcggzl,
+        bkszxxmgzl,
+        bkshxxmgzl,
+        jcgzl,
+        jxgggzl,
+        bksjsgzl,
+        jsjsgzl,
+        bkslwgzl,
+        bksqtgzl,
+        bkszgzl,
+        yjsktjxgzl,
+        jsjsjjxgzl,
+        xkjsgzl,
+        yjsjyxmgzl,
+        yjshxxmgzl,
+        yjslwgzl,
+        yjsqtgzl,
+        yjszgzl,
+        sjjxgzl,
+        bksskwwc,
+        edjxwwc,
+        shrgh
+        from `tjb`
+    </select>
+    <select id="getAllTjbByYxbm" resultType="org.jplus.pojo.Tjzt.Tjb">
+        select
+        nd,
+        gh,
+        xm,
+        zw,
+        yxmc,
+        edgzl,
+        bkszdsk,
+        bksktgzl,
+        bkssjgzl,
+        zlgcgzl,
+        jxcggzl,
+        bkszxxmgzl,
+        bkshxxmgzl,
+        jcgzl,
+        jxgggzl,
+        bksjsgzl,
+        jsjsgzl,
+        bkslwgzl,
+        bksqtgzl,
+        bkszgzl,
+        yjsktjxgzl,
+        jsjsjjxgzl,
+        xkjsgzl,
+        yjsjyxmgzl,
+        yjshxxmgzl,
+        yjslwgzl,
+        yjsqtgzl,
+        yjszgzl,
+        sjjxgzl,
+        bksskwwc,
+        edjxwwc,
+        shrgh
+        from `tjb` where gh in (select gh from `users` where yxbm = #{yxbm})
+    </select>
+</mapper>

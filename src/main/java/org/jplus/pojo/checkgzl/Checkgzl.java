@@ -16,7 +16,7 @@ public class Checkgzl {
     private String uname;
 
     //职务
-    private String zw;
+    private String zwmc;
 
     //额定工作量
     private Float edgzl;
