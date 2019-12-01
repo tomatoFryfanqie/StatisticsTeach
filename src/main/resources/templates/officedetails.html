@@ -43,9 +43,9 @@
     <div class="navbar" id="navwrap">
         <div class="navwarp">
             <div class="maintenance">
-                <a href="officemaintenance.html">本院用户维护</a>
+                <a th:href="@{/user}">本院用户维护</a>
             </div>
-            <div class="collegeworkload active"><a href="officecollege.html">审核本学院工作量</a></div>
+            <div class="collegeworkload active"><a th:href="@{/officecollege}">审核本学院工作量</a></div>
             <div class="export"><a th:href="@{/QXexcelOut}">导出工作量统计表</a></div>
         </div>
     </div>
