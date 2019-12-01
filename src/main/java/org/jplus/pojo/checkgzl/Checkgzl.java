@@ -22,10 +22,10 @@ public class Checkgzl {
     private Float edgzl;
 
     //本科生教学工作量
-    private Float bksgzl;
+    private Float bkszgzl;
 
     //研究生教学工作量
-    private Float yjsgzl;
+    private Float yjszgzl;
 
     //审核状态
     private Integer shzt;

@@ -10,21 +10,21 @@
     </select>
 
     <select id="getCheckgzlInfByGh" resultType="org.jplus.pojo.checkgzl.Checkgzl">
-                SELECT
-                    users.gh,
-                    users.uname,
-                    jbxx.edgzl,
-                    tjzt.tjzt,
-                    tjzt.shzt,
-                    zwbm.zwmc,
-                    tjb.yjszgzl,
-                    tjb.bkszgzl
+               SELECT
+	              users.gh,
+	              users.uname,
+	              jbxx.edgzl,
+	              zwbm.zwmc,
+	              tjb.bkszgzl,
+	              tjb.yjszgzl,
+	              tjzt.shzt,
+	              tjzt.tjzt
                 FROM
-                    users
+	                users
                 LEFT JOIN jbxx ON jbxx.gh = users.gh
-                LEFT JOIN tjzt ON tjzt.gh = users.gh
-                LEFT JOIN tjb ON tjb.gh = users.gh
                 LEFT JOIN zwbm ON jbxx.zwbm = zwbm.zwbm
+                LEFT JOIN tjb ON tjb.gh = users.gh
+                LEFT JOIN tjzt ON tjzt.gh = users.gh
                 WHERE users.yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
     </select>
 
@@ -33,21 +33,21 @@
     </select>
 
     <select id="getCheckgzlInfByYxbm" resultType="org.jplus.pojo.checkgzl.Checkgzl">
-                SELECT
-                    users.gh,
-                    users.uname,
-                    jbxx.edgzl,
-                    tjzt.tjzt,
-                    tjzt.shzt,
-                    zwbm.zwmc,
-                    tjb.yjszgzl,
-                    tjb.bkszgzl
+                 SELECT
+	              users.gh,
+	              users.uname,
+	              jbxx.edgzl,
+	              zwbm.zwmc,
+	              tjb.bkszgzl,
+	              tjb.yjszgzl,
+	              tjzt.shzt,
+	              tjzt.tjzt
                 FROM
-                    users
+	                users
                 LEFT JOIN jbxx ON jbxx.gh = users.gh
-                LEFT JOIN tjzt ON tjzt.gh = users.gh
-                LEFT JOIN tjb ON tjb.gh = users.gh
                 LEFT JOIN zwbm ON jbxx.zwbm = zwbm.zwbm
+                LEFT JOIN tjb ON tjb.gh = users.gh
+                LEFT JOIN tjzt ON tjzt.gh = users.gh
                 WHERE users.yxbm = #{yxbm}
     </select>
 
