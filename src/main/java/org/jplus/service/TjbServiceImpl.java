@@ -1,5 +1,6 @@
 package org.jplus.service;
 
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.jplus.mapper.TjbMapper;
 import org.jplus.pojo.Tjzt.Tjb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,11 @@ public class TjbServiceImpl implements TjbService {
     @Override
     public List<Tjb> getAllTjb() {
         return tjbMapper.getAllTjb();
+    }
+
+    @Override
+    public List<Tjb> getAllTjbByYxbm(Integer yxbm) {
+
+        return tjbMapper.getAllTjbByYxbm(yxbm);
     }
 }

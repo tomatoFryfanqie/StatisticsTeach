@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Optional;
 
-import static org.jplus.utils.GetSjjxWork.getSjjxWork;
+import static org.jplus.utils.GetWorkLoad.getSjjxWork;
 
 /*
  * @author MH
@@ -131,22 +131,18 @@ public class TestCheckController {
 // *************************************************************************************
 
 
-
+// **************************************具体信息***********************************************
         //本科生教学
         // 1 用户的课堂教学信息   classroomteaching
         model.addAttribute("bksktjx", bksktjxService.getBksktjxInfo(gh));
 
         // 2 实践教学工作量         practiceteh
-        Optional.ofNullable(bkssjjxService.selectBkssjjx(gh)).ifPresent(sjjx -> model.addAttribute
-                ("bkssjjx", getSjjxWork(sjjx)));
+//        Optional.ofNullable(bkssjjxService.selectBkssjjx(gh)).ifPresent(sjjx -> model.addAttribute
+//                ("bkssjjx", getSjjxWork(sjjx)));
         //model.addAttribute("bkssjjxInfo",null);
         model.addAttribute("bkssjjxInfo", checkService.getBKSSJJXInfo(gh));
-
-
         // 3 质量工程工作量        qualityengineering
         model.addAttribute("zlgc", zlgcService.getZlgcInfo());
-
-
 
         /*  4教学研究              teachingresearch */
         // 教学成果工作量
@@ -170,12 +166,6 @@ public class TestCheckController {
         model.addAttribute("year", GetYear.getYears());
 //        model.addAttribute("gh", gh);
 
-
-
-
-
-
-
         /* 5 教学知识竞赛              know*/
         // TODO 后续自己重写，都不用wb的  学生竞赛和教师竞赛
         List<JsjsVo> result = jSJSService.getTeacherCompetitionList(gh, DateUtils.getCurrentYear());
@@ -184,14 +174,8 @@ public class TestCheckController {
         model.addAttribute("allStudentCompetitionList", list1);
         model.addAttribute("allTeacherCompetitionList", result);
         model.addAttribute("zDXSLW", zDXSLW);
-
-
-
-        // 教师教学能力竞赛获奖工作量
-
         // 教师指导学生学士学位论文获奖
         model.addAttribute("ZDSSLWInfo", checkService.getZDSSLWInfo(gh));
-
 
         /* 6 其它教育教学活动         other*/
         // 教学督导工作量 （可从数据库取）
@@ -207,7 +191,6 @@ public class TestCheckController {
         } else {
             model.addAttribute("BfGzl", 0.0);
         }
-
         // 指导青年教师工作量  ，取出指导青年教师人数，再计算
         if (checkService.getQTJXGZInfo(gh) != null) {
             model.addAttribute("ZdqnjsGzl", checkService.getQTJXGZInfo(gh).getZdqnjsrs() * 10);
@@ -228,7 +211,6 @@ public class TestCheckController {
         model.addAttribute("yjskclx", yjsktjxService.getKclx());
         /*获取研究生的课堂信息，存入model*/
         model.addAttribute("yjsktjx", yjsktjxService.getYjsktjxInfo(gh));
-
 
         // 2 实践教学工作量 graduatepractice
         /*获取实践信息*/
@@ -259,7 +241,6 @@ public class TestCheckController {
         model.addAttribute("yjsjyxms", yjsjyxmService.getYjsjyxm());
         model.addAttribute("yjshxxms", yjsjyxmService.getYjshxxm());
 
-
         /* 5 指导研究生竞赛获奖 masterKnow */
         //****************************************************************************丑死了
         ZDSSLW zDSSLW = zDSSLWService.findZDSSLWByGhAndYear(gh, DateUtils.getCurrentYear());
@@ -286,20 +267,12 @@ public class TestCheckController {
         }
         model.addAttribute("allStudentCompetitionList2", list);
         model.addAttribute("zDSSLW", zDSSLW);
-        //****************************************************************************
-        //TODO 后续自己写指导研究生竞赛
-        // 研究生 指导学生竞赛工作量
-        //model.addAttribute("YjsZdxsjsGzl", checkService.getYjsZdxsjsGzl(gh));
-        // model.addAttribute("");
+
         // 教师指导学生学士学位论文获奖
         model.addAttribute("ZDXSLWInfo", checkService.getZDXSLWInfo(gh));
-
-
         // 6 其它教学工作量      masterOther
         model.addAttribute("YJSQTJXInfo", checkService.getYJSQTJXInfo(gh));
-
-
-
+// **************************************具体信息***********************************************
         return "officedetails";
     }
 

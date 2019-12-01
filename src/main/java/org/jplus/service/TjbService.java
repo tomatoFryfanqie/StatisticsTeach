@@ -16,4 +16,6 @@ public interface TjbService {
     Tjb getTjbByGh(String gh);
 
     List<Tjb> getAllTjb();
+
+    List<Tjb> getAllTjbByYxbm(Integer yxbm);
 }

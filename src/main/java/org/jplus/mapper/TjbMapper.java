@@ -16,5 +16,8 @@ public interface TjbMapper {
 
     Tjb getTjbByGh(String gh);
 
+
     List<Tjb> getAllTjb();
+
+    List<Tjb> getAllTjbByYxbm(Integer yxbm);
 }
