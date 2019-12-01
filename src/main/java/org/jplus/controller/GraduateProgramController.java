@@ -6,7 +6,7 @@ import org.jplus.pojo.yjsjyxm.Yjshxxm;
 import org.jplus.pojo.yjsjyxm.Yjsjyxm;
 import org.jplus.service.TjztService;
 import org.jplus.service.YjsjyxmService;
-import org.jplus.utils.GetWorkCount;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,7 +59,7 @@ public class GraduateProgramController {
             //获取年度
             yjsjyxm.setNd(GetYear.getYears());
             //获取工作量
-            yjsjyxm.setGzl(GetWorkCount.GetWorkCount(yjsjyxm.getZrs(), yjsjyxm.getXmpm(),
+            yjsjyxm.setGzl(GetWorkLoad.GetWorkCount(yjsjyxm.getZrs(), yjsjyxm.getXmpm(),
                     yjsjyxm.getXmdjbm() == 1 ? 200 : 50));
             //添加项目的一列
             yjsjyxmService.addYjsjyxm(yjsjyxm);
@@ -86,7 +86,7 @@ public class GraduateProgramController {
             //获取年度
             yjshxxm.setNd(GetYear.getYears());
             //获取工作量
-            yjshxxm.setGzl(GetWorkCount.GetHxWorkCount(yjshxxm.getZrs(),yjshxxm.getXmpm(),
+            yjshxxm.setGzl(GetWorkLoad.GetHxWorkCount(yjshxxm.getZrs(),yjshxxm.getXmpm(),
                     yjshxxm.getDzjf()));
             //添加项目的一列
             yjsjyxmService.addYjshxxm(yjshxxm);
