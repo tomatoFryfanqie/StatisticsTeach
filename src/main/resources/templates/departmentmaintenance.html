@@ -67,7 +67,7 @@
                     <a href="#">用户维护</a>
                 </div>
                 <div class="collegeworkload"><a th:href="@{/departmentalaudit}">审核各学院工作量</a></div>
-                <div class="export"><a href="#">导出工作量统计表</a></div>
+                <div class="export"><a th:href="@{/QXexcelOut}">导出工作量统计表</a></div>
             </div>
         </div>
     </div>
@@ -132,9 +132,7 @@
                         <div>
                             类型：<select id="type" name="type" class="form-control-1">
                             <option value="3">教务处教师</option>
-                            <!--<option value="1">普通教师</option>-->
                             <option value="2">院系审查教师</option>
-                            <!--<option value="4">教研室主任</option>-->
                         </select>
                         </div>
                         <div class="btn-add">
