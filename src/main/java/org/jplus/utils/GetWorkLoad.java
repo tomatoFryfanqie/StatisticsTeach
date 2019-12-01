@@ -127,13 +127,21 @@ public class GetWorkLoad {
         bkssjjxEx.setZdsxgzl(res); /*设置指导实习总工作量*/
 
         //微格式讲工作量
-        int wgsj=bkssjjx.getWgsjrs()*2; /* 微格式讲人数*2 */
+        int wgsj = 0;
+        if(bkssjjx.getWgsjrs()==null){
+            bkssjjx.setWgsjrs(0);
+        }
+        wgsj=bkssjjx.getWgsjrs()*2; /* 微格式讲人数*2 */
         res+=wgsj;
         bkssjjxEx.setWgsjgzl(wgsj); /*设置微格式讲工作量*/
 
         //毕业论文工作量
         int lwbm=bkssjjx.getZylxbm(); //专业类型：文，理，工，留学
-        int rs=bkssjjx.getZdlwrs(); //指导人数
+        int rs = 0;
+        if(bkssjjx.getZdlwrs()==null){
+            bkssjjx.setZdlwrs(0);
+        }
+        rs=bkssjjx.getZdlwrs(); //指导人数
         float lwgzl=0;
         if (lwbm==1){
             lwgzl+=(rs>=10?80:rs*8); //文科：超过10人不计分数
@@ -148,6 +156,9 @@ public class GetWorkLoad {
         bkssjjxEx.setZdlwgzl(lwgzl); /*设置指导毕业论文工作量*/
 
         //管理工作量
+        if(bkssjjx.getGlgzl()==null){
+            bkssjjx.setGlgzl(0f);
+        }
         float glgzl=bkssjjx.getGlgzl();
         bkssjjxEx.setGlgzl(glgzl); /*设置管理工作量*/
 
