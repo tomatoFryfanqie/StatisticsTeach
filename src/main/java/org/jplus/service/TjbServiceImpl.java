@@ -21,6 +21,11 @@ public class TjbServiceImpl implements TjbService {
     private TjbMapper tjbMapper;
 
     @Override
+    public Tjb getTjbByGh(String gh) {
+        return tjbMapper.getTjbByGh(gh);
+    }
+
+    @Override
     public List<Tjb> getAllTjb() {
         return tjbMapper.getAllTjb();
     }

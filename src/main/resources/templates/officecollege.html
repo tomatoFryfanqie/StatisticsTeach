@@ -81,7 +81,7 @@
                         </div>
                         <!-- 查看详情 -->
                         <td class="del-col notedit">
-                            <a href="officedetails.html" class="detBtn">查看详情</a>
+                            <a th:href="@{/officedetails(gh=${checkgzl.gh},userName=${checkgzl.uname},yxmc=${yxmc})}" type="submit" class="detBtn">查看详情</a>
                         </td>
                     </tr>
                 </table>
