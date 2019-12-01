@@ -14,4 +14,6 @@ import java.util.List;
 public interface TjbService {
 
     List<Tjb> getAllTjb();
+
+    List<Tjb> getAllTjbByYxbm(int yxbm);
 }

@@ -15,6 +15,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 加载bootstrap -->
+    <link rel='stylesheet' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css' />
     <script src='https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
     <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <!--    加载jq-->
@@ -112,7 +114,7 @@
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">
-                <ul>
+                <ul style="min-width: 500px">
                     <li class="tips">1.指导实习</li>
                     <li class="tips workload-display">工作量小计
                         <span class="prompt" th:if="${bkssjjx}"

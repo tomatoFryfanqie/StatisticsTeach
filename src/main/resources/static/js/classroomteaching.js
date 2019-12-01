@@ -28,26 +28,34 @@ $(document).ready(function() {
         if ($(this).val().length == 1) {
             var temp_amount = $(this)
                 .val()
-                .replace(/[^1-9]/g, "");
+                .replace(/[^0-9]/g, "");
             $(this).val(temp_amount);
         } else {
-            var temp_amount = $(this)
-                .val()
-                .replace(/\D/g, "");
-            $(this).val(temp_amount);
+            if (/^0/.test($(this).val())) {
+                $(this).val("0");
+            } else {
+                var temp_amount = $(this)
+                    .val()
+                    .replace(/\D/g, "");
+                $(this).val(temp_amount);
+            }
         }
     });
     $(".timenum").on("afterpaste", function() {
         if ($(this).val().length == 1) {
             var temp_amount = $(this)
                 .val()
-                .replace(/[^1-9]/g, "");
+                .replace(/[^0-9]/g, "");
             $(this).val(temp_amount);
         } else {
-            var temp_amount = $(this)
-                .val()
-                .replace(/\D/g, "");
-            $(this).val(temp_amount);
+            if (/^0/.test($(this).val())) {
+                $(this).val("0");
+            } else {
+                var temp_amount = $(this)
+                    .val()
+                    .replace(/\D/g, "");
+                $(this).val(temp_amount);
+            }
         }
     });
 
