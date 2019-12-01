@@ -15,7 +15,8 @@ import java.util.List;
 public interface TjbMapper {
 
 
+
     List<Tjb> getAllTjb();
 
-    List<Tjb> getAllTjbByYxbm(int yxbm);
+    List<Tjb> getAllTjbByYxbm(Integer yxbm);
 }

@@ -7,7 +7,9 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Tjzt.Tjb;
 import org.jplus.pojo.Users;
+import org.jplus.pojo.basisInfo.Yxbm;
 import org.jplus.service.TjbService;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +49,6 @@ public class ExcelOutController {
         cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
         cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-
         cellStyle.setBorderBottom(CellStyle.BORDER_THIN);
         cellStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());
         cellStyle.setBorderLeft(CellStyle.BORDER_THIN);
@@ -59,7 +60,8 @@ public class ExcelOutController {
 
         HSSFCellStyle cellStyle1 = sheets.createCellStyle();
         HSSFFont font1 = sheets.createFont();
-        font1.setBoldweight((short)20);
+        font1.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        font1.setFontHeightInPoints((short) 20);
         cellStyle1.setFont(font1);
         cellStyle1.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         cellStyle1.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
@@ -195,6 +197,7 @@ public class ExcelOutController {
         /*取出数据*/
         List<Tjb> tjbs = null;
         if(users.getActor()==2){
+
              tjbs = tjbService.getAllTjbByYxbm(users.getYxbm());
         }else {
              tjbs = tjbService.getAllTjb();

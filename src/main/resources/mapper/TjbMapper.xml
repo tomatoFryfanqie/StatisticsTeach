@@ -73,6 +73,6 @@
         bksskwwc,
         edjxwwc,
         shrgh
-        from `tjb` where yxbm = #{yxbm}
+        from `tjb` where gh in (select gh from `users` where yxbm = #{yxbm})
     </select>
 </mapper>

@@ -44,6 +44,7 @@ public class UserController {
             model.addAttribute("error","账号或密码不能为空！！！");
             return "login";
         }
+        System.out.println(loginVo);
         Users user=userService.login(loginVo,request,response);
         if (user==null){
             model.addAttribute("error","账号密码错误");
@@ -62,6 +63,7 @@ public class UserController {
      * 修改本院用户密码
      * */
     @RequestMapping("/updatepassword")
+    @NeedLogin
     public String updatePassword(Users user,String oldPassword,String newPassword,Model model,HttpServletRequest request){
         System.out.println(oldPassword+":"+newPassword);
         boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);

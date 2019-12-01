@@ -15,5 +15,5 @@ public interface TjbService {
 
     List<Tjb> getAllTjb();
 
-    List<Tjb> getAllTjbByYxbm(int yxbm);
+    List<Tjb> getAllTjbByYxbm(Integer yxbm);
 }
