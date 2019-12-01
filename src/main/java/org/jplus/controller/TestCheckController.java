@@ -82,53 +82,102 @@ public class TestCheckController {
         model.addAttribute("department", yxmc);
 // *************************************************************************************
         Tjb tjb = tjbService.getTjbByGh(gh);
-//                <!-- 本科生课堂工作量-->				bksktgzl
-        model.addAttribute("bksktgzl",tjb.getBksktgzl());
+        if (tjb != null){
+            //                <!-- 本科生课堂工作量-->				bksktgzl
+            model.addAttribute("bksktgzl",tjb.getBksktgzl());
 //                <!-- 本科生实践工作量-->				bkssjgzl
-        model.addAttribute("bkssjgzl",tjb.getBkssjgzl());
+            model.addAttribute("bkssjgzl",tjb.getBkssjgzl());
 //                <!-- 质量工程工作量 -->					zlgcgzl
-        model.addAttribute("zlgcgzl",tjb.getZlgcgzl());
+            model.addAttribute("zlgcgzl",tjb.getZlgcgzl());
 //                <!-- 教学成果工作量 -->					jxcggzl
-        model.addAttribute("jxcggzl",tjb.getJxcggzl());
+            model.addAttribute("jxcggzl",tjb.getJxcggzl());
 //                <!-- 本科生纵向项目工作量-->			bkszxxmgzl
-        model.addAttribute("bkszxxmgzl",tjb.getBkszxxmgzl());
+            model.addAttribute("bkszxxmgzl",tjb.getBkszxxmgzl());
 //                <!-- 本科生横向项目工作量-->			bkshxxmgzl
-        model.addAttribute("bkshxxmgzl",tjb.getBkshxxmgzl());
+            model.addAttribute("bkshxxmgzl",tjb.getBkshxxmgzl());
 //                <!-- 教材工作量-->						jcgzl
-        model.addAttribute("jcgzl",tjb.getJcgzl());
+            model.addAttribute("jcgzl",tjb.getJcgzl());
 //                <!-- 教学改革工作量-->					jxgggzl
-        model.addAttribute("jxgggzl",tjb.getJxgggzl());
+            model.addAttribute("jxgggzl",tjb.getJxgggzl());
 //                <!-- 本科生竞赛工作量-->				bksjsgzl
-        model.addAttribute("bksjsgzl",tjb.getBksjsgzl());
+            model.addAttribute("bksjsgzl",tjb.getBksjsgzl());
 //                <!-- 教师竞赛工作量-->					jsjsgzl
-        model.addAttribute("jsjsgzl",tjb.getJsjsgzl());
+            model.addAttribute("jsjsgzl",tjb.getJsjsgzl());
 //                <!-- 本科生论文工作量-->				bkslwgzl
-        model.addAttribute("bkslwgzl",tjb.getBkslwgzl());
+            model.addAttribute("bkslwgzl",tjb.getBkslwgzl());
 //                <!-- 本科生其它工作量-->				bksqtgzl
-        model.addAttribute("bksqtgzl",tjb.getBksqtgzl());
+            model.addAttribute("bksqtgzl",tjb.getBksqtgzl());
 //                <!-- 本科生总工作量-->					bkszgzl
-        model.addAttribute("bkszgzl",tjb.getYjszgzl());
+            model.addAttribute("bkszgzl",tjb.getYjszgzl());
 // *************************************************************************************
 //                <!-- 研究生课堂教学工作量-->				yjsktjxgzl
-        model.addAttribute("yjsktjxgzl",tjb.getYjsktjxgzl());
+            model.addAttribute("yjsktjxgzl",tjb.getYjsktjxgzl());
 
 //                <!-- 研究生实践教学工作量-->				jsjsjjxgzl
-        model.addAttribute("jsjsjjxgzl",tjb.getJsjsjjxgzl());
+            model.addAttribute("jsjsjjxgzl",tjb.getJsjsjjxgzl());
 //                <!-- 学科建设工作量-->						xkjsgzl
-        model.addAttribute("xkjsgzl",tjb.getXkjsgzl());
+            model.addAttribute("xkjsgzl",tjb.getXkjsgzl());
 //                <!-- 研究生教研项目工作量-->				yjsjyxmgzl
-        model.addAttribute("yjsjyxmgzl",tjb.getYjsjyxmgzl());
+            model.addAttribute("yjsjyxmgzl",tjb.getYjsjyxmgzl());
 //                <!-- 研究生横向项目工作量-->				yjshxxmgzl
-        model.addAttribute("yjshxxmgzl",tjb.getYjshxxmgzl());
+            model.addAttribute("yjshxxmgzl",tjb.getYjshxxmgzl());
 //                <!-- 研究生论文工作量-->					yjslwgzl
-        model.addAttribute("yjslwgzl",tjb.getYjslwgzl());
+            model.addAttribute("yjslwgzl",tjb.getYjslwgzl());
 //                <!-- 研究生竞赛工作量-->					yjsjsgzl
-        model.addAttribute("yjsjsgzl",tjb.getJsjsgzl());
+            model.addAttribute("yjsjsgzl",tjb.getJsjsgzl());
 //                <!-- 研究生其它工作量-->					yjsqtgzl
-        model.addAttribute("yjsqtgzl",tjb.getYjsqtgzl());
+            model.addAttribute("yjsqtgzl",tjb.getYjsqtgzl());
 //                <!-- 研究生总工作量-->						yjszgzl
-        model.addAttribute("yjszgzl",tjb.getYjszgzl());
+            model.addAttribute("yjszgzl",tjb.getYjszgzl());
 // *************************************************************************************
+        }else {
+            model.addAttribute("bksktgzl",0.0);
+//                <!-- 本科生实践工作量-->				bkssjgzl
+            model.addAttribute("bkssjgzl",0.0);
+//                <!-- 质量工程工作量 -->					zlgcgzl
+            model.addAttribute("zlgcgzl",0.0);
+//                <!-- 教学成果工作量 -->					jxcggzl
+            model.addAttribute("jxcggzl",0.0);
+//                <!-- 本科生纵向项目工作量-->			bkszxxmgzl
+            model.addAttribute("bkszxxmgzl",0.0);
+//                <!-- 本科生横向项目工作量-->			bkshxxmgzl
+            model.addAttribute("bkshxxmgzl",0.0);
+//                <!-- 教材工作量-->						jcgzl
+            model.addAttribute("jcgzl",0.0);
+//                <!-- 教学改革工作量-->					jxgggzl
+            model.addAttribute("jxgggzl",0.0);
+//                <!-- 本科生竞赛工作量-->				bksjsgzl
+            model.addAttribute("bksjsgzl",0.0);
+//                <!-- 教师竞赛工作量-->					jsjsgzl
+            model.addAttribute("jsjsgzl",0.0);
+//                <!-- 本科生论文工作量-->				bkslwgzl
+            model.addAttribute("bkslwgzl",0.0);
+//                <!-- 本科生其它工作量-->				bksqtgzl
+            model.addAttribute("bksqtgzl",0.0);
+//                <!-- 本科生总工作量-->					bkszgzl
+            model.addAttribute("bkszgzl",0.0);
+// *************************************************************************************
+//                <!-- 研究生课堂教学工作量-->				yjsktjxgzl
+            model.addAttribute("yjsktjxgzl",0.0);
+
+//                <!-- 研究生实践教学工作量-->				jsjsjjxgzl
+            model.addAttribute("jsjsjjxgzl",0.0);
+//                <!-- 学科建设工作量-->						xkjsgzl
+            model.addAttribute("xkjsgzl",0.0);
+//                <!-- 研究生教研项目工作量-->				yjsjyxmgzl
+            model.addAttribute("yjsjyxmgzl",0.0);
+//                <!-- 研究生横向项目工作量-->				yjshxxmgzl
+            model.addAttribute("yjshxxmgzl",0.0);
+//                <!-- 研究生论文工作量-->					yjslwgzl
+            model.addAttribute("yjslwgzl",0.0);
+//                <!-- 研究生竞赛工作量-->					yjsjsgzl
+            model.addAttribute("yjsjsgzl",0.0);
+//                <!-- 研究生其它工作量-->					yjsqtgzl
+            model.addAttribute("yjsqtgzl",0.0);
+//                <!-- 研究生总工作量-->						yjszgzl
+            model.addAttribute("yjszgzl",0.0);
+        }
+
 
 
 // **************************************具体信息***********************************************
@@ -226,15 +275,23 @@ public class TestCheckController {
         }
 
         // 3 教学基本建设与学科建设工作 graduateconstruction
-        if (tjb.getXkjsgzl() == null) {
+        if (tjb != null){
+            if (tjb.getXkjsgzl() == null) {
+                model.addAttribute("xkjsgzl", 0);
+                model.addAttribute("sfzxpyfa", 0);
+                model.addAttribute("kddgms", 0);
+                model.addAttribute("sydgms", 0);
+            } else {
+                model.addAttribute("xkjsgzl", tjb.getXkjsgzl());
+                model.addAttribute("JBJSYXKJSInfo", jbjsyxkjsService.getJBJSYXKJSInfo(gh));
+            }
+        }else {
             model.addAttribute("xkjsgzl", 0);
             model.addAttribute("sfzxpyfa", 0);
             model.addAttribute("kddgms", 0);
             model.addAttribute("sydgms", 0);
-        } else {
-            model.addAttribute("xkjsgzl", tjb.getXkjsgzl());
-            model.addAttribute("JBJSYXKJSInfo", jbjsyxkjsService.getJBJSYXKJSInfo(gh));
         }
+
         /* 4 教学研究项目         graduateprogram */
         // 学科与研究生教育项目
         // 研究生横向项目项目
