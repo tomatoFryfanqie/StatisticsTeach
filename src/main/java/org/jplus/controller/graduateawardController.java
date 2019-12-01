@@ -9,6 +9,7 @@ import org.jplus.service.TjztService;
 import org.jplus.service.ZDSSLWService;
 import org.jplus.service.ZDXSJSService;
 import org.jplus.utils.DateUtils;
+import org.jplus.utils.GetWorkLoad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,15 @@ public class graduateawardController {
     @Autowired
     private ZDSSLWService zDSSLWService;
 
+    private static final String GRADUATE_JSJBMC_COUNTRY = "国家级";
+    private static final String GRADUATE_JSJBMC_PROVINCE = "省级";
+    private static final String GRADUATE_JSJBMC_SCHOOL = "校级";
+
+    private static final String GRADUATE_JSLBMC_ANORMAL = "A类师范生教学技能竞赛";
+    private static final String GRADUATE_JSLBMC_BNORMAL = "B类师范生教学技能竞赛";
+    private static final String GRADUATE_JSLBMC_AOTHER = "A类其他竞赛";
+    private static final String GRADUATE_JSLBMC_BOTHER = "B类其他竞赛";
+
     @NeedLogin
     @RequestMapping("/masterKnow")
     public String hello(Model model, Users users) {
@@ -43,21 +53,21 @@ public class graduateawardController {
         for(int i = 0; i < list.size(); i++) {
             int jbbm = list.get(i).getJsjbbm();
             if(jbbm == 1) {
-                list.get(i).setJsjbmc("国家级");
+                list.get(i).setJsjbmc(GRADUATE_JSJBMC_COUNTRY);
             }else if(jbbm == 2) {
-                list.get(i).setJsjbmc("省级");
+                list.get(i).setJsjbmc(GRADUATE_JSJBMC_PROVINCE);
             }else if(jbbm == 3){
-                list.get(i).setJsjbmc("校级");
+                list.get(i).setJsjbmc(GRADUATE_JSJBMC_SCHOOL);
             }
             int lbbm = list.get(i).getJslbbm();
             if(lbbm == 1) {
-                list.get(i).setJslbmc("A类师范生教学技能竞赛");
+                list.get(i).setJslbmc(GRADUATE_JSLBMC_ANORMAL);
             }else if(lbbm == 2) {
-                list.get(i).setJslbmc("B类师范生教学技能竞赛");
+                list.get(i).setJslbmc(GRADUATE_JSLBMC_BNORMAL);
             }else if(lbbm == 3) {
-                list.get(i).setJslbmc("A类其他竞赛");
+                list.get(i).setJslbmc(GRADUATE_JSLBMC_AOTHER);
             }else if(lbbm == 4) {
-                list.get(i).setJslbmc("B类其他竞赛");
+                list.get(i).setJslbmc(GRADUATE_JSLBMC_BOTHER);
             }
         }
         model.addAttribute("allStudentCompetitionList", list);
@@ -97,7 +107,8 @@ public class graduateawardController {
         zDSSLW.setNd(DateUtils.getCurrentYear());
         zDSSLW.setSylwrs(slwNum);
         zDSSLW.setXylwrs(xlwNum);
-        float gzl = slwNum * 50 + xlwNum * 10;
+        //float gzl = slwNum * 50 + xlwNum * 10;
+        float gzl = GetWorkLoad.getGraduatePaper(slwNum, xlwNum);
         zDSSLW.setGzl(gzl);
         // 判断数据库中是否有记录
         int count = zDSSLWService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
@@ -129,7 +140,6 @@ public class graduateawardController {
     @RequestMapping("/getMasterAllGzl")
     @ResponseBody
     public Float getAllGzl(Users users) {
-        System.out.println("hello world");
         Float gul2 = zDXSJSService.getAllGzl2(users.getGh(), DateUtils.getCurrentYear());
         Float lwgzl = zDSSLWService.getAllMasterLwGzl(users.getGh(), DateUtils.getCurrentYear());
         if(lwgzl != null && gul2 != null) {

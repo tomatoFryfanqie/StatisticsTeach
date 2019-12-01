@@ -5,6 +5,7 @@ import org.jplus.pojo.Users;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
 import org.jplus.service.YJSQTJXService;
 import org.jplus.utils.DateUtils;
+import org.jplus.utils.GetWorkLoad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +53,8 @@ public class graduateOtherController {
         yJSQTJX.setFsmskg(examiner);
         yJSQTJX.setFsjkcs(invigilator);
         yJSQTJX.setYjfs(checking);
-        double gzl = workloadOfTeachingSupervision + proposition*8 + examining*4 + check*4 + examiner*4 + invigilator*3 + checking*0.3;
+        // double gzl = workloadOfTeachingSupervision + proposition*8 + examining*4 + check*4 + examiner*4 + invigilator*3 + checking*0.3;
+        double gzl = GetWorkLoad.getMasterOtherTeachWorkload(workloadOfTeachingSupervision, proposition, examining, check, examiner, invigilator, checking);
         yJSQTJX.setGzl((float) gzl);
         // 无则添加，有则更新
         int count = yJSQTJXService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());

@@ -27,7 +27,6 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private static final int OFFICE_TEACHER_NUM = 22;
     private static final String OFFICE_NAME = "教务处";
     private static final String OFFICE_TEACHER_NAME = "教务处教师";
     private static final String USER_TYPE_NAME = "普通教师";

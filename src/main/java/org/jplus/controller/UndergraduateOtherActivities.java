@@ -5,6 +5,7 @@ import org.jplus.pojo.QTJXGZ;
 import org.jplus.pojo.Users;
 import org.jplus.service.QTJXGZService;
 import org.jplus.utils.DateUtils;
+import org.jplus.utils.GetWorkLoad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class UndergraduateOtherActivities {
 
+    private static final Integer numberOfStudentsAssisted_GZL = 10;
+    private static final Integer guideYoungTeachers_GZL = 10;
+    private static final Integer reviseTalentTrainingPlan_GZL = 20;
+    private static final Integer prepareCourseSyllabusCount_GZL = 10;
+    private static final Integer compilingExperimentalSyllabusCount_GZL = 10;
     @Autowired
     private QTJXGZService qTJXGZService;
 
@@ -41,7 +47,6 @@ public class UndergraduateOtherActivities {
     @ResponseBody
     public void addOtherTeachWorkload(Users users, Float workloadOfTeachingSupervision, Integer numberOfStudentsAssisted, Integer guideYoungTeachers,
                                       Integer reviseTalentTrainingPlan, Integer prepareCourseSyllabusCount, Integer compilingExperimentalSyllabusCount) {
-        System.out.println(compilingExperimentalSyllabusCount);
         QTJXGZ qTJXGZ = new QTJXGZ();
         String gh = users.getGh();
         qTJXGZ.setGh(gh);
@@ -52,7 +57,8 @@ public class UndergraduateOtherActivities {
         qTJXGZ.setXdrcpyfa(reviseTalentTrainingPlan);
         qTJXGZ.setKcdgms(prepareCourseSyllabusCount);
         qTJXGZ.setSydgms(compilingExperimentalSyllabusCount);
-        Float allGzl = workloadOfTeachingSupervision + guideYoungTeachers*10 + numberOfStudentsAssisted*10 + reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
+        //Float allGzl = workloadOfTeachingSupervision + guideYoungTeachers*10 + numberOfStudentsAssisted*10 + reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
+        Float allGzl = GetWorkLoad.getOtherTeachWorkload(workloadOfTeachingSupervision, guideYoungTeachers, numberOfStudentsAssisted, reviseTalentTrainingPlan, prepareCourseSyllabusCount, compilingExperimentalSyllabusCount);
         qTJXGZ.setQtgzl(allGzl);
         // 无则添加，有则更新
         Integer count = qTJXGZService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
@@ -70,14 +76,14 @@ public class UndergraduateOtherActivities {
     @ResponseBody
     @NeedLogin
     public Integer getTeachStudentCount(Integer numberOfStudentsAssisted) {
-        return numberOfStudentsAssisted * 10;
+        return numberOfStudentsAssisted * numberOfStudentsAssisted_GZL;
     }
 
     @RequestMapping("/getTeachYoungTeacherCount")
     @ResponseBody
     @NeedLogin
     public Integer getTeachYoungTeacherCount(Integer guideYoungTeachers) {
-        return guideYoungTeachers * 10;
+        return guideYoungTeachers * guideYoungTeachers_GZL;
     }
 
 
@@ -85,8 +91,7 @@ public class UndergraduateOtherActivities {
     @ResponseBody
     @NeedLogin
     public Integer getUndertakeCount(Integer reviseTalentTrainingPlan, Integer prepareCourseSyllabusCount, Integer compilingExperimentalSyllabusCount) {
-        System.out.println(prepareCourseSyllabusCount);
-        return reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
+        return reviseTalentTrainingPlan*reviseTalentTrainingPlan_GZL + prepareCourseSyllabusCount*prepareCourseSyllabusCount_GZL + compilingExperimentalSyllabusCount*compilingExperimentalSyllabusCount_GZL;
     }
 
     // 获取其他教学活动的总工作量
@@ -95,7 +100,6 @@ public class UndergraduateOtherActivities {
     @NeedLogin
     public Float getAllQtGzl(Users users) {
         Float result = qTJXGZService.getAllQtGzl(users.getGh(), DateUtils.getCurrentYear());
-        System.out.println(result);
         if(result == null) {
             return 0.0f;
         }

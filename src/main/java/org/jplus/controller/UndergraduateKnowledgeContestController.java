@@ -12,6 +12,7 @@ import org.jplus.service.JSJSService;
 import org.jplus.service.TjztService;
 import org.jplus.service.ZDXSJSService;
 import org.jplus.utils.DateUtils;
+import org.jplus.utils.GetWorkLoad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,30 +36,44 @@ public class UndergraduateKnowledgeContestController {
     @Autowired
     private JSJSService jSJSService;
 
+    private static final String JSJBMC_COUNTRY = "国家级";
+    private static final String JSJBMC_PROVINCE = "省级";
+    private static final String JSJBMC_SCHOOL = "校级";
+
+    private static final String JSLBMC_ANORMAL = "A类师范生教学技能竞赛";
+    private static final String JSLBMC_BNORMAL = "B类师范生教学技能竞赛";
+    private static final String JSLBMC_AOTHER = "A类其他竞赛";
+    private static final String JSLBMC_BOTHER = "B类其他竞赛";
+
+    private static final String JSXSMC_A = "讲课";
+    private static final String JSXSMC_B = "课件";
+    private static final String JSXSMC_C = "微课";
+
+    // 竞赛学生层次：1表示本科生
+    private static final Integer JSXSCC = 1;
+
     @RequestMapping("/know")
     @NeedLogin
     public String hello(Model model,Users users) {
-        //List<JSJS> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
-        //List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
         List<ZdxsjsVo> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
         for(int i = 0; i < list.size(); i++) {
             int jbbm = list.get(i).getJsjbbm();
             if(jbbm == 1) {
-                list.get(i).setJsjbmc("国家级");
+                list.get(i).setJsjbmc(JSJBMC_COUNTRY);
             }else if(jbbm == 2) {
-                list.get(i).setJsjbmc("省级");
+                list.get(i).setJsjbmc(JSJBMC_PROVINCE);
             }else if(jbbm == 3){
-                list.get(i).setJsjbmc("校级");
+                list.get(i).setJsjbmc(JSJBMC_SCHOOL);
             }
             int lbbm = list.get(i).getJslbbm();
             if(lbbm == 1) {
-                list.get(i).setJslbmc("A类师范生教学技能竞赛");
+                list.get(i).setJslbmc(JSLBMC_ANORMAL);
             }else if(lbbm == 2) {
-                list.get(i).setJslbmc("B类师范生教学技能竞赛");
+                list.get(i).setJslbmc(JSLBMC_BNORMAL);
             }else if(lbbm == 3) {
-                list.get(i).setJslbmc("A类其他竞赛");
+                list.get(i).setJslbmc(JSLBMC_AOTHER);
             }else if(lbbm == 4) {
-                list.get(i).setJslbmc("B类其他竞赛");
+                list.get(i).setJslbmc(JSLBMC_BOTHER);
             }
         }
         List<JsjsVo> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
@@ -68,11 +83,11 @@ public class UndergraduateKnowledgeContestController {
             result.get(i).setJsdjmc(jsdjmc);
             int xsbm = result.get(i).getJsxsbm();
             if(xsbm == 1) {
-                result.get(i).setJsxsmc("讲课");
+                result.get(i).setJsxsmc(JSXSMC_A);
             }else if(xsbm == 2) {
-                result.get(i).setJsxsmc("课件");
+                result.get(i).setJsxsmc(JSXSMC_B);
             }else if(xsbm == 3) {
-                result.get(i).setJsxsmc("微课");
+                result.get(i).setJsxsmc(JSXSMC_C);
             }
         }
 
@@ -106,7 +121,7 @@ public class UndergraduateKnowledgeContestController {
         zDXSJS.setJslbbm(competition);
         zDXSJS.setJsjbbm(contestLevel);
         zDXSJS.setZdxsrs(studentNum);
-        zDXSJS.setJsxscc(1);
+        zDXSJS.setJsxscc(JSXSCC);
         /**
          * 根据传过来的competition、contestLevel来确定工作量
          *      setGzl = 工作量 * studentNum
@@ -139,9 +154,12 @@ public class UndergraduateKnowledgeContestController {
          * 根据传过来的teacherCompetitioncategory（竞赛等级）、teacherCompetitionform（竞赛形式）
          * */
         Integer gzl = jSJSService.getGzl(teacherCompetitioncategory);
-        if(teacherCompetitionform != 1) {
+
+        gzl = GetWorkLoad.getTeacherCompetitionWorkload(teacherCompetitionform, gzl);
+
+        /*if(teacherCompetitionform != 1) {
             gzl /= 2;
-        }
+        }*/
         jSJS.setGzl(gzl);
         // 添加到数据库
         jSJSService.addJSJS(jSJS);
@@ -162,7 +180,8 @@ public class UndergraduateKnowledgeContestController {
         zDXSLW.setNd(DateUtils.getCurrentYear());
         zDXSLW.setSylwrs(slwNum);
         zDXSLW.setXylwrs(xlwNum);
-        float gzl = slwNum * 30 + xlwNum * 10;
+        //float gzl = slwNum * 30 + xlwNum * 10;
+        float gzl = GetWorkLoad.getUndergradautePaper(slwNum, xlwNum);
         zDXSLW.setGzl(gzl);
         // 判断数据库中是否有记录
         Integer count = zDXSJSService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
