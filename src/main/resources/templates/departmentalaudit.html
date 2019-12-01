@@ -38,9 +38,10 @@
         <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="maintenance">
-                    <a href="departmentmaintenance.html">本院用户维护</a>
+                    <a th:href="@{/officeUser}">用户维护</a>
                 </div>
                 <div class="collegeworkload active"><a href="#">审核各学院工作量</a></div>
+                <div class="export"><a href="#">导出工作量统计表</a></div>
             </div>
         </div>
     </div>
@@ -64,7 +65,7 @@
             <div class="table-wrap">
                 <form th:action="@{/officedetails}" method="post">
                     <table class="table table-bordered edtitable">
-                        <tr>
+                         <tr>
                             <td rowspan="2">工号</td>
                             <td rowspan="2">姓名</td>
                             <td rowspan="2">职务</td>
@@ -81,16 +82,16 @@
                         <tr th:each="checkgzl:${Checkgzls}">
                             <td th:text="${checkgzl.gh}"></td>
                             <td th:text="${checkgzl.uname}"></td>
-                            <td th:text="${checkgzl.zw}"></td>
+                            <td th:text="${checkgzl.zwmc}"></td>
                             <td th:text="${checkgzl.edgzl}"></td>
-                            <td th:text="${checkgzl.bksgzl}"></td>
-                            <td th:text="${checkgzl.yjsgzl}"></td>
-                            <td th:text="${checkgzl.bksgzl+checkgzl.yjsgzl}"></td>
+                            <td th:text="${checkgzl.bkszgzl}"></td>
+                            <td th:text="${checkgzl.yjszgzl}"></td>
+                            <td th:text="${checkgzl.bkszgzl+checkgzl.yjszgzl}"></td>
                             <div th:switch="${checkgzl.shzt}">
-                                <td th:case="0" th:text="未审核"></td>
+                                <td th:case="0" th:text="未提交"></td>
+                                <td th:case="1" th:text="未审核"></td>
                                 <td th:case="2" th:text="院系已审核"></td>
                                 <td th:case="3" th:text="教务处已审核"></td>
-                                <td th:case="4" th:text="未提交"></td>
                             </div>
                             <!-- 查看详情 -->
                             <td class="del-col notedit">

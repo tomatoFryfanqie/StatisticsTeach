@@ -14,6 +14,7 @@ import java.util.List;
 @Component
 public interface TjbMapper {
 
+    Tjb getTjbByGh(String gh);
 
 
     List<Tjb> getAllTjb();

@@ -12,6 +12,8 @@ import java.util.List;
  * @Description: Description
  */
 public interface TjbService {
+    // MH 添加
+    Tjb getTjbByGh(String gh);
 
     List<Tjb> getAllTjb();
 

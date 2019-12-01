@@ -30,20 +30,17 @@ public class OfficecollegeServiceImpl implements OfficecollegeService{
     public List<Checkgzl> getCheckgzlInfByYxbm(Integer yxbm) {
         List<Checkgzl> checkgzlList = checkgzlMapper.getCheckgzlInfByYxbm(yxbm);
         for (Checkgzl checkgzl : checkgzlList) {
-
             {
-                if (checkgzl.getZw() == null) {
-                    checkgzl.setZw("");
+                if (checkgzl.getZwmc() == null) {
+                    checkgzl.setZwmc("");
                 }
-
                 if (checkgzl.getEdgzl() == null) {
                     checkgzl.setEdgzl(0.0f);
                 }
-
                 if (checkgzl.getTjzt() == null || checkgzl.getTjzt() == 0) {
-                    checkgzl.setBksgzl(0.0f);
-                    checkgzl.setYjsgzl(0.0f);
-                    checkgzl.setShzt(4);
+                    checkgzl.setBkszgzl(0.0f);
+                    checkgzl.setYjszgzl(0.0f);
+                    checkgzl.setShzt(0);
                 }
             }
         }
@@ -53,18 +50,17 @@ public class OfficecollegeServiceImpl implements OfficecollegeService{
     public List<Checkgzl> getCheckgzlInfByGh(String gh) {
         List<Checkgzl> checkgzlList = checkgzlMapper.getCheckgzlInfByGh(gh);
         for (Checkgzl checkgzl:checkgzlList) {
-            if (checkgzl.getZw() == null){
-                checkgzl.setZw("");
+            if (checkgzl.getZwmc() == null){
+                checkgzl.setZwmc("");
             }
 
             if (checkgzl.getEdgzl() == null){
                 checkgzl.setEdgzl(0.0f);
             }
-
             if (checkgzl.getTjzt() == null || checkgzl.getTjzt() == 0){
-                checkgzl.setBksgzl(0.0f);
-                checkgzl.setYjsgzl(0.0f);
-                checkgzl.setShzt(4);
+                checkgzl.setBkszgzl(0.0f);
+                checkgzl.setYjszgzl(0.0f);
+                checkgzl.setShzt(0);
             }
         }
         return checkgzlList;
