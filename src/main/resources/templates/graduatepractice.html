@@ -107,7 +107,7 @@
                 <ul>
                     <li class="tips">1.实践教学指导</li>
                     <li class="tips workload-display">工作量小计<span class="prompt" th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.rcgzl!=null}"><span th:text="${yjssjjxJbxx.rcgzl}"></span></span></li>
-                    <li class="description indent indents">
+                    <li class="description indents">
                         实习类型
                         <span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm1!=null}">
                             <select name="internshiptype" th:name="sjlxbm1">
@@ -128,7 +128,7 @@
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="${yjssjjxJbxx.sjts1}" id="day" class="day timenum" placeholder="" />
                         <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts1!=null}" th:name="sjts1" th:value="0" id="day" class="day timenum" placeholder="" />
                     </li>
-                    <li class="description indent indents">
+                    <li class="description indents">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm2!=null}">
                             <select name="internshiptype" th:name="sjlxbm2" >
                                 <option th:each="lxType : ${yjssjlx}" th:name="sjlxbm2" th:value="${lxType.yjssxlxbm}"
@@ -148,7 +148,7 @@
                         实习天数<input th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="${yjssjjxJbxx.sjts2}" type="text" id="day" class="day timenum" placeholder="" />
                         <input th:unless="${yjssjjxJbxx!=null && yjssjjxJbxx.sjts2!=null}" th:name="sjts2" th:value="0"type="text" id="day" class="day timenum" placeholder="" />
                     </li>
-                    <li class="description indent indents">
+                    <li class="description indents">
                         实习类型<span th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.sjlxbm3!=null}">
                             <select name="internshiptype" th:name="sjlxbm3" >
                                 <option th:each="lxType : ${yjssjlx}" th:name="sjlxbm3" th:value="${lxType.yjssxlxbm}"

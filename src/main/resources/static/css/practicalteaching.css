@@ -73,6 +73,7 @@
 .job-category ul .indents {
   /*width: 40%;*/
   min-width: 300px;
+  padding-left: 10%;
 }
 .job-category ul .filling {
   width: 60%;
