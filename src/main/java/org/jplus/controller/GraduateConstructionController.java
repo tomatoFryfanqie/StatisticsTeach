@@ -34,8 +34,17 @@ public class GraduateConstructionController {
             model.addAttribute("kddgms", 0);
             model.addAttribute("sydgms", 0);
         } else {
-            model.addAttribute("sumOfWorkload", jbjsyxkjsService.getWorkLoad(users.getGh()));
-            model.addAttribute("JBJSYXKJSInfo", jbjsyxkjsService.getJBJSYXKJSInfo(users.getGh()));
+            if (jbjsyxkjsService.getJBJSYXKJSInfo(users.getGh())!= null){
+                model.addAttribute("sumOfWorkload", jbjsyxkjsService.getWorkLoad(users.getGh()));
+                model.addAttribute("sfzxpyfa", jbjsyxkjsService.getJBJSYXKJSInfo(users.getGh()).getSfzxpyfa());
+                model.addAttribute("kddgms", jbjsyxkjsService.getJBJSYXKJSInfo(users.getGh()).getKddgms());
+                model.addAttribute("sydgms", jbjsyxkjsService.getJBJSYXKJSInfo(users.getGh()).getSydgms());
+            }else {
+                model.addAttribute("sumOfWorkload", 0);
+                model.addAttribute("sfzxpyfa", 0);
+                model.addAttribute("kddgms", 0);
+                model.addAttribute("sydgms", 0);
+            }
         }
         return "graduateconstruction";
     }

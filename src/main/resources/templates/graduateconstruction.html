@@ -113,7 +113,7 @@
                         </div>
                         <div th:name="sfzxpyfa" class="complete right-shift">
                             编撰教人才培养方案:
-                            <span th:switch="${JBJSYXKJSInfo.sfzxpyfa}">
+                            <span th:switch="${sfzxpyfa}">
                                 <span th:case="0">
                                     <input  th:name="sfzxpyfa" th:value="1" type="radio" name="newentry" value="new"
                                             class="entry-chose"/>是
@@ -128,13 +128,13 @@
                         </div>
                         <div th:name="kddgms" class="complete">
                             <span class="right-shift">编写课程教学大纲课程数</span>
-                            <input th:name="kddgms" th:value="${JBJSYXKJSInfo} == null ? ${kddgms}:${JBJSYXKJSInfo.kddgms}" type="text"
+                            <input th:name="kddgms" th:value="${kddgms}" type="text"
                                                                                placeholder=""
                                                                                class="enter timenum"/>
                         </div>
                         <div input th:name="sydgms" class="complete">
                             <span class="right-shift">编写实验教学大纲课程数</span>
-                            <input th:name="sydgms" th:value="${JBJSYXKJSInfo} == null ? ${sydgms}:${JBJSYXKJSInfo.sydgms}"  type="text"
+                            <input th:name="sydgms" th:value="${sydgms}"  type="text"
                                                                                placeholder=""
                                                                                class="enter timenum"/>
                         </div>
