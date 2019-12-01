@@ -61,7 +61,7 @@ public class Tjb {
     //研究生课堂教学工作量
     private Float yjsktjxgzl;
     //研究生实践教学工作量
-    private Float yjssjjxgzl;
+    private Float jsjsjjxgzl;
     //学科建设工作量
     private Float xkjsgzl;
     //研究生教研项目据工作量

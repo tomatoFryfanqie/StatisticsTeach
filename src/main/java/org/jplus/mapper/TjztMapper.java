@@ -24,5 +24,5 @@ public interface TjztMapper {
 
     void updateTjzt(@Param("gh") String gh, @Param("tjsj") Timestamp tjsj);
 
-    void insertTJB(Integer years,String gh);
+    void insertTJB(@Param("years") Integer years,@Param("gh")String gh);
 }
