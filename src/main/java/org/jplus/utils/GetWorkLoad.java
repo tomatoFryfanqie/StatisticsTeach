@@ -112,17 +112,17 @@ public class GetWorkLoad {
         float res=0;
         //计算第一个实习类型工作量
         int sxlx1=bkssjjx.getSxlxbm1();
-        int sxts1=bkssjjx.getSxts1();
+        int sxts1=bkssjjx.getSxts1()==null?0:bkssjjx.getSxts1();
         res+=getSxlxWork(sxlx1,sxts1);
 
         //计算第二个实习类型工作量
         int sxlx2=bkssjjx.getSxlxbm2();
-        int sxts2=bkssjjx.getSxts2();
+        int sxts2=bkssjjx.getSxts2()==null?0:bkssjjx.getSxts2();
         res+=getSxlxWork(sxlx2,sxts2);
 
         //计算第三个实习类型工作量
         int sxlx3=bkssjjx.getSxlxbm3();
-        int sxts3=bkssjjx.getSxts3();
+        int sxts3=bkssjjx.getSxts3()==null?0:bkssjjx.getSxts3();
         res+=getSxlxWork(sxlx3,sxts3);
         bkssjjxEx.setZdsxgzl(res); /*设置指导实习总工作量*/
 
