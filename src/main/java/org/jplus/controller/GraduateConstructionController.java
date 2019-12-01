@@ -4,7 +4,7 @@ import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.jbjsyxkjs.JBJSYXKJSAccept;
 import org.jplus.service.JbjsyxkjsService;
-import org.jplus.utils.CalculateJbjsyxkjsWorkload;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,12 +56,12 @@ public class GraduateConstructionController {
         if (jbjsyxkjsService.getWorkLoad(users.getGh()) == null) {
             jbjsyxkjsAccept.setGh(users.getGh());
             jbjsyxkjsAccept.setNd(GetYear.getYears());
-            jbjsyxkjsAccept.setGzl(CalculateJbjsyxkjsWorkload.calculateWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
+            jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
             jbjsyxkjsService.addGraduateConstruction(jbjsyxkjsAccept);
         } else {
             jbjsyxkjsAccept.setGh(users.getGh());
             jbjsyxkjsAccept.setNd(GetYear.getYears());
-            jbjsyxkjsAccept.setGzl(CalculateJbjsyxkjsWorkload.calculateWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
+            jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
             jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
         }
         return "redirect:/graduateconstruction";
@@ -71,7 +71,7 @@ public class GraduateConstructionController {
     @NeedLogin
     @RequestMapping("/updateGraduateConstruction")
     public String updateGraduateConstruction(@ModelAttribute(value = "jBJSYXKJSAccept") JBJSYXKJSAccept jbjsyxkjsAccept, Users users) {
-        jbjsyxkjsAccept.setGzl(CalculateJbjsyxkjsWorkload.calculateWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
+        jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
         jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
         return "redirect:/graduateconstruction";
     }

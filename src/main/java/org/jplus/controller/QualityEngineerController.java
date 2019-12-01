@@ -4,11 +4,8 @@ import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.zlgc.ZlgcAccept;
 import org.jplus.service.ZlgcService;
-import org.jplus.utils.CalculateQualityEngineerWorkLoad;
-import org.jplus.utils.GetYear;
-import org.jplus.utils.UserContext;
+import org.jplus.utils.*;
 
-import org.jplus.utils.YearAndClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +42,7 @@ public class QualityEngineerController {
     public String addZlgcInfo(@ModelAttribute(value = "zlgcAccept") ZlgcAccept zlgcAccept) {
         zlgcAccept.setNd(zlgcAccept.getNd());
         zlgcAccept.setGh(UserContext.getUser().getGh());
-        zlgcAccept.setGzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
+        zlgcAccept.setGzl(GetWorkLoad.getQualityEngineerWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
         zlgcService.addZlgcInfo(zlgcAccept);
         return "redirect:/qualityengineering";
     }
@@ -60,7 +57,7 @@ public class QualityEngineerController {
     @NeedLogin
     @RequestMapping("/updateZlgcInfo")
     public String updateZlgcInfo(@ModelAttribute("zlgcAccept") ZlgcAccept zlgcAccept) {
-        zlgcAccept.setGzl(CalculateQualityEngineerWorkLoad.calculateWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
+        zlgcAccept.setGzl(GetWorkLoad.getQualityEngineerWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
         zlgcService.updateZlgcInfo(zlgcAccept);
         return "redirect:/qualityengineering";
     }

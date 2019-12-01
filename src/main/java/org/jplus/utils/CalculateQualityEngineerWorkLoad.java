@@ -6,6 +6,7 @@ package org.jplus.utils;
  * @author: MH
  * @create: 2019-11-02 13:28
  **/
+@Deprecated
 public class CalculateQualityEngineerWorkLoad {
     private static final int TOP_PROJECT_NATIONAL_SCORE = 1000;
     private static final int TOP_PROJECT_PROVINCIAL_SCORE = 500;

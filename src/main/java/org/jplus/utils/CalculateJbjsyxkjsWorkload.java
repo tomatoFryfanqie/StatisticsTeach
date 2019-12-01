@@ -6,6 +6,7 @@ package org.jplus.utils;
  * @author: MH
  * @create: 2019-11-08 15:45
  **/
+@Deprecated
 public class CalculateJbjsyxkjsWorkload {
     //撰写人才培养方案分数
     private static final int TalentTrainingProgram_SCORE = 20;
