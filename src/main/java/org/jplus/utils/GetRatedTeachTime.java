@@ -7,6 +7,7 @@ package org.jplus.utils;
  * @CreateTime: 2019/11/1
  * @Description: Description
  */
+@Deprecated
 public class GetRatedTeachTime {
 
     /**

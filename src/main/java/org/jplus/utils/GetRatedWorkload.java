@@ -10,6 +10,7 @@ package org.jplus.utils;
 /*
 * 获取额定教学工作量
 * */
+@Deprecated
 public class GetRatedWorkload {
     /**
      *
