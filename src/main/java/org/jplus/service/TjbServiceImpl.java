@@ -24,4 +24,10 @@ public class TjbServiceImpl implements TjbService {
     public List<Tjb> getAllTjb() {
         return tjbMapper.getAllTjb();
     }
+
+    @Override
+    public List<Tjb> getAllTjbByYxbm(int yxbm) {
+
+        return tjbMapper.getAllTjbByYxbm(yxbm);
+    }
 }
