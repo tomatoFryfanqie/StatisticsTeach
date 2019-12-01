@@ -31,6 +31,6 @@
         where gh=#{gh}
     </update>
     <select id="insertTJB" statementType="CALLABLE">
-        CALL proc_qxtj(#{param1},#{param2} )
+        CALL proc_tj(#{param1},#{param2} )
     </select>
 </mapper>

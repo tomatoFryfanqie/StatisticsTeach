@@ -9,6 +9,7 @@ import org.jplus.service.JbxxService;
 import org.jplus.service.TjztService;
 import org.jplus.utils.GetRatedWorkload;
 import org.jplus.utils.GetRatedTeachTime;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,9 +77,9 @@ public class BasisInfoController {
             }
             jbxxAccpet.setNd(GetYear.getYears());
             /*获取额定工作量*/
-            jbxxAccpet.setEdgzl(GetRatedWorkload.getRatedWorkload(jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
+            jbxxAccpet.setEdgzl(GetWorkLoad.getRatedWorkload(jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
             /*获取本科生最低授课工作量*/
-            jbxxAccpet.setBkszdsk(GetRatedTeachTime.getTeachTime(jbxxAccpet.getZcbm(), jbxxAccpet.getGwlxbm()));
+            jbxxAccpet.setBkszdsk(GetWorkLoad.getTeachTime(jbxxAccpet.getZcbm(), jbxxAccpet.getGwlxbm()));
             /*更新部分基本信息*/
             System.out.println(jbxxAccpet);
             jbxxService.updateBasisInfo(jbxxAccpet);

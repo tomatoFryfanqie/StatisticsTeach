@@ -5,6 +5,7 @@ import org.jplus.pojo.Users;
 import org.jplus.pojo.classTeach.BksktjxAccpet;
 import org.jplus.service.BksktjxService;
 import org.jplus.service.TjztService;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.jplus.utils.GetClassWork;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,7 @@ public class ClassroomTeachController {
                 /*获取工号*/
                 bksktjxAccpet.setGh(users.getGh());
                 /*获取教学工作量*/
-                bksktjxAccpet.setJxgzl(GetClassWork.getClassWork(bksktjxAccpet.getJhxs(), bksktjxAccpet.getSfsy(), bksktjxService.getKtlxbmBybm(bksktjxAccpet.getKtlxbm()), bksktjxAccpet.getSkrs()));
+                bksktjxAccpet.setJxgzl(GetWorkLoad.getClassWork(bksktjxAccpet.getJhxs(), bksktjxAccpet.getSfsy(), bksktjxService.getKtlxbmBybm(bksktjxAccpet.getKtlxbm()), bksktjxAccpet.getSkrs()));
                 /*存入年份*/
                 bksktjxAccpet.setNd(GetYear.getYears());
                 /*添加课堂信息*/
