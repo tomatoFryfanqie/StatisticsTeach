@@ -7,15 +7,13 @@ import org.jplus.pojo.bks.Bkssjjx;
 import org.jplus.service.BkssjjxService;
 import org.jplus.service.TjztService;
 import org.jplus.utils.GetYear;
-import org.jplus.utils.YearAndClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
-import static org.jplus.utils.GetSjjxWork.getSjjxWork;
+import static org.jplus.utils.GetWorkLoad.getSjjxWork;
 
 /**
  * @author imlgw.top
