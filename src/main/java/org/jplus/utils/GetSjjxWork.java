@@ -2,82 +2,81 @@ package org.jplus.utils;
 
 import org.jplus.dto.BkssjjxEx;
 import org.jplus.pojo.bks.Bkssjjx;
+import org.springframework.beans.BeanUtils;
+
 /**
  * @author imlgw.top
  * @date 2019/11/5 7:57
  */
+@Deprecated
 public class GetSjjxWork {
 
     public static BkssjjxEx getSjjxWork(Bkssjjx bkssjjx){
-        //都是直接硬编码？能用就行.jpg
-        //直接就硬编码呗？那把这个抽离出来作为单独的表的意义何在？
-        BkssjjxEx bkssjjxEx=bkssjjx2Ex(bkssjjx);
+        //扩展类封装
+        BkssjjxEx bkssjjxEx=new BkssjjxEx();
+        BeanUtils.copyProperties(bkssjjx,bkssjjxEx);
+        //计算
         float res=0;
+        //计算第一个实习类型工作量
         int sxlx1=bkssjjx.getSxlxbm1();
         int sxts1=bkssjjx.getSxts1();
         res+=getSxlxWork(sxlx1,sxts1);
+
+        //计算第二个实习类型工作量
         int sxlx2=bkssjjx.getSxlxbm2();
         int sxts2=bkssjjx.getSxts2();
         res+=getSxlxWork(sxlx2,sxts2);
+
+        //计算第三个实习类型工作量
         int sxlx3=bkssjjx.getSxlxbm3();
         int sxts3=bkssjjx.getSxts3();
         res+=getSxlxWork(sxlx3,sxts3);
-        bkssjjxEx.setZdsxgzl(res);
-        //微格式讲
-        int wgsj=bkssjjx.getWgsjrs()*2;
+        bkssjjxEx.setZdsxgzl(res); /*设置指导实习总工作量*/
+
+        //微格式讲工作量
+        int wgsj=bkssjjx.getWgsjrs()*2; /* 微格式讲人数*2 */
         res+=wgsj;
-        bkssjjxEx.setWgsjgzl(wgsj);
-        //毕业论文
-        int lwbm=bkssjjx.getZylxbm();
-        int rs=bkssjjx.getZdlwrs();
+        bkssjjxEx.setWgsjgzl(wgsj); /*设置微格式讲工作量*/
+
+        //毕业论文工作量
+        int lwbm=bkssjjx.getZylxbm(); //专业类型：文，理，工，留学
+        int rs=bkssjjx.getZdlwrs(); //指导人数
         float lwgzl=0;
         if (lwbm==1){
-            lwgzl+=(rs>=10?80:rs*8);
+            lwgzl+=(rs>=10?80:rs*8); //文科：超过10人不计分数
         }if (lwbm==2){
-            lwgzl+=(rs>=8?72:rs*9);
+            lwgzl+=(rs>=8?72:rs*9); //理科：超过8人不记分
         }if (lwbm==3){
-            lwgzl+=(rs>=8?80:rs*10);
+            lwgzl+=(rs>=8?80:rs*10); //工科：超过8人不记分
         }if (lwbm==4){
-            lwgzl+=(rs>=6?90:rs*15);
+            lwgzl+=(rs>=6?90:rs*15); //留学生：超过6人不记分
         }
-        bkssjjxEx.setZdlwgzl(lwgzl);
         res+=lwgzl;
+        bkssjjxEx.setZdlwgzl(lwgzl); /*设置指导毕业论文工作量*/
+
         //管理工作量
         float glgzl=bkssjjx.getGlgzl();
-        bkssjjxEx.setGlgzl(glgzl);
+        bkssjjxEx.setGlgzl(glgzl); /*设置管理工作量*/
+
         //总工作量
         res+=glgzl;
-        bkssjjxEx.setGzl(res);
+        bkssjjxEx.setGzl(res); /*设置总工作量*/
         return bkssjjxEx;
     }
 
-    public static BkssjjxEx bkssjjx2Ex(Bkssjjx bkssjjx) {
-        BkssjjxEx bkssjjxEx = new BkssjjxEx();
-        bkssjjxEx.setGh(bkssjjx.getGh());
-        bkssjjxEx.setBkssjjxid(bkssjjx.getBkssjjxid());
-        bkssjjxEx.setNd(bkssjjx.getNd());
-        bkssjjxEx.setGlnr(bkssjjx.getGlnr());
-        bkssjjxEx.setGzl(bkssjjx.getGzl());
-        bkssjjxEx.setSxlxbm1(bkssjjx.getSxlxbm1());
-        bkssjjxEx.setSxlxbm2(bkssjjx.getSxlxbm2());
-        bkssjjxEx.setSxlxbm3(bkssjjx.getSxlxbm3());
-        bkssjjxEx.setSxts1(bkssjjx.getSxts1());
-        bkssjjxEx.setSxts2(bkssjjx.getSxts2());
-        bkssjjxEx.setSxts3(bkssjjx.getSxts3());
-        bkssjjxEx.setWgsjrs(bkssjjx.getWgsjrs());
-        bkssjjxEx.setZdlwrs(bkssjjx.getZdlwrs());
-        bkssjjxEx.setZylxbm(bkssjjx.getZylxbm());
-        bkssjjxEx.setGlgzl(bkssjjx.getGlgzl());
-        return  bkssjjxEx;
-    }
 
+    /**
+     * @param sxlxbm
+     * @param sxts
+     * @return 各个实习类型对应实习天数的工作量
+     */
     private static float getSxlxWork(int sxlxbm,int sxts){
         float res=0;
-        if (sxlxbm==1){
+        if (sxlxbm==1){ /*驻点实习 4分/天*/
             res+=sxts*4;
-        }else if (sxlxbm==2){
+        }else if (sxlxbm==2){ /*非驻地实习 1分/天*/
             res+=sxts*1;
-        }else if (sxlxbm>=3){
+        }else if (sxlxbm>=3){ /*其他实习 2分天*/
             res+=sxts*2;
         }
         return  res;
