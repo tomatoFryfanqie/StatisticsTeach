@@ -10,6 +10,8 @@ import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+
 /**
  * @program: StatisticsTeach
  * @description: 审核界面的业务处理类的实现
@@ -77,13 +79,14 @@ public class CheckServiceImpl implements CheckService{
     }
 
     @Override
-    public void setShztByDepartments(String gh) {
-        checkMapper.setShztByDepartments(gh);
+    public void setShztByDepartments(String gh, String userName, Timestamp date) {
+        checkMapper.setShztByDepartments(gh,userName,date);
     }
 
+
     @Override
-    public void setShztByOffice(String gh) {
-        checkMapper.setShztByOffice(gh);
+    public void setShztByOffice(String gh, String userName, Timestamp date){
+        checkMapper.setShztByOffice(gh,userName,date);
     }
 
     @Override

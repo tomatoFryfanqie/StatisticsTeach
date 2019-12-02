@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -338,21 +339,22 @@ public class TestCheckController {
     @NeedLogin
     @GetMapping("/passCheck")
     public String passCheck(@ModelAttribute(value = "gh") String gh,Users users) {
+        java.sql.Timestamp date = new java.sql.Timestamp(new Date().getTime());
         // 根据工号判断审核人的身份
         // 如果是院系负责人
         if (users.getActor() == 2){
             if (tjztService.getTjzt(gh).getTjzt() != 0) {
-                // 将审核状态设置为审核1 ( 院系审核)
-                checkService.setShztByDepartments(gh);
+                // tjzt 将审核状态设置为审核1 ( 院系审核) ,姓名，审核时间写进去
+                checkService.setShztByDepartments(gh,users.getUname(),date);
                 // 将院系审核人的名字写到提交表tjb
                 checkService.setShrgh(gh,users.getGh());
             }
         }
         // 如果是教务处负责人
         if (users.getActor() == 3){
-            if (tjztService.getTjzt(users.getGh()).getTjzt() != 0) {
-                // 将审核状态设置为审核1 ( 教务处审核)
-                checkService.setShztByOffice(gh);
+            if (tjztService.getTjzt(gh).getTjzt() != 0) {
+                // tjzt  将审核状态设置为审核2 ( 教务处审核)姓名，审核时间写进去
+                checkService.setShztByOffice(gh,users.getUname(),date);
             }
         }
         if (users.getActor() == 2){
