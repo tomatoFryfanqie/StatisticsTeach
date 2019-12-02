@@ -10,8 +10,6 @@ import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 /**
  * @program: StatisticsTeach
  * @description: 审核界面的业务处理类的实现
@@ -79,7 +77,19 @@ public class CheckServiceImpl implements CheckService{
     }
 
     @Override
-    public void setTjztAndShzt(String gh) {
-        checkMapper.setTjztAndShzt(gh);
+    public void setShztByDepartments(String gh) {
+        checkMapper.setShztByDepartments(gh);
     }
+
+    @Override
+    public void setShztByOffice(String gh) {
+        checkMapper.setShztByOffice(gh);
+    }
+
+    @Override
+    public void setShrgh(String gh, String shrgh) {
+        checkMapper.setShrgh(gh,shrgh);
+    }
+
+
 }

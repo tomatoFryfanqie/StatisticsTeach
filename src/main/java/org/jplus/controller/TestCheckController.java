@@ -198,18 +198,18 @@ public class TestCheckController {
         //  横向教研项目工作量
         //  编写规划教材、教材获奖工作量
         //  教学改革工作量
-        model.addAttribute("Jxcgs", jxcgService.getJxcgInfo(users.getGh()));
+        model.addAttribute("Jxcgs", jxcgService.getJxcgInfo(gh));
         model.addAttribute("Jxcgdjs", jxcgService.getJxcgdjInfo());
 
-        model.addAttribute("Zxxms", jxcgService.getZxxm(users.getGh()));
+        model.addAttribute("Zxxms", jxcgService.getZxxm(gh));
         model.addAttribute("Zxxmdjs", jxcgService.getZxxmdjInfo());
 
-        model.addAttribute("Hxxms", jxcgService.getHxxm(users.getGh()));
+        model.addAttribute("Hxxms", jxcgService.getHxxm(gh));
 
-        model.addAttribute("Jcs", jxcgService.getJc(users.getGh()));
+        model.addAttribute("Jcs", jxcgService.getJc(gh));
         model.addAttribute("Jcjbs", jxcgService.getJcjbInfo());
 
-        model.addAttribute("Jxggs", jxcgService.getJxgg(users.getGh()));
+        model.addAttribute("Jxggs", jxcgService.getJxgg(gh));
         model.addAttribute("Lxjbs", jxcgService.getLxjbInfo());
         model.addAttribute("year", GetYear.getYears());
 //        model.addAttribute("gh", gh);
@@ -294,8 +294,8 @@ public class TestCheckController {
         /* 4 教学研究项目         graduateprogram */
         // 学科与研究生教育项目
         // 研究生横向项目项目
-        model.addAttribute("yjsjyxms", yjsjyxmService.getYjsjyxm(users.getGh()));
-        model.addAttribute("yjshxxms", yjsjyxmService.getYjshxxm(users.getGh()));
+        model.addAttribute("yjsjyxms", yjsjyxmService.getYjsjyxm(gh));
+        model.addAttribute("yjshxxms", yjsjyxmService.getYjshxxm(gh));
 
 
         /* 5 指导研究生竞赛获奖 masterKnow */
@@ -335,11 +335,22 @@ public class TestCheckController {
 
     @NeedLogin
     @GetMapping("/passCheck")
-    public String passCheck(@ModelAttribute(value = "gh") String gh) {
-        // 将审核状态设置为审核 ,将提交状态设置为提交
-        checkService.setTjztAndShzt(gh);
+    public String passCheck(@ModelAttribute(value = "gh") String gh,Users users) {
+        // 根据工号判断审核人的身份
+        System.out.println(users.getActor());
+        if (users.getActor() == 2){
+
+            // 将审核状态设置为审核1 ( 院系审核)
+            checkService.setShztByDepartments(gh);
+            System.out.println("我要写名字到tjb"+users.getGh());
+            checkService.setShrgh(gh,users.getGh());
+        }
+        if (users.getActor() == 3){
+            checkService.setShztByOffice(gh);
+        }
         return "redirect:/officecollege";
     }
+
 
     @NeedLogin
     @GetMapping("/backCheck")
@@ -349,4 +360,5 @@ public class TestCheckController {
         // 返回上一个页面 officecollege
         return "redirect:/officecollege";
     }
+
 }
