@@ -74,6 +74,30 @@ public class UserController {
         return "redirect:/";
     }
 
+    @RequestMapping("/updatepassword2")
+    @NeedLogin
+    public String updatePassword2(Users user,String oldPassword,String newPassword,Model model,HttpServletRequest request){
+        System.out.println(oldPassword+":"+newPassword);
+        boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
+        if (!isOK){
+            model.addAttribute("error","旧密码不正确！！！");
+            return "redirect:/user";
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping("/updatepassword3")
+    @NeedLogin
+    public String updatePassword3(Users user,String oldPassword,String newPassword,Model model,HttpServletRequest request){
+        System.out.println(oldPassword+":"+newPassword);
+        boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
+        if (!isOK){
+            model.addAttribute("error","旧密码不正确！！！");
+            return "redirect:/officeUser";
+        }
+        return "redirect:/";
+    }
+
     /**
      * 进入教务处用户首页
      * */
