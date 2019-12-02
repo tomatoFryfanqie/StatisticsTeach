@@ -19,9 +19,12 @@
     <script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
     <script src="js/link.js"></script>
     <script src="js/basicinformation.js"></script>
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <link rel="stylesheet" href="css/tablestyle.css" />
     <link rel="stylesheet" href="css/usermaintenance.css" />
+
 
     <script>
         function addOfficeUser() {
@@ -59,6 +62,48 @@
     <![endif]-->
     <!-- 头部 -->
     <script src="js/titleandnav.js"></script>
+    <div class="toptitle">
+        <span id="title">湖北师范大学教学工作量统计系统</span>
+        <a href="" id="change-password" data-toggle="modal" data-target="#changePasswordModal">修改密码</a>
+    </div>
+    <!-- 修改密码 -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
+                        修改密码
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form action="/updatepassword3" method="post">
+                        <div>
+                            原密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="oldPassword"/>
+                        </div>
+                        <div class="warning">原密码不能为空！</div>
+                        <div>
+                            新密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="newPassword"/>
+                        </div>
+                        <div class="warning">新密码不能为空！</div>
+                        <div>
+                            请确认密码：<input type="password" class="form-control-1 form-control-jub class-number password" placeholder=""
+                                         name="newPassword2" />
+                        </div>
+                        <div class="warning">请确认密码不能为空！</div>
+                        <div class="notnull">新密码与确认密码不一致！</div>
+                        <div class="btn-add">
+                            <button type="submit" class="modify">修改</button>
+                            <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- 左边导航栏 -->
     <div class="main">
         <div class="navbar" id="navwrap">

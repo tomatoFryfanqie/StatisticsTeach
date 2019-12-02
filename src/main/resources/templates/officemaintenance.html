@@ -21,6 +21,8 @@
     <script src="js/link.js"></script>
     <script src="js/basicinformation.js"></script>
     <!-- 引用bootstrap及基础样式 -->
+    <!--    输入框验证-->
+    <script src="js/classroomteaching.js"></script>
     <link rel="stylesheet" href="css/tablestyle.css" />
     <link rel="stylesheet" href="css/usermaintenance.css" />
 
@@ -64,7 +66,7 @@
     </div>
     <!-- 修改密码 -->
     <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,25 +78,31 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="/updatepassword2" method="post">
                         <div>
-                            原密码：<input type="text" class="form-control-1 class-name" placeholder="" id="b" />
+                            原密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="oldPassword"/>
                         </div>
+                        <div class="warning">原密码不能为空！</div>
                         <div>
-                            新密码：<input type="text" class="form-control-1 class-name" placeholder="" />
+                            新密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="newPassword"/>
                         </div>
+                        <div class="warning">新密码不能为空！</div>
                         <div>
-                            请确认密码：<input type="text" class="form-control-1 class-number" placeholder="" />
+                            请确认密码：<input type="password" class="form-control-1 form-control-jub class-number password" placeholder=""
+                                         name="newPassword2" />
                         </div>
+                        <div class="warning">请确认密码不能为空！</div>
+                        <div class="notnull">新密码与确认密码不一致！</div>
                         <div class="btn-add">
-                            <button type="button" id="add">修改</button>
+                            <button type="submit" class="modify">修改</button>
                             <button type="button" id="cancel" data-dismiss="modal">取消</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>    <!-- 左边导航栏 -->
+    </div>
+    <!-- 左边导航栏 -->
     <div class="main">
         <div class="navbar" id="navwrap">
             <div class="navwarp">
