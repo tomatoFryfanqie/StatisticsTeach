@@ -10,14 +10,13 @@ import org.jplus.pojo.queryVo.ZdxsjsVo;
 import org.jplus.pojo.yjssjjx.Yjssjjx;
 import org.jplus.service.*;
 import org.jplus.utils.DateUtils;
-import org.jplus.utils.GetPracticeWorkLoad;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -269,9 +268,9 @@ public class TestCheckController {
         Yjssjjx jbxx = yjssjjxService.getYjssjjxJbxx(gh);
         if (jbxx != null) {
             /*获取指导学生次数工作量（显示）*/
-            model.addAttribute("zdxshdcsGzl", GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(gh).getZdxshdcs()));
+            model.addAttribute("zdxshdcsGzl", GetWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(gh).getZdxshdcs()));
             /*获取日常工作量*/
-            model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(gh).getZdxshdcs()));
+            model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(gh).getZdxshdcs()));
         }
 
         // 3 教学基本建设与学科建设工作 graduateconstruction
