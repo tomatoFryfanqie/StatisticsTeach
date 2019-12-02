@@ -5,8 +5,8 @@ import org.jplus.pojo.Users;
 import org.jplus.pojo.yjsktjx.YjsktjxAccpet;
 import org.jplus.service.TjztService;
 import org.jplus.service.YjsktjxService;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
-import org.jplus.utils.GetYjsClassWorkLoad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,7 +64,7 @@ public class GraduateClassController {
                 /*获取工号*/
                 yjsktjxAccpet.setGh(users.getGh());
                 /*获取教学工作量*/
-                yjsktjxAccpet.setGzl(GetYjsClassWorkLoad.getYjsClassWorkLoad(yjsktjxAccpet.getJhxs(),yjsktjxService.getKclxrsBybm(yjsktjxAccpet.getKclx()), yjsktjxAccpet.getSkrs()));
+                yjsktjxAccpet.setGzl(GetWorkLoad.getYjsClassWorkLoad(yjsktjxAccpet.getJhxs(),yjsktjxService.getKclxrsBybm(yjsktjxAccpet.getKclx()), yjsktjxAccpet.getSkrs()));
                 /*存入年份*/
                 yjsktjxAccpet.setNd(GetYear.getYears());
                 /*添加课堂信息*/
