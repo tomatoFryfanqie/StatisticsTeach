@@ -212,4 +212,6 @@
         shzt = 2
         where gh=#{gh}
     </update>
+
+    <!---->
 </mapper>

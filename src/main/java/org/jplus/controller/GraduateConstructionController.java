@@ -4,6 +4,7 @@ import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.jbjsyxkjs.JBJSYXKJSAccept;
 import org.jplus.service.JbjsyxkjsService;
+import org.jplus.service.TjztService;
 import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GraduateConstructionController {
     @Autowired
     JbjsyxkjsService jbjsyxkjsService;
+
+    @Autowired
+    private TjztService tjztService;
+
 
     @NeedLogin
     @RequestMapping("/graduateconstruction")
@@ -52,18 +57,22 @@ public class GraduateConstructionController {
     @NeedLogin
     @RequestMapping("/addGraduateConstruction")
     public String addGraduateConstruction(@ModelAttribute(value = "jBJSYXKJSAccept") JBJSYXKJSAccept jbjsyxkjsAccept, Users users) {
-        // 没有数据就添加
-        if (jbjsyxkjsService.getWorkLoad(users.getGh()) == null) {
-            jbjsyxkjsAccept.setGh(users.getGh());
-            jbjsyxkjsAccept.setNd(GetYear.getYears());
-            jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
-            jbjsyxkjsService.addGraduateConstruction(jbjsyxkjsAccept);
-        } else {
-            jbjsyxkjsAccept.setGh(users.getGh());
-            jbjsyxkjsAccept.setNd(GetYear.getYears());
-            jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
-            jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
+        /*如果提交状态表的提交状态处于0：未提交状态，则可以进行添加操作*/
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 没有数据就添加
+            if (jbjsyxkjsService.getWorkLoad(users.getGh()) == null) {
+                jbjsyxkjsAccept.setGh(users.getGh());
+                jbjsyxkjsAccept.setNd(GetYear.getYears());
+                jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
+                jbjsyxkjsService.addGraduateConstruction(jbjsyxkjsAccept);
+            } else {
+                jbjsyxkjsAccept.setGh(users.getGh());
+                jbjsyxkjsAccept.setNd(GetYear.getYears());
+                jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
+                jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
+            }
         }
+
         return "redirect:/graduateconstruction";
     }
 
@@ -71,8 +80,11 @@ public class GraduateConstructionController {
     @NeedLogin
     @RequestMapping("/updateGraduateConstruction")
     public String updateGraduateConstruction(@ModelAttribute(value = "jBJSYXKJSAccept") JBJSYXKJSAccept jbjsyxkjsAccept, Users users) {
-        jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
-        jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
+        /*如果提交状态表的提交状态处于0：未提交状态，则可以进行添加操作*/
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            jbjsyxkjsAccept.setGzl(GetWorkLoad.getGraduateConstructionWorkload(jbjsyxkjsAccept.getSfzxpyfa(), jbjsyxkjsAccept.getKddgms(), jbjsyxkjsAccept.getSydgms()));
+            jbjsyxkjsService.updateGraduateConstruction(jbjsyxkjsAccept);
+        }
         return "redirect:/graduateconstruction";
     }
 }

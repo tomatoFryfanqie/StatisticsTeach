@@ -3,6 +3,7 @@ package org.jplus.controller;
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.zlgc.ZlgcAccept;
+import org.jplus.service.TjztService;
 import org.jplus.service.ZlgcService;
 import org.jplus.utils.*;
 
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class QualityEngineerController {
     @Autowired
     ZlgcService zlgcService;
+    @Autowired
+    private TjztService tjztService;
 
     @NeedLogin
     @RequestMapping("/qualityengineering")
@@ -39,18 +42,24 @@ public class QualityEngineerController {
 
     @NeedLogin
     @PostMapping("/addZlgc")
-    public String addZlgcInfo(@ModelAttribute(value = "zlgcAccept") ZlgcAccept zlgcAccept) {
-        zlgcAccept.setNd(zlgcAccept.getNd());
-        zlgcAccept.setGh(UserContext.getUser().getGh());
-        zlgcAccept.setGzl(GetWorkLoad.getQualityEngineerWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
-        zlgcService.addZlgcInfo(zlgcAccept);
+    public String addZlgcInfo(@ModelAttribute(value = "zlgcAccept") ZlgcAccept zlgcAccept,Users users) {
+        /*如果提交状态表的提交状态处于0：未提交状态，则可以进行添加操作*/
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            zlgcAccept.setNd(zlgcAccept.getNd());
+            zlgcAccept.setGh(UserContext.getUser().getGh());
+            zlgcAccept.setGzl(GetWorkLoad.getQualityEngineerWorkLoad(zlgcAccept.getXmlxbm(), zlgcAccept.getJb(), zlgcAccept.getXmpm(), zlgcAccept.getZrs()));
+            zlgcService.addZlgcInfo(zlgcAccept);
+        }
         return "redirect:/qualityengineering";
     }
 
     @NeedLogin
     @RequestMapping("/deleteZlgcInfo")
-    public String deleteZlgcInfo(@ModelAttribute(value = "id") Integer id) {
-        zlgcService.deleteZlgcInfo(id);
+    public String deleteZlgcInfo(@ModelAttribute(value = "id") Integer id,Users users) {
+        /*如果提交状态表的提交状态处于0：未提交状态，则可以进行添加操作*/
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            zlgcService.deleteZlgcInfo(id);
+        }
         return "redirect:/qualityengineering";
     }
 
