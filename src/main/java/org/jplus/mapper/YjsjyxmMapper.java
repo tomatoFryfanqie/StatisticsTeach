@@ -17,8 +17,8 @@ import java.util.List;
 @Component
 public interface YjsjyxmMapper {
 //获取研究生教研项目列表
-    @Select("select * from yjsjyxm")
-    List<Yjsjyxm> getYjsjyxm();
+    @Select("select * from yjsjyxm where gh = #{gh}")
+    List<Yjsjyxm> getYjsjyxm(String gh);
 
 //删除一条数据
     @Delete("delete from yjsjyxm where jyxmId = #{id}")
@@ -33,8 +33,8 @@ public interface YjsjyxmMapper {
     float getYjsjyxmGzlSum(String gh);
 
 //获取研究生横向项目列表
-    @Select("select * from yjshxxm")
-    List<Yjshxxm> getYjshxxm();
+    @Select("select * from yjshxxm where gh = #{gh}")
+    List<Yjshxxm> getYjshxxm(String gh);
 
 //删除一条数据
     @Delete("delete from yjshxxm where hxxmId = #{id}")

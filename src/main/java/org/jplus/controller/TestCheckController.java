@@ -199,18 +199,18 @@ public class TestCheckController {
         //  横向教研项目工作量
         //  编写规划教材、教材获奖工作量
         //  教学改革工作量
-        model.addAttribute("Jxcgs", jxcgService.getJxcgInfo());
+        model.addAttribute("Jxcgs", jxcgService.getJxcgInfo(users.getGh()));
         model.addAttribute("Jxcgdjs", jxcgService.getJxcgdjInfo());
 
-        model.addAttribute("Zxxms", jxcgService.getZxxm());
+        model.addAttribute("Zxxms", jxcgService.getZxxm(users.getGh()));
         model.addAttribute("Zxxmdjs", jxcgService.getZxxmdjInfo());
 
-        model.addAttribute("Hxxms", jxcgService.getHxxm());
+        model.addAttribute("Hxxms", jxcgService.getHxxm(users.getGh()));
 
-        model.addAttribute("Jcs", jxcgService.getJc());
+        model.addAttribute("Jcs", jxcgService.getJc(users.getGh()));
         model.addAttribute("Jcjbs", jxcgService.getJcjbInfo());
 
-        model.addAttribute("Jxggs", jxcgService.getJxgg());
+        model.addAttribute("Jxggs", jxcgService.getJxgg(users.getGh()));
         model.addAttribute("Lxjbs", jxcgService.getLxjbInfo());
         model.addAttribute("year", GetYear.getYears());
 //        model.addAttribute("gh", gh);
@@ -295,8 +295,8 @@ public class TestCheckController {
         /* 4 教学研究项目         graduateprogram */
         // 学科与研究生教育项目
         // 研究生横向项目项目
-        model.addAttribute("yjsjyxms", yjsjyxmService.getYjsjyxm());
-        model.addAttribute("yjshxxms", yjsjyxmService.getYjshxxm());
+        model.addAttribute("yjsjyxms", yjsjyxmService.getYjsjyxm(users.getGh()));
+        model.addAttribute("yjshxxms", yjsjyxmService.getYjshxxm(users.getGh()));
 
 
         /* 5 指导研究生竞赛获奖 masterKnow */

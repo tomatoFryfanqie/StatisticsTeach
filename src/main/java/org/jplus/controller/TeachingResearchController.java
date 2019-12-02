@@ -33,25 +33,26 @@ public class TeachingResearchController {
     @NeedLogin
     @RequestMapping("/teachingresearch")
     public String getInfo(Model model, Users users) {
-        model.addAttribute("Jxcgs", jxcgService.getJxcgInfo());
+        model.addAttribute("Jxcgs", jxcgService.getJxcgInfo(users.getGh()));
         model.addAttribute("Jxcgdjs", jxcgService.getJxcgdjInfo());
 
-        model.addAttribute("Zxxms", jxcgService.getZxxm());
+        model.addAttribute("Zxxms", jxcgService.getZxxm(users.getGh()));
         model.addAttribute("Zxxmdjs", jxcgService.getZxxmdjInfo());
 
-        model.addAttribute("Hxxms", jxcgService.getHxxm());
+        model.addAttribute("Hxxms", jxcgService.getHxxm(users.getGh()));
 
-        model.addAttribute("Jcs", jxcgService.getJc());
+        model.addAttribute("Jcs", jxcgService.getJc(users.getGh()));
         model.addAttribute("Jcjbs", jxcgService.getJcjbInfo());
 
-        model.addAttribute("Jxggs", jxcgService.getJxgg());
+        model.addAttribute("Jxggs", jxcgService.getJxgg(users.getGh()));
         model.addAttribute("Lxjbs", jxcgService.getLxjbInfo());
         model.addAttribute("year", GetYear.getYears());
         model.addAttribute("gh", users.getGh());
 
         model.addAttribute("jxcgGzl",jxcgService.getJxcgGzlSun(users.getGh()));
         model.addAttribute("zxxmGzl",jxcgService.getZxxmGzlSun(users.getGh()));
-        model.addAttribute("hxxmGzl",jxcgService.getHxxmGzlSun(users.getGh()));
+        //横向项目总分不超过200
+        model.addAttribute("hxxmGzl",jxcgService.getHxxmGzlSun(users.getGh()) > 200 ? 200.0 : jxcgService.getHxxmGzlSun(users.getGh()));
         model.addAttribute("jcGzl",jxcgService.getJcGzlSun(users.getGh()));
         model.addAttribute("jxggGzl",jxcgService.getJxggGzlSun(users.getGh()));
         return "teachingresearch";

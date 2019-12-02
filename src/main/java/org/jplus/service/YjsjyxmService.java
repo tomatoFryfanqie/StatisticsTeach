@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface YjsjyxmService {
 
-    List<Yjsjyxm> getYjsjyxm();
+    List<Yjsjyxm> getYjsjyxm(String gh);
 
 
     int delYjsjyxm(Integer id);
@@ -24,7 +24,7 @@ public interface YjsjyxmService {
     float getYjsjyxmGzlSum(String gh);
 
 
-    List<Yjshxxm> getYjshxxm();
+    List<Yjshxxm> getYjshxxm(String gh);
 
 
     int delYjshxxm(Integer id);

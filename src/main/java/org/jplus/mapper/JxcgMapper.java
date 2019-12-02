@@ -15,8 +15,8 @@ import java.util.List;
 public interface JxcgMapper {
 // ---------------------------教学成果-------------------------
 //获取教学成果信息
-    @Select("select * from jxcg")
-     List<Jxcg> getJxcg();
+    @Select("select * from jxcg where gh = #{gh}")
+     List<Jxcg> getJxcg(String gh);
 
 //添加教学成果信息
     @Insert("insert into jxcg values(null,#{gh},#{nd},#{cgmc},#{cgdjbm},#{xmpm},#{zrs},#{gzl})")
@@ -40,8 +40,8 @@ public interface JxcgMapper {
 
 //------------------------------纵向项目------------------------------------
 //获取纵向教研项目信息
-    @Select("select * from zxxm")
-    List<Zxxm> getZxxm();
+    @Select("select * from zxxm where gh = #{gh}")
+    List<Zxxm> getZxxm(String gh);
 
     //添加纵向项目信息
     @Insert("insert into zxxm values(null,#{gh},#{nd},#{xmmc},#{xmdjbm},#{xmpm},#{zrs},#{gzl})")
@@ -65,8 +65,8 @@ public interface JxcgMapper {
 
 //---------------------------------横向项目------------------------------------------
 //获取横向项目信息
-    @Select("select * from hxxm")
-    List<Hxxm> getHxxm();
+    @Select("select * from hxxm where gh = #{gh}")
+    List<Hxxm> getHxxm(String gh);
 
     //添加横向项目信息
     @Insert("insert into hxxm values(null,#{gh},#{nd},#{xmmc},#{dzjf},#{xmpm},#{zrs},#{gzl})")
@@ -83,8 +83,8 @@ public interface JxcgMapper {
 
 //-------------------------------------教材-------------------------------------------
 //获取教材信息
-    @Select("select * from jc")
-    List<Jc> getJc();
+    @Select("select * from jc where gh = #{gh}")
+    List<Jc> getJc(String gh);
 
     //添加教材信息
     @Insert("insert into jc values(null,#{gh},#{nd},#{jcmc},#{jcjbbm},#{xmpm},#{zrs},#{gzl})")
@@ -108,8 +108,8 @@ public interface JxcgMapper {
 
 // ---------------------------------------教学改革--------------------------------------------
 //获取教学改革信息
-    @Select("select * from jxgg")
-    List<Jxgg> getJxgg();
+    @Select("select * from jxgg where gh = #{gh}")
+    List<Jxgg> getJxgg(String gh);
 
     //添加教学改革信息
     @Insert("insert into jxgg values(null,#{gh},#{nd},#{xmmc},#{lxjbbm},#{xmpm},#{zrs},#{gzl})")

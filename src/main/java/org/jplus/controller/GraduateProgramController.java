@@ -33,10 +33,11 @@ public class GraduateProgramController {
     @RequestMapping("/graduateprogram")
     public String graduateProgramInfo(Model model, Users user){
         model.addAttribute("year",GetYear.getYears());
-        model.addAttribute("yjsjyxms",yjsjyxmService.getYjsjyxm());
-        model.addAttribute("yjshxxms",yjsjyxmService.getYjshxxm());
+        model.addAttribute("yjsjyxms",yjsjyxmService.getYjsjyxm(user.getGh()));
+        model.addAttribute("yjshxxms",yjsjyxmService.getYjshxxm(user.getGh()));
         model.addAttribute("jyxmGzl",yjsjyxmService.getYjsjyxmGzlSum(user.getGh()));
-        model.addAttribute("hxxmGzl",yjsjyxmService.getYjshxxmGzlSum(user.getGh()));
+        //横向项目总分不超过200
+        model.addAttribute("hxxmGzl",yjsjyxmService.getYjshxxmGzlSum(user.getGh()) > 200 ? 200.0 : yjsjyxmService.getYjshxxmGzlSum(user.getGh()));
         return "/graduateprogram";
     }
 
