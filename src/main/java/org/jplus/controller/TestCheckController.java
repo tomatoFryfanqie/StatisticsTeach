@@ -31,6 +31,8 @@ import static org.jplus.utils.GetWorkLoad.getSjjxWork;
  */
 @Controller
 public class TestCheckController {
+    @Autowired
+    private TjztService tjztService;
     //wb 的
     @Autowired
     private ZDSSLWService zDSSLWService;
@@ -339,27 +341,42 @@ public class TestCheckController {
         // 根据工号判断审核人的身份
         // 如果是院系负责人
         if (users.getActor() == 2){
-            // 将审核状态设置为审核1 ( 院系审核)
-            checkService.setShztByDepartments(gh);
-//            System.out.println("我要写名字到tjb"+users.getGh());
-            checkService.setShrgh(gh,users.getGh());
+            if (tjztService.getTjzt(gh).getTjzt() != 0) {
+                // 将审核状态设置为审核1 ( 院系审核)
+                checkService.setShztByDepartments(gh);
+                // 将院系审核人的名字写到提交表tjb
+                checkService.setShrgh(gh,users.getGh());
+            }
         }
         // 如果是教务处负责人
         if (users.getActor() == 3){
-            // 将审核状态设置为审核1 ( 教务处审核)
-            checkService.setShztByOffice(gh);
+            if (tjztService.getTjzt(users.getGh()).getTjzt() != 0) {
+                // 将审核状态设置为审核1 ( 教务处审核)
+                checkService.setShztByOffice(gh);
+            }
         }
-        return "redirect:/officecollege";
+        if (users.getActor() == 2){
+            return "redirect:/officecollege";
+        }
+        else {
+            return "redirect:/departmentalaudit";
+        }
     }
 
 
     @NeedLogin
     @GetMapping("/backCheck")
-    public String backCheck(@ModelAttribute(value = "gh") String gh) {
+    public String backCheck(@ModelAttribute(value = "gh") String gh,Users users) {
         // 将审核状态设置为未审核 ,将提交状态设置为未提交
         checkService.clearTjztAndShzt(gh);
+
         // 返回上一个页面 officecollege
-        return "redirect:/officecollege";
+        if (users.getActor() == 2){
+            return "redirect:/officecollege";
+        }
+        else {
+            return "redirect:/departmentalaudit";
+        }
     }
 
 }
