@@ -46,6 +46,12 @@ public interface CheckService {
     //<!--撤回提交状态 撤回审核状态-->
     public void clearTjztAndShzt(String gh);
 
-    //<!--更新提交状态为1 更新审核状态为1 -->
-    public void setTjztAndShzt(String gh);
+    //<!--院系  更新审核状态为1 -->
+    public void setShztByDepartments(String gh);
+
+    //<!--教务处  更新审核状态为2 -->
+    public void setShztByOffice(String gh);
+
+    //<!--院系 更新审核人姓名到提交表 -->
+    public void setShrgh(String gh,String shrgh);
 }

@@ -1,6 +1,7 @@
 package org.jplus.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.jplus.pojo.QTJXGZ;
 import org.jplus.pojo.ZDXSLW;
 import org.jplus.pojo.check.BkssjjxInfo;
@@ -59,7 +60,14 @@ public interface CheckMapper {
     //<!--撤回提交状态 撤回审核状态-->
     public void clearTjztAndShzt(String gh);
 
-    //<!--更新提交状态为1 更新审核状态为1 -->
-    public void setTjztAndShzt(String gh);
+    //<!--院系  更新审核状态为1 -->
+    public void setShztByDepartments(String gh);
+
+    //<!--教务处 更新审核状态为2 -->
+    public void setShztByOffice(String gh);
+
+    //<!--院系 更新审核人姓名到提交表 -->
+    @Update("update tjb set shrgh=#{shrgh} where gh=#{gh}")
+    public void setShrgh(@Param("gh")String gh, @Param("shrgh")String shrgh);
 
 }
