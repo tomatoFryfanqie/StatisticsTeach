@@ -37,7 +37,8 @@ public class GraduateProgramController {
         model.addAttribute("yjshxxms",yjsjyxmService.getYjshxxm(user.getGh()));
         model.addAttribute("jyxmGzl",yjsjyxmService.getYjsjyxmGzlSum(user.getGh()));
         //横向项目总分不超过200
-        model.addAttribute("hxxmGzl",yjsjyxmService.getYjshxxmGzlSum(user.getGh()) > 200 ? 200.0 : yjsjyxmService.getYjshxxmGzlSum(user.getGh()));
+        model.addAttribute("hxxmGzl",yjsjyxmService.getYjshxxmGzlSum(user.getGh()) > 200.0f ?
+                200.0f : yjsjyxmService.getYjshxxmGzlSum(user.getGh()));
         return "/graduateprogram";
     }
 

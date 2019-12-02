@@ -52,7 +52,7 @@ public class TeachingResearchController {
         model.addAttribute("jxcgGzl",jxcgService.getJxcgGzlSun(users.getGh()));
         model.addAttribute("zxxmGzl",jxcgService.getZxxmGzlSun(users.getGh()));
         //横向项目总分不超过200
-        model.addAttribute("hxxmGzl",jxcgService.getHxxmGzlSun(users.getGh()) > 200 ? 200.0 : jxcgService.getHxxmGzlSun(users.getGh()));
+        model.addAttribute("hxxmGzl",jxcgService.getHxxmGzlSun(users.getGh()) > 200.0f ? 200.0f : jxcgService.getHxxmGzlSun(users.getGh()));
         model.addAttribute("jcGzl",jxcgService.getJcGzlSun(users.getGh()));
         model.addAttribute("jxggGzl",jxcgService.getJxggGzlSun(users.getGh()));
         return "teachingresearch";
