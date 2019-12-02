@@ -11,6 +11,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <meta name="description" content="" />
+    <!-- 加载bootstrap -->
+    <link rel='stylesheet' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+    <script src='https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
+    <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <!--    加载jq-->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
@@ -72,12 +77,12 @@
                         <td th:text="${checkgzl.bkszgzl}"></td>
                         <td th:text="${checkgzl.yjszgzl}"></td>
                         <td th:text="${checkgzl.bkszgzl+checkgzl.yjszgzl}"></td>
-                        <div th:switch="${checkgzl.shzt}">
+                        <span th:switch="${checkgzl.shzt}">
                             <td th:case="0" th:text="未提交"></td>
                             <td th:case="1" th:text="未审核"></td>
                             <td th:case="2" th:text="院系已审核"></td>
                             <td th:case="3" th:text="教务处已审核"></td>
-                        </div>
+                        </span>
                         <!-- 查看详情 -->
                         <td class="del-col notedit">
                             <a th:href="@{/officedetails(gh=${checkgzl.gh},userName=${checkgzl.uname},yxmc=${yxmc})}" type="submit" class="detBtn">查看详情</a>
