@@ -17,7 +17,7 @@ import java.util.List;
 public interface ZlgcMapper {
     public void addZlgcInfo(ZlgcAccept zlgcAccept);
 
-    List<Zlgc> getZlgcInfo();
+    List<Zlgc> getZlgcInfo(String gh);
 
     Zlgc getOneZlgcInfo();
 

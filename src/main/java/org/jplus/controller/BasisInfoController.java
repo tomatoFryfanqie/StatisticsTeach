@@ -7,8 +7,6 @@ import org.jplus.pojo.basisInfo.JbxxAccpet;
 import org.jplus.service.BksktjxService;
 import org.jplus.service.JbxxService;
 import org.jplus.service.TjztService;
-import org.jplus.utils.GetRatedWorkload;
-import org.jplus.utils.GetRatedTeachTime;
 import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;

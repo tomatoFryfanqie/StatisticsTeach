@@ -6,10 +6,9 @@ import org.jplus.pojo.yjssjjx.Yjssjjx;
 import org.jplus.pojo.yjssjjx.YjssjjxAccpet;
 import org.jplus.service.TjztService;
 import org.jplus.service.YjssjjxService;
-import org.jplus.utils.GetPracticeWorkLoad;
+import org.jplus.utils.GetWorkLoad;
 import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,9 +41,9 @@ public class GraduateYjssjjxController {
         Yjssjjx jbxx = yjssjjxService.getYjssjjxJbxx(users.getGh());
         if(jbxx!=null) {
             /*获取指导学生次数工作量（显示）*/
-            model.addAttribute("zdxshdcsGzl", GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
+            model.addAttribute("zdxshdcsGzl", GetWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
             /*获取自行增加的工作量*/
-            model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
+            model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
         }
         model.addAttribute("yjssjjxJbxx", jbxx);
         return "graduatepractice";
@@ -62,13 +61,13 @@ public class GraduateYjssjjxController {
             /*获取年度*/
             yjssjjxAccpet.setNd(GetYear.getYears());
             /*获取日常工作量*/
-            yjssjjxAccpet.setRcgzl(GetPracticeWorkLoad.getDayWorkLoad(yjssjjxAccpet.getSjts1(),yjssjjxAccpet.getSjts2(),yjssjjxAccpet.getSjts3()));
+            yjssjjxAccpet.setRcgzl(GetWorkLoad.getDayWorkLoad(yjssjjxAccpet.getSjts1(),yjssjjxAccpet.getSjts2(),yjssjjxAccpet.getSjts3()));
             /*自输入工作量*/
             if(yjssjjxAccpet.getGzl()==null){
                 yjssjjxAccpet.setGzl(0f);
             }
             /*获取总工作量,1.日常工作量，2.指导工作量,3 自输入工作量*/
-            yjssjjxAccpet.setGzl(yjssjjxAccpet.getRcgzl()+GetPracticeWorkLoad.getForYjsWorkLoad(yjssjjxAccpet.getZdxshdcs())+yjssjjxAccpet.getGzl());
+            yjssjjxAccpet.setGzl(yjssjjxAccpet.getRcgzl()+GetWorkLoad.getForYjsWorkLoad(yjssjjxAccpet.getZdxshdcs())+yjssjjxAccpet.getGzl());
             /*更新信息*/
             yjssjjxAccpet.setGh(users.getGh());
             yjssjjxService.updateYjsSxJbxx(yjssjjxAccpet);

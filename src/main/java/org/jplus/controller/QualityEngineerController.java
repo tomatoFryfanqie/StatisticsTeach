@@ -33,7 +33,7 @@ public class QualityEngineerController {
         //获取年份
         model.addAttribute("year", GetYear.getYears());
         // 质量工程的所有信息
-        model.addAttribute("zlgc", zlgcService.getZlgcInfo());
+        model.addAttribute("zlgc", zlgcService.getZlgcInfo(users.getGh()));
         return "qualityengineering";
     }
 
