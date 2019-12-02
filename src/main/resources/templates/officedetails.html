@@ -721,19 +721,19 @@
             <div th:if="${yjslwgzl} ne '0' ">
                 <div class="workload distance">教师指导学生学士学位论文获奖工作量 <span th:text="${yjslwgzl}"></span></div>
                 <div th:if="${ZDXSLWInfo.sylwrs} ne '0' ">
-                    <div class="excellentpaper distance">
+                    <div class="outline distance">
                         省级优秀论文人数 <span th:text="${ZDXSLWInfo.sylwrs}"></span>
                     </div>
                 </div>
                 <div th:if="${ZDXSLWInfo.xylwrs} ne '0' ">
-                    <div class="excellentpaper distance">
+                    <div class="outline distance">
                         校级优秀论文人数 <span th:text="${ZDXSLWInfo.xylwrs}"></span>
                     </div>
                 </div>
             </div>
             <!-- 其它教学工作量工作量 -->
             <div th:if="${yjsqtgzl} ne '0' ">
-                <div class="workload distance">其它教学工作量工作量 <span th:text="${yjsqtgzl}">2019</span></div>
+                <div class="workload distance" style="margin-top: 30px">其它教学工作量工作量 <span th:text="${yjsqtgzl}">2019</span></div>
                 <div th:if="${YJSQTJXInfo.jxddgzl} ne '0' ">
                     <div class="outline distance">
                         <span class="right-shift">教学督导工作量</span><span th:text="${YJSQTJXInfo.jxddgzl}">sss</span>
@@ -777,8 +777,8 @@
             <!--<button type="button" th:href="@{/passCheck(gh=${gh})}" id="through">审核通过</button>-->
             <!--<button type="button" th:href="@{/backCheck(gh=${gh})}" id="withdraw">撤回</button>-->
             <!---->
-            <td><a th:href="@{/passCheck(gh=${gh})}" >审核通过</a></td>
-            <td><a th:href="@{/backCheck(gh=${gh})}" >撤回</a></td>
+            <button><a th:href="@{/passCheck(gh=${gh})}" >审核通过</a></button>
+            <button><a th:href="@{/backCheck(gh=${gh})}" >撤回</a></button>
         </div>
     </div>
 </div>
