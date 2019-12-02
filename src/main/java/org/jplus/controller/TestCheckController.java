@@ -337,15 +337,16 @@ public class TestCheckController {
     @GetMapping("/passCheck")
     public String passCheck(@ModelAttribute(value = "gh") String gh,Users users) {
         // 根据工号判断审核人的身份
-        System.out.println(users.getActor());
+        // 如果是院系负责人
         if (users.getActor() == 2){
-
             // 将审核状态设置为审核1 ( 院系审核)
             checkService.setShztByDepartments(gh);
-            System.out.println("我要写名字到tjb"+users.getGh());
+//            System.out.println("我要写名字到tjb"+users.getGh());
             checkService.setShrgh(gh,users.getGh());
         }
+        // 如果是教务处负责人
         if (users.getActor() == 3){
+            // 将审核状态设置为审核1 ( 教务处审核)
             checkService.setShztByOffice(gh);
         }
         return "redirect:/officecollege";
