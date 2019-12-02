@@ -19,8 +19,8 @@ public class JxcgServiceImpl implements JxcgService {
     @Autowired
    private JxcgMapper jxcgMapper;
 
-    public List<Jxcg> getJxcgInfo() {
-        return jxcgMapper.getJxcg();
+    public List<Jxcg> getJxcgInfo(String gh) {
+        return jxcgMapper.getJxcg(gh);
     }
 
     public int addJxcg(Jxcg jxcg) { return jxcgMapper.addJxcg(jxcg); }
@@ -38,7 +38,7 @@ public class JxcgServiceImpl implements JxcgService {
 
 
 
-    public List<Zxxm> getZxxm(){return jxcgMapper.getZxxm();}
+    public List<Zxxm> getZxxm(String gh){return jxcgMapper.getZxxm(gh);}
 
     public int addZxxm(Zxxm zxxm){return jxcgMapper.addZxxm(zxxm);}
 
@@ -52,7 +52,7 @@ public class JxcgServiceImpl implements JxcgService {
 
 
 
-    public List<Hxxm> getHxxm(){return jxcgMapper.getHxxm();}
+    public List<Hxxm> getHxxm(String gh){return jxcgMapper.getHxxm(gh);}
 
     public int addHxxm(Hxxm hxxm){return jxcgMapper.addHxxm(hxxm);}
 
@@ -62,7 +62,7 @@ public class JxcgServiceImpl implements JxcgService {
 
 
 
-    public List<Jc> getJc(){return jxcgMapper.getJc();}
+    public List<Jc> getJc(String gh){return jxcgMapper.getJc(gh);}
 
     public int addJc(Jc jc){return jxcgMapper.addJc(jc);}
 
@@ -75,7 +75,7 @@ public class JxcgServiceImpl implements JxcgService {
      public float getJcGzlSun(String gh){return jxcgMapper.getJcGzlSun(gh);}
 
 
-    public List<Jxgg> getJxgg(){return jxcgMapper.getJxgg();}
+    public List<Jxgg> getJxgg(String gh){return jxcgMapper.getJxgg(gh);}
 
     public int addJxgg(Jxgg jxgg){return jxcgMapper.addJxgg(jxgg);}
 

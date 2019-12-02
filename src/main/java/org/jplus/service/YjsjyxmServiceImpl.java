@@ -19,8 +19,8 @@ public class YjsjyxmServiceImpl implements YjsjyxmService{
     @Autowired
     private YjsjyxmMapper yjsjyxmMapper;
 
-    public List<Yjsjyxm> getYjsjyxm() {
-        return yjsjyxmMapper.getYjsjyxm();
+    public List<Yjsjyxm> getYjsjyxm(String gh) {
+        return yjsjyxmMapper.getYjsjyxm(gh);
     }
 
     public int delYjsjyxm(Integer id) {
@@ -35,8 +35,8 @@ public class YjsjyxmServiceImpl implements YjsjyxmService{
         return yjsjyxmMapper.getYjsjyxmGzlSum(gh);
     }
 
-    public List<Yjshxxm> getYjshxxm() {
-        return yjsjyxmMapper.getYjshxxm();
+    public List<Yjshxxm> getYjshxxm(String gh) {
+        return yjsjyxmMapper.getYjshxxm(gh);
     }
 
     public int delYjshxxm(Integer id) {

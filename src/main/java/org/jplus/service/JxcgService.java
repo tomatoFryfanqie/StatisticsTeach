@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public interface JxcgService {
-    List<Jxcg> getJxcgInfo();
+    List<Jxcg> getJxcgInfo(String gh);
 
     int addJxcg(Jxcg jxcg);
 
