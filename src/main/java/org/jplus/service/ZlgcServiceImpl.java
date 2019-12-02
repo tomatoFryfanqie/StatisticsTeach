@@ -30,9 +30,8 @@ public class ZlgcServiceImpl implements ZlgcService {
     }
 
     @Override
-    public List<Zlgc> getZlgcInfo() {
-        List<Zlgc> list = zlgcMapper.getZlgcInfo();
-        return zlgcMapper.getZlgcInfo();
+    public List<Zlgc> getZlgcInfo(String gh) {
+        return zlgcMapper.getZlgcInfo(gh);
     }
 
     @Override

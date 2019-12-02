@@ -209,7 +209,7 @@
     <update id="setTjztAndShzt">
         update `tjzt` set
         tjzt = 1,
-        shzt = 1
+        shzt = 2
         where gh=#{gh}
     </update>
 </mapper>

@@ -60,6 +60,7 @@
         from `zlgc` as b
         left join `zlgcxmlx` as k
         on b.lxbm = k.xmlxbm
+        where gh = #{gh,jdbcType=CHAR}
     </select>
     <!--根据ID取一条数据-->
     <select id="getOneZlgcInfo" resultMap="zlgcInfo">

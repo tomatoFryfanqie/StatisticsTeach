@@ -191,7 +191,7 @@ public class TestCheckController {
         model.addAttribute("bkssjjxInfo",null);
         model.addAttribute("bkssjjxInfo", checkService.getBKSSJJXInfo(gh));
         // 3 质量工程工作量        qualityengineering
-        model.addAttribute("zlgc", zlgcService.getZlgcInfo());
+        model.addAttribute("zlgc", zlgcService.getZlgcInfo(gh));
 
         /*  4教学研究              teachingresearch */
         // 教学成果工作量

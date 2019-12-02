@@ -18,7 +18,7 @@ public interface ZlgcService {
 
     void deleteZlgcInfo(int zlgcid);
 
-    List<Zlgc> getZlgcInfo();
+    List<Zlgc> getZlgcInfo(String gh);
 
     void updateZlgcInfo(ZlgcAccept zlgcAccept);
 
