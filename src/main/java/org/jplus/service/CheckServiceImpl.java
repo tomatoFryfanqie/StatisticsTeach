@@ -1,14 +1,16 @@
 package org.jplus.service;
 
 import org.jplus.mapper.CheckMapper;
-import org.jplus.pojo.QTJXGZ;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.check.BkssjjxInfo;
 import org.jplus.pojo.check.YjssjjxInfo;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.sql.Timestamp;
 
 /**
  * @program: StatisticsTeach
@@ -77,13 +79,14 @@ public class CheckServiceImpl implements CheckService{
     }
 
     @Override
-    public void setShztByDepartments(String gh) {
-        checkMapper.setShztByDepartments(gh);
+    public void setShztByDepartments(String gh, String userName, Timestamp date) {
+        checkMapper.setShztByDepartments(gh,userName,date);
     }
 
+
     @Override
-    public void setShztByOffice(String gh) {
-        checkMapper.setShztByOffice(gh);
+    public void setShztByOffice(String gh, String userName, Timestamp date){
+        checkMapper.setShztByOffice(gh,userName,date);
     }
 
     @Override

@@ -77,12 +77,19 @@
                         <td th:text="${checkgzl.bkszgzl}"></td>
                         <td th:text="${checkgzl.yjszgzl}"></td>
                         <td th:text="${checkgzl.bkszgzl+checkgzl.yjszgzl}"></td>
-                        <span th:switch="${checkgzl.shzt}">
-                            <td th:case="0" th:text="未提交"></td>
-                            <td th:case="1" th:text="未审核"></td>
-                            <td th:case="2" th:text="院系已审核"></td>
-                            <td th:case="3" th:text="教务处已审核"></td>
+                        <!-- 如果没有提交就显示未提交 ，如果提交了就显示审核状态-->
+                        <td th:switch="${checkgzl.tjzt}">
+                        <span th:case="0">
+                            <span th:text="未提交"></span>
                         </span>
+                            <span th:case="1">
+                             <div th:switch="${checkgzl.shzt}">
+                                <span th:case="0" th:text="未审核"></span>
+                                <span th:case="1" th:text="院系已审核"></span>
+                                <span th:case="2" th:text="教务处已审核"></span>
+                            </div>
+                        </span>
+                        </td>
                         <!-- 查看详情 -->
                         <td class="del-col notedit">
                             <a th:href="@{/officedetails(gh=${checkgzl.gh},userName=${checkgzl.uname},yxmc=${yxmc})}" type="submit" class="detBtn">查看详情</a>

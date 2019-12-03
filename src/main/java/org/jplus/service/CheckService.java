@@ -1,13 +1,13 @@
 package org.jplus.service;
 
-import org.jplus.pojo.QTJXGZ;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.check.BkssjjxInfo;
 import org.jplus.pojo.check.YjssjjxInfo;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 
-import java.util.List;
+import java.sql.Timestamp;
 
 /**
  * @program: StatisticsTeach
@@ -47,10 +47,10 @@ public interface CheckService {
     public void clearTjztAndShzt(String gh);
 
     //<!--院系  更新审核状态为1 -->
-    public void setShztByDepartments(String gh);
+    public void setShztByDepartments(String gh, String userName, Timestamp date);
 
     //<!--教务处  更新审核状态为2 -->
-    public void setShztByOffice(String gh);
+    public void setShztByOffice(String gh, String userName, Timestamp date);
 
     //<!--院系 更新审核人姓名到提交表 -->
     public void setShrgh(String gh,String shrgh);

@@ -1,109 +1,121 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
 <html class="no-js " xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title></title>
-    <meta name="description" content="" />
+    <meta name="description" content=""/>
     <!-- 加载bootstrap -->
-    <link rel='stylesheet' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'/>
     <script src='https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js'></script>
     <script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <script src="js/basicinformation.js"></script>
-    <link rel="stylesheet" href="css/tablestyle.css" />
-    <link rel="stylesheet" href="css/officecolloge.css" />
+    <link rel="stylesheet" href="css/tablestyle.css"/>
+    <link rel="stylesheet" href="css/officecolloge.css"/>
 </head>
 
 <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
-    <!-- 头部 -->
-    <script src="js/titleandnav.js"></script>
-    <!-- 左边导航栏 -->
-    <div class="main">
-        <div class="navbar" id="navwrap">
-            <div class="navwarp">
-                <div class="maintenance">
-                    <a th:href="@{/officeUser}">用户维护</a>
-                </div>
-                <div class="collegeworkload active"><a th:href="@{/QXexcelOut}">审核各学院工作量</a></div>
-                <div class="export"><a th:href="@{/QXexcelOut}">导出工作量统计表</a></div>
+<!--[if lt IE 7]>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser. Please
+    <a href="#">upgrade your browser</a> to improve your experience.
+</p>
+<![endif]-->
+<!-- 头部 -->
+<script src="js/titleandnav.js"></script>
+<!-- 左边导航栏 -->
+<div class="main">
+    <div class="navbar" id="navwrap">
+        <div class="navwarp">
+            <div class="maintenance">
+                <a th:href="@{/officeUser}">用户维护</a>
             </div>
+            <div class="collegeworkload active"><a th:href="@{/QXexcelOut}">审核各学院工作量</a></div>
+            <div class="export"><a th:href="@{/QXexcelOut}">导出工作量统计表</a></div>
         </div>
     </div>
-    <!-- 用户维护界面 -->
-    <div class="informationwarp" id="informationwarp">
-        <!-- 标题 -->
-        <div class="litter-title">全院教学工作量审核</div>
-        <!-- 院系按钮 -->
-        <form th:action="@{/departmentalaudit2}" method="post">
+</div>
+<!-- 用户维护界面 -->
+<div class="informationwarp" id="informationwarp">
+    <!-- 标题 -->
+    <div class="litter-title">全院教学工作量审核</div>
+    <!-- 院系按钮 -->
+    <form th:action="@{/departmentalaudit2}" method="post">
         <div class="collage-warp">
             <select th:name="yxbm">
-            院系：<option th:each="yxbm:${yxbms}" th:selected="${yxbm.yxbm}==${theyxbm}"
-                       th:text="${yxbm.yxmc}" th:value="${yxbm.yxbm}" th:name="yxbm">
+                院系：
+                <option th:each="yxbm:${yxbms}" th:selected="${yxbm.yxbm}==${theyxbm}"
+                        th:text="${yxbm.yxmc}" th:value="${yxbm.yxbm}" th:name="yxbm">
                 </option>
             </select>
             <button type="submit" class="delBtn">查询</button>
         </div>
-        </form>
-        <div class="msg-warp">
-            <!-- 表格数据 -->
-            <div class="table-wrap">
-                <form th:action="@{/officedetails}" method="post">
-                    <table class="table table-bordered edtitable">
-                         <tr>
-                            <td rowspan="2">工号</td>
-                            <td rowspan="2">姓名</td>
-                            <td rowspan="2">职务</td>
-                            <td rowspan="2">额定工作量</td>
-                            <td colspan="3">实际工作量</td>
-                            <td rowspan="2">审核状态</td>
-                            <td rowspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td>本科生教学</td>
-                            <td>研究生教学</td>
-                            <td>总工作量</td>
-                        </tr>
-                        <tr th:each="checkgzl:${Checkgzls}">
-                            <td th:text="${checkgzl.gh}"></td>
-                            <td th:text="${checkgzl.uname}"></td>
-                            <td th:text="${checkgzl.zwmc}"></td>
-                            <td th:text="${checkgzl.edgzl}"></td>
-                            <td th:text="${checkgzl.bkszgzl}"></td>
-                            <td th:text="${checkgzl.yjszgzl}"></td>
-                            <td th:text="${checkgzl.bkszgzl+checkgzl.yjszgzl}"></td>
-                            <div th:switch="${checkgzl.shzt}">
-                                <td th:case="0" th:text="未提交"></td>
-                                <td th:case="1" th:text="未审核"></td>
-                                <td th:case="2" th:text="院系已审核"></td>
-                                <td th:case="3" th:text="教务处已审核"></td>
-                            </div>
-                            <!-- 查看详情 -->
-                            <td class="del-col notedit">
-                                <a th:href="@{/officedetails(gh=${checkgzl.gh},userName=${checkgzl.uname},yxmc=${yxmc})}" type="submit" class="detBtn">查看详情</a>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+    </form>
+    <div class="msg-warp">
+        <!-- 表格数据 -->
+        <div class="table-wrap">
+            <form th:action="@{/officedetails}" method="post">
+                <table class="table table-bordered edtitable">
+                    <tr>
+                        <td rowspan="2">工号</td>
+                        <td rowspan="2">姓名</td>
+                        <td rowspan="2">职务</td>
+                        <td rowspan="2">额定工作量</td>
+                        <td colspan="3">实际工作量</td>
+                        <td rowspan="2">审核状态</td>
+                        <td rowspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>本科生教学</td>
+                        <td>研究生教学</td>
+                        <td>总工作量</td>
+                    </tr>
+                    <tr th:each="checkgzl:${Checkgzls}">
+                        <td th:text="${checkgzl.gh}"></td>
+                        <td th:text="${checkgzl.uname}"></td>
+                        <td th:text="${checkgzl.zwmc}"></td>
+                        <td th:text="${checkgzl.edgzl}"></td>
+                        <td th:text="${checkgzl.bkszgzl}"></td>
+                        <td th:text="${checkgzl.yjszgzl}"></td>
+                        <td th:text="${checkgzl.bkszgzl+checkgzl.yjszgzl}"></td>
+                        <!-- 如果没有提交就显示未提交 ，如果提交了就显示审核状态-->
+                        <td th:switch="${checkgzl.tjzt}">
+                            <span th:case="0">
+                                <span th:text="未提交"></span>
+                            </span>
+                            <span th:case="1">
+                                <div th:switch="${checkgzl.shzt}">
+                                    <span th:case="0" th:text="未审核"></span>
+                                    <span th:case="1" th:text="院系已审核"></span>
+                                    <span th:case="2" th:text="教务处已审核"></span>
+                                </div>
+                            </span>
+                        </td>
+                        <!-- 查看详情 -->
+                        <td class="del-col notedit">
+                            <a th:href="@{/officedetails(gh=${checkgzl.gh},userName=${checkgzl.uname},yxmc=${yxmc})}"
+                               type="submit" class="detBtn">查看详情</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
-    <script async defer></script>
+</div>
+<script async defer></script>
 </body>
 
 </html>

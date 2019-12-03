@@ -1,8 +1,8 @@
 package org.jplus.service;
 
 import org.jplus.mapper.JSJSMapper;
-import org.jplus.pojo.JSJS;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.JSJS;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.queryVo.JsjsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

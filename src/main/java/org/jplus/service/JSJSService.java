@@ -1,7 +1,7 @@
 package org.jplus.service;
 
-import org.jplus.pojo.JSJS;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.JSJS;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.queryVo.JsjsVo;
 
 import java.util.List;

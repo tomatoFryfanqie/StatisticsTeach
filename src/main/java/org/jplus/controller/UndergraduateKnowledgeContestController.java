@@ -1,11 +1,10 @@
 package org.jplus.controller;
 
 import org.jplus.interceptor.NeedLogin;
-import org.jplus.pojo.JSJS;
+import org.jplus.pojo.undergraduateCompatitonAndOther.JSJS;
 import org.jplus.pojo.Users;
-import org.jplus.pojo.ZDXSJS;
-import org.jplus.pojo.ZDXSLW;
-import org.jplus.pojo.bks.Sxlx;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSJS;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.queryVo.JsjsVo;
 import org.jplus.pojo.queryVo.ZdxsjsVo;
 import org.jplus.service.JSJSService;
@@ -38,8 +37,6 @@ public class UndergraduateKnowledgeContestController {
     @RequestMapping("/know")
     @NeedLogin
     public String hello(Model model,Users users) {
-        //List<JSJS> result = jSJSService.getTeacherCompetitionList(users.getGh(), DateUtils.getCurrentYear());
-        //List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
         List<ZdxsjsVo> list = zDXSJSService.getStudentCompetitionList(users.getGh(), DateUtils.getCurrentYear());
         for(int i = 0; i < list.size(); i++) {
             int jbbm = list.get(i).getJsjbbm();
@@ -116,7 +113,10 @@ public class UndergraduateKnowledgeContestController {
         gzl = gzl * studentNum;
         zDXSJS.setGzl(gzl);
         // 添加到数据库
-        zDXSJSService.addZDXSJS(zDXSJS);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以添加
+            zDXSJSService.addZDXSJS(zDXSJS);
+        }
     }
 
     /**
@@ -144,7 +144,10 @@ public class UndergraduateKnowledgeContestController {
         }
         jSJS.setGzl(gzl);
         // 添加到数据库
-        jSJSService.addJSJS(jSJS);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以添加
+            jSJSService.addJSJS(jSJS);
+        }
     }
 
 
@@ -166,13 +169,14 @@ public class UndergraduateKnowledgeContestController {
         zDXSLW.setGzl(gzl);
         // 判断数据库中是否有记录
         Integer count = zDXSJSService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
-        System.out.println(count);
-        if(count == 0) {
-            // 添加
-            jSJSService.addZDXSLW(zDXSLW);
-        }else {
-            // 更新
-            jSJSService.updateZDXSLW(zDXSLW);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以修改
+            if(count == 0) {
+                jSJSService.addZDXSLW(zDXSLW);
+            }else {
+                // 更新
+                jSJSService.updateZDXSLW(zDXSLW);
+            }
         }
     }
 

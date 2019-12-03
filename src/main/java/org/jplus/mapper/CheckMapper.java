@@ -2,17 +2,16 @@ package org.jplus.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
-import org.jplus.pojo.QTJXGZ;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.check.BkssjjxInfo;
 import org.jplus.pojo.check.YjssjjxInfo;
 import org.jplus.pojo.jbjsyxkjs.JBJSYXKJS;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
-import org.jplus.pojo.yjssjjx.Yjssjjx;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.sql.Timestamp;
 
 /**
  * @program: StatisticsTeach
@@ -61,10 +60,12 @@ public interface CheckMapper {
     public void clearTjztAndShzt(String gh);
 
     //<!--院系  更新审核状态为1 -->
-    public void setShztByDepartments(String gh);
+    @Update("update `tjzt` set shzt = 1, yxshrxm =#{username} , yxshsj = #{date}  where gh=#{gh}")
+    public void setShztByDepartments(@Param("gh") String gh,@Param("username") String userName,@Param("date") Timestamp date);
 
     //<!--教务处 更新审核状态为2 -->
-    public void setShztByOffice(String gh);
+    @Update("update `tjzt` set shzt = 2, jwcshrxm =#{username} , jwcshsj = #{date}  where gh=#{gh}")
+    public void setShztByOffice(@Param("gh") String gh,@Param("username") String userName,@Param("date") Timestamp date);
 
     //<!--院系 更新审核人姓名到提交表 -->
     @Update("update tjb set shrgh=#{shrgh} where gh=#{gh}")

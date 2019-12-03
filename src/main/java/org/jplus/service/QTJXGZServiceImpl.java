@@ -1,7 +1,7 @@
 package org.jplus.service;
 
 import org.jplus.mapper.QTJXGZMapper;
-import org.jplus.pojo.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

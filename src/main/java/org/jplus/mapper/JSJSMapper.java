@@ -1,8 +1,8 @@
 package org.jplus.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.jplus.pojo.JSJS;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.JSJS;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.queryVo.JsjsVo;
 import org.springframework.stereotype.Repository;
 

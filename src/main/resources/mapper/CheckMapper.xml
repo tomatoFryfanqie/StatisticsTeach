@@ -95,7 +95,7 @@
         where gh=#{gh}
     </select>
     <!-- 指导学士论文 本科生 学生论文 ZDXSLW-->
-    <select id="getZDXSLWInfo" resultType="org.jplus.pojo.ZDXSLW">
+    <select id="getZDXSLWInfo" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW">
         select
         sylwrs,
         xylwrs,
@@ -104,7 +104,7 @@
         where gh=#{gh}
     </select>
     <!-- 根据工号取出其他教学工作信息  ,本科生 QTJXGZ-->
-    <select id="getQTJXGZInfo" resultType="org.jplus.pojo.QTJXGZ">
+    <select id="getQTJXGZInfo" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ">
         select
         ddgzl,
         bfxsrs,
@@ -205,18 +205,18 @@
         shzt = 0
         where gh=#{gh}
     </update>
-    <!--更新提交状态为1 更新审核状态为1（院系已审核）-->
-    <update id="setShztByDepartments">
-        update `tjzt` set
-        shzt = 1
-        where gh=#{gh}
-    </update>
-    <!--教务处提交跟新审核状态为2（教务处已审核）  -->
-    <update id="setShztByOffice">
-        update `tjzt` set
-        shzt = 2
-        where gh=#{gh}
-    </update>
+    <!--更新提交状态为1 更新审核状态为1（院系已审核）,将院系审核人姓名，院系审核时间-->
+    <!--<update id="setShztByDepartments">-->
+        <!--update `tjzt` set-->
+        <!--shzt = 1-->
+        <!--where gh=#{gh}-->
+    <!--</update>-->
+    <!--教务处提交跟新审核状态为2（教务处已审核）, 教务处审核人姓名, 教务处审核时间 -->
+    <!--<update id="setShztByOffice">-->
+        <!--update `tjzt` set-->
+        <!--shzt = 2-->
+        <!--where gh=#{gh}-->
+    <!--</update>-->
     <!-- 在提交表中写入审核人工号-->
     <!--<update id="setShrgh">-->
         <!--update `tjb` set-->

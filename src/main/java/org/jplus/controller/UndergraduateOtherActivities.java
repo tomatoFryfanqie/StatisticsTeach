@@ -1,9 +1,10 @@
 package org.jplus.controller;
 
 import org.jplus.interceptor.NeedLogin;
-import org.jplus.pojo.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
 import org.jplus.pojo.Users;
 import org.jplus.service.QTJXGZService;
+import org.jplus.service.TjztService;
 import org.jplus.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class UndergraduateOtherActivities {
+
+    @Autowired
+    private TjztService tjztService;
 
     @Autowired
     private QTJXGZService qTJXGZService;
@@ -41,7 +45,6 @@ public class UndergraduateOtherActivities {
     @ResponseBody
     public void addOtherTeachWorkload(Users users, Float workloadOfTeachingSupervision, Integer numberOfStudentsAssisted, Integer guideYoungTeachers,
                                       Integer reviseTalentTrainingPlan, Integer prepareCourseSyllabusCount, Integer compilingExperimentalSyllabusCount) {
-        System.out.println(compilingExperimentalSyllabusCount);
         QTJXGZ qTJXGZ = new QTJXGZ();
         String gh = users.getGh();
         qTJXGZ.setGh(gh);
@@ -56,13 +59,15 @@ public class UndergraduateOtherActivities {
         qTJXGZ.setQtgzl(allGzl);
         // 无则添加，有则更新
         Integer count = qTJXGZService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
-        System.out.println(count);
-        if(count == 0 || count == null) {
-            // 添加
-            qTJXGZService.addQTJXGZ(qTJXGZ);
-        }else {
-            // 更新
-            qTJXGZService.updateQTJXGZ(qTJXGZ);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以修改
+            if(count == 0 || count == null) {
+                // 添加
+                qTJXGZService.addQTJXGZ(qTJXGZ);
+            }else {
+                // 更新
+                qTJXGZService.updateQTJXGZ(qTJXGZ);
+            }
         }
     }
 
@@ -85,7 +90,6 @@ public class UndergraduateOtherActivities {
     @ResponseBody
     @NeedLogin
     public Integer getUndertakeCount(Integer reviseTalentTrainingPlan, Integer prepareCourseSyllabusCount, Integer compilingExperimentalSyllabusCount) {
-        System.out.println(prepareCourseSyllabusCount);
         return reviseTalentTrainingPlan*20 + prepareCourseSyllabusCount*10 + compilingExperimentalSyllabusCount*10;
     }
 
@@ -95,7 +99,6 @@ public class UndergraduateOtherActivities {
     @NeedLogin
     public Float getAllQtGzl(Users users) {
         Float result = qTJXGZService.getAllQtGzl(users.getGh(), DateUtils.getCurrentYear());
-        System.out.println(result);
         if(result == null) {
             return 0.0f;
         }

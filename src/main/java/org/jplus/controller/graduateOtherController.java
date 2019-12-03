@@ -3,6 +3,7 @@ package org.jplus.controller;
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
+import org.jplus.service.TjztService;
 import org.jplus.service.YJSQTJXService;
 import org.jplus.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class graduateOtherController {
+
+    @Autowired
+    private TjztService tjztService;
 
     @Autowired
     private YJSQTJXService yJSQTJXService;
@@ -56,13 +60,16 @@ public class graduateOtherController {
         yJSQTJX.setGzl((float) gzl);
         // 无则添加，有则更新
         int count = yJSQTJXService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
-        System.out.println(count);
-        if(count == 0) {
-            // 添加
-            yJSQTJXService.addYJSQTJX(yJSQTJX);
-        }else {
-            // 更新
-            yJSQTJXService.updateYJSQTJX(yJSQTJX);
+
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以修改
+            if(count == 0) {
+                // 添加
+                yJSQTJXService.addYJSQTJX(yJSQTJX);
+            }else {
+                // 更新
+                yJSQTJXService.updateYJSQTJX(yJSQTJX);
+            }
         }
     }
 

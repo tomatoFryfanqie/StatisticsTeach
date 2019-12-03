@@ -2,7 +2,7 @@ package org.jplus.controller;
 
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Users;
-import org.jplus.pojo.ZDXSJS;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSJS;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 import org.jplus.pojo.queryVo.ZdxsjsVo;
 import org.jplus.service.TjztService;
@@ -37,7 +37,6 @@ public class graduateawardController {
     @NeedLogin
     @RequestMapping("/masterKnow")
     public String hello(Model model, Users users) {
-        //List<ZDXSJS> list = zDXSJSService.getStudentCompetitionList2(users.getGh(), DateUtils.getCurrentYear());
         ZDSSLW zDSSLW = zDSSLWService.findZDSSLWByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
         List<ZdxsjsVo> list = zDXSJSService.getStudentCompetitionList2(users.getGh(), DateUtils.getCurrentYear());
         for(int i = 0; i < list.size(); i++) {
@@ -81,10 +80,12 @@ public class graduateawardController {
         zDXSJS.setJsxscc(2);
         float gzl = zDXSJSService.getGzl(competition, contestLevel);
         gzl = gzl * studentNum;
-        System.out.println(gzl);
         zDXSJS.setGzl(gzl);
         // 添加到数据库
-        zDXSJSService.addZDXSJS(zDXSJS);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以添加
+            zDXSJSService.addZDXSJS(zDXSJS);
+        }
     }
 
     @NeedLogin
@@ -101,13 +102,15 @@ public class graduateawardController {
         zDSSLW.setGzl(gzl);
         // 判断数据库中是否有记录
         int count = zDSSLWService.isOnlyForOneYear(users.getGh(), DateUtils.getCurrentYear());
-        System.out.println(count);
-        if(count == 0) {
-            // 添加
-            zDSSLWService.addZDSSLW(zDSSLW);
-        }else {
-            // 更新
-            zDSSLWService.updateZDSSLW(zDSSLW);
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            // 未提交，可以修改
+            if(count == 0) {
+                // 添加
+                zDSSLWService.addZDSSLW(zDSSLW);
+            }else {
+                // 更新
+                zDSSLWService.updateZDSSLW(zDSSLW);
+            }
         }
     }
 
@@ -129,7 +132,6 @@ public class graduateawardController {
     @RequestMapping("/getMasterAllGzl")
     @ResponseBody
     public Float getAllGzl(Users users) {
-        System.out.println("hello world");
         Float gul2 = zDXSJSService.getAllGzl2(users.getGh(), DateUtils.getCurrentYear());
         Float lwgzl = zDSSLWService.getAllMasterLwGzl(users.getGh(), DateUtils.getCurrentYear());
         if(lwgzl != null && gul2 != null) {
@@ -149,7 +151,6 @@ public class graduateawardController {
     @NeedLogin
     @RequestMapping(value = "/deleteGraduate")
     public String deleteGraduate(@ModelAttribute(value = "id") Integer id, Users users) {
-        System.out.println(id);
         if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
             // 未提交，可以删除
             zDXSJSService.remove(id);

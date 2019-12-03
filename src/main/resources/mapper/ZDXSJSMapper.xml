@@ -6,11 +6,11 @@
 
 <mapper namespace="org.jplus.mapper.ZDXSJSMapper">
 
-    <insert id="addZDXSJS" parameterType="org.jplus.pojo.ZDXSJS">
+    <insert id="addZDXSJS" parameterType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSJS">
         INSERT into zdxsjs VALUES (0, #{gh}, #{nd}, #{jsmc}, #{jslbbm}, #{jsjbbm}, #{zdxsrs}, #{jsxscc}, #{gzl});
     </insert>
 
-    <!--<select id="getStudentCompetitionList" resultType="org.jplus.pojo.ZDXSJS">
+    <!--<select id="getStudentCompetitionList" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSJS">
         select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=1 AND gh=#{gh} AND nd=#{nd};
     </select>-->
 
@@ -18,7 +18,7 @@
         select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=1 AND gh=#{gh} AND nd=#{nd};
     </select>
 
-    <!--<select id="getStudentCompetitionList2" resultType="org.jplus.pojo.ZDXSJS">
+    <!--<select id="getStudentCompetitionList2" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSJS">
         select xsjsid, jsmc, jslbbm, jsjbbm, zdxsrs, gzl from zdxsjs WHERE jsxscc=2 AND gh=#{gh} AND nd=#{nd};
     </select>-->
 
@@ -42,7 +42,7 @@
         DELETE FROM zdxsjs WHERE xsjsid=#{id};
     </delete>
 
-    <select id="findZDXSLWByGhAndYear" resultType="org.jplus.pojo.ZDXSLW">
+    <select id="findZDXSLWByGhAndYear" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW">
         select * from zdxslw WHERE gh=#{gh} AND nd=#{nd};
     </select>
 

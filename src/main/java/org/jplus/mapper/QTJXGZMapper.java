@@ -1,7 +1,7 @@
 package org.jplus.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.jplus.pojo.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
 import org.springframework.stereotype.Repository;
 
 /**
