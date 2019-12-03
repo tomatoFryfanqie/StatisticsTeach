@@ -87,4 +87,37 @@
         values (#{gh})
     </insert>
 
+    <select id="getBksKtjxgzl" resultType="java.lang.Float">
+        select coalesce(sum(jxgzl),0) gzlsum from bksktjx where gh=(#{gh})
+    </select>
+    <select id="getBksSjjxgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from bkssjjx where gh=(#{gh})
+    </select>
+    <select id="getBksZlgcgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from zlgc where gh=(#{gh})
+    </select>
+    <select id="getZdxsgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from zdxsjs WHERE  gh=#{gh}
+    </select>
+    <select id="getJsjsgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from jsjs WHERE gh=#{gh}
+    </select>
+    <select id="getLwgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from zdxslw WHERE gh=#{gh}
+    </select>
+    <select id="getQtgzl" resultType="java.lang.Float">
+        select coalesce(sum(qtgzl),0) gzlsum from qtjxgz WHERE gh=#{gh}
+    </select>
+    <select id="getYjsSjjxgzl" resultType="java.lang.Float">
+         select coalesce(sum(gzl),0) gzlsum from yjssjjx WHERE gh=#{gh}
+    </select>
+    <select id="getJsgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from jbjsyxkjs where gh=#{gh}
+    </select>
+    <select id="getYjsZdgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from zdsslw WHERE gh=#{gh}
+    </select>
+    <select id="getYjsQtgzl" resultType="java.lang.Float">
+        select coalesce(sum(gzl),0) gzlsum from yjsqtjx WHERE gh=#{gh}
+    </select>
 </mapper>

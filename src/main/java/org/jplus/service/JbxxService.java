@@ -26,4 +26,6 @@ public interface JbxxService {
     void updateBasisInfo(JbxxAccpet jbxxAccpet);
 
     void addJbxx(String gh);
+
+    Float getZgzl(String gh);
 }

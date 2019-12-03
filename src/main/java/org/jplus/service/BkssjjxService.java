@@ -23,4 +23,5 @@ public interface BkssjjxService {
     List<Zylxbm> selectZylxbm();
 
     void updateBkssjjx(Bkssjjx bkssjjxVo);
+
 }

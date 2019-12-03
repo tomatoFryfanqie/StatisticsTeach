@@ -229,7 +229,11 @@
                         <span th:text="${basisInfo.edgzl}"></span>
                     </span>
                 </div>
-                <div id="actualworkload">实际总工作量:<span></span></div>
+                <div id="actualworkload">实际总工作量:
+                    <span th:if="${Zgzl!=null}">
+                        <span th:text="${Zgzl}"></span>
+                    </span>
+                </div>
                 <div id="minimumworkload">本科生授课最低工作量:
                     <span th:if="${basisInfo!=null && basisInfo.bkszdsk!=null}">
                         <span th:text="${basisInfo.bkszdsk}"></span>

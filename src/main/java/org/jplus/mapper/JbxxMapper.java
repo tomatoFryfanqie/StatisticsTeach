@@ -25,4 +25,27 @@ public interface JbxxMapper {
     void updateBasisInfo(JbxxAccpet jbxxAccpet);
 
     void addJbxx(String gh);
+
+
+    Float getBksKtjxgzl(String gh);
+
+    Float getBksSjjxgzl(String gh);
+
+    Float getBksZlgcgzl(String gh);
+
+    Float getZdxsgzl(String gh);
+
+    Float getJsjsgzl(String gh);
+
+    Float getLwgzl(String gh);
+
+    Float getQtgzl(String gh);
+
+    Float getYjsSjjxgzl(String gh);
+
+    Float getJsgzl(String gh);
+
+    Float getYjsZdgzl(String gh);
+
+    Float getYjsQtgzl(String gh);
 }

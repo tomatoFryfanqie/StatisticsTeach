@@ -44,4 +44,6 @@ public class BkssjjxServiceImpl implements BkssjjxService {
     public void updateBkssjjx(Bkssjjx bkssjjxVo) {
         bkssjjxMapper.updateBksjjx(bkssjjxVo);
     }
+
+
 }

@@ -46,6 +46,8 @@ public class BasisInfoController {
         model.addAttribute("gwlxType", jbxxService.getGwlxbmInfo());
         /*获取年度*/
         model.addAttribute("Nd", GetYear.getYears());
+        /*获得总工作量*/
+        model.addAttribute("Zgzl", jbxxService.getZgzl(users.getGh()));
         /*获取本科生最低授课工作量*/
         model.addAttribute("bkszdgzl",bksktjxService.getBkjxgzlSum(users.getGh()));
         /*获取用户信息*/
@@ -62,7 +64,6 @@ public class BasisInfoController {
         }
         return "basicinformation";
     }
-
     @NeedLogin
     @PostMapping("/updateBasisInfo")
     public String updateJbxxInfo(@ModelAttribute(value = "jbxxAccpet") JbxxAccpet jbxxAccpet,Users users){
@@ -84,4 +85,5 @@ public class BasisInfoController {
         }
         return "redirect:basicinformation";
     }
+
 }
