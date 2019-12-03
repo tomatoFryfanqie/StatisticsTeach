@@ -247,7 +247,6 @@ public class ExcelOutController {
             /*研究生课堂教学*/
             workLoadRow.createCell(10).setCellValue(tjb.getYjsktjxgzl());
             /*研究生实践教学*/
-            //workLoadRow.createCell(10).setCellValue(tjb.getYjssjjxgzl());
             workLoadRow.createCell(11).setCellValue(tjb.getJsjsjjxgzl());
             /*研究生学科建设*/
             workLoadRow.createCell(12).setCellValue(tjb.getXkjsgzl());
@@ -255,7 +254,7 @@ public class ExcelOutController {
             workLoadRow.createCell(13).setCellValue(tjb.getYjsjyxmgzl() + tjb.getYjshxxmgzl());
             /*研究生竞赛与论文*/
             /*差一个竞赛*/
-            workLoadRow.createCell(14).setCellValue(tjb.getYjslwgzl());
+            workLoadRow.createCell(14).setCellValue(tjb.getYjsjsgzl()+tjb.getYjslwgzl());
             /*研究生其他*/
             workLoadRow.createCell(15).setCellValue(tjb.getYjsqtgzl());
             /*本科生最低授课*/
