@@ -324,49 +324,6 @@ public class GetWorkLoad {
         return gzl;
     }
 
-    /**
-     * 本科生教学研究和研究生教学研究项目纵向工作量获取
-     *
-     * @param xmzrs 项目总人数
-     * @param xmpm  项目排名
-     * @param xmfs  项目分数
-     */
-    //纵向工作量获取
-    public static Float GetWorkCount(int xmzrs, int xmpm, int xmfs) {
-        //项目权重
-        Float xmqz = 0.0f;
-        if (xmzrs == 1 && xmpm == 1) {
-            xmqz = 1.0f;
-        } else if (xmzrs == 2 && xmpm == 1) {
-            xmqz = 0.7f;
-        } else if (xmzrs == 2 && xmpm == 2) {
-            xmqz = 0.3f;
-        } else if (xmzrs == 3 && xmpm == 1) {
-            xmqz = 0.7f;
-        } else if (xmzrs == 3 && xmpm == 2) {
-            xmqz = 0.2f;
-        } else {
-            if (xmpm == 1) xmqz = 0.6f;
-            else if (xmpm == 2) xmqz = 0.2f;
-            else if (xmpm == 3) xmqz = 0.1f;
-            else xmqz = (float) 0.1 / (xmzrs - 3);
-        }
-        return xmfs * xmqz;
-    }
-
-    /**
-     * 本科生教学研究和研究生教学研究项目纵向工作量获取
-     *
-     * @param xmzrs 项目总人数
-     * @param xmpm  项目排名
-     * @param dzjf  到账经费
-     */
-    //横向工作量获取
-    public static Float GetHxWorkCount(int xmzrs, int xmpm, float dzjf) {
-
-        return GetWorkCount(xmzrs, xmpm, (int) Math.ceil(0.001 * dzjf));
-    }
-
 
     /**
      * @param projectType  项目类型

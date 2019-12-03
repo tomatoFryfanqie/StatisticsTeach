@@ -61,8 +61,7 @@ public class GraduateProgramController {
             //获取年度
             yjsjyxm.setNd(GetYear.getYears());
             //获取工作量
-            yjsjyxm.setGzl(GetWorkLoad.GetWorkCount(yjsjyxm.getZrs(), yjsjyxm.getXmpm(),
-                    yjsjyxm.getXmdjbm() == 1 ? 200 : 50));
+            yjsjyxm.setGzl(GetWorkLoad.calculateWeight(yjsjyxm.getZrs(), yjsjyxm.getXmpm()) * yjsjyxm.getXmdjbm() == 1 ? 200f : 50f);
             //添加项目的一列
             yjsjyxmService.addYjsjyxm(yjsjyxm);
         }
@@ -88,8 +87,7 @@ public class GraduateProgramController {
             //获取年度
             yjshxxm.setNd(GetYear.getYears());
             //获取工作量
-            yjshxxm.setGzl(GetWorkLoad.GetHxWorkCount(yjshxxm.getZrs(),yjshxxm.getXmpm(),
-                    yjshxxm.getDzjf()));
+            yjshxxm.setGzl(GetWorkLoad.calculateWeight(yjshxxm.getZrs(),yjshxxm.getXmpm()) * (int)Math.ceil(yjshxxm.getDzjf()) * 20);
             //添加项目的一列
             yjsjyxmService.addYjshxxm(yjshxxm);
         }
