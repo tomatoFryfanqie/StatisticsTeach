@@ -1,4 +1,4 @@
-package org.jplus.pojo;
+package org.jplus.pojo.undergraduateCompatitonAndOther;
 
 /**
  * @author wb

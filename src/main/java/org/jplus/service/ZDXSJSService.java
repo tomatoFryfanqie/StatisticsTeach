@@ -1,8 +1,7 @@
 package org.jplus.service;
 
-import org.jplus.pojo.ZDXSJS;
-import org.jplus.pojo.ZDXSLW;
-import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSJS;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.queryVo.ZdxsjsVo;
 
 import java.util.List;

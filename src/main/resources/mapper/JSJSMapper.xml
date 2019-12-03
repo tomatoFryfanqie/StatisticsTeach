@@ -10,7 +10,7 @@
         select gdgzl from jsdj WHERE jsdjbm=#{teacherCompetitioncategory};
     </select>
 
-    <!--<select id="getTeacherCompetitionList" resultType="org.jplus.pojo.JSJS">
+    <!--<select id="getTeacherCompetitionList" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.JSJS">
         select jsjsid, jsmc, jsdjbm, jsxsbm, gzl from jsjs WHERE gh=#{gh} AND nd=${nd};
     </select>-->
 
@@ -18,11 +18,11 @@
         select jsjsid, jsmc, jsdjbm, jsxsbm, gzl from jsjs WHERE gh=#{gh} AND nd=${nd};
     </select>
 
-    <insert id="addJSJS" parameterType="org.jplus.pojo.JSJS">
+    <insert id="addJSJS" parameterType="org.jplus.pojo.undergraduateCompatitonAndOther.JSJS">
         INSERT into jsjs VALUES (0, #{gh}, #{nd}, #{jsmc}, #{jsdjbm}, #{jsxsbm}, #{gzl});
     </insert>
 
-    <insert id="addZDXSLW" parameterType="org.jplus.pojo.ZDXSLW">
+    <insert id="addZDXSLW" parameterType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW">
         INSERT into zdxslw VALUES (0, #{gh}, #{nd}, #{sylwrs}, #{xylwrs}, #{gzl});
     </insert>
 
@@ -38,7 +38,7 @@
         DELETE FROM jsjs WHERE jsjsid=#{id};
     </delete>
 
-    <update id="updateZDXSLW" parameterType="org.jplus.pojo.ZDXSLW">
+    <update id="updateZDXSLW" parameterType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW">
         UPDATE zdxslw SET sylwrs=#{sylwrs} , xylwrs=#{xylwrs} , gzl=#{gzl};
     </update>
 

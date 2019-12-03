@@ -1,14 +1,13 @@
 package org.jplus.service;
 
-import org.jplus.pojo.QTJXGZ;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.check.BkssjjxInfo;
 import org.jplus.pojo.check.YjssjjxInfo;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @program: StatisticsTeach

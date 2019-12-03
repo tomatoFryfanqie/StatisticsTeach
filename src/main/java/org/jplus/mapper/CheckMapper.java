@@ -2,18 +2,16 @@ package org.jplus.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
-import org.jplus.pojo.QTJXGZ;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.check.BkssjjxInfo;
 import org.jplus.pojo.check.YjssjjxInfo;
 import org.jplus.pojo.jbjsyxkjs.JBJSYXKJS;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
-import org.jplus.pojo.yjssjjx.Yjssjjx;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @program: StatisticsTeach

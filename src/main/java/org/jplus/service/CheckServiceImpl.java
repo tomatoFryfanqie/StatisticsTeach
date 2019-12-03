@@ -1,8 +1,8 @@
 package org.jplus.service;
 
 import org.jplus.mapper.CheckMapper;
-import org.jplus.pojo.QTJXGZ;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.check.BkssjjxInfo;
 import org.jplus.pojo.check.YjssjjxInfo;
 import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;

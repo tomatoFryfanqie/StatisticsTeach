@@ -3,7 +3,7 @@ package org.jplus.controller;
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Tjzt.Tjb;
 import org.jplus.pojo.Users;
-import org.jplus.pojo.ZDXSLW;
+import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
 import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 import org.jplus.pojo.queryVo.JsjsVo;
 import org.jplus.pojo.queryVo.ZdxsjsVo;

@@ -1,7 +1,7 @@
 package org.jplus.service;
 
 
-import org.jplus.pojo.QTJXGZ;
+import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
 
 /**
  * @author wb

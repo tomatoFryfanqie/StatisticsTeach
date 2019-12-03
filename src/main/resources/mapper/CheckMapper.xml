@@ -95,7 +95,7 @@
         where gh=#{gh}
     </select>
     <!-- 指导学士论文 本科生 学生论文 ZDXSLW-->
-    <select id="getZDXSLWInfo" resultType="org.jplus.pojo.ZDXSLW">
+    <select id="getZDXSLWInfo" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW">
         select
         sylwrs,
         xylwrs,
@@ -104,7 +104,7 @@
         where gh=#{gh}
     </select>
     <!-- 根据工号取出其他教学工作信息  ,本科生 QTJXGZ-->
-    <select id="getQTJXGZInfo" resultType="org.jplus.pojo.QTJXGZ">
+    <select id="getQTJXGZInfo" resultType="org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ">
         select
         ddgzl,
         bfxsrs,
