@@ -91,8 +91,6 @@ public class JbxxServiceImpl implements JbxxService {
         /*获取其他总工作量*/
         Float qtgzl = jbxxMapper.getQtgzl(gh);
         BksZgzl = bksKtjxgzl+bksSjjxgzl+bksZlgcgzl+jxcgGzlSun+zxxmGzlSun+hxxmGzlSun+jcGzlSun+jxggGzlSun+zdxsgzl+jsjsgzl+lwgzl+qtgzl;
-
-        System.out.println(BksZgzl);
         /*研究生总工作量*/
         Float YjsZgzl = 0f;
         /*研究生课堂教学工作量*/
@@ -111,7 +109,7 @@ public class JbxxServiceImpl implements JbxxService {
         /*研究生其他工作量*/
         Float yjsQtgzl = jbxxMapper.getYjsQtgzl(gh);
         YjsZgzl = yjsjxgzlSum+yjsSjjxgzl+jsgzl+yjshxxmGzlSum+yjsjyxmGzlSum+yjsZdgzl+yjsQtgzl;
-        System.out.println(YjsZgzl);
+
         Float Zgzl = 0f;
         Zgzl = BksZgzl+YjsZgzl;
         System.out.println(Zgzl);
