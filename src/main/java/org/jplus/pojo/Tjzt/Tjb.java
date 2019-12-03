@@ -70,6 +70,8 @@ public class Tjb {
     private Float yjshxxmgzl;
     //yjslwgzl
     private Float yjslwgzl;
+
+    private Float yjsjsgzl;
     //yjsqtgzl
     private Float yjsqtgzl;
     //yjszgzl

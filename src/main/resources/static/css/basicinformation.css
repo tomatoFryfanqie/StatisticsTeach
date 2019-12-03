@@ -116,12 +116,13 @@
   background-color: #d9e1f2;
 }
 
-.modal-header {
-  height: 70px;
-}
+/*.modal-header {*/
+/*  height: 70px;*/
+/*}*/
 
 .modal-header h5 {
   padding: 5% 0;
+  padding-bottom: 0;
 }
 
 .modal-body {
