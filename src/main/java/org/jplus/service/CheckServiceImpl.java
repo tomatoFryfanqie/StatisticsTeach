@@ -23,7 +23,7 @@ public class CheckServiceImpl implements CheckService{
     @Autowired
     CheckMapper checkMapper;
     @Override
-    public String getYxmc(int yxbm) {
+    public String getYxmc(Integer yxbm) {
         return checkMapper.getLxmc(yxbm);
     }
 

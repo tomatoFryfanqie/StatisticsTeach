@@ -16,7 +16,7 @@ import java.sql.Timestamp;
  * @create: 2019-11-19 14:17
  **/
 public interface CheckService {
-    public String getYxmc(int yxbm);
+    public String getYxmc(Integer yxbm);
 
     public BkssjjxInfo getBKSSJJXInfo(String gh);
 

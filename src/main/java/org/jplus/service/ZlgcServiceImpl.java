@@ -25,7 +25,7 @@ public class ZlgcServiceImpl implements ZlgcService {
     }
 
     @Override
-    public void deleteZlgcInfo(int zlgcid) {
+    public void deleteZlgcInfo(Integer zlgcid) {
         zlgcMapper.deleteZlgcInfoById(zlgcid);
     }
 
