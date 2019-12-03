@@ -23,16 +23,17 @@ public class GetWorkLoad {
     private static final int ORDINARY_PROJECT_NATIONAL_SCORE = 300;
     private static final int ORDINARY_PROJECT_PROVINCIAL_SCORE = 100;
 
-    /*获得额定教学工作量*/
     /**
      *
+     * @param zwbm      职务编码
      * @param zcbm      职称编码
      * @param gwlxbm    岗位类型编码
-     * @param sfxrz     是否新入职 0为是，1为否
+     * @param sfxrz     是否新入职
      * @return
      */
-    public static Float getRatedWorkload(Integer zcbm,Integer gwlxbm,Integer sfxrz){
+    public static Float getRatedWorkload(Integer zwbm,Integer zcbm,Integer gwlxbm,Integer sfxrz){
         Float getWorkLoad = 0.0f;
+
         if(zcbm==3||zcbm==4){
             if (zcbm==3){
                 if (sfxrz==0){
@@ -75,6 +76,13 @@ public class GetWorkLoad {
                 }
             }
         }
+
+        if(zwbm==3||zwbm==4){
+            getWorkLoad = getWorkLoad*0.5f;
+        }else if (zwbm==5){
+            getWorkLoad = getWorkLoad*0.75f;
+        }
+
         return getWorkLoad;
     }
 
@@ -145,9 +153,9 @@ public class GetWorkLoad {
             }
         }else {
             if (sfsy==1){
-                getWork = (float)jhxs*1.5f*(1.0f+(float)((skrs-bzrs)/skrs));
+                getWork = (float)jhxs*1.5f*(1.0f+((float)(skrs-bzrs)/skrs));
             }else {
-                getWork = (float)jhxs*1.0f*(1.0f+(float)((skrs-bzrs)/skrs));
+                getWork = (float)jhxs*1.0f*(1.0f+((float)(skrs-bzrs)/skrs));
             }
         }
 

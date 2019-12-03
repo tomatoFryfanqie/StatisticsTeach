@@ -15,13 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.controller
- * @Author: lzh
- * @CreateTime: 2019/11/7
- * @Description: Description
- */
+
 @Controller
 public class GraduateYjssjjxController {
 

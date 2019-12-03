@@ -14,14 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.controller
- * @Author: lzh
- * @CreateTime: 2019/10/31
- * @Description: Description
- */
-
 @Controller
 public class ClassroomTeachController {
     private String classError = null;
@@ -33,7 +25,7 @@ public class ClassroomTeachController {
 
     @NeedLogin
     @RequestMapping("/classroomteaching")
-    public String getClassTechInfo(Model model, Users users) {
+    public String getClassTechInfo(Model model, Users users){
         /*获取年份。存入model*/
         model.addAttribute("year", GetYear.getYears());
         /*获取课堂类型，存入model*/
@@ -52,6 +44,7 @@ public class ClassroomTeachController {
     public String addClassInfo(@ModelAttribute(value = "bksktjxAccpet") @Validated BksktjxAccpet bksktjxAccpet,BindingResult bindingResult, Users users) {
         /*如果提交状态表的提交状态处于0：未提交状态，则可以进行添加操作*/
         if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+            /*if里面代码弃用*/
             if(bindingResult.hasErrors()){
                 /*获得第一个校验错误*/
                 classError = bindingResult.getFieldError().getDefaultMessage();
@@ -78,8 +71,8 @@ public class ClassroomTeachController {
     @RequestMapping(value = "/deleteClassInfo", method = RequestMethod.GET)
     public String delete(@ModelAttribute(value = "id") Integer id, Users users) {
         /*如果提交状态表的提交状态处于0：未提交状态，则可以进行删除操作*/
-        /*删除课堂信息*/
-        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0) {
+        if (tjztService.getTjzt(users.getGh()).getTjzt() == 0){
+            /*删除课堂信息*/
             bksktjxService.deleteClassInfoBybksktjxId(id);
         }
         return "redirect:classroomteaching";

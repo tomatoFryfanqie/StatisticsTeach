@@ -16,13 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.controller
- * @Author: lzh
- * @CreateTime: 2019/10/31
- * @Description: Description
- */
+
 @Controller
 public class BasisInfoController {
 
@@ -76,11 +70,10 @@ public class BasisInfoController {
             }
             jbxxAccpet.setNd(GetYear.getYears());
             /*获取额定工作量*/
-            jbxxAccpet.setEdgzl(GetWorkLoad.getRatedWorkload(jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
+            jbxxAccpet.setEdgzl(GetWorkLoad.getRatedWorkload(jbxxAccpet.getZwbm(),jbxxAccpet.getZcbm(),jbxxAccpet.getGwlxbm(),jbxxAccpet.getSfxrz()));
             /*获取本科生最低授课工作量*/
             jbxxAccpet.setBkszdsk(GetWorkLoad.getTeachTime(jbxxAccpet.getZcbm(), jbxxAccpet.getGwlxbm()));
             /*更新部分基本信息*/
-            System.out.println(jbxxAccpet);
             jbxxService.updateBasisInfo(jbxxAccpet);
         }
         return "redirect:basicinformation";
