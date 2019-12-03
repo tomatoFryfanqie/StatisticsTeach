@@ -27,7 +27,8 @@
     <update id="updateTjzt">
         update tjzt set
         tjzt = 1,
-        tjsj = #{tjsj,jdbcType=DATE}
+        tjsj = #{tjsj,jdbcType=DATE},
+        shzt = 1
         where gh=#{gh}
     </update>
     <select id="insertTJB" statementType="CALLABLE">
