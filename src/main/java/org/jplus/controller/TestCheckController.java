@@ -125,8 +125,8 @@ public class TestCheckController {
             model.addAttribute("yjshxxmgzl",tjb.getYjshxxmgzl());
 //                <!-- 研究生论文工作量-->					yjslwgzl
             model.addAttribute("yjslwgzl",tjb.getYjslwgzl());
-//                <!-- 研究生竞赛工作量-->					yjsjsgzl
-            model.addAttribute("yjsjsgzl",tjb.getJsjsgzl());
+//                <!-- 研究生竞赛工作量-->					yjsjsgzl  TODO
+            model.addAttribute("yjsjsgzl",0);
 //                <!-- 研究生其它工作量-->					yjsqtgzl
             model.addAttribute("yjsqtgzl",tjb.getYjsqtgzl());
 //                <!-- 研究生总工作量-->						yjszgzl

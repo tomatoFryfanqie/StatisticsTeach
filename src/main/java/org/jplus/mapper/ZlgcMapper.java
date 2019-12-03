@@ -21,7 +21,7 @@ public interface ZlgcMapper {
 
     Zlgc getOneZlgcInfo();
 
-    public void deleteZlgcInfoById(int zlgcid);
+    public void deleteZlgcInfoById(Integer zlgcid);
 
     public void updateZlgcInfoById(ZlgcAccept zlgcAccept);
 
