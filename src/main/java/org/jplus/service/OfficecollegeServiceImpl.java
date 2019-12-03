@@ -60,7 +60,7 @@ public class OfficecollegeServiceImpl implements OfficecollegeService{
             if (checkgzl.getTjzt() == null || checkgzl.getTjzt() == 0){
                 checkgzl.setBkszgzl(0.0f);
                 checkgzl.setYjszgzl(0.0f);
-                checkgzl.setShzt(0);
+                checkgzl.setTjzt(0);
             }
         }
         return checkgzlList;
