@@ -89,13 +89,13 @@
 }
 
 .modal-body div .form-control-1 {
-  width: 30%;
+  /*width: 30%;*/
   height: 25px;
 }
 
 .modal-body div .class-name,
 .modal-body div .class-number {
-  width: 70%;
+  width: 50%;
 }
 
 /* 添加按钮 */
@@ -117,7 +117,7 @@
   border: 2px solid #006abb;
 }
 
-.modal-body #add {
+.modal-body .add {
   margin-right: 5%;
 }
 

@@ -102,7 +102,7 @@
         <!-- 提示信息栏 -->
         <div class="msg">
             <div class="year">年度<span th:text="${year}"></span></div>
-            <div class="total-workload">工作总量<span th:text="${sumOfWorkload}">0</span></div>
+            <div class="total-workload">质量工程工作量小计<span th:text="${sumOfWorkload}">0</span></div>
             <!-- Button trigger modal -->
             <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                 添加
@@ -118,14 +118,14 @@
                             &times;
                         </button>
                         <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                            质量工程新增页面
+                            质量工程新增
                         </h5>
                     </div>
                     <div class="modal-body">
                         <form th:action="@{/addZlgc}" method="post">
                             <div>
-                                项目类型：
-                                <select th:name="xmlxbm" class="form-control-1">
+                                <span class="meter">项目类型：</span>
+                                <select th:name="xmlxbm">
                                     <option th:name="xmlxbm" th:value="${1}">一流专业</option>
                                     <option th:name="xmlxbm" th:value="${2}">金课</option>
                                     <option th:name="xmlxbm" th:value="${3}">品牌及特色专业</option>
@@ -142,28 +142,28 @@
                                 </select>
                             </div>
                             <div th:name="xmmc">
-                                项目名称：<input type="text" th:name="xmmc" class="form-control-1 form-control-jub class-name"
+                                <span class="meter">项目名称：</span><input type="text" th:name="xmmc" class="form-control-1 form-control-jub class-name"
                                             placeholder=""/>
                             </div>
                             <div class="warning">项目名称不能为空！</div>
                             <div>
-                                <span class="passwordtip" style="letter-spacing: 30px;">级</span>别：
-                                <select th:name="jb" class="form-control-1">
+                                <span class="meter"><span class="passwordtip" style="letter-spacing: 30px;">级</span>别：</span>
+                                <select th:name="jb">
                                     <option th:name="jb" th:value="${1}">国家级</option>
                                     <option th:name="jb" th:value="${2}">省级</option>
                                 </select>
                             </div>
 
                             <div th:name="nd">
-                                获批(奖)年度：<input type="text" th:name="nd" class="form-control-1 form-control-jub" placeholder=""/>
+                                <span class="meter">获批(奖)年度：</span><input type="text" th:name="nd" class="form-control-1 form-control-jub class-name" placeholder=""/>
                             </div>
                             <div class="warning">获批(奖)年度不能为空！</div>
                             <div th:name="xmpm">
-                                项目排名：<input type="text" th:name="xmpm" class="form-control-1 form-control-jub timenum" placeholder=""/>
+                                <span class="meter">项目排名：</span><input type="text" th:name="xmpm" class="form-control-1 form-control-jub timenum" placeholder=""/>
                             </div>
                             <div class="warning">项目排名不能为空！</div>
                             <div th:name="zrs">
-                                项目总人数：<input type="text" th:name="zrs" class="form-control-1 form-control-jub timenum" placeholder=""/>
+                                <span class="meter">项目总人数：</span><input type="text" th:name="zrs" class="form-control-1 form-control-jub timenum" placeholder=""/>
                             </div>
                             <div class="warning">项目总人数不能为空！</div>
                             <div class="btn-add">
