@@ -59,6 +59,14 @@
             <result property="yjssxlxmc" column="yjssxlxmc3" jdbcType="VARCHAR"></result>
         </association>
     </resultMap>
+    <!--根据工号查院系名称-->
+    <select id="getLxmcByGh" resultType="java.lang.String">
+        select
+        b.yxmc
+        from users as a
+        left join yxbm as b on (a.yxbm = b.yxbm)
+        where  gh=#{gh}
+    </select>
     <!--根据院系编码，取出院系名称-->
     <select id="getLxmc" resultType="java.lang.String">
         select

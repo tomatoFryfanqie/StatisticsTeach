@@ -22,6 +22,12 @@ import java.sql.Timestamp;
 public class CheckServiceImpl implements CheckService{
     @Autowired
     CheckMapper checkMapper;
+
+    @Override
+    public String getLxmcByGh(String gh) {
+        return checkMapper.getLxmcByGh(gh);
+    }
+
     @Override
     public String getYxmc(Integer yxbm) {
         return checkMapper.getLxmc(yxbm);

@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.List;
@@ -75,14 +76,13 @@ public class TestCheckController {
     @GetMapping("/officedetails")
     public String getQualityEngineeringInfo(@ModelAttribute(value = "gh") String gh,
                                             @ModelAttribute(value = "userName") String userName,
-                                            @ModelAttribute(value = "yxmc") String yxmc,
                                             Model model, Users users) {
-        // 将用户的信息取出( 工号， 姓名， 院系编码)
+        // 将用户的信息取出( 工号， 姓名， 院系名称)
         model.addAttribute("gh", gh);
         model.addAttribute("name", userName);
-        /*获取基本信息存到model中*/
-        model.addAttribute("department", yxmc);
+        model.addAttribute("department", checkService.getLxmcByGh(gh));
 // *************************************************************************************
+        // 取出所有的汇总的工作量
         Tjb tjb = tjbService.getTjbByGh(gh);
         if (tjb != null){
             //                <!-- 本科生课堂工作量-->				bksktgzl
@@ -125,8 +125,8 @@ public class TestCheckController {
             model.addAttribute("yjshxxmgzl",tjb.getYjshxxmgzl());
 //                <!-- 研究生论文工作量-->					yjslwgzl
             model.addAttribute("yjslwgzl",tjb.getYjslwgzl());
-//                <!-- 研究生竞赛工作量-->					yjsjsgzl  TODO
-            model.addAttribute("yjsjsgzl",0);
+//                <!-- 研究生竞赛工作量-->					yjsjsgzl
+            model.addAttribute("yjsjsgzl",tjb.getYjsjsgzl());
 //                <!-- 研究生其它工作量-->					yjsqtgzl
             model.addAttribute("yjsqtgzl",tjb.getYjsqtgzl());
 //                <!-- 研究生总工作量-->						yjszgzl
@@ -190,7 +190,6 @@ public class TestCheckController {
         // 2 实践教学工作量         practiceteh
         Optional.ofNullable(bkssjjxService.selectBkssjjx(gh)).ifPresent(sjjx -> model.addAttribute
                 ("bkssjjx", getSjjxWork(sjjx)));
-        model.addAttribute("bkssjjxInfo",null);
         model.addAttribute("bkssjjxInfo", checkService.getBKSSJJXInfo(gh));
         // 3 质量工程工作量        qualityengineering
         model.addAttribute("zlgc", zlgcService.getZlgcInfo(gh));
@@ -338,13 +337,13 @@ public class TestCheckController {
 
     @NeedLogin
     @GetMapping("/passCheck")
-    public String passCheck(@ModelAttribute(value = "gh") String gh,Users users) {
+    public String passCheck(@ModelAttribute(value = "gh") String gh, Users users, RedirectAttributes attributes) {
         java.sql.Timestamp date = new java.sql.Timestamp(new Date().getTime());
         // 根据工号判断审核人的身份
         // 如果是院系负责人
         if (users.getActor() == 2){
             if (tjztService.getTjzt(gh).getTjzt() != 0) {
-                // tjzt 将审核状态设置为审核2 ( 院系审核) ,姓名，审核时间写进去
+                // tjzt 将审核状态设置为审核1 ( 院系审核) ,姓名，审核时间写进去
                 checkService.setShztByDepartments(gh,users.getUname(),date);
                 // 将院系审核人的名字写到提交表tjb
                 checkService.setShrgh(gh,users.getGh());
@@ -358,10 +357,12 @@ public class TestCheckController {
             }
         }
         if (users.getActor() == 2){
-            return "redirect:officecollege";
+            return "redirect:/officecollege";
         }
         else {
-            return "redirect:departmentalaudit";
+            attributes.addAttribute("gh", gh);
+            return  "redirect:/departmentalaudit";
+//            "redirect:/departmentalaudit";
         }
     }
 
@@ -374,10 +375,10 @@ public class TestCheckController {
 
         // 返回上一个页面 officecollege
         if (users.getActor() == 2){
-            return "redirect:officecollege";
+            return "redirect:/officecollege";
         }
         else {
-            return "redirect:departmentalaudit";
+            return "redirect:/departmentalaudit";
         }
     }
 
