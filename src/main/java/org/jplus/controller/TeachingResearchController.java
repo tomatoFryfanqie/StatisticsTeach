@@ -79,7 +79,7 @@ public class TeachingResearchController {
             //获取工号
             jxcg.setGh(user.getGh());
             //获取工作量
-            jxcg.setGzl(GetWorkLoad.calculateWeight(jxcg.getZrs(), jxcg.getXmpm()) * jxcgService.getGdgzl(jxcg.getCgdjbm()));
+            jxcg.setGzl(GetWorkLoad.calculateWeight(jxcg.getXmpm(),jxcg.getZrs()) * jxcgService.getGdgzl(jxcg.getCgdjbm()));
             //存入年份
             jxcg.setNd(GetYear.getYears());
             //添加信息
@@ -109,7 +109,7 @@ public class TeachingResearchController {
             //获取工号
             zxxm.setGh(user.getGh());
             //获取工作量
-            zxxm.setGzl(GetWorkLoad.calculateWeight(zxxm.getZrs(), zxxm.getXmpm()) * jxcgService.getZxxmgzl(zxxm.getXmdjbm()));
+            zxxm.setGzl(GetWorkLoad.calculateWeight(zxxm.getXmpm(),zxxm.getZrs()) * jxcgService.getZxxmgzl(zxxm.getXmdjbm()));
             //存入年份
             zxxm.setNd(GetYear.getYears());
             //添加信息
@@ -139,7 +139,7 @@ public class TeachingResearchController {
             //获取工号
             hxxm.setGh(user.getGh());
             //获取工作量
-            hxxm.setGzl(GetWorkLoad.calculateWeight(hxxm.getZrs(),hxxm.getXmpm()) * (int)Math.ceil(hxxm.getDzjf()) * 20);
+            hxxm.setGzl(GetWorkLoad.calculateWeight(hxxm.getXmpm(),hxxm.getZrs()) * (int)Math.ceil(hxxm.getDzjf()) * 20);
             //存入年份
             hxxm.setNd(GetYear.getYears());
             //添加信息
@@ -168,7 +168,7 @@ public class TeachingResearchController {
             //获取工号
             jc.setGh(user.getGh());
             //获取工作量
-            jc.setGzl(GetWorkLoad.calculateWeight(jc.getZrs(), jc.getXmpm()) * jxcgService.getZxxmgzl(jc.getJcjbbm()));
+            jc.setGzl(GetWorkLoad.calculateWeight(jc.getXmpm(),jc.getZrs()) * jxcgService.getZxxmgzl(jc.getJcjbbm()));
             //存入年份
             jc.setNd(GetYear.getYears());
             //添加信息
@@ -197,7 +197,7 @@ public class TeachingResearchController {
             //获取工号
             jxgg.setGh(user.getGh());
             //获取工作量
-            jxgg.setGzl(GetWorkLoad.calculateWeight(jxgg.getZrs(), jxgg.getXmpm()) * jxcgService.getZxxmgzl(jxgg.getLxjbbm()));
+            jxgg.setGzl(GetWorkLoad.calculateWeight(jxgg.getXmpm(), jxgg.getZrs()) * jxcgService.getZxxmgzl(jxgg.getLxjbbm()));
             //存入年份
             jxgg.setNd(GetYear.getYears());
             //添加信息
