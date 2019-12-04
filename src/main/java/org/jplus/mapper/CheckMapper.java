@@ -60,11 +60,11 @@ public interface CheckMapper {
     public void clearTjztAndShzt(String gh);
 
     //<!--院系  更新审核状态为1 -->
-    @Update("update `tjzt` set shzt = 1, yxshrxm =#{username} , yxshsj = #{date}  where gh=#{gh}")
+    @Update("update `tjzt` set shzt = 2, yxshrxm =#{username} , yxshsj = #{date}  where gh=#{gh}")
     public void setShztByDepartments(@Param("gh") String gh,@Param("username") String userName,@Param("date") Timestamp date);
 
     //<!--教务处 更新审核状态为2 -->
-    @Update("update `tjzt` set shzt = 2, jwcshrxm =#{username} , jwcshsj = #{date}  where gh=#{gh}")
+    @Update("update `tjzt` set shzt = 3, jwcshrxm =#{username} , jwcshsj = #{date}  where gh=#{gh}")
     public void setShztByOffice(@Param("gh") String gh,@Param("username") String userName,@Param("date") Timestamp date);
 
     //<!--院系 更新审核人姓名到提交表 -->

@@ -344,7 +344,7 @@ public class TestCheckController {
         // 如果是院系负责人
         if (users.getActor() == 2){
             if (tjztService.getTjzt(gh).getTjzt() != 0) {
-                // tjzt 将审核状态设置为审核1 ( 院系审核) ,姓名，审核时间写进去
+                // tjzt 将审核状态设置为审核2 ( 院系审核) ,姓名，审核时间写进去
                 checkService.setShztByDepartments(gh,users.getUname(),date);
                 // 将院系审核人的名字写到提交表tjb
                 checkService.setShrgh(gh,users.getGh());
@@ -358,10 +358,10 @@ public class TestCheckController {
             }
         }
         if (users.getActor() == 2){
-            return "redirect:/officecollege";
+            return "redirect:officecollege";
         }
         else {
-            return "redirect:/departmentalaudit";
+            return "redirect:departmentalaudit";
         }
     }
 
@@ -374,10 +374,10 @@ public class TestCheckController {
 
         // 返回上一个页面 officecollege
         if (users.getActor() == 2){
-            return "redirect:/officecollege";
+            return "redirect:officecollege";
         }
         else {
-            return "redirect:/departmentalaudit";
+            return "redirect:departmentalaudit";
         }
     }
 

@@ -112,7 +112,6 @@ public class JbxxServiceImpl implements JbxxService {
 
         Float Zgzl = 0f;
         Zgzl = BksZgzl+YjsZgzl;
-        System.out.println(Zgzl);
         return Zgzl;
     }
 }
