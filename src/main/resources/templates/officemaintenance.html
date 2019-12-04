@@ -167,13 +167,15 @@
                         </select>
                         </div>-->
                         <div>
-                            工号：<input id="gh" name="gh" type="text" class="form-control-1 class-name" placeholder="" />
+                            <span class="meter">工号：</span><input id="gh" name="gh" type="text" class="form-control-1 class-name" placeholder="" />
                         </div>
+                        <div class="warning">工号不能为空！</div>
                         <div>
-                            姓名：<input id="name" name="name" type="text" class="form-control-1 class-name" placeholder="" />
+                            <span class="meter">姓名：</span><input id="name" name="name" type="text" class="form-control-1 class-name" placeholder="" />
                         </div>
+                        <div class="warning">姓名不能为空！</div>
                         <div>
-                            类型：<select id="type" name="type" class="form-control-1">
+                            <span class="meter">类型：</span><select id="type" name="type" class="form-control-1">
                             <!--<option value="3">教务处</option>-->
                             <option value="1">普通教师</option>
                             <!--<option value="2">院系</option>-->
@@ -181,8 +183,8 @@
                         </select>
                         </div>
                         <div class="btn-add">
-                            <button type="button" id="add" onclick="addUser()">添加</button>
-                            <button type="button" id="cancel" data-dismiss="modal">
+                            <button type="submit" class="add" onclick="addUser()">添加</button>
+                            <button type="button" class="cancel" data-dismiss="modal">
                                 取消
                             </button>
                         </div>

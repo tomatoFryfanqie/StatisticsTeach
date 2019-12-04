@@ -212,7 +212,7 @@
             <!-- 提示信息栏 -->
             <div class="msg">
                 <div class="year">年度<span id="year" name="year"></span></div>
-                <div class="total-workload">其它教学工作量小计<span id="all" name="all"></span></div>
+                <div class="total-workload">其它教学工作量总计<span id="all" name="all"></span></div>
                 <button type="button" id="save" name="save" onclick="saveOther()">保存</button>
             </div>
             <!-- 具体工作类别及数目 -->
@@ -244,8 +244,8 @@
                             承担或参与教学文件制定、修订工作
                         </div>
                         <div class="workload">工作量<span class="prompt" id="undertake" name="undertake"></span></div>
-                        <div class="complete right-shift">
-                            参加修订人才培养方案:
+                        <div class="complete">
+                            <span class="right-shift">参加修订人才培养方案:</span>
                             <span th:if="${qTJXGZ!=null && qTJXGZ.xdrcpyfa!=null}">
                                 <input  th:checked="${qTJXGZ.xdrcpyfa}==1" name="reviseTalentTrainingPlan" type="radio" value="1" class="entry-chose" />是
                                                 <input type="radio" th:checked="${qTJXGZ.xdrcpyfa}==0" name="reviseTalentTrainingPlan" value="0"  />否

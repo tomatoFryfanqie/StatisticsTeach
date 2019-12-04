@@ -134,7 +134,25 @@ $(document).ready(function() {
             .next(".warning")
             .css({ display: "none" });
     });
-
+//退出添加框
+    $(".close").on("click", function() {
+        $(".warning")
+            .each(function() {
+                $(this).css({ display: "none" });
+            });
+    });
+    $(".cancel").on("click", function() {
+        $(this)
+            .parent()
+            .siblings()
+            .next(".warning")
+            .css({ display: "none" });
+        $(this)
+            .parent()
+            .siblings()
+            .children(".notnull")
+            .css({ display: "none" });
+    });
 
 //    密码输入***
 //     var str = ""; //定义一个空变量用来存储密码

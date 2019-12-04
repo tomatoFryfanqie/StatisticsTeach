@@ -175,6 +175,9 @@
 .modal-body .close {
   margin-left: 5%;
 }
+.modal-body .cancel {
+  margin-left: 5%;
+}
 #change-password{
   width: 100px;
   height: 24px;
@@ -186,13 +189,4 @@
   position: absolute;
   right: 8%;
   top: 18px;
-}
-/*提示符*/
-.modal-body .warning, .modal-body .notnull {
-  color: red;
-  display: none;
-   margin-left: 70px;
-  height: 20px;
-  font-size: 12px;
-  line-height: 20px;
 }

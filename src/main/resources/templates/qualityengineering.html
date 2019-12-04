@@ -102,7 +102,7 @@
         <!-- 提示信息栏 -->
         <div class="msg">
             <div class="year">年度<span th:text="${year}"></span></div>
-            <div class="total-workload">质量工程工作量小计<span th:text="${sumOfWorkload}">0</span></div>
+            <div class="total-workload">质量工程工作量总计<span th:text="${sumOfWorkload}">0</span></div>
             <!-- Button trigger modal -->
             <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                 添加
@@ -168,7 +168,7 @@
                             <div class="warning">项目总人数不能为空！</div>
                             <div class="btn-add">
                                 <button type="submit" class="add">添加</button>
-                                <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                <button type="button" class="cancel" data-dismiss="modal">取消</button>
                             </div>
                         </form>
                     </div>

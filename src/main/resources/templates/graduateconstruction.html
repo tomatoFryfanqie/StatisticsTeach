@@ -101,7 +101,7 @@
             <div class="msg">
                 <div class="year">年度<span th:text="${year}"></span></div>
                 <!--如果数据库没有，就提醒还未添加数据，如果有，就从数据库中取出-->
-                <div class="total-workload">工作量小计<span th:text="${sumOfWorkload}"></span></div>
+                <div class="total-workload">教学基本建设与学科建设工作量总计<span th:text="${sumOfWorkload}"></span></div>
                 <button type="submit"  id="save">保存</button>
             </div>
             <!-- 具体工作类别及数目 -->
@@ -111,8 +111,8 @@
                         <div class="work-theme undertake right-shift" style="width:100%;">
                             教学基本建设与学科建设工作
                         </div>
-                        <div th:name="sfzxpyfa" class="complete right-shift">
-                            编撰教人才培养方案:
+                        <div th:name="sfzxpyfa" class="complete">
+                            <span class="right-shift">编撰教人才培养方案:</span>
                             <span th:switch="${sfzxpyfa}">
                                 <span th:case="0">
                                     <input  th:name="sfzxpyfa" th:value="1" type="radio" name="newentry" value="new"

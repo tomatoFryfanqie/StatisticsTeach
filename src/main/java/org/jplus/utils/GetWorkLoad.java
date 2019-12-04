@@ -125,7 +125,7 @@ public class GetWorkLoad {
         if (skrs <= bzrs) {
             getWork = (float) jhxs * 1.5f;
         } else {
-            getWork = (float) jhxs * 1.5f * (1.0f + (float) ((skrs - bzrs) / skrs));
+            getWork = (float) jhxs * 1.5f * (1.0f +  ((float)(skrs - bzrs) / skrs));
         }
         return getWork;
     }
