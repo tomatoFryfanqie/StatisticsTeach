@@ -32,11 +32,8 @@ public class OfficecollegeController {
     //审核各院工作量本院信息显示
     @NeedLogin
     @RequestMapping("/departmentalaudit")
-    public String departmentalaudit(Users user,Model model){
-        //用于回显数据
-        model.addAttribute("theyxbm",officecollegeService.getYxbm(user.getGh()));
+    public String departmentalaudit(Model model){
         model.addAttribute("yxbms",officecollegeService.getAllYxbm());
-        model.addAttribute("Checkgzls",officecollegeService.getCheckgzlInfByGh(user.getGh()));
         return "departmentalaudit";
     }
 

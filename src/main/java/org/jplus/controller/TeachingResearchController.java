@@ -168,7 +168,7 @@ public class TeachingResearchController {
             //获取工号
             jc.setGh(user.getGh());
             //获取工作量
-            jc.setGzl(GetWorkLoad.calculateWeight(jc.getXmpm(),jc.getZrs()) * jxcgService.getZxxmgzl(jc.getJcjbbm()));
+            jc.setGzl(GetWorkLoad.calculateWeight(jc.getXmpm(),jc.getZrs()) * jxcgService.getJcGdgzl(jc.getJcjbbm()));
             //存入年份
             jc.setNd(GetYear.getYears());
             //添加信息
@@ -197,7 +197,7 @@ public class TeachingResearchController {
             //获取工号
             jxgg.setGh(user.getGh());
             //获取工作量
-            jxgg.setGzl(GetWorkLoad.calculateWeight(jxgg.getXmpm(), jxgg.getZrs()) * jxcgService.getZxxmgzl(jxgg.getLxjbbm()));
+            jxgg.setGzl(GetWorkLoad.calculateWeight(jxgg.getXmpm(), jxgg.getZrs()) * jxcgService.getJxgggzl(jxgg.getLxjbbm()));
             //存入年份
             jxgg.setNd(GetYear.getYears());
             //添加信息
