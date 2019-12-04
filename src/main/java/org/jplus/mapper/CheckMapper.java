@@ -21,6 +21,10 @@ import java.sql.Timestamp;
  **/
 @Component
 public interface CheckMapper {
+
+
+    public String getLxmcByGh(String gh);
+
     //根据院系编码，取出院系名称
     public String getLxmc(Integer yxbm);
 

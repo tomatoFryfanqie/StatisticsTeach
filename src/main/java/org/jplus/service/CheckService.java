@@ -16,6 +16,10 @@ import java.sql.Timestamp;
  * @create: 2019-11-19 14:17
  **/
 public interface CheckService {
+
+//    <!--根据工号查院系名称-->
+    public String getLxmcByGh(String gh);
+
     public String getYxmc(Integer yxbm);
 
     public BkssjjxInfo getBKSSJJXInfo(String gh);
