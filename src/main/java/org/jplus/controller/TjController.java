@@ -22,7 +22,6 @@ public class TjController {
     public String submit(Users users){
 
         java.sql.Timestamp date = new java.sql.Timestamp(new Date().getTime());
-        System.out.println(date);
         tjztService.updateTjzt(users.getGh(),date);
         tjztService.insertTJB(GetYear.getYears(),users.getGh());
         return "redirect:basicinformation";

@@ -127,6 +127,15 @@ $(document).ready(function() {
         }
     });
 
+//  退出添加模态框
+    $(".close").on("click", function() {
+        $(this)
+            .parent()
+            .next(".warning")
+            .css({ display: "none" });
+    });
+
+
 //    密码输入***
 //     var str = ""; //定义一个空变量用来存储密码
 //     $(".password").keyup(function() {

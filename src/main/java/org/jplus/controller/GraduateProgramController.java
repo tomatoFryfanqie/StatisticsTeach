@@ -39,7 +39,7 @@ public class GraduateProgramController {
         //横向项目总分不超过200
         model.addAttribute("hxxmGzl",yjsjyxmService.getYjshxxmGzlSum(user.getGh()) > 200.0f ?
                 200.0f : yjsjyxmService.getYjshxxmGzlSum(user.getGh()));
-        return "/graduateprogram";
+        return "graduateprogram";
     }
 
 //教研项目删除
@@ -49,7 +49,7 @@ public class GraduateProgramController {
         if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
             yjsjyxmService.delYjsjyxm(id);
         }
-        return "redirect:/graduateprogram";
+        return "redirect:graduateprogram";
     }
 
 //教研项目新增
@@ -61,12 +61,11 @@ public class GraduateProgramController {
             //获取年度
             yjsjyxm.setNd(GetYear.getYears());
             //获取工作量
-            yjsjyxm.setGzl(GetWorkLoad.GetWorkCount(yjsjyxm.getZrs(), yjsjyxm.getXmpm(),
-                    yjsjyxm.getXmdjbm() == 1 ? 200 : 50));
+            yjsjyxm.setGzl(GetWorkLoad.calculateWeight(yjsjyxm.getXmpm(),yjsjyxm.getZrs()) * yjsjyxm.getXmdjbm() == 1 ? 200f : 50f);
             //添加项目的一列
             yjsjyxmService.addYjsjyxm(yjsjyxm);
         }
-        return "redirect:/graduateprogram";
+        return "redirect:graduateprogram";
     }
 
 //研究生横向项目删除
@@ -76,7 +75,7 @@ public class GraduateProgramController {
         if (tjztService.getTjzt(user.getGh()).getTjzt() == 0) {
             yjsjyxmService.delYjshxxm(id);
         }
-        return "redirect:/graduateprogram";
+        return "redirect:graduateprogram";
     }
 
 //研究生横向项目新增
@@ -88,11 +87,10 @@ public class GraduateProgramController {
             //获取年度
             yjshxxm.setNd(GetYear.getYears());
             //获取工作量
-            yjshxxm.setGzl(GetWorkLoad.GetHxWorkCount(yjshxxm.getZrs(),yjshxxm.getXmpm(),
-                    yjshxxm.getDzjf()));
+            yjshxxm.setGzl(GetWorkLoad.calculateWeight(yjshxxm.getXmpm(),yjshxxm.getZrs()) * (int)Math.ceil(yjshxxm.getDzjf()) * 20);
             //添加项目的一列
             yjsjyxmService.addYjshxxm(yjshxxm);
         }
-        return "redirect:/graduateprogram";
+        return "redirect:graduateprogram";
     }
 }

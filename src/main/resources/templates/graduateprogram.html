@@ -122,21 +122,21 @@
                             <div class="modal-body">
                                 <form th:action="@{/addYjsjyxm}" method="post">
                                     <div>
-                                        项目名称：<input type="text" class="form-control-1 class-name form-control-jub" th:name="xmmc"/>
+                                        <span class="meter">项目名称：</span><input type="text" class="form-control-1 class-name form-control-jub" th:name="xmmc"/>
                                     </div>
                                     <div class="warning">项目名称不能为空！</div>
                                     <div>
-                                        项目等级：<select  th:name="xmdjbm" class="form-control-1">
+                                        <span class="meter">项目等级：</span><select  th:name="xmdjbm" class="form-control-1">
                                             <option th:text="国家级" th:value="1"></option>
                                             <option th:text="省级" th:value="2"></option>
                                         </select>
                                     </div>
                                     <div>
-                                        项目排名：<input type="text" class="form-control-1 class-number form-control-jub timenum" th:name="xmpm"/>
+                                        <span class="meter">项目排名：</span><input type="text" class="form-control-1 class-number form-control-jub timenum" th:name="xmpm"/>
                                     </div>
                                     <div class="warning">项目排名不能为空！</div>
                                     <div>
-                                        项目总人数：<input type="text" class="form-control-1 class-number form-control-jub timenum" th:name="zrs"/>
+                                        <span class="meter">项目总人数：</span><input type="text" class="form-control-1 class-number form-control-jub timenum" th:name="zrs"/>
                                     </div>
                                     <div class="warning">项目总人数不能为空！</div>
                                     <div class="btn-add">
@@ -203,19 +203,19 @@
                             <div class="modal-body">
                                 <form th:action="@{/addYjshxxm}" method="post">
                                     <div>
-                                        项目名称：<input type="text" class="form-control-1 class-name form-control-jub" placeholder="" th:name="xmmc"/>
+                                        <span class="meter">项目名称：</span><input type="text" class="form-control-1 class-name form-control-jub" placeholder="" th:name="xmmc"/>
                                     </div>
                                     <div class="warning">项目名称不能为空！</div>
                                     <div>
-                                        到账经费：<input type="text" class="form-control-1 class-number form-control-jub" placeholder="" th:name="dzjf"/>
+                                        <span class="meter">到账经费：</span><input type="text" class="form-control-1 class-number form-control-jub" placeholder="" th:name="dzjf"/><span style="padding-left:5px">万元</span>
                                     </div>
                                     <div class="warning">到账经费不能为空！</div>
                                     <div>
-                                        项目排名：<input type="text" class="form-control-1 class-number form-control-jub timenum" placeholder="" th:name="xmpm" />
+                                        <span class="meter">项目排名：</span><input type="text" class="form-control-1 class-number form-control-jub timenum" placeholder="" th:name="xmpm" />
                                     </div>
                                     <div class="warning">项目排名不能为空！</div>
                                     <div>
-                                        项目总人数：<input type="text" class="form-control-1 class-number form-control-jub timenum" placeholder="" th:name="zrs"/>
+                                        <span class="meter">项目总人数：</span><input type="text" class="form-control-1 class-number form-control-jub timenum" placeholder="" th:name="zrs"/>
                                     </div>
                                     <div class="warning">项目总人数不能为空！</div>
                                     <div class="btn-add">

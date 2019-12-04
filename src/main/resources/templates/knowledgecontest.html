@@ -19,8 +19,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
-    <link rel="stylesheet" href="css/knowledgecontest.css" />
     <link rel="stylesheet" href="css/tablestyle.css" />
+    <link rel="stylesheet" href="css/knowledgecontest.css" />
     <!--    输入框-->
     <script src="js/classroomteaching.js"></script>
     <!--<script src="../../js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}"></script>-->
@@ -249,7 +249,7 @@
             <!-- 提示信息栏 -->
             <div class="msg">
                 <div class="year">年度<span  id="year" name="year"></span></div>
-                <div class="total-workload">工作总量<span id="all" name="all"></span></div>
+                <div class="total-workload">教学竞赛获奖工作量总计<span id="all" name="all"></span></div>
             </div>
             <div>
                 <!-- 指导学生竞赛-提示信息栏 -->
@@ -270,16 +270,16 @@
                                     &times;
                                 </button>
                                 <h5 class="modal-title" id="" style="text-align: center;">
-                                    指导学生竞赛
+                                    指导学生竞赛新增
                                 </h5>
                             </div>
                             <div class="modal-body">
                                     <div>
-                                        竞赛名称：<input type="text" id="contestName" name="contestName" class="form-control-1 class-name form-control-jub" placeholder="" />
+                                        <span class="meter">竞赛名称：</span><input type="text" id="contestName" name="contestName" class="form-control-1 class-name form-control-jub" placeholder="" />
                                     </div>
                                     <div class="warning">竞赛名称不能为空！</div>
                                     <div>
-                                        竞赛类别：<select id="competition" name="competition" class="form-control-1">
+                                        <span class="meter">竞赛类别：</span><select id="competition" name="competition">
                                             <option value="1">A类师范生教学技能竞赛</option>
                                             <option value="2">B类师范生教学技能竞赛</option>
                                             <option value="3">A类其他竞赛</option>
@@ -288,7 +288,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        竞赛级别：<select id="contestLevel" name="contestLevel" class="form-control-1">
+                                        <span class="meter">竞赛级别：</span><select id="contestLevel" name="contestLevel">
                                         <option value="1">国家级</option>
                                         <option value="2">省级</option>
                                         <option value="3">校级</option>
@@ -298,7 +298,7 @@
                                         <!--<input type="text" id="contestLevel" name="contestLevel" class="form-control-1 class-number" placeholder="" />-->
                                     </div>
                                     <div>
-                                        指导学生人数：<input type="text" id="studentNum" name="studentNum" class="form-control-1 form-control-jub timenum" placeholder="" />
+                                        <span class="meter">指导学生人数：</span><input type="text" id="studentNum" name="studentNum" class="form-control-1 form-control-jub timenum" placeholder="" />
                                     </div>
                                     <div class="warning">指导学生人数不能为空！</div>
                                     <div class="btn-add">
@@ -363,16 +363,16 @@
                                     &times;
                                 </button>
                                 <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                                    教师教学能力竞赛获奖
+                                    教师教学能力竞赛获奖新增
                                 </h5>
                             </div>
                             <div class="modal-body">
                                     <div>
-                                        竞赛名称：<input type="text" id="teacherCompetitionName" name="teacherCompetitionName" class="form-control-1 form-control-jub class-name" placeholder="" />
+                                        <span class="meter">竞赛名称：</span><input type="text" id="teacherCompetitionName" name="teacherCompetitionName" class="form-control-1 form-control-jub class-name" placeholder="" />
                                     </div>
                                 <div class="warning">竞赛名称不能为空！</div>
                                     <div>
-                                        竞赛等级：<select id="teacherCompetitioncategory" name="teacherCompetitioncategory">
+                                        <span class="meter">竞赛等级：</span><select id="teacherCompetitioncategory" name="teacherCompetitioncategory">
                                             <option value="1">国家级一等奖</option>
                                             <option value="2">国家级二等奖</option>
                                             <option value="3">国家级三等奖</option>
@@ -385,7 +385,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        竞赛形式：<select id="teacherCompetitionform" name="teacherCompetitionform" class="form-control-1">
+                                        <span class="meter">竞赛形式：</span><select id="teacherCompetitionform" name="teacherCompetitionform">
                                             <option value="1">讲课</option>
                                             <option value="2">课件</option>
                                             <option value="3">微课</option>

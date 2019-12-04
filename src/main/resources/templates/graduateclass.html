@@ -21,8 +21,8 @@
     <!-- 引用bootstrap及基础样式 -->
     <script src="js/link.js"></script>
     <!-- 表格样式 -->
-    <link rel="stylesheet" href="css/classroomteaching.css" />
     <link rel="stylesheet" href="css/tablestyle.css" />
+    <link rel="stylesheet" href="css/classroomteaching.css" />
     <!--    输入框验证-->
     <script src="js/classroomteaching.js"></script>
 </head>
@@ -131,33 +131,33 @@
                         <div class="modal-body">
                             <form th:action="@{/addYjsClassInfo}" method="post">
                                 <div>
-                                    <span class="passwordtip" style="letter-spacing: 30px;">学</span>期：
-                                    <select th:name="xq" class="form-control-1">
+                                    <span class="meter"><span class="passwordtip" style="letter-spacing: 30px;">学</span>期：</span>
+                                    <select th:name="xq">
                                         <option th:name="xq" th:value="${1}">1</option>
                                         <option th:name="xq" th:value="${2}">2</option>
                                     </select>
                                 </div>
                                 <div>
-                                    课程名称：<input type="text" th:name="kcmc" class="form-control-1 class-name form-control-jub"  />
+                                    <span class="meter">课程名称：</span><input type="text" th:name="kcmc" class="form-control-1 class-name form-control-jub"  />
                                 </div>
                                 <div class="warning">课程名称不能为空！</div>
                                 <div>
-                                    课程类型：<select th:name="kclx" class="form-control-1">
+                                    <span class="meter">课程类型：</span><select th:name="kclx">
                                     <option th:name="kclx" th:each="ktlxType:${yjskclx}" th:value="${ktlxType.kclxbm}"
                                             th:text="${ktlxType.kclxmc}"
                                     ></option>
                                     </select>
                                 </div>
                                 <div>
-                                    授课对象：<input type="text" th:name="skdx" class="form-control-1 class-number form-control-jub"  />
+                                    <span class="meter">授课对象：</span><input type="text" th:name="skdx" class="form-control-1 class-number form-control-jub"  />
                                 </div>
                                 <div class="warning">授课对象不能为空！</div>
                                 <div th:name="jhxs">
-                                    计划学时：<input type="text" th:name="jhxs" class="form-control-1 form-control-jub timenum"  />
+                                    <span class="meter">计划学时：</span><input type="text" th:name="jhxs" class="form-control-1 form-control-jub timenum"  />
                                 </div>
                                 <div class="warning">计划学时不能为空！</div>
                                 <div th:name="skrs">
-                                    上课人数：<input type="text" th:name="skrs" class="form-control-1 form-control-jub timenum"  />
+                                    <span class="meter">上课人数：</span><input type="text" th:name="skrs" class="form-control-1 form-control-jub timenum"  />
                                 </div>
                                 <div class="warning">上课人数不能为空！</div>
                                 <div class="btn-add">
