@@ -28,4 +28,7 @@ public interface CheckgzlMapper {
     //查一个院系的数据根据院系编码
     List<Checkgzl> getCheckgzlInfByYxbm(Integer yxbm);
 
+    //查询所有院系数据
+    List<Checkgzl> getAllCheckgzlInf();
+
 }

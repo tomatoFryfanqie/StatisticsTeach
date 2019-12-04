@@ -11,7 +11,7 @@
 
     <select id="getCheckgzlInfByGh" resultType="org.jplus.pojo.checkgzl.Checkgzl">
                SELECT
-	              users.gh,
+	              jbxx.gh,
 	              users.uname,
 	              jbxx.edgzl,
 	              zwbm.zwmc,
@@ -25,16 +25,16 @@
                 LEFT JOIN zwbm ON jbxx.zwbm = zwbm.zwbm
                 LEFT JOIN tjb ON tjb.gh = users.gh
                 LEFT JOIN tjzt ON tjzt.gh = users.gh
-                WHERE users.yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
+                WHERE jbxx.yxbm = (SELECT yxbm FROM users WHERE gh = #{gh})
     </select>
 
     <select id="getAllYxbm" resultType="org.jplus.pojo.basisInfo.Yxbm">
-        SELECT * FROM yxbm
+        SELECT * FROM yxbm WHERE yxbm != 22
     </select>
 
     <select id="getCheckgzlInfByYxbm" resultType="org.jplus.pojo.checkgzl.Checkgzl">
                  SELECT
-	              users.gh,
+	              jbxx.gh,
 	              users.uname,
 	              jbxx.edgzl,
 	              zwbm.zwmc,
@@ -48,7 +48,25 @@
                 LEFT JOIN zwbm ON jbxx.zwbm = zwbm.zwbm
                 LEFT JOIN tjb ON tjb.gh = users.gh
                 LEFT JOIN tjzt ON tjzt.gh = users.gh
-                WHERE users.yxbm = #{yxbm}
+                WHERE jbxx.yxbm = #{yxbm}
+    </select>
+
+    <select id="getAllCheckgzlInf" resultType="org.jplus.pojo.checkgzl.Checkgzl">
+                 SELECT
+	              jbxx.gh,
+	              users.uname,
+	              jbxx.edgzl,
+	              zwbm.zwmc,
+	              tjb.bkszgzl,
+	              tjb.yjszgzl,
+	              tjzt.shzt,
+	              tjzt.tjzt
+                FROM
+	                users
+                INNER JOIN jbxx ON jbxx.gh = users.gh
+                LEFT JOIN zwbm ON jbxx.zwbm = zwbm.zwbm
+                LEFT JOIN tjb ON tjb.gh = users.gh
+                LEFT JOIN tjzt ON tjzt.gh = users.gh
     </select>
 
 </mapper>
