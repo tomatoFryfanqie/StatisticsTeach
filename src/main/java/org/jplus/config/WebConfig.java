@@ -9,10 +9,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
-/**
- * @author imlgw.top
- * @date 2019/10/31 18:47
- */
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
 

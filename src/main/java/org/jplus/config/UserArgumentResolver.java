@@ -9,10 +9,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-/**
- * @author imlgw.top
- * @date 2019/10/31 18:47
- */
+
 @Component
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
