@@ -84,6 +84,7 @@ $(document).ready(function() {
             return false;
         }
     });
+
     //   输入新密码验证
     $(".modify").on("click", function() {
         //验证修改密码

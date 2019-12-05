@@ -24,33 +24,34 @@
     <!-- 引用bootstrap及基础样式 -->
     <link rel="stylesheet" href="css/tablestyle.css" />
     <link rel="stylesheet" href="css/usermaintenance.css" />
+    <!--    添加样式-->
+    <script src="js/ward.js"></script>
 
-
-    <script>
-        function addOfficeUser() {
-            var department = $("#department").val();
-            var gh = $("#gh").val();
-            var name = $("#name").val();
-            var type = $("#type").val();
-            $.ajax({
-                type: 'POST',
-                url: "/addOfficeUser",
-                data:{
-                    department: department,
-                    gh: gh,
-                    name: name,
-                    type: type
-                },
-                success: function(data){
-                    location.reload(true);
-                    alert(data);
-                },
-                error : function(data) {
-                    location.reload(true);
-                }
-            });
-        }
-    </script>
+<!--    <script>-->
+<!--        function addOfficeUser() {-->
+<!--            var department = $("#department").val();-->
+<!--            var gh = $("#gh").val();-->
+<!--            var name = $("#name").val();-->
+<!--            var type = $("#type").val();-->
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url: "/addOfficeUser",-->
+<!--                data:{-->
+<!--                    department: department,-->
+<!--                    gh: gh,-->
+<!--                    name: name,-->
+<!--                    type: type-->
+<!--                },-->
+<!--                success: function(data){-->
+<!--                    location.reload(true);-->
+<!--                    alert(data);-->
+<!--                },-->
+<!--                error : function(data) {-->
+<!--                    location.reload(true);-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
 </head>
 
 <body>
@@ -76,10 +77,11 @@
                         &times;
                     </button>
                     <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                        修改密码
+                        <div>修改密码</div>
+                        <div style="color: #424251;font-size: 12px;margin-top: 2%;">(提示：若密码修改成功后,会跳回登录页面)</div>
                     </h5>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modaldiv">
                     <form action="/updatepassword3" method="post">
                         <div>
                             原密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="oldPassword"/>
@@ -109,7 +111,7 @@
         <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="maintenance active">
-                    <a href="#">用户维护</a>
+                    <a href="#">院系审核人维护</a>
                 </div>
                 <div class="collegeworkload"><a th:href="@{/departmentalaudit}">审核各学院工作量</a></div>
                 <div class="export"><a th:href="@{/QXexcelOut}">导出工作量统计表</a></div>
@@ -118,6 +120,7 @@
     </div>
     <!-- 用户维护界面 -->
     <div class="informationwarp" id="informationwarp">
+        <div class="information-title">审核人员列表</div>
         <!-- 保存按钮 -->
         <button type="button" id="save" data-toggle="modal" data-target="#myModal">添加</button>
         <!-- 模态框（Modal）登陆界面 -->
@@ -137,7 +140,7 @@
                     <!-- 添加维护用户 -->
                     <div class="modal-body">
                         <div>
-                            <span class="meter">院系：</span><select id="department" name="department" class="form-control-1">
+                            <span class="meter"><span class="passwordtip" style="letter-spacing: 30px;">院</span>系：</span><select id="department" name="department">
                             <option value="1">经济管理与法学院</option>
                             <option value="2">马克思主义学院</option>
                             <option value="3">教育科学学院</option>
@@ -169,21 +172,21 @@
                         </select>
                         </div>
                         <div>
-                            <span class="meter">工号：</span><input id="gh" name="gh" type="text" class="form-control-1 class-name" placeholder="" />
+                            <span class="meter"><span class="passwordtip" style="letter-spacing: 30px;">工</span>号：</span><input id="gh" name="gh" type="text" class="form-control-1 form-control-jub" placeholder="" />
                         </div>
                         <div class="warning">工号不能为空！</div>
                         <div>
-                            <span class="meter">姓名：</span><input id="name" name="name" type="text" class="form-control-1 class-name" placeholder="" />
+                            <span class="meter"><span class="passwordtip" style="letter-spacing: 30px;">姓</span>名：</span><input id="name" name="name" type="text" class="form-control-1 form-control-jub" placeholder="" />
                         </div>
                         <div class="warning">姓名不能为空！</div>
                         <div>
-                            <span class="meter">类型：</span><select id="type" name="type">
+                            <span class="meter"><span class="passwordtip" style="letter-spacing: 30px;">类</span>型：</span><select id="type" name="type">
                             <option value="3">教务处教师</option>
                             <option value="2">院系审查教师</option>
                         </select>
                         </div>
                         <div class="btn-add">
-                            <button type="submit" class="add" onclick="addOfficeUser()">添加</button>
+                            <button type="submit" class="adddepartment">添加</button>
                             <button type="button" class="cancel" data-dismiss="modal">
                                 取消
                             </button>

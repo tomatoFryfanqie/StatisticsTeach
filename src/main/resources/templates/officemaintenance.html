@@ -25,31 +25,33 @@
     <script src="js/classroomteaching.js"></script>
     <link rel="stylesheet" href="css/tablestyle.css" />
     <link rel="stylesheet" href="css/usermaintenance.css" />
+    <!--    添加样式-->
+    <script src="js/ward.js"></script>
 
-    <script>
-        function addUser() {
-            var gh = $("#gh").val();
-            var name = $("#name").val();
-            var type = $("#type").val();
-            $.ajax({
-                type: 'POST',
-                url: "/addUser",
-                data:{
-                    gh: gh,
-                    name: name,
-                    type: type
-                },
-                success: function(data){
-                    location.reload(true);
-                    alert(data);
-                },
-                error : function(data) {
-                    location.reload(true);
-                }
-            });
-        }
+<!--    <script>-->
+<!--        function addUser() {-->
+<!--            var gh = $("#gh").val();-->
+<!--            var name = $("#name").val();-->
+<!--            var type = $("#type").val();-->
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url: "/addUser",-->
+<!--                data:{-->
+<!--                    gh: gh,-->
+<!--                    name: name,-->
+<!--                    type: type-->
+<!--                },-->
+<!--                success: function(data){-->
+<!--                    location.reload(true);-->
+<!--                    alert(data);-->
+<!--                },-->
+<!--                error : function(data) {-->
+<!--                    location.reload(true);-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
 
-    </script>
+<!--    </script>-->
 </head>
 
 <body>
@@ -74,28 +76,29 @@
                         &times;
                     </button>
                     <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
-                        修改密码
+                        <div>修改密码</div>
+                        <div style="color: #424251;font-size: 12px;margin-top: 2%;">(提示：若密码修改成功后,会跳回登录页面)</div>
                     </h5>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modaldiv">
                     <form action="/updatepassword2" method="post">
                         <div>
                             原密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="oldPassword"/>
                         </div>
-                        <div class="warning">原密码不能为空！</div>
+                        <div class="warning unquie">原密码不能为空！</div>
                         <div>
                             新密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="newPassword"/>
                         </div>
-                        <div class="warning">新密码不能为空！</div>
+                        <div class="warning unquie">新密码不能为空！</div>
                         <div>
                             请确认密码：<input type="password" class="form-control-1 form-control-jub class-number password" placeholder=""
                                          name="newPassword2" />
                         </div>
-                        <div class="warning">请确认密码不能为空！</div>
+                        <div class="warning unquie">确认密码不能为空！</div>
                         <div class="notnull">新密码与确认密码不一致！</div>
                         <div class="btn-add">
                             <button type="submit" class="modify">修改</button>
-                            <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                            <button type="button" class="cancel" data-dismiss="modal">取消</button>
                         </div>
                     </form>
                 </div>
@@ -116,6 +119,7 @@
     </div>
     <!-- 用户维护界面 -->
     <div class="informationwarp" id="informationwarp">
+        <div class="information-title">教师列表</div>
         <!-- 保存按钮 -->
         <button type="button" id="save" data-toggle="modal" data-target="#myModal">添加</button>
         <!-- 模态框（Modal）登陆界面 -->
@@ -167,15 +171,15 @@
                         </select>
                         </div>-->
                         <div>
-                            <span class="meter">工号：</span><input id="gh" name="gh" type="text" class="form-control-1 class-name" placeholder="" />
+                            <span class="meter"><span class="passwordtip">工</span>号：</span><input id="gh" name="gh" type="text" class="form-control-1 form-control-jub" placeholder="" />
                         </div>
                         <div class="warning">工号不能为空！</div>
                         <div>
-                            <span class="meter">姓名：</span><input id="name" name="name" type="text" class="form-control-1 class-name" placeholder="" />
+                            <span class="meter"><span class="passwordtip">姓</span>名：</span><input id="name" name="name" type="text" class="form-control-1 form-control-jub" placeholder="" />
                         </div>
                         <div class="warning">姓名不能为空！</div>
                         <div>
-                            <span class="meter">类型：</span><select id="type" name="type" class="form-control-1">
+                            <span class="meter"><span class="passwordtip">类</span>型：</span><select id="type" name="type">
                             <!--<option value="3">教务处</option>-->
                             <option value="1">普通教师</option>
                             <!--<option value="2">院系</option>-->
@@ -183,7 +187,7 @@
                         </select>
                         </div>
                         <div class="btn-add">
-                            <button type="submit" class="add" onclick="addUser()">添加</button>
+                            <button type="submit" class="addoffice">添加</button>
                             <button type="button" class="cancel" data-dismiss="modal">
                                 取消
                             </button>

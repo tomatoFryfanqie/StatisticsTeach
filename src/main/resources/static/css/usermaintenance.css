@@ -1,3 +1,4 @@
+
 /* 基本信息基础布局 */
 .informationwarp {
   width: 80%;
@@ -7,6 +8,18 @@
   position: absolute;
   top: 60px;
   left: 20%;
+}
+/* 标题 */
+.information-title {
+  height: 30px;
+  line-height: 30px;
+  /* text-align: center; */
+  margin-top: 1%;
+  margin-left: 37%;
+}
+/*字间距*/
+.passwordtip {
+  letter-spacing: 30px;
 }
 .msg-warp {
   width: 100%;
@@ -20,8 +33,9 @@
   padding: 0.5px 8px;
   border-radius: 5px;
   margin-left: 80%;
-  margin-top: 3%;
+  /*margin-top: 3%;*/
 }
+
 /* 表格设置 */
 .table-wrap {
   width: 100%;
@@ -40,12 +54,10 @@
   background-color: #d9e1f2;
 }
 
-.modal-header {
-  height: 70px;
-}
 
 .modal-header h5 {
   padding: 5% 0;
+  padding-bottom: 0;
 }
 
 .modal-body {
@@ -74,9 +86,12 @@
   display: block;
   padding-left: 5%;
 }
-
+/*修改密码居中*/
+.modaldiv{
+  text-align: center;
+}
 .modal-body div .form-control-1 {
-  width: 30%;
+  width: 50%;
   height: 25px;
 }
 
@@ -106,11 +121,11 @@
   border: 2px solid #006abb;
 }
 
-.modal-body #add {
+.modal-body .add {
   margin-right: 5%;
 }
 
-.modal-body #cancel {
+.modal-body .cancel {
   margin-left: 5%;
 }
   #change-password{
