@@ -39,13 +39,12 @@ public class UserController {
             LoginVo loginVo, BindingResult bindingResult, Model model) throws IOException {
         if (bindingResult.hasErrors()){
             model.addAttribute("error","账号或密码不能为空！！！");
-            return "login";
+            return "Login";
         }
-        System.out.println(loginVo);
         Users user=userService.login(loginVo,request,response);
         if (user==null){
             model.addAttribute("error","账号密码错误");
-            return "login";
+            return "Login";
         }
         if (user.getActor()==3){
             return "redirect:officeUser";
