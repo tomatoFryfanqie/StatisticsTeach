@@ -1,9 +1,6 @@
 package org.jplus.pojo.masterCompartitionAndOther;
 
-/**
- * @author wb
- * @date 2019/11/8 - 10:07
- */
+
 public class ZDSSLW {
     private Integer zdsslwid;
     private String gh;

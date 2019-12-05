@@ -18,12 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-/**
- * @author wb
- * @date 2019/11/8 - 9:38
- */
+
 @Controller
-public class graduateawardController {
+public class GraduateawardController {
 
     @Autowired
     private TjztService tjztService;
@@ -61,6 +58,7 @@ public class graduateawardController {
         }
         model.addAttribute("allStudentCompetitionList", list);
         model.addAttribute("zDSSLW", zDSSLW);
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "graduateaward";
     }
 

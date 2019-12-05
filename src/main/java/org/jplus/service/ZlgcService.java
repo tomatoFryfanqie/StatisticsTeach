@@ -5,12 +5,7 @@ import org.jplus.pojo.zlgc.ZlgcAccept;
 
 import java.util.List;
 
-/**
- * @program: StatisticsTeach
- * @description: 质量工程业务类
- * @author: MH
- * @create: 2019-11-02 15:26
- **/
+
 
 public interface ZlgcService {
 

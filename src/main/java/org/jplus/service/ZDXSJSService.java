@@ -6,10 +6,7 @@ import org.jplus.pojo.queryVo.ZdxsjsVo;
 
 import java.util.List;
 
-/**
- * @author wb
- * @date 2019/10/31 - 14:43
- */
+
 public interface ZDXSJSService {
     /**
      * 获取工作量信息

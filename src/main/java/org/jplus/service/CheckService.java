@@ -9,12 +9,7 @@ import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
 
 import java.sql.Timestamp;
 
-/**
- * @program: StatisticsTeach
- * @description: 审核界面的业务处理类
- * @author: MH
- * @create: 2019-11-19 14:17
- **/
+
 public interface CheckService {
 
 //    根据工号查院系编码

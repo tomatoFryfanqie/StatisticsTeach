@@ -36,6 +36,7 @@ public class ClassroomTeachController {
         model.addAttribute("ktjxgzlSum", bksktjxService.getBkjxgzlSum(users.getGh()));
         /*获取校验错误信息*/
         model.addAttribute("ClassError",classError);
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "classroomteaching";
     }
 

@@ -1,9 +1,6 @@
 package org.jplus.pojo.undergraduateCompatitonAndOther;
 
-/**
- * @author wb
- * @date 2019/10/28 - 13:39
- */
+
 public class QTJXGZ {
     private Integer qtjxgzid;
     private String gh;

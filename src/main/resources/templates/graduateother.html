@@ -113,7 +113,7 @@
                     </li>
                     <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                     <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-                    <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                    <li class="list-group-item"><a th:href="@{/know}">教学竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
                 </ul>
                 <!-- 研究生 -->
@@ -158,8 +158,10 @@
             <!-- 提示信息栏 -->
             <div class="msg">
                 <div class="year">年度<span id="year" name="year">2019</span></div>
-                <div class="total-workload">其它教学工作量小计<span id="all" name="all"></span></div>
-                <button type="button" id="save" onclick="saveOther()">保存</button>
+                <div class="total-workload">其它教学工作量总计<span id="all" name="all"></span></div>
+                <span th:if="${hidden==0}">
+                    <button type="button" id="save" onclick="saveOther()">保存</button>
+                </span>
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">

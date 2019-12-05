@@ -2,13 +2,7 @@ package org.jplus.pojo.classTeach;
 
 import lombok.Data;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.pojo.classTeach
- * @Author: lzh
- * @CreateTime: 2019/10/31
- * @Description: Description
- */
+
 @Data
 public class Bksktjx {
 

@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 import static org.jplus.utils.GetWorkLoad.getSjjxWork;
 
-/**
- * @author imlgw.top
- * @date 2019/10/30 16:11
- */
 
 @Controller
 public class BkssjjxController {
@@ -56,6 +52,7 @@ public class BkssjjxController {
         Optional.ofNullable(bkssjjxService.selectZylxbm()).ifPresent(zybm-> model.addAttribute("zylxlist",zybm));
         Optional.ofNullable(bkssjjxService.selectBkssjjx(user.getGh())).ifPresent(sjjx->model.addAttribute
                 ("bkssjjx",getSjjxWork(sjjx)));
+        model.addAttribute("hidden",tjztService.getTjzt(user.getGh()).getTjzt());
         /*BkssjjxEx sjjxWork = getSjjxWork(bkssjjxService.selectBkssjjx(user.getGh()));
         Optional.ofNullable(sjjxWork).ifPresent(bkssjjx -> model
                 .addAttribute

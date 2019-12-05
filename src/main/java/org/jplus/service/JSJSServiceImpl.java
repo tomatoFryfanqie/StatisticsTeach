@@ -9,10 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author wb
- * @date 2019/10/31 - 18:54
- */
 @Service
 public class JSJSServiceImpl implements JSJSService {
 

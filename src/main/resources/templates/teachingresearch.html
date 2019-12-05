@@ -51,7 +51,7 @@
             </li>
             <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
             <li class="list-group-item active"><a th:href="@{/teachingresearch}">教学研究</a></li>
-            <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+            <li class="list-group-item"><a th:href="@{/know}">教学竞赛获奖</a></li>
             <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
           </ul>
           <!-- 研究生 -->
@@ -105,7 +105,9 @@
         <div class="msgs">
           <div class="subtitle">教学成果</div>
           <div class="workload">工作量小计<span th:text="${jxcgGzl}"></span></div>
-          <button type="button" id="save" data-toggle="modal" data-target="#guideStudents">添加</button>
+          <span th:if="${hidden==0}">
+            <button type="button" id="save" data-toggle="modal" data-target="#guideStudents">添加</button>
+          </span>
         </div>
               <!-- 模态框（Modal）登陆界面 -->
       <div class="modal fade" id="guideStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -183,7 +185,10 @@
       <div class="msgs">
         <div class="subtitle">纵向教研项目</div>
         <div class="workload">工作量小计<span th:text="${zxxmGzl}"></span></div>
-        <button type="button" id="save" data-toggle="modal" data-target="#verticalTeaching">添加</button>
+        <span th:if="${hidden==0}">
+          <button type="button" id="save" data-toggle="modal" data-target="#verticalTeaching">添加</button>
+        </span>
+
       </div>
       <!-- 模态框（Modal）登陆界面 -->
       <div class="modal fade" id="verticalTeaching" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -262,7 +267,9 @@
       <div class="msgs">
         <div class="subtitle">横向教研项目</div>
         <div class="workload">工作量小计<span th:text="${hxxmGzl}"></span></div>
-        <button type="button" id="save" data-toggle="modal" data-target="#horizontalTeaching">添加</button>
+        <span th:if="${hidden==0}">
+          <button type="button" id="save" data-toggle="modal" data-target="#horizontalTeaching">添加</button>
+        </span>
       </div>
       <!-- 模态框（Modal）登陆界面 -->
       <div class="modal fade" id="horizontalTeaching" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -335,7 +342,9 @@
       <div class="msgs">
         <div class="subtitle">编写规划教材、教材获奖</div>
         <div class="workload">工作量小计<span th:text="${jcGzl}"></span></div>
-        <button type="button" id="save" data-toggle="modal" data-target="#award">添加</button>
+        <span th:if="${hidden==0}">
+          <button type="button" id="save" data-toggle="modal" data-target="#award">添加</button>
+        </span>
       </div>
       <!-- 模态框（Modal）编写规划教材、教材获奖界面 -->
       <div class="modal fade" id="award" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -411,7 +420,9 @@
         <div class="msgs">
           <div class="subtitle">教学改革工作量</div>
           <div class="workload">工作量小计<span th:text="${jxggGzl}"></span></div>
-          <button type="button" id="save" data-toggle="modal" data-target="#teachingReform">添加</button>
+          <span th:if="${hidden==0}">
+            <button type="button" id="save" data-toggle="modal" data-target="#teachingReform">添加</button>
+          </span>
         </div>
               <!-- 教学改革工作量-添加界面 -->
       <div class="modal fade" id="teachingReform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

@@ -2,11 +2,7 @@ package org.jplus.pojo.yjsjyxm;
 
 import lombok.Data;
 
-/**
- * @description:研究生横向项目实体类
- * @author:zmj
- * @date 2019/11/816:13
- */
+
 @Data
 public class Yjshxxm {
 //研究生横向项目id

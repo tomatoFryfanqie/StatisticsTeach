@@ -8,11 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @description:研究生教研项目实现类
- * @author:zmj
- * @date 2019/11/817:00
- */
+
 @Service
 public class YjsjyxmServiceImpl implements YjsjyxmService{
 

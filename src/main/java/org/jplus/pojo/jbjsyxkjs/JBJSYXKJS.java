@@ -3,12 +3,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @program: StatisticsTeach
- * @description: 基本建设与学科建设实体类
- * @author: MH
- * @create: 2019-11-08 15:29
- **/
 /*
    `xkjsid` int(11) NOT NULL AUTO_INCREMENT,
   `gh` char(8)   COMMENT '工号',

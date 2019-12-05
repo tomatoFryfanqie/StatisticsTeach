@@ -12,10 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * @author wb
- * @date 2019/11/1 - 10:48
- */
+
 @Controller
 public class UndergraduateOtherActivities {
 
@@ -30,6 +27,7 @@ public class UndergraduateOtherActivities {
     public String hello(Model model, Users users) {
         QTJXGZ qTJXGZ = qTJXGZService.findQTJXGZByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
         model.addAttribute("qTJXGZ", qTJXGZ);
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "otheractivities";
     }
 

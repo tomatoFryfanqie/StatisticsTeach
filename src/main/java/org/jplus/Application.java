@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * @BelongsProject: StatisticsTeach
  * @BelongsPackage: org.jplus
- * @Author: lzh
+ * @Author: 17级jplus实验室全体成员
  * @CreateTime: 2019/10/31
  * @Description: Description
  */

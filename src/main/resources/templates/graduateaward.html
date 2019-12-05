@@ -24,32 +24,33 @@
     <script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
     <!--    输入框-->
     <script src="js/classroomteaching.js"></script>
+    <!--    添加样式-->
+    <script src="js/ward.js"></script>
+<!--    <script>-->
+<!--        function addContest() {-->
+<!--            var contestName = $("#contestName").val();-->
+<!--            var competition = $("#competition").val();-->
+<!--            var contestLevel = $("#contestLevel").val();-->
+<!--            var studentNum = $("#studentNum").val();-->
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url: "/addMasterCompetition",-->
+<!--                data:{-->
+<!--                    contestName: contestName,-->
+<!--                    competition: competition,-->
+<!--                    contestLevel: contestLevel,-->
+<!--                    studentNum: studentNum-->
+<!--                },-->
+<!--                success: function(data){-->
+<!--                    location.reload(true);-->
+<!--                },-->
+<!--                error : function(data) {-->
+<!--                    location.reload(true);-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
 
-    <script>
-        function addContest() {
-            var contestName = $("#contestName").val();
-            var competition = $("#competition").val();
-            var contestLevel = $("#contestLevel").val();
-            var studentNum = $("#studentNum").val();
-            $.ajax({
-                type: 'POST',
-                url: "/addMasterCompetition",
-                data:{
-                    contestName: contestName,
-                    competition: competition,
-                    contestLevel: contestLevel,
-                    studentNum: studentNum
-                },
-                success: function(data){
-                    location.reload(true);
-                },
-                error : function(data) {
-                    location.reload(true);
-                }
-            });
-        }
-
-    </script>
+<!--    </script>-->
 
     <script>
         function saveCount() {
@@ -165,7 +166,7 @@
                     </li>
                     <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                     <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-                    <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                    <li class="list-group-item"><a th:href="@{/know}">教学竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
                 </ul>
                 <!-- 研究生 -->
@@ -213,16 +214,19 @@
             <!-- 提示信息栏 -->
             <div class="msg">
                 <div class="year">年度<span id="year" name="year">2019</span></div>
-                <div class="total-workload">工作总量<span id="all" name="all"></span></div>
+                <div class="total-workload">指导研究生竞赛获奖工作量总计<span id="all" name="all"></span></div>
             </div>
             <div>
                 <!-- 指导学生竞赛-提示信息栏 -->
                 <div class="msgs">
                     <div class="subtitle">指导研究生竞赛</div>
                     <div class="workload">工作量小计<span id="studentGzl" name="studentGzl"></span></div>
-                    <button type="button" id="save" data-toggle="modal" data-target="#guidingStudents">
+                    <span th:if="${hidden==0}">
+                        <button type="button" id="save" data-toggle="modal" data-target="#guidingStudents">
                         添加
                     </button>
+                    </span>
+
                 </div>
                 <!-- 模态框（Modal）登陆界面 -->
                 <div class="modal fade" id="guidingStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -265,8 +269,8 @@
                                 </div>
                                 <div class="warning">指导学生人数不能为空！</div>
                                 <div class="btn-add">
-                                    <button type="button" id="addStudentContest" name="addStudentContest" onclick="addContest()" class="add">添加</button>
-                                    <button type="button"  data-dismiss="modal">取消</button>
+                                    <button type="submit" id="addStudentContest" name="addStudentContest" class="addpostgraduate">添加</button>
+                                    <button type="button" class="cancel" data-dismiss="modal">取消</button>
                                 </div>
                             </div>
                         </div>
@@ -313,13 +317,17 @@
                 <div class="msgs">
                     <div class="subtitle">教师指导学生学士学位论文获奖</div>
                     <div class="workload" id="lwCount" name="lwCount">工作量小计<span id="count" name="count"></span></div>
-                    <button type="button" id="subtitlesave" onclick="saveCount()">保存</button>
                 </div>
-                <div class="excellentpaper" style="width: 100%;">
+                <div class="excellentpaper" style="width: 100%;float: none;">
                     省级优秀论文人数<input th:value="${zDSSLW}?${zDSSLW.sylwrs}:${0}" type="text" id="slwNum" name="slwNum" class="management timenum" placeholder="" />
                 </div>
-                <div class="excellentpaper">
+                <div class="excellentpaper" style="width: 100%;float: none;">
                     校级优秀论文人数<input th:value="${zDSSLW}?${zDSSLW.xylwrs}:${0}" type="text" id="xlwNum" name="xlwNum" class="management timenum" placeholder="" />
+                </div>
+                <div>
+                    <span th:if="${hidden==0}">
+                        <button type="button" id="subtitlesave" style="left:0;margin-top: 5%;margin-left: 35%" onclick="saveCount()">保存</button>
+                    </span>
                 </div>
             </div>
         </div>

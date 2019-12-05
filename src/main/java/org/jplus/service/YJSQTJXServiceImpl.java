@@ -5,10 +5,7 @@ import org.jplus.pojo.masterCompartitionAndOther.YJSQTJX;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author wb
- * @date 2019/11/8 - 15:34
- */
+
 @Service
 public class YJSQTJXServiceImpl implements YJSQTJXService {
 

@@ -2,11 +2,7 @@ package org.jplus.pojo.checkgzl;
 
 import lombok.Data;
 
-/**
- * @description:审核工作量1表格实体
- * @author:zmj
- * @date 2019/11/1617:37
- */
+
 @Data
 public class Checkgzl {
     //工号

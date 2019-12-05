@@ -166,7 +166,7 @@
                     </li>
                     <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                     <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-                    <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                    <li class="list-group-item"><a th:href="@{/know}">教学竞赛获奖</a></li>
                     <li class="list-group-item active"><a th:href="@{/other}">其它教育教学活动</a></li>
                 </ul>
                 <!-- 研究生 -->
@@ -212,8 +212,11 @@
             <!-- 提示信息栏 -->
             <div class="msg">
                 <div class="year">年度<span id="year" name="year"></span></div>
-                <div class="total-workload">其它教学工作量小计<span id="all" name="all"></span></div>
-                <button type="button" id="save" name="save" onclick="saveOther()">保存</button>
+                <div class="total-workload">其它教学工作量总计<span id="all" name="all"></span></div>
+                <span th:if="${hidden==0}">
+                    <button type="button" id="save" name="save" onclick="saveOther()">保存</button>
+                </span>
+
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">
@@ -244,8 +247,8 @@
                             承担或参与教学文件制定、修订工作
                         </div>
                         <div class="workload">工作量<span class="prompt" id="undertake" name="undertake"></span></div>
-                        <div class="complete right-shift">
-                            参加修订人才培养方案:
+                        <div class="complete">
+                            <span class="right-shift">参加修订人才培养方案:</span>
                             <span th:if="${qTJXGZ!=null && qTJXGZ.xdrcpyfa!=null}">
                                 <input  th:checked="${qTJXGZ.xdrcpyfa}==1" name="reviseTalentTrainingPlan" type="radio" value="1" class="entry-chose" />是
                                                 <input type="radio" th:checked="${qTJXGZ.xdrcpyfa}==0" name="reviseTalentTrainingPlan" value="0"  />否

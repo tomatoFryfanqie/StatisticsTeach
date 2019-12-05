@@ -8,13 +8,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.mapper
- * @Author: lzh
- * @CreateTime: 2019/11/6
- * @Description: Description
- */
+
 @Component
 public interface TjztMapper {
 

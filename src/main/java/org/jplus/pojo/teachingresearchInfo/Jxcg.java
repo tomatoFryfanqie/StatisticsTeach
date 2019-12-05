@@ -4,11 +4,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * @description: 教学成果实体类
- * @author:zmj
- * @date 2019/10/3116:59
- */
+
 @Data
 public class Jxcg {
 // 教学成果ID

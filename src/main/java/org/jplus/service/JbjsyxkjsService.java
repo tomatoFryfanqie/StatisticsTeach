@@ -4,12 +4,7 @@ import org.jplus.pojo.jbjsyxkjs.JBJSYXKJS;
 import org.jplus.pojo.jbjsyxkjs.JBJSYXKJSAccept;
 import org.springframework.stereotype.Service;
 
-/**
- * @program: StatisticsTeach
- * @description: 基本建设和学科建设服务接口
- * @author: MH
- * @create: 2019-11-08 15:39
- **/
+
 @Service
 public interface JbjsyxkjsService {
 

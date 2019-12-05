@@ -6,10 +6,7 @@ import org.jplus.pojo.queryVo.JsjsVo;
 
 import java.util.List;
 
-/**
- * @author wb
- * @date 2019/10/31 - 18:53
- */
+
 public interface JSJSService {
     Integer getGzl(Integer teacherCompetitioncategory);
 

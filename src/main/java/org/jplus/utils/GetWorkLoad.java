@@ -4,13 +4,7 @@ import org.jplus.dto.BkssjjxEx;
 import org.jplus.pojo.bks.Bkssjjx;
 import org.springframework.beans.BeanUtils;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.utils
- * @Author: lzh
- * @CreateTime: 2019/12/1
- * @Description: Description
- */
+
 public class GetWorkLoad {
     //撰写人才培养方案分数
     private static final Integer TalentTrainingProgram_SCORE = 20;
@@ -125,7 +119,7 @@ public class GetWorkLoad {
         if (skrs <= bzrs) {
             getWork = (float) jhxs * 1.5f;
         } else {
-            getWork = (float) jhxs * 1.5f * (1.0f + (float) ((skrs - bzrs) / skrs));
+            getWork = (float) jhxs * 1.5f * (1.0f +  ((float)(skrs - bzrs) / skrs));
         }
         return getWork;
     }

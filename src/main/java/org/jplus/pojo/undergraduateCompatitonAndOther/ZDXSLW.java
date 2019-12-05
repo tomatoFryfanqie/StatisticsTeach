@@ -1,9 +1,6 @@
 package org.jplus.pojo.undergraduateCompatitonAndOther;
 
-/**
- * @author wb
- * @date 2019/10/28 - 13:35
- */
+
 public class ZDXSLW {
     private Integer zdxslwid;
     private String gh;

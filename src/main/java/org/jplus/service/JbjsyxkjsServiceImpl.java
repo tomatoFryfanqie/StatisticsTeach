@@ -6,12 +6,7 @@ import org.jplus.pojo.jbjsyxkjs.JBJSYXKJSAccept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @program: StatisticsTeach
- * @description:
- * @author: MH
- * @create: 2019-11-08 23:46
- **/
+
 @Service
 public class JbjsyxkjsServiceImpl implements JbjsyxkjsService{
     @Autowired

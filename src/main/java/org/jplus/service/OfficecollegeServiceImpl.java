@@ -9,11 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @description:审核本院工作量1服务层接口实现
- * @author:zmj
- * @date 2019/11/1618:42
- */
+
 @Service
 public class OfficecollegeServiceImpl implements OfficecollegeService{
     @Autowired

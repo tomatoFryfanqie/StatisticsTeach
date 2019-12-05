@@ -15,11 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-/**
- * @description: 教学研究控制层
- * @author:zmj
- * @date 2019/10/3116:35
- */
+
 @Controller
 public class TeachingResearchController {
 
@@ -55,6 +51,8 @@ public class TeachingResearchController {
         model.addAttribute("hxxmGzl",jxcgService.getHxxmGzlSun(users.getGh()) > 200.0f ? 200.0f : jxcgService.getHxxmGzlSun(users.getGh()));
         model.addAttribute("jcGzl",jxcgService.getJcGzlSun(users.getGh()));
         model.addAttribute("jxggGzl",jxcgService.getJxggGzlSun(users.getGh()));
+
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "teachingresearch";
     }
 

@@ -1,9 +1,6 @@
 package org.jplus.pojo.queryVo;
 
-/**
- * @author wb
- * @date 2019/11/26 - 18:56
- */
+
 public class UserVo {
     //工号
     private String gh;

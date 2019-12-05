@@ -54,7 +54,7 @@
                     </li>
                     <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                     <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-                    <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                    <li class="list-group-item"><a th:href="@{/know}">教学竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
                 </ul>
                 <!-- 研究生 -->
@@ -109,9 +109,12 @@
                 <div class="total-workload">课堂教学工作量总计<span th:text="${ktjxgzlSum}"></span></div>
                 <!-- 模态框-添加按钮 -->
                 <!-- <input type="button" id="addBtn" value="添 加" /> -->
-                <button type="button" id="save" data-toggle="modal" data-target="#myModal">
+                <span th:if="${hidden==0}">
+                    <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                     添加
-                </button>
+                    </button>
+                </span>
+
             </div>
             <!-- 模态框（Modal）登陆界面 -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

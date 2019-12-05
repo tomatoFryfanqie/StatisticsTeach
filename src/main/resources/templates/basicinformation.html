@@ -48,7 +48,7 @@
                     </button>
                     <h5 class="modal-title" id="myModalLabel" style="text-align: center;">
                         <div>修改密码</div>
-                        <div style="color: #424251;font-size: 12px;margin-top: 2%;">(提示：密码修改成功后,会跳回登录页面)</div>
+                        <div style="color: #424251;font-size: 12px;margin-top: 2%;">(提示：若密码修改成功后,会跳回登录页面)</div>
                     </h5>
                 </div>
                 <div class="modal-body">
@@ -56,20 +56,20 @@
                         <div>
                             原密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="oldPassword"/>
                         </div>
-                        <div class="warning">原密码不能为空！</div>
+                        <div class="warning unquie">原密码不能为空！</div>
                         <div>
                             新密码：<input type="password" class="form-control-1 form-control-jub class-name password" placeholder="" name="newPassword"/>
                         </div>
-                        <div class="warning">新密码不能为空！</div>
+                        <div class="warning unquie">新密码不能为空！</div>
                         <div>
                             请确认密码：<input type="password" class="form-control-1 form-control-jub class-number password" placeholder=""
                                          name="newPassword2" />
                         </div>
-                        <div class="warning">请确认密码不能为空！</div>
-                        <div class="notnull">新密码与确认密码不一致！</div>
+                        <div class="warning unquie">请确认密码不能为空！</div>
+                        <div class="notnull unquie">新密码与确认密码不一致！</div>
                         <div class="btn-add">
                             <button type="submit" class="modify">修改</button>
-                            <button type="button" class="close" data-dismiss="modal">取消</button>
+                            <button type="button" class="cancel" data-dismiss="modal">取消</button>
                         </div>
                     </form>
                 </div>
@@ -94,7 +94,7 @@
                     </li>
                     <li class="list-group-item"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                     <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-                    <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                    <li class="list-group-item"><a th:href="@{/know}">教学竞赛获奖</a></li>
                     <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
                 </ul>
                 <!-- 研究生 -->
@@ -141,7 +141,9 @@
         <!-- 保存按钮 -->
             <div class="year-warp">
                 <div class="year"><span class="passwordtip" style="letter-spacing: 30px;">年</span>度<span class="teather-name" th:text="${Nd}"></span></div>
-                <button type="submit" id="save">保存</button>
+                <span th:if="${hidden==0}">
+                    <button type="submit" id="save">保存</button>
+                </span>
             </div>
             <div>
                 <input hidden th:name="gh" th:value="${user.gh}">
@@ -248,9 +250,9 @@
         </div>
         </form>
     </div>
-    <div class="footer" style="width:80%;text-align: center;position: fixed;bottom: 0;left: 20%;font-size: 12px;color: #BDBDAE;">
-        <div>Copyright 2019-2020 湖北师范大学(www.hbnu.edu.cn) 教学评估与教师发展中心所有</div>
-        <div>技术支持：Jplus实验室</div>
+    <div class="footer" style="width:100%;height:35px;text-align: center;position: fixed;bottom: 0;font-size: 12px;color: #BDBDAE;">
+        <div style="height: 16px;line-height: 16px"><span style="font-family:arial;">&copy; </span>2019 湖北师范大学(www.hbnu.edu.cn).All rights reserved.</div>
+        <div style="height: 16px;line-height: 16px;">技术支持：Jplus实验室</div>
     </div>
     <script src="" async defer></script>
 </body>

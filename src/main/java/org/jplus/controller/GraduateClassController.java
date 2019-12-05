@@ -41,6 +41,7 @@ public class GraduateClassController {
         model.addAttribute("ktjxgzlSum", yjsktjxService.getYjsjxgzlSum(users.getGh()));
         /*获取验证错误*/
         model.addAttribute("GClassError", GClassError);
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "graduateclass";
     }
 

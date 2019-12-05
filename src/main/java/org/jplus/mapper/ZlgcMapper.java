@@ -7,12 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @program: StatisticsTeach
- * @description:
- * @author: MH
- * @create: 2019-11-02 15:19
- **/
+
 @Component
 public interface ZlgcMapper {
     public void addZlgcInfo(ZlgcAccept zlgcAccept);

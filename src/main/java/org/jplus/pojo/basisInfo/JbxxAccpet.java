@@ -2,13 +2,6 @@ package org.jplus.pojo.basisInfo;
 
 import lombok.Data;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.pojo.basisInfo
- * @Author: lzh
- * @CreateTime: 2019/10/31
- * @Description: Description
- */
 
 /*用来接收前台数据*/
 @Data

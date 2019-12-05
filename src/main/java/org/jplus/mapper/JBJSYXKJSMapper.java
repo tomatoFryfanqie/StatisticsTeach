@@ -3,12 +3,7 @@ package org.jplus.mapper;
 import org.jplus.pojo.jbjsyxkjs.JBJSYXKJS;
 import org.jplus.pojo.jbjsyxkjs.JBJSYXKJSAccept;
 
-/**
- * @program: StatisticsTeach
- * @description: 教学基本建设与学科建设工作 Dao
- * @author: MH
- * @create: 2019-11-08 23:48
- **/
+
 public interface JBJSYXKJSMapper {
     //添加教学基本建设与学科建设信息
     public void addJBJSYXKJS(JBJSYXKJSAccept jbjsyxkjsAccept);

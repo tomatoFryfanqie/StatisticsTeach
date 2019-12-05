@@ -2,12 +2,7 @@ package org.jplus.pojo.zlgc;
 
 import lombok.Data;
 
-/**
- * @program: StatisticsTeach
- * @description: 接收用户页面输入的数据
- * @author: MH
- * @create: 2019-11-02 16:08
- **/
+
 @Data
 public class ZlgcAccept {
     //质量工程ID	zlgcid 系统自增

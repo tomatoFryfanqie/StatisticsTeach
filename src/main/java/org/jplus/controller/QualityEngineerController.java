@@ -15,12 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-/**
- * @program: init
- * @description:
- * @author: MH
- * @create: 2019-10-30 21:36
- **/
+
 @Controller
 public class QualityEngineerController {
     @Autowired
@@ -37,6 +32,7 @@ public class QualityEngineerController {
         model.addAttribute("year", GetYear.getYears());
         // 质量工程的所有信息
         model.addAttribute("zlgc", zlgcService.getZlgcInfo(users.getGh()));
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "qualityengineering";
     }
 

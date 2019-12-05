@@ -2,11 +2,6 @@ package org.jplus.pojo.yjsjyxm;
 
 import lombok.Data;
 
-/**
- * @description:研究生学科与研究生教育项目实体类
- * @author:zmj
- * @date 2019/11/815:45
- */
 
 @Data
 public class Yjsjyxm {

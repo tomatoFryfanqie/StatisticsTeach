@@ -11,10 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @author imlgw.top
- * @date 2019/10/30 15:46
- */
 @Mapper
 @Component
 public interface BkssjjxMapper {

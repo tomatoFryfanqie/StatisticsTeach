@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @description:研究生教研项目持久层
- * @author:zmj
- * @date 2019/11/816:24
- */
+
 @Component
 public interface YjsjyxmMapper {
 //获取研究生教研项目列表

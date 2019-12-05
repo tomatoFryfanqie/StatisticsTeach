@@ -7,13 +7,7 @@ import org.jplus.pojo.yjsktjx.YjsktjxAccpet;
 
 import java.util.List;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.service
- * @Author: lzh
- * @CreateTime: 2019/11/6
- * @Description: Description
- */
+
 public interface YjsktjxService {
 
     List<Yjskclx> getKclx();

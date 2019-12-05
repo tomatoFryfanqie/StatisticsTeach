@@ -5,11 +5,7 @@ import org.jplus.pojo.yjsjyxm.Yjsjyxm;
 
 import java.util.List;
 
-/**
- * @description:研究生教研项目抽象类
- * @author:zmj
- * @date 2019/11/816:13
- */
+
 public interface YjsjyxmService {
 
     List<Yjsjyxm> getYjsjyxm(String gh);

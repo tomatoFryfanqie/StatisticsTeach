@@ -7,10 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @author imlgw.top
- * @date 2019/10/31 17:25
- */
+
 @Component
 public interface UserMapper {
 

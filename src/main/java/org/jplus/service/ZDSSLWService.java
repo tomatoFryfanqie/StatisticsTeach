@@ -1,9 +1,8 @@
 package org.jplus.service;
 
-import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW; /**
- * @author wb
- * @date 2019/11/8 - 9:40
- */
+import org.jplus.pojo.masterCompartitionAndOther.ZDSSLW;
+
+
 public interface ZDSSLWService {
     void addZDSSLW(ZDSSLW zDSSLW);
 

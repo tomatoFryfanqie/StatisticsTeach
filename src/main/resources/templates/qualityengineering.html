@@ -56,7 +56,7 @@
                 </li>
                 <li class="list-group-item active"><a th:href="@{/qualityengineering}">质量工程建设</a></li>
                 <li class="list-group-item"><a th:href="@{/teachingresearch}">教学研究</a></li>
-                <li class="list-group-item"><a th:href="@{/know}">教学知识竞赛</a></li>
+                <li class="list-group-item"><a th:href="@{/know}">教学竞赛获奖</a></li>
                 <li class="list-group-item"><a th:href="@{/other}">其它教育教学活动</a></li>
             </ul>
             <!-- 研究生 -->
@@ -102,11 +102,13 @@
         <!-- 提示信息栏 -->
         <div class="msg">
             <div class="year">年度<span th:text="${year}"></span></div>
-            <div class="total-workload">质量工程工作量小计<span th:text="${sumOfWorkload}">0</span></div>
+            <div class="total-workload">质量工程工作量总计<span th:text="${sumOfWorkload}">0</span></div>
             <!-- Button trigger modal -->
-            <button type="button" id="save" data-toggle="modal" data-target="#myModal">
+            <span th:if="${hidden==0}">
+                <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                 添加
-            </button>
+                </button>
+            </span>
         </div>
         <!-- 模态框（Modal）界面 -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -168,7 +170,7 @@
                             <div class="warning">项目总人数不能为空！</div>
                             <div class="btn-add">
                                 <button type="submit" class="add">添加</button>
-                                <button type="button" id="cancel" data-dismiss="modal">取消</button>
+                                <button type="button" class="cancel" data-dismiss="modal">取消</button>
                             </div>
                         </form>
                     </div>

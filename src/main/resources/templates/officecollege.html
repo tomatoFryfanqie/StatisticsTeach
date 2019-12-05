@@ -38,7 +38,7 @@
         <div class="navbar" id="navwrap">
             <div class="navwarp">
                 <div class="maintenance">
-                    <a th:href="@{/user}">本院审核人维护</a>
+                    <a th:href="@{/user}">本院用户维护</a>
                 </div>
                 <div class="collegeworkload active"><a th:href="@{/officecollege}">审核本学院工作量</a></div>
                 <div class="export"><a th:href="@{/QXexcelOut}">导出工作量统计表</a></div>
@@ -48,9 +48,9 @@
     <!-- 用户维护界面 -->
     <div class="informationwarp" id="informationwarp">
         <!-- 标题 -->
-        <div class="litter-title">教学工作量审核</div>
+        <div class="litter-title"><span th:text="${yxmc}"></span>教学工作量审核</div>
         <!-- 院系按钮 -->
-        <div class="collage-warp" th:text="'院系：'+${yxmc}"></div>
+<!--        <div class="collage-warp" th:text="'院系：'+${yxmc}"></div>-->
         <div class="msg-warp">
             <!-- 表格数据 -->
             <div class="table-wrap">

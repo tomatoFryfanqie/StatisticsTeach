@@ -6,13 +6,7 @@ import org.jplus.pojo.classTeach.Kclx;
 
 import java.util.List;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.mapper
- * @Author: lzh
- * @CreateTime: 2019/10/31
- * @Description: Description
- */
+
 public interface BksktjxMapper {
 
     List<Bksktjx> getBksktjxInfo(String gh);

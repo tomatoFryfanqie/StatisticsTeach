@@ -22,13 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.controller
- * @Author: lzh
- * @CreateTime: 2019/11/26
- * @Description: Description
- */
+
 @Controller
 public class ExcelOutController {
 
@@ -222,7 +216,6 @@ public class ExcelOutController {
         }
         for (int i = 0; i < tjbs.size(); i++) {
             Tjb tjb = tjbs.get(i);
-            System.out.println(tjb);
             workLoadRow = workLoad.createRow(i + 5);
             /*院系*/
             workLoadRow.createCell(0).setCellValue(tjb.getYxmc());
