@@ -6,11 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @description: 教学成就mapper接口
- * @author:zmj
- * @date 2019/10/3116:35
- */
+
 @Component
 public interface JxcgMapper {
 // ---------------------------教学成果-------------------------

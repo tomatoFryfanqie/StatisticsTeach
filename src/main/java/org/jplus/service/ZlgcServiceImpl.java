@@ -8,12 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @program: StatisticsTeach
- * @description:
- * @author: MH
- * @create: 2019-11-02 15:27
- **/
+
 @Service
 public class ZlgcServiceImpl implements ZlgcService {
     @Autowired

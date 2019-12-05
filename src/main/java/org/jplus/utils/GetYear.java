@@ -3,13 +3,7 @@ package org.jplus.utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.utils
- * @Author: lzh
- * @CreateTime: 2019/11/1
- * @Description: Description
- */
+
 public class GetYear {
 
     /*获取学年*/

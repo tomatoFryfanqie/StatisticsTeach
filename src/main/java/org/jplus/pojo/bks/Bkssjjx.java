@@ -5,10 +5,6 @@ import lombok.ToString;
 
 import javax.validation.constraints.Min;
 
-/**
- * @author imlgw.top
- * @date 2019/10/30 15:11
- */
 
 /*
 * `bkssjjxid` Integer(10) NOT NULL AUTO_INCREMENT,

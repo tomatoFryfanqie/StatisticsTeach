@@ -7,13 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.pojo.classTeach
- * @Author: lzh
- * @CreateTime: 2019/11/1
- * @Description: Description
- */
+
 @Data
 public class BksktjxAccpet {
     /*本科生教学课堂id*/

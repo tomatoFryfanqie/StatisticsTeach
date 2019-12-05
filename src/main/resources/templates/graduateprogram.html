@@ -104,7 +104,9 @@
                 <div class="msgs">
                     <div class="subtitle">学科与研究生教育项目</div>
                     <div class="workload">工作量小计<span th:text="${jyxmGzl}"></span></div>
-                    <button type="button" id="save" data-toggle="modal" data-target="#guideStudents">添加</button>
+                    <span th:if="${hidden==0}">
+                        <button type="button" id="save" data-toggle="modal" data-target="#guideStudents">添加</button>
+                    </span>
                 </div>
                 <!-- 模态框（Modal）登陆界面 -->
                 <div class="modal fade" id="guideStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -185,7 +187,10 @@
                 <div class="msgs">
                     <div class="subtitle">研究生横向项目项目</div>
                     <div class="workload">工作量小计<span th:text="${hxxmGzl}"></span></div>
-                    <button type="button" id="save" data-toggle="modal" data-target="#verticalTeaching">添加</button>
+                    <span th:if="${hidden==0}">
+                        <button type="button" id="save" data-toggle="modal" data-target="#verticalTeaching">添加</button>
+                    </span>
+
                 </div>
                 <!-- 模态框（Modal）研究生横向项目项目界面 -->
                 <div class="modal fade" id="verticalTeaching" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

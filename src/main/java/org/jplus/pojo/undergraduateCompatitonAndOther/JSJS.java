@@ -1,9 +1,5 @@
 package org.jplus.pojo.undergraduateCompatitonAndOther;
 
-/**
- * @author wb
- * @date 2019/10/28 - 13:31
- */
 public class JSJS {
     private Integer jsjsid;
     private String gh;

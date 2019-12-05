@@ -103,9 +103,11 @@
 
                 <div class="total-workload">课堂教学工作量总计<span th:text="${ktjxgzlSum}"></span></div>
                 <!-- 模态框-添加按钮 -->
-                <button type="button" id="save" data-toggle="modal" data-target="#myModal">
+                <span th:if="${hidden==0}">
+                    <button type="button" id="save" data-toggle="modal" data-target="#myModal">
                     添加
-                </button>
+                    </button>
+                </span>
             </div>
             <!-- 模态框（Modal）登陆界面 -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

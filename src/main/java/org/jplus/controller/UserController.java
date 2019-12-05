@@ -20,10 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * @author wb
- * @date 2019/11/16 - 17:51
- */
+
 @Controller
 public class UserController {
 

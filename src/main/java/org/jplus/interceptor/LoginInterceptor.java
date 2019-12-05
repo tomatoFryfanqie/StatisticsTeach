@@ -13,10 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * @author imlgw.top
- * @date 2019/10/31 18:56
- */
+
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
     @Override

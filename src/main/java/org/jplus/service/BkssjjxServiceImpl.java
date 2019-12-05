@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author imlgw.top
- * @date 2019/10/30 16:10
- */
+
 @Service
 public class BkssjjxServiceImpl implements BkssjjxService {
 

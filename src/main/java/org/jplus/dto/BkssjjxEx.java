@@ -4,11 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jplus.pojo.bks.Bkssjjx;
 
-/**
- * @author imlgw.top
- * @date 2019/11/5 8:30
- * 能用就行?.jpg
- */
+
 @Getter@Setter
 public class BkssjjxEx extends Bkssjjx{
 

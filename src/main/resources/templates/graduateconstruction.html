@@ -102,7 +102,10 @@
                 <div class="year">年度<span th:text="${year}"></span></div>
                 <!--如果数据库没有，就提醒还未添加数据，如果有，就从数据库中取出-->
                 <div class="total-workload">教学基本建设与学科建设工作量总计<span th:text="${sumOfWorkload}"></span></div>
-                <button type="submit"  id="save">保存</button>
+                <span th:if="${hidden==0}">
+                    <button type="submit"  id="save">保存</button>
+                </span>
+
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">

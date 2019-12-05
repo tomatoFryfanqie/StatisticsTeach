@@ -7,10 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @author imlgw.top
- * @date 2019/11/19 17:34
- */
+
 @Component
 public interface TjbMapper {
 

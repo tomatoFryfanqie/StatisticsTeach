@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author wb
- * @date 2019/10/31 - 13:09
- */
+
 @Controller
 public class UndergraduateKnowledgeContestController {
 
@@ -77,6 +74,7 @@ public class UndergraduateKnowledgeContestController {
         model.addAttribute("allStudentCompetitionList", list);
         model.addAttribute("allTeacherCompetitionList", result);
         model.addAttribute("zDXSLW", zDXSLW);
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "knowledgecontest";
     }
 

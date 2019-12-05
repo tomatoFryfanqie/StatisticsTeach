@@ -1,11 +1,6 @@
 package org.jplus.utils;
 import org.jplus.pojo.Users;
 
-/**
- * @author imlgw.top
- * @date 2019/10/31 18:49
- */
-
 public class UserContext {
 
     //这个类用于保存用户信息的上下文,在同一个请求线程中都可以拿到User对象

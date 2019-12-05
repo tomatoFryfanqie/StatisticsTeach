@@ -6,11 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @description:审核本院和各院工作量1持久层
- * @author:zmj
- * @date 2019/11/1618:44
- */
+
 @Component
 public interface CheckgzlMapper {
     //根据工号查院系

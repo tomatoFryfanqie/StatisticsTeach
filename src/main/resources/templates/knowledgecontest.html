@@ -258,9 +258,11 @@
                 <div class="msgs">
                     <div class="subtitle">指导学生竞赛</div>
                     <div class="workload">工作量小计<span id="studentGzl" name="studentGzl"></span></div>
-                    <button type="button" id="save" data-toggle="modal" data-target="#guidingStudents">
-                        添加
-                    </button>
+                    <span th:if="${hidden==0}">
+                       <button type="button" id="save" data-toggle="modal" data-target="#guidingStudents">
+                            添加
+                        </button>
+                    </span>
                 </div>
                 <!-- 模态框（Modal）登陆界面 -->
                 <div class="modal fade" id="guidingStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -305,7 +307,9 @@
                                     <div class="warning">指导学生人数不能为空！</div>
                                     <div class="btn-add">
 <!--                                        onclick="addContest()"-->
-                                        <button type="submit" id="addStudentContest" name="addStudentContest" class="addguide">添加</button>
+
+                                            <button type="submit" id="addStudentContest" name="addStudentContest" class="addguide">添加</button>
+
                                         <button type="button"  class="cancel" data-dismiss="modal">取消</button>
                                     </div>
                             </div>
@@ -352,9 +356,12 @@
                 <div class="msgs">
                     <div class="subtitle">教师教学能力竞赛获奖</div>
                     <div class="workload">工作量小计<span id="teacherCount" name="teacherCount"></span></div>
-                    <button type="button" id="save" data-toggle="modal" data-target="#teachingAbility">
-                        添加
-                    </button>
+                    <span th:if="${hidden==0}">
+                         <button type="button" id="save" data-toggle="modal" data-target="#teachingAbility">
+                            添加
+                         </button>
+                    </span>
+
                 </div>
                 <!-- 模态框（Modal）登陆界面 -->
                 <div class="modal fade" id="teachingAbility" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -454,7 +461,10 @@
                     校级优秀论文人数<input th:value="${zDXSLW}?${zDXSLW.xylwrs}:${0}" type="text" id="xlwNum" name="xlwNum" class="management" placeholder="" />
                 </div>
                 <div>
-                <button type="button"  id="subtitlesave" style="left:0;margin-top: 5%;margin-left: 55%" onclick="saveCount()">保存</button>
+                    <span th:if="${hidden==0}">
+                        <button type="button"  id="subtitlesave" style="left:0;margin-top: 5%;margin-left: 55%" onclick="saveCount()">保存</button>
+                    </span>
+
                 </div>
             </div>
         </div>

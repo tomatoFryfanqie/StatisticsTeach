@@ -8,11 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * @description:审核本院和其他院工作量1控制层
- * @author:zmj
- * @date 2019/11/1615:05
- */
+
 @Controller
 public class OfficecollegeController {
 

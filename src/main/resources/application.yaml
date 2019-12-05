@@ -9,6 +9,12 @@ spring:
     username: root
     password: jplus_imlgw.top123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 50
+      min-idle: 30
+      maxActive: 1200
+      maxWait: 60000
   thymeleaf:
     cache: false
     mode: HTML

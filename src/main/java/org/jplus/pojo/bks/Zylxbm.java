@@ -1,9 +1,5 @@
 package org.jplus.pojo.bks;
 
-/**
- * @author imlgw.top
- * @date 2019/11/1 16:51
- */
 /*
 * CREATE TABLE `zylxbm` (
   `zylxbm` int(10) NOT NULL,

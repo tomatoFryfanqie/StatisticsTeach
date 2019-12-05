@@ -40,6 +40,7 @@ public class GraduateYjssjjxController {
             model.addAttribute("ZtGzl", jbxx.getGzl() - jbxx.getRcgzl() - GetWorkLoad.getForYjsWorkLoad(yjssjjxService.getYjssjjxJbxx(users.getGh()).getZdxshdcs()));
         }
         model.addAttribute("yjssjjxJbxx", jbxx);
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "graduatepractice";
     }
 

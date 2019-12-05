@@ -9,6 +9,7 @@
   top: 60px;
   left: 20%;
 }
+
 /* 标题 */
 .information-title {
   height: 30px;
@@ -25,6 +26,7 @@
   width: 100%;
   height: 90%;
   padding: 1% 6%;
+  padding-bottom: 5%;
 }
 /* 保存按钮 */
 #save {

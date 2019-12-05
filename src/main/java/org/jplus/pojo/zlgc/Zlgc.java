@@ -2,12 +2,7 @@ package org.jplus.pojo.zlgc;
 
 import lombok.Data;
 
-/**
- * @program: StatisticsTeach
- * @description:
- * @author: MH
- * @create: 2019-11-02 15:31
- **/
+
 /*
   `zlgcid` int(10) NOT NULL AUTO_INCREMENT,
   `gh` char(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,

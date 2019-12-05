@@ -110,7 +110,9 @@
                     </input>
                     <span class="prompt" th:unless="${bkssjjx}" th:text="0.0"></span>
                 </div>
-                <button type="submit" id="save">保存</button>
+                <span th:if="${hidden==0}">
+                    <button type="submit" id="save">保存</button>
+                </span>
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">

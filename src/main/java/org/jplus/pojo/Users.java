@@ -1,9 +1,6 @@
 package org.jplus.pojo;
 
-/**
- * @author imlgw.top
- * @date 2019/10/31 17:18
- */
+
 /*
 * CREATE TABLE `users` (
   `gh` char(8) NOT NULL,

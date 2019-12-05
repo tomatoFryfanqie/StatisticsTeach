@@ -13,12 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 
-/**
- * @program: StatisticsTeach
- * @description: 审核页面
- * @author: MH
- * @create: 2019-11-19 14:11
- **/
+
 @Component
 public interface CheckMapper {
 

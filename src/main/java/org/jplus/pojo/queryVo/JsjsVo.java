@@ -1,9 +1,6 @@
 package org.jplus.pojo.queryVo;
 
-/**
- * @author wb
- * @date 2019/11/19 - 20:31
- */
+
 public class JsjsVo {
     private Integer jsjsid;
     private String jsmc;

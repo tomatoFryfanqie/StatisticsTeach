@@ -8,10 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author wb
- * @date 2019/10/31 - 18:54
- */
+
 @Repository
 public interface JSJSMapper {
     Integer getGzl(@Param("teacherCompetitioncategory") Integer teacherCompetitioncategory);

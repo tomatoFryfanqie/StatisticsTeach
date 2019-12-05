@@ -2,11 +2,7 @@ package org.jplus.pojo.teachingresearchInfo;
 
 import lombok.Data;
 
-/**
- * @description: 教材级别实体类
- * @author:zmj
- * @date 2019/11/115:35
- */
+
 @Data
 public class Jcjb {
 //教材级别编码

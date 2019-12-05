@@ -12,12 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * @author wb
- * @date 2019/11/8 - 15:32
- */
+
 @Controller
-public class graduateOtherController {
+public class GraduateOtherController {
 
     @Autowired
     private TjztService tjztService;
@@ -30,6 +27,7 @@ public class graduateOtherController {
     public String hello(Model model, Users users) {
         YJSQTJX yJSQTJX = yJSQTJXService.findYJSQTJXByGhAndYear(users.getGh(), DateUtils.getCurrentYear());
         model.addAttribute("yJSQTJX", yJSQTJX);
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "graduateother";
     }
 

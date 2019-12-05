@@ -26,16 +26,12 @@ import java.util.Optional;
 
 import static org.jplus.utils.GetWorkLoad.getSjjxWork;
 
-/*
- * @author MH
- * @date 2019/11/23 23:30
- *  审核页面控制类，版本 1.0
- */
+
 @Controller
 public class TestCheckController {
     @Autowired
     private TjztService tjztService;
-    //wb 的
+
     @Autowired
     private ZDSSLWService zDSSLWService;
     @Autowired

@@ -100,7 +100,9 @@
             <div class="msg">
                 <div class="year">年度<span class="prompt">2019</span></div>
                 <div class="total-workload">实践教学工作量总计<span class="prompt" th:if="${yjssjjxJbxx!=null && yjssjjxJbxx.gzl!=null}"><span th:text="${yjssjjxJbxx.gzl}"></span></span></div>
-                <button type="submit" id="save"  style="margin-left: 19%;">保存</button>
+                <span th:if="${hidden==0}">
+                    <button type="submit" id="save"  style="margin-left: 19%;">保存</button>
+                </span>
             </div>
             <!-- 具体工作类别及数目 -->
             <div class="job-category">

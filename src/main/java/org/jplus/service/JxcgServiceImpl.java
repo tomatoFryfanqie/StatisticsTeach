@@ -8,11 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @description: 教学成果服务层实现
- * @author:zmj
- * @date 2019/11/116:28
- */
+
 @Service
 public class JxcgServiceImpl implements JxcgService {
 

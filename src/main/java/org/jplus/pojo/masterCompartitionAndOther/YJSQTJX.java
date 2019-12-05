@@ -1,9 +1,6 @@
 package org.jplus.pojo.masterCompartitionAndOther;
 
-/**
- * @author wb
- * @date 2019/11/8 - 10:11
- */
+
 public class YJSQTJX {
     private Integer qtjxgzid;
     private String gh;

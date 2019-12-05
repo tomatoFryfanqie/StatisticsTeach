@@ -4,13 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.pojo
- * @Author: lzh
- * @CreateTime: 2019/11/6
- * @Description: Description
- */
+
 @Data
 public class Tjzt {
     /*提交状态id*/

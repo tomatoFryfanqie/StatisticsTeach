@@ -7,12 +7,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @program: StatisticsTeach
- * @description: 实践教学数据库实体类
- * @author: MH
- * @create: 2019-11-19 19:22
- **/
+
 @Data
 public class BkssjjxInfo {
     private Integer bkssjjxid;

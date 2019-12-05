@@ -6,13 +6,7 @@ import org.jplus.pojo.yjsktjx.YjsktjxAccpet;
 
 import java.util.List;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.mapper
- * @Author: lzh
- * @CreateTime: 2019/11/6
- * @Description: Description
- */
+
 public interface YjsktjxMapper {
     List<Yjskclx> getYjskclx();
 

@@ -2,10 +2,6 @@ package org.jplus.pojo.Tjzt;
 
 import lombok.Data;
 
-/**
- * @author imlgw.top
- * @date 2019/11/19 17:35
- */
 
 /*
 *   insert into tjb(nd,gh,xm,zw,yxmc,edgzl,bkszdsk,bksktgzl,bkssjgzl,

@@ -4,11 +4,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * @description: 纵向项目实体
- * @author:zmj
- * @date 2019/11/115:05
- */
+
 @Data
 public class Zxxm {
 //纵向项目id

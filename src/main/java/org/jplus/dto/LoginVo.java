@@ -2,10 +2,7 @@ package org.jplus.dto;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- * @author imlgw.top
- * @date 2019/10/31 17:38
- */
+
 public class LoginVo {
     @NotBlank
     private String gh;

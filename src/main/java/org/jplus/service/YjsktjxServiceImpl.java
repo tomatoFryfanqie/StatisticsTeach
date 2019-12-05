@@ -10,13 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.service
- * @Author: lzh
- * @CreateTime: 2019/11/6
- * @Description: Description
- */
+
 @Service
 public class YjsktjxServiceImpl implements YjsktjxService {
 

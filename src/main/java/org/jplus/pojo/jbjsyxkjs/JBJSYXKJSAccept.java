@@ -3,12 +3,7 @@ package org.jplus.pojo.jbjsyxkjs;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @program: StatisticsTeach
- * @description: 接收表单数据的实体
- * @author: MH
- * @create: 2019-11-08 22:20
- **/
+
 @Getter
 @Setter
 public class JBJSYXKJSAccept {

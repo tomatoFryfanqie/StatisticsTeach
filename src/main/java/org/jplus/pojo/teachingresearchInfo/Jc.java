@@ -5,11 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * @description: 教材实体类
- * @author:zmj
- * @date 2019/11/115:29
- */
+
 @Data
 public class Jc {
 //教材id

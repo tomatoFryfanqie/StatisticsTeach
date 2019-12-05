@@ -3,13 +3,7 @@ package org.jplus.pojo.basisInfo;
 import lombok.Data;
 import org.jplus.pojo.Users;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.pojo
- * @Author: lzh
- * @CreateTime: 2019/10/31
- * @Description: Description
- */
+
 /*教师的基本信息*/
 @Data
 public class Jbxx {

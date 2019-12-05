@@ -2,10 +2,6 @@ package org.jplus.pojo.bks;
 
 import lombok.Data;
 
-/**
- * @author imlgw.top
- * @date 2019/11/1 15:57
- */
 /*
 * CREATE TABLE `sxlx` (
   `sxlxbm` int(10) NOT NULL,

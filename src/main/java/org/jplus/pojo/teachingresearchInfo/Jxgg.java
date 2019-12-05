@@ -4,11 +4,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * @description: 教学改革实体类
- * @author:zmj
- * @date 2019/11/115:39
- */
+
 @Data
 public class Jxgg {
 //教学改革id

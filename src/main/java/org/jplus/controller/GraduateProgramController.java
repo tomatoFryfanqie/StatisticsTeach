@@ -14,11 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * @description: 研究生教学研究项目控制层
- * @author:zmj
- * @date 2019/11/815:39
- */
+
 @Controller
 public class GraduateProgramController {
 
@@ -39,6 +35,7 @@ public class GraduateProgramController {
         //横向项目总分不超过200
         model.addAttribute("hxxmGzl",yjsjyxmService.getYjshxxmGzlSum(user.getGh()) > 200.0f ?
                 200.0f : yjsjyxmService.getYjshxxmGzlSum(user.getGh()));
+        model.addAttribute("hidden",tjztService.getTjzt(user.getGh()).getTjzt());
         return "graduateprogram";
     }
 

@@ -2,12 +2,7 @@ package org.jplus.pojo.check;
 
 import lombok.Data;
 
-/**
- * @program: StatisticsTeach
- * @description: 研究生实践教学信息
- * @author: MH
- * @create: 2019-11-22 13:57
- **/
+
 @Data
 public class YjssjjxInfo {
     /*研究生实践教学id*/

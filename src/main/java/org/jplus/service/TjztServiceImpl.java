@@ -9,13 +9,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-/**
- * @BelongsProject: StatisticsTeach
- * @BelongsPackage: org.jplus.service
- * @Author: lzh
- * @CreateTime: 2019/11/6
- * @Description: Description
- */
+
 @Service
 public class TjztServiceImpl implements TjztService {
 

@@ -13,12 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * @program: StatisticsTeach
- * @description: 研究生统计——教学基本建设与学科建设
- * @author: MH
- * @create: 2019-11-07 21:04
- **/
+
 @Controller
 public class GraduateConstructionController {
     @Autowired
@@ -51,6 +46,7 @@ public class GraduateConstructionController {
                 model.addAttribute("sydgms", 0);
             }
         }
+        model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
         return "graduateconstruction";
     }
 

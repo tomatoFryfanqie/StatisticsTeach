@@ -1,9 +1,6 @@
 package org.jplus.pojo.undergraduateCompatitonAndOther;
 
-/**
- * @author wb
- * @date 2019/10/28 - 13:33
- */
+
 public class JSDJ {
     private Integer jsdjbm;
     private String jsdjmc;

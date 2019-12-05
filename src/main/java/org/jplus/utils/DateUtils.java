@@ -2,11 +2,7 @@ package org.jplus.utils;
 
 import java.util.Calendar;
 
-/**
- * @author wb
- * @date 2019/10/28 - 9:22
- * 项目中操作时间的工具类
- */
+
 public class DateUtils {
     public static Integer getCurrentYear() {
         Calendar calendar = Calendar.getInstance();
