@@ -73,8 +73,9 @@ public class TestCheckController {
     public String getQualityEngineeringInfo(@ModelAttribute(value = "gh") String gh,
                                             @ModelAttribute(value = "userName") String userName,
                                             Model model, Users users) {
+        // 添加当前操作用户的信息
+        model.addAttribute("reviewer",users.getActor());
         // 将用户的信息取出( 工号， 姓名， 院系名称)
-
         model.addAttribute("gh", gh);
         model.addAttribute("name", userName);
         model.addAttribute("department", checkService.getLxmcByGh(gh));
@@ -379,6 +380,7 @@ public class TestCheckController {
         else {
             attributes.addAttribute("gh", gh);
             attributes.addAttribute("tempYxbm",checkService.getLxbmByGh(gh));
+            System.out.println(checkService.getLxbmByGh(gh));
             return "redirect:/departmentalaudit2";
         }
     }
