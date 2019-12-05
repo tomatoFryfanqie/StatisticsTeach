@@ -48,12 +48,12 @@ public class UserController {
             return "login";
         }
         if (user.getActor()==3){
-            return "redirect:/officeUser";
+            return "redirect:officeUser";
         }
         if (user.getActor()==2){
-            return "redirect:/user";
+            return "redirect:user";
         }
-        return "redirect:/basicinformation";
+        return "redirect:basicinformation";
     }
 
     /**
@@ -66,7 +66,7 @@ public class UserController {
         boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
         if (!isOK){
             model.addAttribute("error","旧密码不正确！！！");
-            return "redirect:/basicinformation";
+            return "redirect:basicinformation";
         }
         return "redirect:/";
     }
@@ -78,7 +78,7 @@ public class UserController {
         boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
         if (!isOK){
             model.addAttribute("error","旧密码不正确！！！");
-            return "redirect:/user";
+            return "redirect:user";
         }
         return "redirect:/";
     }
@@ -90,7 +90,7 @@ public class UserController {
         boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
         if (!isOK){
             model.addAttribute("error","旧密码不正确！！！");
-            return "redirect:/officeUser";
+            return "redirect:officeUser";
         }
         return "redirect:/";
     }
