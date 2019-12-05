@@ -17,6 +17,8 @@ import java.sql.Timestamp;
  **/
 public interface CheckService {
 
+//    根据工号查院系编码
+    public Integer getLxbmByGh(String gh);
 //    <!--根据工号查院系名称-->
     public String getLxmcByGh(String gh);
 

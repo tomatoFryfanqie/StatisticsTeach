@@ -78,6 +78,7 @@ public class TestCheckController {
                                             @ModelAttribute(value = "userName") String userName,
                                             Model model, Users users) {
         // 将用户的信息取出( 工号， 姓名， 院系名称)
+
         model.addAttribute("gh", gh);
         model.addAttribute("name", userName);
         model.addAttribute("department", checkService.getLxmcByGh(gh));
@@ -339,6 +340,8 @@ public class TestCheckController {
     @GetMapping("/passCheck")
     public String passCheck(@ModelAttribute(value = "gh") String gh, Users users, RedirectAttributes attributes) {
         java.sql.Timestamp date = new java.sql.Timestamp(new Date().getTime());
+
+
         // 根据工号判断审核人的身份
         // 如果是院系负责人
         if (users.getActor() == 2){
@@ -361,15 +364,15 @@ public class TestCheckController {
         }
         else {
             attributes.addAttribute("gh", gh);
-            return  "redirect:/departmentalaudit";
-//            "redirect:/departmentalaudit";
+            attributes.addAttribute("tempYxbm",checkService.getLxbmByGh(gh));
+            return  "redirect:/departmentalaudit2";
         }
     }
 
 
     @NeedLogin
     @GetMapping("/backCheck")
-    public String backCheck(@ModelAttribute(value = "gh") String gh,Users users) {
+    public String backCheck(@ModelAttribute(value = "gh") String gh,Users users,RedirectAttributes attributes) {
         // 将审核状态设置为未审核 ,将提交状态设置为未提交
         checkService.clearTjztAndShzt(gh);
 
@@ -378,7 +381,9 @@ public class TestCheckController {
             return "redirect:/officecollege";
         }
         else {
-            return "redirect:/departmentalaudit";
+            attributes.addAttribute("gh", gh);
+            attributes.addAttribute("tempYxbm",checkService.getLxbmByGh(gh));
+            return "redirect:/departmentalaudit2";
         }
     }
 

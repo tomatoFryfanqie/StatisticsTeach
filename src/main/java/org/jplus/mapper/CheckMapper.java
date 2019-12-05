@@ -1,6 +1,7 @@
 package org.jplus.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.jplus.pojo.undergraduateCompatitonAndOther.QTJXGZ;
 import org.jplus.pojo.undergraduateCompatitonAndOther.ZDXSLW;
@@ -22,6 +23,9 @@ import java.sql.Timestamp;
 @Component
 public interface CheckMapper {
 
+
+    @Select("select yxbm from users where gh = #{gh}")
+    public Integer getLxbmByGh(@Param("gh") String gh);
 
     public String getLxmcByGh(String gh);
 

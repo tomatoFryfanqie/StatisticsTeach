@@ -24,6 +24,11 @@ public class CheckServiceImpl implements CheckService{
     CheckMapper checkMapper;
 
     @Override
+    public Integer getLxbmByGh(String gh) {
+        return checkMapper.getLxbmByGh(gh);
+    }
+
+    @Override
     public String getLxmcByGh(String gh) {
         return checkMapper.getLxmcByGh(gh);
     }
@@ -35,7 +40,7 @@ public class CheckServiceImpl implements CheckService{
 
     @Override
     public BkssjjxInfo getBKSSJJXInfo(String gh) {
-        BkssjjxInfo bkssjjxInfo = checkMapper.getBKSSJJXInfo(gh);
+//        BkssjjxInfo bkssjjxInfo = checkMapper.getBKSSJJXInfo(gh);
         return checkMapper.getBKSSJJXInfo(gh);
     }
 
