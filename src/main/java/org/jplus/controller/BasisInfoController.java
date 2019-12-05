@@ -57,6 +57,7 @@ public class BasisInfoController {
             tjztService.addTjzt(tjzt.getGh(),tjzt.getTjzt(),tjzt.getShzt());
         }
         model.addAttribute("hidden",tjztService.getTjzt(users.getGh()).getTjzt());
+        model.addAttribute("hiddenTips", jbxxService.getJbxxInfo(users.getGh()));
         return "basicinformation";
     }
     @NeedLogin

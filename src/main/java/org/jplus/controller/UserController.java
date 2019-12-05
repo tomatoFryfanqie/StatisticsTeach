@@ -26,9 +26,9 @@ public class UserController {
 
     private static final int OFFICE_TEACHER_NUM = 22;
     private static final String OFFICE_NAME = "教务处";
-    private static final String OFFICE_TEACHER_NAME = "教务处教师";
+    private static final String OFFICE_TEACHER_NAME = "教务处审核";
     private static final String USER_TYPE_NAME = "普通教师";
-    private static final String YXSH_TEACHER = "院系审核教师";
+    private static final String YXSH_TEACHER = "院系审核";
 
     @Autowired
     private UserService userService;
@@ -48,12 +48,12 @@ public class UserController {
             return "login";
         }
         if (user.getActor()==3){
-            return "redirect:/officeUser";
+            return "redirect:officeUser";
         }
         if (user.getActor()==2){
-            return "redirect:/user";
+            return "redirect:user";
         }
-        return "redirect:/basicinformation";
+        return "redirect:basicinformation";
     }
 
     /**
@@ -66,7 +66,7 @@ public class UserController {
         boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
         if (!isOK){
             model.addAttribute("error","旧密码不正确！！！");
-            return "redirect:/basicinformation";
+            return "redirect:basicinformation";
         }
         return "redirect:/";
     }
@@ -78,7 +78,7 @@ public class UserController {
         boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
         if (!isOK){
             model.addAttribute("error","旧密码不正确！！！");
-            return "redirect:/user";
+            return "redirect:user";
         }
         return "redirect:/";
     }
@@ -90,7 +90,7 @@ public class UserController {
         boolean isOK = userService.updatePassword(user.getGh(), oldPassword, newPassword,request);
         if (!isOK){
             model.addAttribute("error","旧密码不正确！！！");
-            return "redirect:/officeUser";
+            return "redirect:officeUser";
         }
         return "redirect:/";
     }
