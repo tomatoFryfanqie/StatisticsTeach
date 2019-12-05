@@ -58,7 +58,7 @@ public class GraduateProgramController {
             //获取年度
             yjsjyxm.setNd(GetYear.getYears());
             //获取工作量
-            yjsjyxm.setGzl(GetWorkLoad.calculateWeight(yjsjyxm.getXmpm(),yjsjyxm.getZrs()) * yjsjyxm.getXmdjbm() == 1 ? 200f : 50f);
+            yjsjyxm.setGzl(GetWorkLoad.calculateWeight(yjsjyxm.getXmpm(),yjsjyxm.getZrs()) * (yjsjyxm.getXmdjbm() == 1 ? 200f : 50f));
             //添加项目的一列
             yjsjyxmService.addYjsjyxm(yjsjyxm);
         }

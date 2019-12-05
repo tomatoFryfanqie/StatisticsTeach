@@ -154,6 +154,15 @@ $(document).ready(function() {
             .children(".notnull")
             .css({ display: "none" });
     });
+//版权年份
+    var myDate = new Date();
+    var tYear = myDate.getFullYear();
+    var now=2019;
+    var oDate1 = new Date(tYear);
+    var oDate2 = new Date(now);
+    if(oDate1>oDate2){
+        document.getElementById("newyear").innerHTML="-"+tYear;
+    }
 
 //    密码输入***
 //     var str = ""; //定义一个空变量用来存储密码

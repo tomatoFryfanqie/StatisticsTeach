@@ -26,9 +26,9 @@ public class UserController {
 
     private static final int OFFICE_TEACHER_NUM = 22;
     private static final String OFFICE_NAME = "教务处";
-    private static final String OFFICE_TEACHER_NAME = "教务处教师";
+    private static final String OFFICE_TEACHER_NAME = "教务处审核";
     private static final String USER_TYPE_NAME = "普通教师";
-    private static final String YXSH_TEACHER = "院系审核教师";
+    private static final String YXSH_TEACHER = "院系审核";
 
     @Autowired
     private UserService userService;
