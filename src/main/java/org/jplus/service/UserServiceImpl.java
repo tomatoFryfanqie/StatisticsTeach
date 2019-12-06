@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService{
             //前面有了参数校验,这里还是校验下吧
             return  null;
         }
-        System.out.println("service:"+loginVo);
         Users user= userMapper.getById(loginVo.getGh());
         if (user==null){
             return null;
@@ -74,7 +73,6 @@ public class UserServiceImpl implements UserService{
         request.getSession().setAttribute(token,user);
         //添加token到cookie中
         addCookies(response,token);
-        System.out.println(user);
         return user;
     }
 

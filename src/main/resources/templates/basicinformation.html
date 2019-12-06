@@ -255,10 +255,19 @@
         </form>
     </div>
     <div class="footer" style="width:100%;min-width:800px;height:35px;text-align: center;position: fixed;bottom: 0;font-size: 12px;color: #BDBDAE;">
-        <div style="height: 16px;line-height: 16px"><span style="font-family:arial;">&copy; </span>2019<span id="newyear"></span>湖北师范大学(www.hbnu.edu.cn).All rights reserved.</div>
-        <div style="height: 16px;line-height: 16px;">技术支持：Jplus实验室</div>
+        <div style="height: 16px;line-height: 16px;font-size: 12px;"><span style="font-family:arial;">&copy; </span>2019<span id="newyear"></span>湖北师范大学(www.hbnu.edu.cn).All rights reserved.</div>
+        <div style="height: 16px;line-height: 16px;font-size: 12px;">技术支持：Jplus实验室</div>
     </div>
-    <script src="" async defer></script>
+    <script>
+        var myDate = new Date();
+        var tYear = myDate.getFullYear();
+        var now=2019;
+        var oDate1 = new Date(tYear);
+        var oDate2 = new Date(now);
+        if(oDate1>oDate2){
+            document.getElementById("newyear").innerHTML="-"+tYear;
+        }
+    </script>
 </body>
 
 </html>

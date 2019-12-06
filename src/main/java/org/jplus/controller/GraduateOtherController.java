@@ -55,7 +55,7 @@ public class GraduateOtherController {
         yJSQTJX.setFsjkcs(invigilator);
         yJSQTJX.setYjfs(checking);
         double gzl = 0;
-        if(checking <= 20) {
+        if(checking <= 20 && checking >0) {
             gzl = workloadOfTeachingSupervision + proposition*8 + examining*4 + check*4 + examiner*4 + invigilator*3 + 20*0.3;
         }else {
             gzl = workloadOfTeachingSupervision + proposition*8 + examining*4 + check*4 + examiner*4 + invigilator*3 + checking*0.3;

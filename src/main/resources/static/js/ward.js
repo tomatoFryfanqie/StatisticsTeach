@@ -4,7 +4,7 @@ $(document).ready(function() {
             var i=0;
             $(this).parent().siblings().children('.form-control-jub').each(function() {
                 var value = $(this).val();
-                console.log("hhh"+value);
+                // console.log("hhh"+value);
                 if (value === "") {
                     i++;
                     $(this)
@@ -19,7 +19,7 @@ $(document).ready(function() {
                 }
             });
             if(i===0){
-                // return true;
+                return true;
                 var contestName = $("#contestName").val();
                 var competition = $("#competition").val();
                 var contestLevel = $("#contestLevel").val();
@@ -64,6 +64,7 @@ $(document).ready(function() {
             }
         });
         if(i===0){
+            return true;
             var teacherCompetitionName = $("#teacherCompetitionName").val();
             var teacherCompetitioncategory = $("#teacherCompetitioncategory").val();
             var teacherCompetitionform = $("#teacherCompetitionform").val();
@@ -107,6 +108,7 @@ $(document).ready(function() {
             }
         });
         if(i===0){
+            return true;
             var contestName = $("#contestName").val();
             var competition = $("#competition").val();
             var contestLevel = $("#contestLevel").val();
@@ -151,6 +153,7 @@ $(document).ready(function() {
             }
         });
         if(i===0){
+            return  true;
             var gh = $("#gh").val();
             var name = $("#name").val();
             var type = $("#type").val();
@@ -194,6 +197,7 @@ $(document).ready(function() {
             }
         });
         if(i===0){
+            return true;
             var department = $("#department").val();
             var gh = $("#gh").val();
             var name = $("#name").val();
