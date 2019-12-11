@@ -5,15 +5,15 @@ spring:
     servlet:
       load-on-startup: 1
   datasource:
-    url: jdbc:mysql://10.30.170.43:3306/jxgldb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://120.79.182.28:3306/jxgldb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: jplus_imlgw.top123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      initial-size: 20
-      min-idle: 20
-      maxActive: 500
+      initial-size: 10
+      min-idle: 2
+      maxActive: 100
       maxWait: 10000
   thymeleaf:
     cache: false

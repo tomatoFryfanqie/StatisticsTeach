@@ -1,13 +1,11 @@
 package org.jplus.controller;
 
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.HSSFCellUtil;
-import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.util.Region;
 import org.apache.poi.ss.util.RegionUtil;
 import org.jplus.interceptor.NeedLogin;
 import org.jplus.pojo.Tjzt.Tjb;
@@ -17,11 +15,9 @@ import org.jplus.utils.GetYear;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
 
 @Controller
 public class ExcelOutController {
@@ -30,21 +26,19 @@ public class ExcelOutController {
     private TjbService tjbService;
 
 
-    @SuppressWarnings("deprecation")
-    public static void setRegionStyle(HSSFSheet sheet, Region region, HSSFCellStyle cs) {
-        for (int i = region.getRowFrom(); i <= region.getRowTo(); i++) {
-            HSSFRow row = HSSFCellUtil.getRow(i, sheet);
-            for (int j = region.getColumnFrom(); j <= region.getColumnTo(); j++) {
-                HSSFCell cell = HSSFCellUtil.getCell(row, (short) j);
-                cell.setCellStyle(cs);
-            }
-        }
+    public static void setBorder(CellRangeAddress cellRangeAddress, Sheet sheet, Workbook workbook){
+        /*设置四周的边框*/
+        RegionUtil.setBorderBottom(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
+        RegionUtil.setBorderLeft(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
+        RegionUtil.setBorderRight(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
+        RegionUtil.setBorderTop(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
     }
+
     /*导出全校*/
     @NeedLogin
     @RequestMapping("QXexcelOut")
     public void QXexcelOut(HttpServletRequest request, HttpServletResponse response, Users users) {
-        /*创建Excel*/
+        /*创建Excel，设置基本样式*/
         HSSFWorkbook sheets = new HSSFWorkbook();
         HSSFCellStyle cellStyle = sheets.createCellStyle();
         HSSFFont font = sheets.createFont();
@@ -56,7 +50,12 @@ public class ExcelOutController {
         cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
         cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        cellStyle.setBorderBottom((short) 1); //底部边框
+        cellStyle.setBorderLeft((short) 1); //左边框
+        cellStyle.setBorderRight((short) 1);
+        cellStyle.setBorderTop((short) 1);
 
+        /*设置标题样式*/
         HSSFCellStyle cellStyle1 = sheets.createCellStyle();
         HSSFFont font1 = sheets.createFont();
         font1.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -79,79 +78,68 @@ public class ExcelOutController {
         CellRangeAddress cellRangeAddress = new CellRangeAddress(3, 4, 0, 0);
         workLoad.addMergedRegion(cellRangeAddress);
         cell_0.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellRangeAddress,workLoad,sheets);
-
 
         HSSFCell cell_1 = row_0.createCell(1);
         cell_1.setCellValue("工号");
         CellRangeAddress cellAddresses_1 = new CellRangeAddress(3, 4, 1, 1);
         workLoad.addMergedRegion(cellAddresses_1);
         cell_1.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_1,workLoad,sheets);
 
-        /*前面有改动 这里随便写了 呜呜呜*/
+        /*前面有改动 这里随便写了 */
         HSSFCell cell_100 = row_0.createCell(2);
         cell_100.setCellValue("姓名");
         CellRangeAddress cellAddresses_100 = new CellRangeAddress(3, 4, 2, 2);
         workLoad.addMergedRegion(cellAddresses_100);
         cell_100.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_100,workLoad,sheets);
 
         HSSFCell cell_2 = row_0.createCell(3);
         cell_2.setCellValue("职务");
         CellRangeAddress cellAddresses_2 = new CellRangeAddress(3, 4, 3, 3);
         workLoad.addMergedRegion(cellAddresses_2);
         cell_2.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_2,workLoad,sheets);
 
         HSSFCell cell_3 = row_0.createCell(4);
         cell_3.setCellValue("本科生教学工作量");
         CellRangeAddress cellAddresses_3 = new CellRangeAddress(3, 3, 4, 9);
         workLoad.addMergedRegion(cellAddresses_3);
         cell_3.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_3,workLoad,sheets);
 
         HSSFCell cell_4 = row_0.createCell(10);
         cell_4.setCellValue("研究生教学工作量");
         CellRangeAddress cellAddresses_4 = new CellRangeAddress(3, 3, 10, 15);
         workLoad.addMergedRegion(cellAddresses_4);
         cell_4.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_4,workLoad,sheets);
 
         HSSFCell cell_5 = row_0.createCell(16);
         cell_5.setCellValue("本科生最低授课");
         CellRangeAddress cellAddresses_5 = new CellRangeAddress(3, 4, 16, 16);
         workLoad.addMergedRegion(cellAddresses_5);
         cell_5.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_5,workLoad,sheets);
 
         HSSFCell cell_6 = row_0.createCell(17);
         cell_6.setCellValue("额定教学工作量");
         CellRangeAddress cellAddresses_6 = new CellRangeAddress(3, 4, 17, 17);
         workLoad.addMergedRegion(cellAddresses_6);
         cell_6.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_6,workLoad,sheets);
+
 
         HSSFCell cell_7 = row_0.createCell(18);
         cell_7.setCellValue("实际教学工作量");
         CellRangeAddress cellAddresses_7 = new CellRangeAddress(3, 4, 18, 18);
         workLoad.addMergedRegion(cellAddresses_7);
         cell_7.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_7,workLoad,sheets);
 
         HSSFCell cell_8 = row_0.createCell(19);
         cell_8.setCellValue("本科生授课未完成");
         CellRangeAddress cellAddresses_8 = new CellRangeAddress(3, 4, 19, 19);
         workLoad.addMergedRegion(cellAddresses_8);
         cell_8.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_8,workLoad,sheets);
 
         HSSFCell cell_9 = row_0.createCell(20);
         cell_9.setCellValue("额定教学未完成");
         CellRangeAddress cellAddresses_9 = new CellRangeAddress(3, 4, 20, 20);
         workLoad.addMergedRegion(cellAddresses_9);
         cell_9.setCellStyle(cellStyle);
-        ExcelOutController.setBorder(cellAddresses_9,workLoad,sheets);
 
         HSSFRow row_1 = workLoad.createRow(4);
         HSSFCell cell_13 = row_1.createCell(4);
@@ -203,17 +191,28 @@ public class ExcelOutController {
         cell_114.setCellStyle(cellStyle);
 
 
-        HSSFRow workLoadRow = null;
+        ExcelOutController.setBorder(cellRangeAddress, workLoad, sheets);
+        ExcelOutController.setBorder(cellAddresses_1, workLoad, sheets);
+        ExcelOutController.setBorder(cellAddresses_100, workLoad, sheets);
+        ExcelOutController.setBorder(cellAddresses_2,workLoad,sheets);
+        ExcelOutController.setBorder(cellAddresses_3,workLoad,sheets);
+        ExcelOutController.setBorder(cellAddresses_4,workLoad,sheets);
+        ExcelOutController.setBorder(cellAddresses_5,workLoad,sheets);
+        ExcelOutController.setBorder(cellAddresses_6,workLoad,sheets);
+        ExcelOutController.setBorder(cellAddresses_7,workLoad,sheets);
+        ExcelOutController.setBorder(cellAddresses_8,workLoad,sheets);
+        ExcelOutController.setBorder(cellAddresses_9,workLoad,sheets);
 
+        HSSFRow workLoadRow = null;
 
         /*取出数据*/
         List<Tjb> tjbs = null;
         if(users.getActor()==2){
-
              tjbs = tjbService.getAllTjbByYxbm(users.getYxbm());
         }else {
              tjbs = tjbService.getAllTjb();
         }
+
         for (int i = 0; i < tjbs.size(); i++) {
             Tjb tjb = tjbs.get(i);
             workLoadRow = workLoad.createRow(i + 5);
@@ -270,12 +269,4 @@ public class ExcelOutController {
             e.printStackTrace();
         }
     }
-    public static void setBorder(CellRangeAddress cellRangeAddress, Sheet sheet, Workbook workbook){
-
-        RegionUtil.setBorderBottom(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
-        RegionUtil.setBorderLeft(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
-        RegionUtil.setBorderRight(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
-        RegionUtil.setBorderTop(HSSFCellStyle.BORDER_THIN, cellRangeAddress, sheet, workbook);
-    }
-
 }
